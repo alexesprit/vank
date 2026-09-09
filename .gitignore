@@ -17,3 +17,5 @@ builder/data/rejected.json
 builder/data/words.json
 *.tmp
 builder/data/seed/
+.vercel/
+.env.local
