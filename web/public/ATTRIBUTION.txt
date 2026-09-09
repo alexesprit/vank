@@ -1,0 +1,23 @@
+Vank dictionary attribution
+
+The bundled seed vocabulary is project-owned curated data. For dictionaries
+rebuilt with Wiktionary records, the imported definitions and adapted dataset
+are made available under Creative Commons Attribution-ShareAlike 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Wiktionary contributors: https://en.wiktionary.org/
+Structured extraction: Wiktextract / Kaikki, Tatu Ylonen and contributors
+https://kaikki.org/dictionary/Armenian/
+https://github.com/tatuylonen/wiktextract
+
+Each imported entry retains its source URL and source name in words.json;
+follow its Wiktionary page's history for contributors. The builder also emits
+an entry-by-entry ATTRIBUTION.txt beside its dictionary output.
+
+Changes: filtering, uppercase normalization, merging curated vocabulary,
+deterministic Eastern Armenian learner readings, structural metadata, and
+optional AI semantic metadata/manual corrections. No example quotations,
+audio, or images are imported.
+
+Licensing reference reviewed 2026-09-09:
+https://en.wiktionary.org/wiki/Wiktionary:Copyrights

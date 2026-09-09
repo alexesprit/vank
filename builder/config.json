@@ -1,0 +1,29 @@
+{
+  "learnerLanguages": [
+    "ru"
+  ],
+  "limit": 1000,
+  "sources": [
+    {
+      "type": "curated",
+      "path": "builder/data/curated.json",
+      "priority": 100
+    },
+    {
+      "type": "wiktionary",
+      "path": "builder/data/wiktionary.jsonl",
+      "priority": 10,
+      "edition": "en",
+      "url": "https://kaikki.org/dictionary/Armenian/kaikki.org-dictionary-Armenian.jsonl",
+      "names": "builder/data/selected-names.json"
+    }
+  ],
+  "audience": {
+    "language": "ru",
+    "candidates": "builder/data/recognizable-ru.json",
+    "minFamiliarWords": 700,
+    "minFamiliarShare": 0.7,
+    "minWords": 950,
+    "candidateLimit": 2100
+  }
+}

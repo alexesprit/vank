@@ -1,0 +1,35 @@
+{
+  "name": "vank",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "npm run dictionary:download",
+    "dev": "vite web --host 127.0.0.1",
+    "prebuild": "npm run dictionary:download",
+    "build": "tsc --noEmit && vite build web --base=./",
+    "preview": "vite preview web --host 127.0.0.1",
+    "pretest": "npm run dictionary:download",
+    "test": "vitest",
+    "pretest:run": "npm run dictionary:download",
+    "test:run": "vitest run",
+    "dictionary:download": "node builder/scripts/download-dictionary.ts",
+    "fetch": "node builder/src/cli.ts fetch",
+    "normalize": "node builder/src/cli.ts normalize",
+    "derive": "node builder/src/cli.ts derive",
+    "enrich": "node builder/src/cli.ts enrich",
+    "validate": "node builder/src/cli.ts validate",
+    "build:dictionary": "node builder/src/cli.ts build",
+    "build:seed": "node builder/src/cli.ts build --curated-only --no-ai --data-dir builder/data/seed"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "fake-indexeddb": "^6.2.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

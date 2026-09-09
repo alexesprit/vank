@@ -1,0 +1,1200 @@
+[
+  {
+    "word": "ՄԱՄԱ",
+    "meaning": {
+      "ru": "мама"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "family"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՏԱՔՍԻ",
+    "meaning": {
+      "ru": "такси"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "transport"
+    ],
+    "tags": [
+      "beginner"
+    ],
+    "acceptedLatin": [
+      "taksi",
+      "taxi"
+    ]
+  },
+  {
+    "word": "ՊԻՑՑԱ",
+    "meaning": {
+      "ru": "пицца"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ],
+    "acceptedLatin": [
+      "pitstsa",
+      "pitsa",
+      "pizza"
+    ]
+  },
+  {
+    "word": "ՌԱԴԻՈ",
+    "meaning": {
+      "ru": "радио"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "categories": [
+      "technology"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՄԵՏՐՈ",
+    "meaning": {
+      "ru": "метро"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "transport"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԿԻՆՈ",
+    "meaning": {
+      "ru": "кино"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԲԱՆԱՆ",
+    "meaning": {
+      "ru": "банан"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԿԱԿԱՈ",
+    "meaning": {
+      "ru": "какао"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԿՈԼԱ",
+    "meaning": {
+      "ru": "кола"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՍՈԴԱ",
+    "meaning": {
+      "ru": "сода"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՍԱԼԱԹ",
+    "meaning": {
+      "ru": "салат"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՍՈՒՊ",
+    "meaning": {
+      "ru": "суп"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՏՈՐԹ",
+    "meaning": {
+      "ru": "торт"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՍՈՈՒՍ",
+    "meaning": {
+      "ru": "соус"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՍԱՈՒՆԱ",
+    "meaning": {
+      "ru": "сауна"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԲԱՐ",
+    "meaning": {
+      "ru": "бар"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "restaurant"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԲԱՆԿ",
+    "meaning": {
+      "ru": "банк"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "shopping"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՊԱՐԿ",
+    "meaning": {
+      "ru": "парк"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՕՊԵՐԱ",
+    "meaning": {
+      "ru": "опера"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՀՈՏԵԼ",
+    "meaning": {
+      "ru": "отель"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "categories": [
+      "signage"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՍԱԼՈՆ",
+    "meaning": {
+      "ru": "салон"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "signage"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՖՈՏՈ",
+    "meaning": {
+      "ru": "фото"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "signage"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՖԻԼՄ",
+    "meaning": {
+      "ru": "фильм"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԻՆՏԵՐՆԵՏ",
+    "meaning": {
+      "ru": "интернет"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "technology"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԱՆՆԱ",
+    "meaning": {
+      "ru": "Анна"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "person-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՆԻՆԱ",
+    "meaning": {
+      "ru": "Нина"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "person-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՄԱՐԻԱ",
+    "meaning": {
+      "ru": "Мария"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "person-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԻՎԱՆ",
+    "meaning": {
+      "ru": "Иван"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "person-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԱՆԴՐԵՅ",
+    "meaning": {
+      "ru": "Андрей"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "person-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԱՐԱՄ",
+    "meaning": {
+      "ru": "Арам"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "categories": [
+      "person-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԵՐԵՎԱՆ",
+    "meaning": {
+      "ru": "Ереван"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "categories": [
+      "place-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ՄՈՍԿՎԱ",
+    "meaning": {
+      "ru": "Москва"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "place-name"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԲԱՐԵՎ",
+    "meaning": {
+      "ru": "привет"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "greetings"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՀԱՑ",
+    "meaning": {
+      "ru": "хлеб"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՋՈՒՐ",
+    "meaning": {
+      "ru": "вода"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԳԻՆԻ",
+    "meaning": {
+      "ru": "вино"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԿԱԹ",
+    "meaning": {
+      "ru": "молоко"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԹԵՅ",
+    "meaning": {
+      "ru": "чай"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՄԻՍ",
+    "meaning": {
+      "ru": "мясо"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՁՈՒ",
+    "meaning": {
+      "ru": "яйцо"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԱՂ",
+    "meaning": {
+      "ru": "соль"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՇՈՒՆ",
+    "meaning": {
+      "ru": "собака"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "animals"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԿԱՏՈՒ",
+    "meaning": {
+      "ru": "кошка"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": [
+      "animals"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՏՈՒՆ",
+    "meaning": {
+      "ru": "дом"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "household"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԽԱՆՈՒԹ",
+    "meaning": {
+      "ru": "магазин"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "shopping"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԽՈՀԱՆՈՑ",
+    "meaning": {
+      "ru": "кухня"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "household"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԱՅՈ",
+    "meaning": {
+      "ru": "да"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՈՉ",
+    "meaning": {
+      "ru": "нет"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԵՍ",
+    "meaning": {
+      "ru": "я"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԴՈՒ",
+    "meaning": {
+      "ru": "ты"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՍԱ",
+    "meaning": {
+      "ru": "это"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՆԱ",
+    "meaning": {
+      "ru": "он / она"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՄԱԶ",
+    "meaning": {
+      "ru": "волос"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՄԱՏ",
+    "meaning": {
+      "ru": "палец"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԴԱՍ",
+    "meaning": {
+      "ru": "урок"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "education"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԺԱՄ",
+    "meaning": {
+      "ru": "час"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "numbers-time"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԺԱՄԱՆԱԿ",
+    "meaning": {
+      "ru": "время"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "numbers-time"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԾԱՌ",
+    "meaning": {
+      "ru": "дерево"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "nature"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԾՈՎ",
+    "meaning": {
+      "ru": "море"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "nature"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՁՈՐ",
+    "meaning": {
+      "ru": "ущелье"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "nature"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՃԱՇ",
+    "meaning": {
+      "ru": "обед"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՃԱՄՓԱ",
+    "meaning": {
+      "ru": "дорога"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "street"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՓՈՂ",
+    "meaning": {
+      "ru": "деньги"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "shopping"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՓԱԿ",
+    "meaning": {
+      "ru": "закрыто"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "signage"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԲԱՑ",
+    "meaning": {
+      "ru": "открыто"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "signage"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՕՐ",
+    "meaning": {
+      "ru": "день"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "numbers-time"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԷՋ",
+    "meaning": {
+      "ru": "страница"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "education"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԷԿՐԱՆ",
+    "meaning": {
+      "ru": "экран"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "categories": [
+      "technology"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԸՆՏԱՆԻՔ",
+    "meaning": {
+      "ru": "семья"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "family"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԸՆԿԵՐ",
+    "meaning": {
+      "ru": "друг"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՔԱՂԱՔ",
+    "meaning": {
+      "ru": "город"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "place-name"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՈՍԿԻ",
+    "meaning": {
+      "ru": "золото"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "shopping"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՈՒՏԵԼ",
+    "meaning": {
+      "ru": "есть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԼՈՒՅՍ",
+    "meaning": {
+      "ru": "свет"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "household"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԼԵԶՈՒ",
+    "meaning": {
+      "ru": "язык"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "education"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ՉԱՅ",
+    "meaning": {
+      "ru": "чай (заимствованное)"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "categories": [
+      "food"
+    ],
+    "tags": [
+      "beginner"
+    ]
+  },
+  {
+    "word": "ԳԱՐՈՒՆ",
+    "meaning": {
+      "ru": "весна"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "nature"
+    ],
+    "tags": [
+      "common"
+    ]
+  },
+  {
+    "word": "ԿՈՄԲՈ",
+    "meaning": {
+      "ru": "комбо (набор в меню)"
+    },
+    "familiarity": {
+      "ru": 1
+    },
+    "usefulnessScore": 1,
+    "categories": [
+      "restaurant"
+    ],
+    "tags": [
+      "beginner",
+      "loanword"
+    ],
+    "usageEvidence": "https://artlunch.am/menu"
+  },
+  {
+    "word": "ՃԻՇՏ",
+    "meaning": {
+      "ru": "правильный, верный"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "categories": [
+      "everyday"
+    ],
+    "tags": [
+      "verification"
+    ],
+    "usageEvidence": "https://en.wiktionary.org/wiki/ճիշտ#Armenian"
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "hy-54a-53b-54e-531": {
+    "familiarity": {
+      "ru": 0.95
+    },
+    "reviewNote": "Reading and ordinary meaning directly resemble Russian пиво, сестра, носки, or пылесос; corrected an inconsistent AI familiarity estimate."
+  },
+  "hy-546-531-54d-53f-53b": {
+    "familiarity": {
+      "ru": 0.95
+    },
+    "reviewNote": "Reading and ordinary meaning directly resemble Russian пиво, сестра, носки, or пылесос; corrected an inconsistent AI familiarity estimate."
+  },
+  "hy-54d-535-54d-54f-550-531": {
+    "familiarity": {
+      "ru": 0.95
+    },
+    "reviewNote": "Reading and ordinary meaning directly resemble Russian пиво, сестра, носки, or пылесос; corrected an inconsistent AI familiarity estimate."
+  },
+  "hy-54a-53b-53c-531-54d-548-54d": {
+    "familiarity": {
+      "ru": 0.95
+    },
+    "reviewNote": "Reading and ordinary meaning directly resemble Russian пиво, сестра, носки, or пылесос; corrected an inconsistent AI familiarity estimate."
+  },
+  "hy-53c-548-53c-53b-53f": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading lolik does not closely resemble its ordinary Russian meaning помидор; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-54a-548-542-548-54f-531": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading poghota does not closely resemble its ordinary Russian meaning проспект; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-540-54c-548-544": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading hrom does not closely resemble its ordinary Russian meaning Рим; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-536-550-548": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading zro does not closely resemble its ordinary Russian meaning ноль; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-531-53f-548-552-544-532": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading akumb does not closely resemble its ordinary Russian meaning клуб; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-53d-545-548-552-54d": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading khyus does not closely resemble its ordinary Russian meaning пюре; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-540-531-54d-551-535": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading hastse does not closely resemble its ordinary Russian meaning адрес; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-540-531-544-535-550-533": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading hamerg does not closely resemble its ordinary Russian meaning концерт; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-553-531-54c-531-54f-548-546": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading paraton does not closely resemble its ordinary Russian meaning фестиваль; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-54a-531-550-532-535-550-548-552-539-545-548-552-546": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading parberutyun does not closely resemble its ordinary Russian meaning период, абзац; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-535-546-539-531-53f-531-54c-548-552-551-54e-531-53e-554": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading yentakarutsvatsk does not closely resemble its ordinary Russian meaning инфраструктура; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-53f-531-550-54a-535-54f": {
+    "familiarity": {
+      "ru": 0.2
+    },
+    "reviewNote": "The Armenian reading karpet does not closely resemble its ordinary Russian meaning ковёр; familiarity must measure Russian recognition, not translation or English resemblance."
+  },
+  "hy-54c-548-552-54d": {
+    "familiarity": {
+      "ru": 0.9
+    },
+    "reviewNote": "The audible rus root and Russian identity make this unsuitable as low-familiarity verification vocabulary."
+  },
+  "hy-54c-548-552-54d-535-550-535-546": {
+    "familiarity": {
+      "ru": 0.9
+    },
+    "reviewNote": "The audible rus root and Russian identity make this unsuitable as low-familiarity verification vocabulary."
+  },
+  "hy-54c-548-552-54d-531-53f-531-546": {
+    "familiarity": {
+      "ru": 0.9
+    },
+    "reviewNote": "The audible rus root and Russian identity make this unsuitable as low-familiarity verification vocabulary."
+  },
+  "hy-540-548-54f-535-53c": {
+    "flags": [
+      "unsupported curated hotel meaning: imported evidence supplies only verb senses"
+    ],
+    "reviewNote": "Exclude until the hotel sense is independently attested; the supplied source definitions mean decay, stink, or sulk."
+  }
+}

@@ -1,0 +1,11 @@
+import '../styles/main.css';
+import { loadDictionary } from './data/dictionary.ts';
+import { openRepository } from './storage/repository.ts';
+import { createTrainer } from './trainer.ts';
+import { mountTrainer, showError } from './ui/trainer-view.ts';
+async function start() {
+  const dictionary = await loadDictionary();
+  const repository = await openRepository();
+  mountTrainer(await createTrainer(dictionary.words, repository));
+}
+start().catch(error => { document.getElementById('loading')!.hidden = true; showError(error); });

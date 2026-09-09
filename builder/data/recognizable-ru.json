@@ -1,0 +1,9225 @@
+[
+  {
+    "word": "ՄԵՏՐՈ",
+    "recognizableAs": "метро"
+  },
+  {
+    "word": "ՏԱՔՍԻ",
+    "recognizableAs": "такси"
+  },
+  {
+    "word": "ԲԱՆԿ",
+    "recognizableAs": "банк"
+  },
+  {
+    "word": "ԿՈՄԲՈ",
+    "recognizableAs": "комбо"
+  },
+  {
+    "word": "ԿԻԼՈԳՐԱՄ",
+    "recognizableAs": "килограмм"
+  },
+  {
+    "word": "ԲԱՆԱՆ",
+    "recognizableAs": "банан"
+  },
+  {
+    "word": "ԲԱԼ",
+    "recognizableAs": "балл"
+  },
+  {
+    "word": "ԿԱՐՏՈՖԻԼ",
+    "recognizableAs": "картофель"
+  },
+  {
+    "word": "ԲԱՍԿԵՏԲՈԼ",
+    "recognizableAs": "баскетбол"
+  },
+  {
+    "word": "ՎՈԼԵՅԲՈԼ",
+    "recognizableAs": "волейбол"
+  },
+  {
+    "word": "ԹԵՆԻՍ",
+    "recognizableAs": "теннис"
+  },
+  {
+    "word": "ԿՈՄՊՈԶԻՏՈՐ",
+    "recognizableAs": "композитор"
+  },
+  {
+    "word": "ՄՈԼԵԿՈՒԼ",
+    "recognizableAs": "молекула"
+  },
+  {
+    "word": "ՏԵԽՆԻԿԱ",
+    "recognizableAs": "техника"
+  },
+  {
+    "word": "ՑՈՒՆԱՄԻ",
+    "recognizableAs": "цунами"
+  },
+  {
+    "word": "ՇԱԽՄԱՏ",
+    "recognizableAs": "шахматы"
+  },
+  {
+    "word": "ՊԻՆԳՎԻՆ",
+    "recognizableAs": "пингвин"
+  },
+  {
+    "word": "ՇԱՇԿԻ",
+    "recognizableAs": "шашки"
+  },
+  {
+    "word": "ԼԱՄՊ",
+    "recognizableAs": "лампа"
+  },
+  {
+    "word": "ՌԵԺԻՍՈՐ",
+    "recognizableAs": "режиссёр"
+  },
+  {
+    "word": "ՌԵԿՏՈՐ",
+    "recognizableAs": "ректор"
+  },
+  {
+    "word": "ՍԿՈՒՄԲՐԻԱ",
+    "recognizableAs": "скумбрия"
+  },
+  {
+    "word": "ԿՈՐՊՈՒՍ",
+    "recognizableAs": "корпус"
+  },
+  {
+    "word": "ՖԼԵՅՏԱ",
+    "recognizableAs": "флейта"
+  },
+  {
+    "word": "ԿԼԱՐՆԵՏ",
+    "recognizableAs": "кларнет"
+  },
+  {
+    "word": "ՄԱՄՈՆՏ",
+    "recognizableAs": "мамонт"
+  },
+  {
+    "word": "ՅԱԳՈՒԱՐ",
+    "recognizableAs": "ягуар"
+  },
+  {
+    "word": "ՎԻՔԻ",
+    "recognizableAs": "вики"
+  },
+  {
+    "word": "ՄԻԼԻՈՆ",
+    "recognizableAs": "миллион"
+  },
+  {
+    "word": "ՄԻԼԻԱՐԴ",
+    "recognizableAs": "миллиард"
+  },
+  {
+    "word": "ՋՈՒՆԳԼԻ",
+    "recognizableAs": "джунгли"
+  },
+  {
+    "word": "ՏՈՒՆԴՐԱ",
+    "recognizableAs": "тундра"
+  },
+  {
+    "word": "ՍԱՆՏԻՄԵՏՐ",
+    "recognizableAs": "сантиметр"
+  },
+  {
+    "word": "ԿԱՏԵԳՈՐԻԱ",
+    "recognizableAs": "категория"
+  },
+  {
+    "word": "ԳՐԻՊ",
+    "recognizableAs": "грипп"
+  },
+  {
+    "word": "ԲՅՈՒՋԵ",
+    "recognizableAs": "бюджет"
+  },
+  {
+    "word": "ԿԻՎԻ",
+    "recognizableAs": "киви"
+  },
+  {
+    "word": "ՕՄԱՐ",
+    "recognizableAs": "омар"
+  },
+  {
+    "word": "ՍԿՈՏՉ",
+    "recognizableAs": "скотч"
+  },
+  {
+    "word": "ՎԱՆՆԱ",
+    "recognizableAs": "ванна"
+  },
+  {
+    "word": "ԿՈՆՅԱԿ",
+    "recognizableAs": "коньяк"
+  },
+  {
+    "word": "ՇԱՄՊԱՅՆ",
+    "recognizableAs": "шампанское"
+  },
+  {
+    "word": "ԼԻՄՈՆԱԴ",
+    "recognizableAs": "лимонад"
+  },
+  {
+    "word": "ԲՈՔՍ",
+    "recognizableAs": "бокс"
+  },
+  {
+    "word": "ԲԼՈԳ",
+    "recognizableAs": "блог"
+  },
+  {
+    "word": "ԱՎՏՈԲՈՒՍ",
+    "recognizableAs": "автобус"
+  },
+  {
+    "word": "ՏՐԱՄՎԱՅ",
+    "recognizableAs": "трамвай"
+  },
+  {
+    "word": "ՏՐՈԼԵՅԲՈՒՍ",
+    "recognizableAs": "троллейбус"
+  },
+  {
+    "word": "ԲԵԳԵՄՈՏ",
+    "recognizableAs": "бегемот"
+  },
+  {
+    "word": "ՍՈՈՒՍ",
+    "recognizableAs": "соус"
+  },
+  {
+    "word": "ԳԱԶ",
+    "recognizableAs": "газ"
+  },
+  {
+    "word": "ԴԻՆԱՍՏԻԱ",
+    "recognizableAs": "династия"
+  },
+  {
+    "word": "ԿԻԼՈ",
+    "recognizableAs": "кило"
+  },
+  {
+    "word": "ԷՆԵՐԳԻԱ",
+    "recognizableAs": "энергия"
+  },
+  {
+    "word": "ԷԼԵԿՏՐՈՆ",
+    "recognizableAs": "электрон"
+  },
+  {
+    "word": "ՖՈՏՈՆ",
+    "recognizableAs": "фотон"
+  },
+  {
+    "word": "ԺԱՆՐ",
+    "recognizableAs": "жанр"
+  },
+  {
+    "word": "ՎԻԿԻՆԳ",
+    "recognizableAs": "викинг"
+  },
+  {
+    "word": "ՏԱՆԳՈ",
+    "recognizableAs": "танго"
+  },
+  {
+    "word": "ՑԻԿԼՈՆ",
+    "recognizableAs": "циклон"
+  },
+  {
+    "word": "ՄԱՐՇՐՈՒՏ",
+    "recognizableAs": "маршрут"
+  },
+  {
+    "word": "ՄԱՐՇՐՈՒՏԿԱ",
+    "recognizableAs": "маршрутка"
+  },
+  {
+    "word": "ՋԻՊ",
+    "recognizableAs": "джип"
+  },
+  {
+    "word": "ՖՈՅԵ",
+    "recognizableAs": "фойе"
+  },
+  {
+    "word": "ՌԵԱԿՑԻԱ",
+    "recognizableAs": "реакция"
+  },
+  {
+    "word": "ՑԵՄԵՆՏ",
+    "recognizableAs": "цемент"
+  },
+  {
+    "word": "ԳԱՐԱԺ",
+    "recognizableAs": "гараж"
+  },
+  {
+    "word": "ԱԼՈԵ",
+    "recognizableAs": "алоэ"
+  },
+  {
+    "word": "ԷԼԻՊՍ",
+    "recognizableAs": "эллипс"
+  },
+  {
+    "word": "ՇԱԽՄԱՏԻՍՏ",
+    "recognizableAs": "шахматист"
+  },
+  {
+    "word": "ԿՐԵՍԼՈ",
+    "recognizableAs": "кресло"
+  },
+  {
+    "word": "ՀՈՒՄՈՐ",
+    "recognizableAs": "юмор"
+  },
+  {
+    "word": "ԿԱՐԱՈԿԵ",
+    "recognizableAs": "караоке"
+  },
+  {
+    "word": "ՌՈԲՈՏ",
+    "recognizableAs": "робот"
+  },
+  {
+    "word": "ՇԻՄՊԱՆԶԵ",
+    "recognizableAs": "шимпанзе"
+  },
+  {
+    "word": "ՕՐԱՆԳՈՒՏԱՆ",
+    "recognizableAs": "орангутан"
+  },
+  {
+    "word": "ԲՈՐՇ",
+    "recognizableAs": "борщ"
+  },
+  {
+    "word": "ՍՈՒՊ",
+    "recognizableAs": "суп"
+  },
+  {
+    "word": "ԿԱՇԱԼՈՏ",
+    "recognizableAs": "кашалот"
+  },
+  {
+    "word": "ԴԻԶԵԼ",
+    "recognizableAs": "дизель"
+  },
+  {
+    "word": "ԿՈԼԱԺ",
+    "recognizableAs": "коллаж"
+  },
+  {
+    "word": "ՇԱՈՒՐՄԱ",
+    "recognizableAs": "шаурма"
+  },
+  {
+    "word": "ԱԼՅՈՒՄԻՆ",
+    "recognizableAs": "алюминий"
+  },
+  {
+    "word": "ՖՈՒՆՏ",
+    "recognizableAs": "фунт"
+  },
+  {
+    "word": "ԴՈՒԽԻ",
+    "recognizableAs": "духи"
+  },
+  {
+    "word": "ԲԼՈԳԵՐ",
+    "recognizableAs": "блогер"
+  },
+  {
+    "word": "ՍԱՈՒՆԱ",
+    "recognizableAs": "сауна"
+  },
+  {
+    "word": "ԷԿՐԱՆ",
+    "recognizableAs": "экран"
+  },
+  {
+    "word": "ԲԱՆԿԱ",
+    "recognizableAs": "банка"
+  },
+  {
+    "word": "ՊՈՄԻԴՈՐ",
+    "recognizableAs": "помидор"
+  },
+  {
+    "word": "ԳԵՅԶԵՐ",
+    "recognizableAs": "гейзер"
+  },
+  {
+    "word": "ՍԵՆԴՎԻՉ",
+    "recognizableAs": "сэндвич"
+  },
+  {
+    "word": "ՏԵՔՍՏ",
+    "recognizableAs": "текст"
+  },
+  {
+    "word": "ՍՏԱՐՏԱՓ",
+    "recognizableAs": "стартап"
+  },
+  {
+    "word": "ԱԲՈՆԵՄԵՆՏ",
+    "recognizableAs": "абонемент"
+  },
+  {
+    "word": "ԱԲՈՆԵՆՏ",
+    "recognizableAs": "абонент"
+  },
+  {
+    "word": "ԱԲՍՈՒՐԴ",
+    "recognizableAs": "абсурд"
+  },
+  {
+    "word": "ԷԼԵՄԵՆՏ",
+    "recognizableAs": "элемент"
+  },
+  {
+    "word": "ԲԻԶՆԵՍ",
+    "recognizableAs": "бизнес"
+  },
+  {
+    "word": "ԲԻԶՆԵՍՄԵՆ",
+    "recognizableAs": "бизнесмен"
+  },
+  {
+    "word": "ՄՈԴԱ",
+    "recognizableAs": "мода"
+  },
+  {
+    "word": "ՖԵՆ",
+    "recognizableAs": "фен"
+  },
+  {
+    "word": "ՍՊՈՐՏ",
+    "recognizableAs": "спорт"
+  },
+  {
+    "word": "ՍԵԶՈՆ",
+    "recognizableAs": "сезон"
+  },
+  {
+    "word": "ՍԵԿՎՈՅԱ",
+    "recognizableAs": "секвойя"
+  },
+  {
+    "word": "ՇԵՖ",
+    "recognizableAs": "шеф"
+  },
+  {
+    "word": "ՌԵՓ",
+    "recognizableAs": "рэп"
+  },
+  {
+    "word": "ՌԵԳԳԻ",
+    "recognizableAs": "регги"
+  },
+  {
+    "word": "ԿՈՍՏՅՈՒՄ",
+    "recognizableAs": "костюм"
+  },
+  {
+    "word": "ՄՈՏԻՎ",
+    "recognizableAs": "мотив"
+  },
+  {
+    "word": "ՉԱՄԱԴԱՆ",
+    "recognizableAs": "чемодан"
+  },
+  {
+    "word": "ՖԵՐՄԵՐ",
+    "recognizableAs": "фермер"
+  },
+  {
+    "word": "ԿՈՄԻՏԵ",
+    "recognizableAs": "комитет"
+  },
+  {
+    "word": "ՏԵԽՆՈԼՈԳԻԱ",
+    "recognizableAs": "технология"
+  },
+  {
+    "word": "ԿՈՆՏԵՅՆԵՐ",
+    "recognizableAs": "контейнер"
+  },
+  {
+    "word": "ՊՐՈՑԵՍ",
+    "recognizableAs": "процесс"
+  },
+  {
+    "word": "ԴԵՖԻՑԻՏ",
+    "recognizableAs": "дефицит"
+  },
+  {
+    "word": "ԲԱՐՈՆ",
+    "recognizableAs": "барон"
+  },
+  {
+    "word": "ՏՐԱՆՍՊՈՐՏ",
+    "recognizableAs": "транспорт"
+  },
+  {
+    "word": "ԺՈՒՌՆԱԼԻՍՏ",
+    "recognizableAs": "журналист"
+  },
+  {
+    "word": "ԲՐՈՇ",
+    "recognizableAs": "брошь"
+  },
+  {
+    "word": "ԷՍՍԵ",
+    "recognizableAs": "эссе"
+  },
+  {
+    "word": "ՊՐՈՖԵՍՈՐ",
+    "recognizableAs": "профессор"
+  },
+  {
+    "word": "ԲԵՍԹՍԵԼԵՐ",
+    "recognizableAs": "бестселлер"
+  },
+  {
+    "word": "ԴԵՏԵԿՏԻՎ",
+    "recognizableAs": "детектив"
+  },
+  {
+    "word": "ԿԵՐՈՍԻՆ",
+    "recognizableAs": "керосин"
+  },
+  {
+    "word": "ՏՈՐՄՈՒԶ",
+    "recognizableAs": "тормоз"
+  },
+  {
+    "word": "ԳԱՅԿԱ",
+    "recognizableAs": "гайка"
+  },
+  {
+    "word": "ՇԱՄՊՈՒՆ",
+    "recognizableAs": "шампунь"
+  },
+  {
+    "word": "ԴԱՉԱ",
+    "recognizableAs": "дача"
+  },
+  {
+    "word": "ՄԻԿՐՈՖՈՆ",
+    "recognizableAs": "микрофон"
+  },
+  {
+    "word": "ՍՔԵՅԹԲՈՐԴ",
+    "recognizableAs": "скейтборд"
+  },
+  {
+    "word": "ԱՍՊԻՐԱՆՏ",
+    "recognizableAs": "аспирант"
+  },
+  {
+    "word": "ԴՈՑԵՆՏ",
+    "recognizableAs": "доцент"
+  },
+  {
+    "word": "ՖԱԿՈՒԼՏԵՏ",
+    "recognizableAs": "факультет"
+  },
+  {
+    "word": "ՖՈՒՆԿՑԻԱ",
+    "recognizableAs": "функция"
+  },
+  {
+    "word": "ԷԿՈԼՈԳԻԱ",
+    "recognizableAs": "экология"
+  },
+  {
+    "word": "ԿՈՆՖԵՐԱՆՍ",
+    "recognizableAs": "конференция"
+  },
+  {
+    "word": "ՄՈԴԵԼ",
+    "recognizableAs": "модель"
+  },
+  {
+    "word": "ՄՈՏԻՎԱՑԻԱ",
+    "recognizableAs": "мотивация"
+  },
+  {
+    "word": "ՊՐԻՆՑ",
+    "recognizableAs": "принц"
+  },
+  {
+    "word": "ՌԱՎԻՈԼԻ",
+    "recognizableAs": "равиоли"
+  },
+  {
+    "word": "ԿՈԼԵԳԱ",
+    "recognizableAs": "коллега"
+  },
+  {
+    "word": "ՉՈՒԳՈՒՆ",
+    "recognizableAs": "чугун"
+  },
+  {
+    "word": "ՉՈՒԼԱՆ",
+    "recognizableAs": "чулан"
+  },
+  {
+    "word": "ԳԱԶՈՆ",
+    "recognizableAs": "газон"
+  },
+  {
+    "word": "ՊԱՑԻԵՆՏ",
+    "recognizableAs": "пациент"
+  },
+  {
+    "word": "ԲԱԼԱՆՍ",
+    "recognizableAs": "баланс"
+  },
+  {
+    "word": "ԴԻԵՏԱ",
+    "recognizableAs": "диета"
+  },
+  {
+    "word": "ԱՐԳՈՒՄԵՆՏ",
+    "recognizableAs": "аргумент"
+  },
+  {
+    "word": "ԼԻՖՏ",
+    "recognizableAs": "лифт"
+  },
+  {
+    "word": "ՌԵՄԵՆ",
+    "recognizableAs": "ремень"
+  },
+  {
+    "word": "ԲՈՒԼԿԻ",
+    "recognizableAs": "булка"
+  },
+  {
+    "word": "ԿԻՄՉԻ",
+    "recognizableAs": "кимчи"
+  },
+  {
+    "word": "ԱՈՒԴԻՏՈՐ",
+    "recognizableAs": "аудитор"
+  },
+  {
+    "word": "ՄԱԼԻՆԱ",
+    "recognizableAs": "малина"
+  },
+  {
+    "word": "ԼՈԿՈՄՈՏԻՎ",
+    "recognizableAs": "локомотив"
+  },
+  {
+    "word": "ՍՏԱՆԴԱՐՏ",
+    "recognizableAs": "стандарт"
+  },
+  {
+    "word": "ԱՍՖԱԼՏ",
+    "recognizableAs": "асфальт"
+  },
+  {
+    "word": "ԴԻԶԱՅՆԵՐ",
+    "recognizableAs": "дизайнер"
+  },
+  {
+    "word": "ՍՄԵՏԱՆ",
+    "recognizableAs": "сметана"
+  },
+  {
+    "word": "ՇՊԻԼԿԱ",
+    "recognizableAs": "шпилька"
+  },
+  {
+    "word": "ՇԼԱՆԳ",
+    "recognizableAs": "шланг"
+  },
+  {
+    "word": "ԷՍԿԱԼԱՏՈՐ",
+    "recognizableAs": "эскалатор"
+  },
+  {
+    "word": "ԷՔՍԿԱՎԱՏՈՐ",
+    "recognizableAs": "экскаватор"
+  },
+  {
+    "word": "ՋԵՄ",
+    "recognizableAs": "джем"
+  },
+  {
+    "word": "ՏՈՍՏ",
+    "recognizableAs": "тост"
+  },
+  {
+    "word": "ԳԵՊԱՐԴ",
+    "recognizableAs": "гепард"
+  },
+  {
+    "word": "ԶՈՆՏԻԿ",
+    "recognizableAs": "зонтик"
+  },
+  {
+    "word": "ԲՐԱՎՈ",
+    "recognizableAs": "браво"
+  },
+  {
+    "word": "ԿԻՆՈՌԵԺԻՍՈՐ",
+    "recognizableAs": "кинорежиссёр"
+  },
+  {
+    "word": "ԼԱԲՈՐԱՏՈՐԻԱ",
+    "recognizableAs": "лаборатория"
+  },
+  {
+    "word": "ԼԱՔ",
+    "recognizableAs": "лак"
+  },
+  {
+    "word": "ՏԱՔՍԻՍՏ",
+    "recognizableAs": "таксист"
+  },
+  {
+    "word": "ՄԱՍԿԱ",
+    "recognizableAs": "маска"
+  },
+  {
+    "word": "ՊԱՄԱԴԱ",
+    "recognizableAs": "помада"
+  },
+  {
+    "word": "ՍՈՒՄԿԱ",
+    "recognizableAs": "сумка"
+  },
+  {
+    "word": "ԿԵՊԿԱ",
+    "recognizableAs": "кепка"
+  },
+  {
+    "word": "ՋԵՆՏԼՄԵՆ",
+    "recognizableAs": "джентльмен"
+  },
+  {
+    "word": "ՊԼԱՆ",
+    "recognizableAs": "план"
+  },
+  {
+    "word": "ԴՈՒԽՈՎԿԱ",
+    "recognizableAs": "духовка"
+  },
+  {
+    "word": "ԳՐԵՅՊՖՐՈՒՏ",
+    "recognizableAs": "грейпфрут"
+  },
+  {
+    "word": "ԿԻՆՈՖԻԼՄ",
+    "recognizableAs": "кинофильм"
+  },
+  {
+    "word": "ԿՈԼԱ",
+    "recognizableAs": "кола"
+  },
+  {
+    "word": "ԿԱԿԱՈ",
+    "recognizableAs": "какао"
+  },
+  {
+    "word": "ՍՊԱԳԵՏԻ",
+    "recognizableAs": "спагетти"
+  },
+  {
+    "word": "ԴՈԿՏՈՐ",
+    "recognizableAs": "доктор"
+  },
+  {
+    "word": "ԳԼԱԴԻԱՏՈՐ",
+    "recognizableAs": "гладиатор"
+  },
+  {
+    "word": "ՍԱՊՈԳ",
+    "recognizableAs": "сапог"
+  },
+  {
+    "word": "ՏՐԻԼԻՈՆ",
+    "recognizableAs": "триллион"
+  },
+  {
+    "word": "ԼՈՄ",
+    "recognizableAs": "лом"
+  },
+  {
+    "word": "ԱՍՊԵԿՏ",
+    "recognizableAs": "аспект"
+  },
+  {
+    "word": "ԱՄԲԻՑԻԱ",
+    "recognizableAs": "амбиция"
+  },
+  {
+    "word": "ՉԱՏ",
+    "recognizableAs": "чат"
+  },
+  {
+    "word": "ՍՊԱՄ",
+    "recognizableAs": "спам"
+  },
+  {
+    "word": "ՏՈՒՐԻՍՏ",
+    "recognizableAs": "турист"
+  },
+  {
+    "word": "ԲԱՍԿԵՏԲՈԼԻՍՏ",
+    "recognizableAs": "баскетболист"
+  },
+  {
+    "word": "ՎՈԼԵՅԲՈԼԻՍՏ",
+    "recognizableAs": "волейболист"
+  },
+  {
+    "word": "ՌԵԶՈՆԱՆՍ",
+    "recognizableAs": "резонанс"
+  },
+  {
+    "word": "ՌԵՑԵՊՏ",
+    "recognizableAs": "рецепт"
+  },
+  {
+    "word": "ԿԱՐԻԵՐԱ",
+    "recognizableAs": "карьера"
+  },
+  {
+    "word": "ՖԱՔՍ",
+    "recognizableAs": "факс"
+  },
+  {
+    "word": "ԲՐՈԿԿՈԼԻ",
+    "recognizableAs": "брокколи"
+  },
+  {
+    "word": "ԷՔՍԿՈՒՐՍԻԱ",
+    "recognizableAs": "экскурсия"
+  },
+  {
+    "word": "ԳՈՐԻԼԱ",
+    "recognizableAs": "горилла"
+  },
+  {
+    "word": "ՊԻԺԱՄԱ",
+    "recognizableAs": "пижама"
+  },
+  {
+    "word": "ԶԱԳԱՌ",
+    "recognizableAs": "загар"
+  },
+  {
+    "word": "ԺԵՍՏ",
+    "recognizableAs": "жест"
+  },
+  {
+    "word": "ՕՊՏԻԿԱ",
+    "recognizableAs": "оптика"
+  },
+  {
+    "word": "ԿՈՄՈԴ",
+    "recognizableAs": "комод"
+  },
+  {
+    "word": "ՊՐԱԿՏԻԿԱՆՏ",
+    "recognizableAs": "практикант"
+  },
+  {
+    "word": "ՊՐԱԿՏԻԿԱ",
+    "recognizableAs": "практика"
+  },
+  {
+    "word": "ՇԱՐՖ",
+    "recognizableAs": "шарф"
+  },
+  {
+    "word": "ԷՏԻԿԵՏ",
+    "recognizableAs": "этикет"
+  },
+  {
+    "word": "ԶԱԼ",
+    "recognizableAs": "зал"
+  },
+  {
+    "word": "ԲԱԼԿՈՆ",
+    "recognizableAs": "балкон"
+  },
+  {
+    "word": "ՊԱԴՎԱԼ",
+    "recognizableAs": "подвал"
+  },
+  {
+    "word": "ՖԻԶԿՈՒԼՏՈՒՐԱ",
+    "recognizableAs": "физкультура"
+  },
+  {
+    "word": "ՍՎԵՏԱՖՈՐ",
+    "recognizableAs": "светофор"
+  },
+  {
+    "word": "ԿԼՈՒԲՆԻԿ",
+    "recognizableAs": "клубника"
+  },
+  {
+    "word": "ԿՈՒՐՏԿԱ",
+    "recognizableAs": "куртка"
+  },
+  {
+    "word": "ՇԵԴԵՎՐ",
+    "recognizableAs": "шедевр"
+  },
+  {
+    "word": "ԱՔՍԵՍՈՒԱՐ",
+    "recognizableAs": "аксессуар"
+  },
+  {
+    "word": "ՈՒՌԱ",
+    "recognizableAs": "ура"
+  },
+  {
+    "word": "ՊՐՈԴՅՈՒՍԵՐ",
+    "recognizableAs": "продюсер"
+  },
+  {
+    "word": "ՍՈԿ",
+    "recognizableAs": "сок"
+  },
+  {
+    "word": "ՄԵԲԵԼ",
+    "recognizableAs": "мебель"
+  },
+  {
+    "word": "ԿԵՖԻՐ",
+    "recognizableAs": "кефир"
+  },
+  {
+    "word": "ԼՈԳԻՍՏԻԿԱ",
+    "recognizableAs": "логистика"
+  },
+  {
+    "word": "ՌՈՒԼ",
+    "recognizableAs": "руль"
+  },
+  {
+    "word": "ՎԱՄՊԻՐ",
+    "recognizableAs": "вампир"
+  },
+  {
+    "word": "ՍԱՄԱԿԱՏ",
+    "recognizableAs": "самокат"
+  },
+  {
+    "word": "ԶԱՄՈԿ",
+    "recognizableAs": "замок"
+  },
+  {
+    "word": "ԼՈԿԱՑԻԱ",
+    "recognizableAs": "локация"
+  },
+  {
+    "word": "ՌԵՊՈՐՏԱԺ",
+    "recognizableAs": "репортаж"
+  },
+  {
+    "word": "ՄԻՖ",
+    "recognizableAs": "миф"
+  },
+  {
+    "word": "ՖՐԵՇ",
+    "recognizableAs": "фреш"
+  },
+  {
+    "word": "ԹՐԵՆԴ",
+    "recognizableAs": "тренд"
+  },
+  {
+    "word": "ՏՈՆՆԱ",
+    "recognizableAs": "тонна"
+  },
+  {
+    "word": "ԱՎԱՐԻԱ",
+    "recognizableAs": "авария"
+  },
+  {
+    "word": "ՆԱՈՒՇՆԻԿ",
+    "recognizableAs": "наушник"
+  },
+  {
+    "word": "ՏՐԱՎՄԱ",
+    "recognizableAs": "травма"
+  },
+  {
+    "word": "ՆՅՈՒԱՆՍ",
+    "recognizableAs": "нюанс"
+  },
+  {
+    "word": "ՎԱՖԼԻ",
+    "recognizableAs": "вафли"
+  },
+  {
+    "word": "ԱՆՍԱՄԲԼ",
+    "recognizableAs": "ансамбль"
+  },
+  {
+    "word": "ՌԱԴԻԱՏՈՐ",
+    "recognizableAs": "радиатор"
+  },
+  {
+    "word": "ԹԵՍՏ",
+    "recognizableAs": "тест"
+  },
+  {
+    "word": "ԱԲՈՅ",
+    "recognizableAs": "обои (wallpaper)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԲՈՐՏ",
+    "recognizableAs": "аборт (abortion)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԲՍՈԼՅՈՒՏ",
+    "recognizableAs": "абсолют (absolute)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԲՍՈԼՅՈՒՏԻԶՄ",
+    "recognizableAs": "абсолютизм (absolutism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԲՍՏՐԱԿՏ",
+    "recognizableAs": "абстракт (abstract)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԲՍՏՐԱԿՑԻԱ",
+    "recognizableAs": "абстракция (abstraction)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԳԱԹ",
+    "recognizableAs": "агат (agate)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԳՆՈՍՏԻԿ",
+    "recognizableAs": "агностик (agnostic)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԳՆՈՍՏԻՑԻԶՄ",
+    "recognizableAs": "агностицизм (agnosticism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԳՐԱՐԱՅԻՆ",
+    "recognizableAs": "аграрный (agrarian)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԳՐԵՍԻԱ",
+    "recognizableAs": "агрессия (aggression)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԳՐԵՍԻՎ",
+    "recognizableAs": "агрессивный (aggressive)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԴԱՄԱԹՈՒԶ",
+    "recognizableAs": "адамов туз (banana - historical pun/name)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԶԲԵՍՏ",
+    "recognizableAs": "асбест (asbestos)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԹԵԻԶՄ",
+    "recognizableAs": "атеизм (atheism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԹԵԻՍՏ",
+    "recognizableAs": "атеист (atheist)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԹԼԵՏԻԿԱ",
+    "recognizableAs": "атлетика (athletics)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԹՈՌ",
+    "recognizableAs": "атор/табуретка (stool/chair link)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱԼԲԱՏՐՈՍ",
+    "recognizableAs": "альбатрос (albatross)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԲՈՄ",
+    "recognizableAs": "альбом (album)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԳՈՐԻԹՄ",
+    "recognizableAs": "алгоритм (algorithm)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԵԲԱՍՏՐ",
+    "recognizableAs": "алебастр (alabaster)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԵՐԳԻԱ",
+    "recognizableAs": "аллергия (allergy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԻԲԻ",
+    "recognizableAs": "алиби (alibi)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԻԳԱՏՈՐ",
+    "recognizableAs": "аллигатор (alligator)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԿԱՇ",
+    "recognizableAs": "алкаш (alkie)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԿՈՀՈԼ",
+    "recognizableAs": "алкоголь (alcohol)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԿՈՀՈԼԻԶՄ",
+    "recognizableAs": "алкоголизм (alcoholism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԿՈՀՈԼԻԿ",
+    "recognizableAs": "алкоголик (alcoholic)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՄԱՆԱԽ",
+    "recognizableAs": "альманах (almanac)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՅԱՆՍ",
+    "recognizableAs": "альянс (alliance)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՈ",
+    "recognizableAs": "алло (hello)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՊԱԿԱ",
+    "recognizableAs": "альпака (alpaca)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՊԻՆԻԶՄ",
+    "recognizableAs": "альпинизм (alpinism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՊԻՆԻՍՏ",
+    "recognizableAs": "альпинист (alpinist)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՏ",
+    "recognizableAs": "альт (alto/viola)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՏԵՐՆԱՏԻՎ",
+    "recognizableAs": "альтернатива (alternative)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՔԻՄԻԱ",
+    "recognizableAs": "алхимия (alchemy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՔԻՄԻԿՈՍ",
+    "recognizableAs": "алхимик (alchemist)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԽՌԱՆՆԻԿ",
+    "recognizableAs": "охранник (guard)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԾԵԼԻ",
+    "recognizableAs": "оселок/бритва (razor)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱԾՈՒԽ",
+    "recognizableAs": "уголь (coal)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱԿԱՆՋ",
+    "recognizableAs": "ухо (ear)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱԿՆԱԽՆՁՈՐ",
+    "recognizableAs": "глаз (eye)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱԿՆԱՐԿ",
+    "recognizableAs": "очерк (essay)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԿՆՈՑ",
+    "recognizableAs": "очки (glasses)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱԿՈՐԴԵՈՆ",
+    "recognizableAs": "аккордеон (accordion)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԿՈՒՄԲ",
+    "recognizableAs": "клуб (club)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԿՐՈԲԱՏ",
+    "recognizableAs": "акробат (acrobat)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԿՐՈՊՈԼԻՍ",
+    "recognizableAs": "акрополь (acropolis)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՂ",
+    "recognizableAs": "соль (salt)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՂԱՄԱՆ",
+    "recognizableAs": "солонка (salt shaker)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՂՅՈՒՍԱԿ",
+    "recognizableAs": "таблица (table/chart)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՂՈԹՔ",
+    "recognizableAs": "молитва (prayer)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՂՑԱՆ",
+    "recognizableAs": "салат (salad)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՃՈՒՐԴ",
+    "recognizableAs": "аукцион (auction)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄԲԻՈՆ",
+    "recognizableAs": "аспирантура/кафедра",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄԲԻՑԻՈԶ",
+    "recognizableAs": "амбициозный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄԵՈԲԱ",
+    "recognizableAs": "амёба",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄԵՐԻՑԻՈՒՄ",
+    "recognizableAs": "америций",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄԻՍ",
+    "recognizableAs": "амис (единица времени)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՄՆԻՍՏԻԱ",
+    "recognizableAs": "амнистия",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄՊ",
+    "recognizableAs": "амп (погода)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՄՍԱԳԻՐ",
+    "recognizableAs": "амсагир (пресса)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՅՈ",
+    "recognizableAs": "айо (да)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՅՍԲԵՐԳ",
+    "recognizableAs": "айсберг",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՅՐԱՆ",
+    "recognizableAs": "айран",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԱՆԱՍ",
+    "recognizableAs": "ананас",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԱՆՈՒԽ",
+    "recognizableAs": "ананух (трава)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՆԱՏՈՄԻԱ",
+    "recognizableAs": "анатомия",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԱՐԽԻԶՄ",
+    "recognizableAs": "анархизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԳԻՆԱ",
+    "recognizableAs": "ангина",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԵԿԴՈՏ",
+    "recognizableAs": "анекдот",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԹՐՈՊՈՄՈՐՖԻԶՄ",
+    "recognizableAs": "антропоморфизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԻՈՆ",
+    "recognizableAs": "анион",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԻՍՈՆ",
+    "recognizableAs": "анисон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԻՎ",
+    "recognizableAs": "анив (предмет)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՆՈԴ",
+    "recognizableAs": "анод (anode)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆՈՒՆ",
+    "recognizableAs": "имя (name)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՆՎԱԴՈՂ",
+    "recognizableAs": "шина (tire)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆՎԱՍԱՅԼԱԿ",
+    "recognizableAs": "коляска (wheelchair)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՆՏԱՌ",
+    "recognizableAs": "лес (forest)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՆՏԻԿ",
+    "recognizableAs": "античный (antique)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆՏԻՑԻԿԼՈՆ",
+    "recognizableAs": "антициклон (anticyclone)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆՔՆՈՒԹՅՈՒՆ",
+    "recognizableAs": "бессонница (insomnia)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՇԽԱՐՀԱԳՐՈՒԹՅՈՒՆ",
+    "recognizableAs": "география (geography)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՇՈՒՆ",
+    "recognizableAs": "осень (autumn)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՈՒԹՍՈՐՍԻՆԳ",
+    "recognizableAs": "аутсорсинг (outsourcing)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՈՒՏԻԶՄ",
+    "recognizableAs": "аутизм (autism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՉՔ",
+    "recognizableAs": "глаз (eye)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՊԱԹԱՐՑ",
+    "recognizableAs": "апостроф (apostrophe)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՊԱԿԻ",
+    "recognizableAs": "стекло (glass)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ",
+    "recognizableAs": "страхование (insurance)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՊԱՄՈՆՏԱԺԵԼ",
+    "recognizableAs": "демонтаж (dismantling)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՊԱՐԱՏ",
+    "recognizableAs": "аппарат (apparatus)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՊԱՓԱԹԵԹԱՎՈՐՈՒՄ",
+    "recognizableAs": "анбоксинг (unboxing)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՊԵՆԴԻՑԻՏ",
+    "recognizableAs": "аппендицит (appendicitis)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՊՈՒՐ",
+    "recognizableAs": "суп (soup)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՊՐԱՆՔ",
+    "recognizableAs": "товар (goods)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՊՐԻԼ",
+    "recognizableAs": "апрель (April)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՋԱԲՍԱՆԴԱԼ",
+    "recognizableAs": "аджапсандал (a dish name)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՌԵՎՏՈՒՐ",
+    "recognizableAs": "торговля (trade)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՌՅՈՒԾ",
+    "recognizableAs": "лев (lion)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՌՆԵՏ",
+    "recognizableAs": "крыса (rat)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՍԵՂ",
+    "recognizableAs": "игла (needle)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՍԿԵՏԻԶՄ",
+    "recognizableAs": "аскетизм (asceticism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՄԻՆՈԳ",
+    "recognizableAs": "осьминог (octopus)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՈՑԻԱՑԻԱ",
+    "recognizableAs": "ассоциация (association)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՏԵՐՈԻԴ",
+    "recognizableAs": "астероид (asteroid)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՏՂԱԳԻՏՈՒԹՅՈՒՆ",
+    "recognizableAs": "астрономия (astronomy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՏՂԱԳՆԱՑ",
+    "recognizableAs": "астронавт (astronaut)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՏՂԱԳՈՒՇԱԿՈՒԹՅՈՒՆ",
+    "recognizableAs": "астрология (astrology)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՏՂԱՖԻԶԻԿԱ",
+    "recognizableAs": "astrophysics",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՎԻԱՑԻԱ",
+    "recognizableAs": "aviation",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՎՏՈ",
+    "recognizableAs": "avto/car",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՎՏՈՄԵՔԵՆԱ",
+    "recognizableAs": "automobil",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՎՏՈՌԵՖԵՐԱՏ",
+    "recognizableAs": "autoreferat/abstract",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՏԱՄՆԱԲՈՒՅԺ",
+    "recognizableAs": "stomatologist/dentist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՏԵՍՏԱՏ",
+    "recognizableAs": "attestat/certificate",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՏԿԱՏ",
+    "recognizableAs": "otkat/kickback",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՏՈՄ",
+    "recognizableAs": "atom",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐԽԻՎ",
+    "recognizableAs": "archive",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐՇԻՊԵԼԱԳ",
+    "recognizableAs": "archipelago",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՔՍԻՈՄ",
+    "recognizableAs": "axiom",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՖԵՐԻՍՏ",
+    "recognizableAs": "aferist/swindler",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՎԱԶ",
+    "recognizableAs": "sand",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՎԱՐՏ",
+    "recognizableAs": "end",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՏԱՄ",
+    "recognizableAs": "tooth",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՐԱԳ",
+    "recognizableAs": "fast",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՐԵՎ",
+    "recognizableAs": "sun",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՐԺԵԼ",
+    "recognizableAs": "worth/cost",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՐՅՈՒՆ",
+    "recognizableAs": "blood",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՐՋ",
+    "recognizableAs": "bear",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՓ",
+    "recognizableAs": "coast/palm",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԱՓՍԵ",
+    "recognizableAs": "plate",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱԳԱԺՆԻԿ",
+    "recognizableAs": "багажник (boot, trunk)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԴՄԻՆՏՈՆ",
+    "recognizableAs": "бадминтон (badminton)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԴՐԻՋԱՆ",
+    "recognizableAs": "бадриджан (aubergine)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԶԱԼՏ",
+    "recognizableAs": "базальт (basalt)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԶԿԱԹՈՌ",
+    "recognizableAs": "баз (armrest) / armchair",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱԺԱԿ",
+    "recognizableAs": "бокал (glass/cup)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱԼԱԼԱՅԿԱ",
+    "recognizableAs": "балалайка (balalaika)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԼԱԿԼԱՎԱ",
+    "recognizableAs": "балаклава (balaclava)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԼԵՏ",
+    "recognizableAs": "балет (ballet)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԿՏԵՐԻԱ",
+    "recognizableAs": "бактерия (bacterium)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՃԿՈՆ",
+    "recognizableAs": "бачок (jacket variant)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՍՏՈՒՐՄԱ",
+    "recognizableAs": "бастурма (basturma)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՏԻՍԿԱՖ",
+    "recognizableAs": "батискаф (bathyscaphe)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՐԻԿԱԴ",
+    "recognizableAs": "баррикада (barricade)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՐԻՈՒՄ",
+    "recognizableAs": "барий (barium)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՐՄԵՆ",
+    "recognizableAs": "бармен (bartender)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՅՍԲՈԼ",
+    "recognizableAs": "бейсбол (baseball)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՆԶԻՆ",
+    "recognizableAs": "бензин (gasoline)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՍԵԴԿԱ",
+    "recognizableAs": "беседка (gazebo)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՏՈՆ",
+    "recognizableAs": "бетон (concrete)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՐԿԼԻՈՒՄ",
+    "recognizableAs": "берклий (berkelium)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԻԶՈՆ",
+    "recognizableAs": "бизон (bison)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԻԹ",
+    "recognizableAs": "бит (bit)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԻԼԻԱՐԴ",
+    "recognizableAs": "бильярд (billiards)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԻՆՏ",
+    "recognizableAs": "бинт (bandage)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԻՍՏՐՈ",
+    "recognizableAs": "бистро (bistro)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԼՈԿ",
+    "recognizableAs": "блок (block)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԼՈԿԱԴԱ",
+    "recognizableAs": "блокада (blockade)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԴ",
+    "recognizableAs": "duck",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱԶԵ",
+    "recognizableAs": "falcon",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱԽՏ",
+    "recognizableAs": "luck",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱԿ",
+    "recognizableAs": "yard",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՀ",
+    "recognizableAs": "shovel",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՆԱԼԻ",
+    "recognizableAs": "key",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՆԱԿ",
+    "recognizableAs": "army",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՆՏ",
+    "recognizableAs": "prison",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՌ",
+    "recognizableAs": "word",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՌԱՐԱՆ",
+    "recognizableAs": "dictionary",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՐԵՎ",
+    "recognizableAs": "hello",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՐԻ",
+    "recognizableAs": "kind/good",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՐՁՐՈՒԹՅՈՒՆ",
+    "recognizableAs": "height",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԱՑ",
+    "recognizableAs": "open",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԺԻՇԿ",
+    "recognizableAs": "doctor",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲԼՈՏ",
+    "recognizableAs": "belote",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՅՈՒԶԱՆԴԱԿԱՆ",
+    "recognizableAs": "Byzantine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՆԱԿԱՐԱՆ",
+    "recognizableAs": "kvartira",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲՈԶՈՆ",
+    "recognizableAs": "boson",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈԼՇԵՎԻԿ",
+    "recognizableAs": "Bolshevik",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՂԿ",
+    "recognizableAs": "radish",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲՈՅԿՈՏ",
+    "recognizableAs": "boycott",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՆՈՒՍ",
+    "recognizableAs": "bonus",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒԴԴԻԶՄ",
+    "recognizableAs": "Buddhism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒԴԿԱ",
+    "recognizableAs": "budka",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒԼԴՈԶԵՐ",
+    "recognizableAs": "bulldozer",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒՀ",
+    "recognizableAs": "vuz",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲՈՒՄԵՐԱՆԳ",
+    "recognizableAs": "boomerang",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒՆԿԵՐ",
+    "recognizableAs": "bunker",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒՐԲՈՆ",
+    "recognizableAs": "bourbon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒՐԳ",
+    "recognizableAs": "pyramid",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒՐԳԵՐ",
+    "recognizableAs": "burger",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒՐԺՈՒԱ",
+    "recognizableAs": "bourgeois",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒՐԻՏՈ",
+    "recognizableAs": "burrito",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՐԵՑԵԼ",
+    "recognizableAs": "pretzel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՐԻՆՁ",
+    "recognizableAs": "rice",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԲՐԻՏՎԱ",
+    "recognizableAs": "razor",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՐՈՆԶ",
+    "recognizableAs": "bronze",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՐՈՒՑԵԼՈԶ",
+    "recognizableAs": "brucellosis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱԼԱԿՏԻԿԱ",
+    "recognizableAs": "galaxy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱԼՈՒԲՈՅ",
+    "recognizableAs": "light blue",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱԼՍՏՈՒԿ",
+    "recognizableAs": "necktie",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱՄԵՏ",
+    "recognizableAs": "gamete",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱՆԳՐԵՆԱ",
+    "recognizableAs": "gangrene",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱՐԵՋՈՒՐ",
+    "recognizableAs": "beer",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳԴԱԼ",
+    "recognizableAs": "spoon",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳԵՆ",
+    "recognizableAs": "gene",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԵՆԵՐԱԼ",
+    "recognizableAs": "general",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԻԼՅՈՏԻՆ",
+    "recognizableAs": "гильотина",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԻՆԻ",
+    "recognizableAs": "вино",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳԻՇԵՐ",
+    "recognizableAs": "гишер (ночь)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳԻՐՔ",
+    "recognizableAs": "гирк (книга)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳԼԱՆ",
+    "recognizableAs": "цилиндр",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԼԱՍՆՈՍՏ",
+    "recognizableAs": "гласность",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԼԽԱՐԿ",
+    "recognizableAs": "головной убор",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳԼՈԲԱԼ",
+    "recognizableAs": "глобальный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԼՈՒԽ",
+    "recognizableAs": "голова",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՅՈՒՂ",
+    "recognizableAs": "деревня",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՅՈՒՏ",
+    "recognizableAs": "изобретение",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՆԱԼ",
+    "recognizableAs": "идти",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՆԱՑՔ",
+    "recognizableAs": "поезд",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՆԴԱԿ",
+    "recognizableAs": "мяч / пуля",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՆԴԱՊԵՏ",
+    "recognizableAs": "полковник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՆԵԼ",
+    "recognizableAs": "покупать",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՈԼՖ",
+    "recognizableAs": "гольф",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՈՅԱԿԱՆ",
+    "recognizableAs": "имя существительное",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՈՎԱԶԴ",
+    "recognizableAs": "реклама",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՈՐԳ",
+    "recognizableAs": "ковёр",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՈՐԾ",
+    "recognizableAs": "работа / дело",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՈՐԾԱԿԱԼՈՒԹՅՈՒՆ",
+    "recognizableAs": "агентство",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՈՒԼՊԱ",
+    "recognizableAs": "носок / чулок",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՈՒՄԱՐ",
+    "recognizableAs": "сумма / деньги",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՈՒՍԱՆ",
+    "recognizableAs": "гусан",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԱԴԱՐԱՆ",
+    "recognizableAs": "библиотека",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՐԱԴԻԵՆՏ",
+    "recognizableAs": "градиент",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԱԽԱՆՈՒԹ",
+    "recognizableAs": "книжный магазин",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՐԱԿԱՆՈՒԹՅՈՒՆ",
+    "recognizableAs": "литература",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԱՄ",
+    "recognizableAs": "грамм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԱՆԻՏ",
+    "recognizableAs": "гранит",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԱՆՏ",
+    "recognizableAs": "грант",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԱՍԵՆՅԱԿ",
+    "recognizableAs": "офис",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԳՐԱՎԻՏԱՑԻԱ",
+    "recognizableAs": "гравитация",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԱՎԻՏՈՆ",
+    "recognizableAs": "гравитон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐՈՍՄԱՅՍՏԵՐ",
+    "recognizableAs": "гроссмейстер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԱՀԼԻՃ",
+    "recognizableAs": "зал / аудитория",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԱՀՈՒԿ",
+    "recognizableAs": "лыжи",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԱՍԱՐԱՆ",
+    "recognizableAs": "класс (class)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԱՏԱՐԱՆ",
+    "recognizableAs": "суд (court/trial)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԱՐ",
+    "recognizableAs": "век (century/era)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԱՐԲԻՆ",
+    "recognizableAs": "черный (black/forge)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԱՐՉԻՆ",
+    "recognizableAs": "корица (cinnamon)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԱՐՎԻՆԻԶՄ",
+    "recognizableAs": "дарвинизм (Darwinism)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԵԼՖԻՆ",
+    "recognizableAs": "дельфин (dolphin)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԵԿԱՆ",
+    "recognizableAs": "декан (dean)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԵՄՈԿՐԱՏ",
+    "recognizableAs": "демократ (democrat)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԵՄՈԿՐԱՏԻԱ",
+    "recognizableAs": "демократия (democracy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԵՍՊԱՆ",
+    "recognizableAs": "дипломат (diplomat)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԵՐԱՍԱՆ",
+    "recognizableAs": "актер (actor)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴԻԱԲԵՏ",
+    "recognizableAs": "диабет (diabetes)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՆՈԶԱՎՐ",
+    "recognizableAs": "динозавр (dinosaur)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՊԼՈՄ",
+    "recognizableAs": "диплом (diploma)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՍԿՈՏԵԿ",
+    "recognizableAs": "дискотека (disco)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՍԿՐԻՄԻՆԱՑԻԱ",
+    "recognizableAs": "дискриминация (discrimination)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՍՊԵՏՉԵՐ",
+    "recognizableAs": "диспетчер (dispatcher)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՎԱՆ",
+    "recognizableAs": "диван (sofa/couch)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՎԻԴԵՆՏ",
+    "recognizableAs": "дивиденд (dividend)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻՐԻԺՈՐ",
+    "recognizableAs": "дирижер (conductor)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՅՈՒԺԻՆ",
+    "recognizableAs": "дюжина (dozen)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՅՈՒՅՄ",
+    "recognizableAs": "дюйм (inch)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՈԳՄԱ",
+    "recognizableAs": "догма (dogma)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՈԼԱՐ",
+    "recognizableAs": "доллар (dollar)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՈՖԱՄԻՆ",
+    "recognizableAs": "дофамин (dopamine)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՐԱՄ",
+    "recognizableAs": "драм (money/dram)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԴՐԱՄԱՏՈՒՐԳ",
+    "recognizableAs": "драматург (playwright)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՆԹԱԳԻՐ",
+    "recognizableAs": "subtitr",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՆԹԱԿԱՅԱՆ",
+    "recognizableAs": "podstantsiya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՆԹԱԿԱՌՈՒՅՑ",
+    "recognizableAs": "infrastruktura",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՆԹԱԿԱՌՈՒՑՎԱԾՔ",
+    "recognizableAs": "infrastruktura",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՆԹԱՀՆՉՈՒՅԹ",
+    "recognizableAs": "allofon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՆԹԱՏԵՍԱԿ",
+    "recognizableAs": "podvid",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՊԻՍԿՈՊՈՍ",
+    "recognizableAs": "yepiskop",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՌԱԲԱՐԲԱՌ",
+    "recognizableAs": "tri-ftong",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՌԱՄՍՅԱԿ",
+    "recognizableAs": "trimestr",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՌԱՆԿՅՈՒՆ",
+    "recognizableAs": "tri-ugolnik",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՌԱՆԿՅՈՒՆԱՉԱՓԱԿԱՆ",
+    "recognizableAs": "trigonometricheskiy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՌԱՆԿՅՈՒՆԱՉԱՓՈՒԹՅՈՒՆ",
+    "recognizableAs": "trigonometriya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐԱԻՆՏԵԳՐՈՒՄ",
+    "recognizableAs": "yevro-integratsiya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐԱՍԻԱԿԱՆ",
+    "recognizableAs": "yevraziyskiy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐԵՅ",
+    "recognizableAs": "yevrey",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐՈ",
+    "recognizableAs": "yevro",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐՈՊԱԿԱՆ",
+    "recognizableAs": "yevropeyskiy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐՈՊԱՑԻ",
+    "recognizableAs": "yevropeyets",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐՈՊԵՈԻԴ",
+    "recognizableAs": "yevropeoid",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐՈՊԻՈՒՄ",
+    "recognizableAs": "yevropiy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԱԺԻՇՏ",
+    "recognizableAs": "muzykant",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՐԱԺՇՏՈՒԹՅՈՒՆ",
+    "recognizableAs": "muzyka",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԳԵՀՈՆ",
+    "recognizableAs": "organ",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԳԵՀՈՆԱՀԱՐ",
+    "recognizableAs": "organist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԹ",
+    "recognizableAs": "yert (procession/march)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՐԻԿԱՄ",
+    "recognizableAs": "pochka",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՐԿԱԹԳԻԾ",
+    "recognizableAs": "zheleznaya doroga",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՐԿԱԹՈՒՂԻ",
+    "recognizableAs": "zheleznaya doroga",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՐԿԲԱՐԲԱՌ",
+    "recognizableAs": "diftong",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿԽՈՍՈՒԹՅՈՒՆ",
+    "recognizableAs": "dialog",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿԿԵՆՑԱՂ",
+    "recognizableAs": "amfibiya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿՆԱԳՈՒՅՆ",
+    "recognizableAs": "goluboy",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՐԿՆԱՔԱՐ",
+    "recognizableAs": "meteorit",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿՆԱՔԵՐ",
+    "recognizableAs": "neboskreb",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿՈՒ",
+    "recognizableAs": "dva",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԵՐԿՎՈՐՅԱԿ",
+    "recognizableAs": "bliznetsy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿՐԱԲԱՆ",
+    "recognizableAs": "geolog",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿՐԱԲԱՆՈՒԹՅՈՒՆ",
+    "recognizableAs": "geologiya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿՐԱՉԱՓԱԿԱՆ",
+    "recognizableAs": "geometricheskiy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԿՐԱՉԱՓՈՒԹՅՈՒՆ",
+    "recognizableAs": "geometriya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՔԻԴՆԱ",
+    "recognizableAs": "yekhidna",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՖՐԵՅՏՈՐ",
+    "recognizableAs": "yefreytor",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԱՆԳ",
+    "recognizableAs": "zvonok",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԶԱՎՈԴ",
+    "recognizableAs": "zavod",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԲՈՍԱՇՐՋԻԿ",
+    "recognizableAs": "turist",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԶԲՈՍԱՇՐՋՈՒԹՅՈՒՆ",
+    "recognizableAs": "turizm",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԵԲՐ",
+    "recognizableAs": "zebra",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԵՆԻԹ",
+    "recognizableAs": "zenit",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԻԳԶԱԳ",
+    "recognizableAs": "zigzag",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶՈՄԲԻ",
+    "recognizableAs": "zombie",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶՈՒԳԱՀԵՌ",
+    "recognizableAs": "parallel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶՈՒԳԱՐԱՆ",
+    "recognizableAs": "toilet (zugaran)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԶՈՒԼՈՒ",
+    "recognizableAs": "Zulu",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶՈՒՌՆԱ",
+    "recognizableAs": "zurna",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶՐՈ",
+    "recognizableAs": "zero",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԹԻԿԱ",
+    "recognizableAs": "ethics",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԹՆԻԿ",
+    "recognizableAs": "ethnic",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԼԵԳԱՆՏ",
+    "recognizableAs": "elegant",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԼԵԿՏՐԱԿԱՆ",
+    "recognizableAs": "electric",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԼԵԿՏՐՈԴ",
+    "recognizableAs": "electrode",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԼԵԿՏՐՈԼԻԶ",
+    "recognizableAs": "electrolysis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԿՈՆՈՄԻԿԱ",
+    "recognizableAs": "economy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՄԲԱՐԳՈ",
+    "recognizableAs": "embargo",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՄԻԳՐԱՆՏ",
+    "recognizableAs": "emigrant",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՄԻՐ",
+    "recognizableAs": "emir",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՄՈՑԻԱ",
+    "recognizableAs": "emotion",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՊՈՍ",
+    "recognizableAs": "epos",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՍԿԱԼԱՑԻԱ",
+    "recognizableAs": "escalation",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՍՊԵՐԱՆՏՈ",
+    "recognizableAs": "Esperanto",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՍՔԻԶ",
+    "recognizableAs": "sketch",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՎԹԱՆԱԶԻԱ",
+    "recognizableAs": "euthanasia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՎՈԼՅՈՒՑԻԱ",
+    "recognizableAs": "evolution",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՎՖԵՄԻԶՄ",
+    "recognizableAs": "euphemism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՔՍԿԼԱՎ",
+    "recognizableAs": "exclave",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՔՍՊԵՐՏ",
+    "recognizableAs": "expert",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՔՍՏՐԱԴԻՑԻԱ",
+    "recognizableAs": "extradition",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՔՍՏՐԵՄԻՍՏ",
+    "recognizableAs": "extremist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԱՄԱԴԱ",
+    "recognizableAs": "tamada",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԱՅՖՈՒՆ",
+    "recognizableAs": "typhoon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԱՏՐՈՆ",
+    "recognizableAs": "theater",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԵԶ",
+    "recognizableAs": "thesis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԵԶԱՈՒՐՈՒՍ",
+    "recognizableAs": "thesaurus",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶՈՎ",
+    "recognizableAs": "cool",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԶՈՒՏ",
+    "recognizableAs": "pure",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԶՈՒՐ",
+    "recognizableAs": "vain",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԷՇ",
+    "recognizableAs": "donkey",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԷՋ",
+    "recognizableAs": "page",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԱՆԿ",
+    "recognizableAs": "expensive",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԱՍ",
+    "recognizableAs": "bowl",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԱՐՄ",
+    "recognizableAs": "fresh",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԱՑ",
+    "recognizableAs": "wet",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԵԼ",
+    "recognizableAs": "thread",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԵԿՆԱԾՈՒ",
+    "recognizableAs": "candidate",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԵՄԱ",
+    "recognizableAs": "tema",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԵՅ",
+    "recognizableAs": "tea",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԵՈՐԵՄ",
+    "recognizableAs": "theorem",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԵՐԱՊԵՎՏ",
+    "recognizableAs": "therapist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԵՐՄՈՍՏԱՏ",
+    "recognizableAs": "thermostat",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԹՎԱԾԻՆ",
+    "recognizableAs": "oxygen",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹԻՄ",
+    "recognizableAs": "team",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԻՆԵՅՋԵՐ",
+    "recognizableAs": "teenager",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԻՎ",
+    "recognizableAs": "number",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹՄԲՈՒԿ",
+    "recognizableAs": "drum",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹՅՈՒՆՈՍ",
+    "recognizableAs": "tuna",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹՈՒԹԱԿ",
+    "recognizableAs": "parrot",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹՈՒՆԵԼ",
+    "recognizableAs": "tunnel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹՎԱԲԱՆՈՒԹՅՈՒՆ",
+    "recognizableAs": "arithmetic",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹՎԱՅԻՆ",
+    "recognizableAs": "digital",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԹՐԵՅԼԵՐ",
+    "recognizableAs": "trailer",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹՐԻԼԼԵՐ",
+    "recognizableAs": "thriller",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԺԱՄ",
+    "recognizableAs": "hour/time",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԺԱՄԱՆԱԿԱԿԻՑ",
+    "recognizableAs": "contemporary",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԺԱՄԱՑՈՒՅՑ",
+    "recognizableAs": "watch/clock",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԺԱՐԳՈՆ",
+    "recognizableAs": "jargon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԺՈՆԳԼՅՈՐ",
+    "recognizableAs": "juggler",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԺՈՒՌՆԱԼ",
+    "recognizableAs": "journal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻԴԵԱԼԻԶՄ",
+    "recognizableAs": "idealism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻԶՈՏՈՊ",
+    "recognizableAs": "isotope",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՄՈՒՆԻՏԵՏ",
+    "recognizableAs": "immunity",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՄՊԵՐԻԱԼԻԶՄ",
+    "recognizableAs": "imperialism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՄՊՐՈՎԻԶԱՑԻԱ",
+    "recognizableAs": "improvisation",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՆԺԵՆԵՐ",
+    "recognizableAs": "engineer",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՆՍՏԻՏՈՒՏ",
+    "recognizableAs": "institute",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՆՏԵՐՆԵՏ",
+    "recognizableAs": "internet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՆՖԵԿՑԻԱ",
+    "recognizableAs": "infection",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՆՖՐԱՍՏՐՈՒԿՏՈՒՐԱ",
+    "recognizableAs": "infrastructure",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՈՆ",
+    "recognizableAs": "ион",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՌԱՑԻՈՆԱԼ",
+    "recognizableAs": "иррациональный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՌԵԴԵՆՏԻԶՄ",
+    "recognizableAs": "ирредентизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՍԼԱՄ",
+    "recognizableAs": "ислам",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՏԵՐԲԻՈՒՄ",
+    "recognizableAs": "иттербий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՏՐԻՈՒՄ",
+    "recognizableAs": "иттрий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՐԻԴԻՈՒՄ",
+    "recognizableAs": "иридий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱԲԻՐԻՆԹՈՍ",
+    "recognizableAs": "лабиринт",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱԶԵՐ",
+    "recognizableAs": "лазер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՄԱ",
+    "recognizableAs": "лама",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՄԲԱԴԱ",
+    "recognizableAs": "ламбада",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՆԹԱՆ",
+    "recognizableAs": "лантан",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՆՉ",
+    "recognizableAs": "ланч",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՊԱՏԿԱ",
+    "recognizableAs": "лопатка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՊՇԱ",
+    "recognizableAs": "лапша",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՎԱ",
+    "recognizableAs": "лава",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՎԱՇ",
+    "recognizableAs": "лаваш",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԵԶԳԻՆԿԱ",
+    "recognizableAs": "лезгинка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԵՄՈՒՐ",
+    "recognizableAs": "лемур",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԵՅՏԵՆԱՆՏ",
+    "recognizableAs": "лейтенант",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԵՆԻՆԻԶՄ",
+    "recognizableAs": "ленинизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԵՊՏՈՆ",
+    "recognizableAs": "лептон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻԲԵՐԱԼԻԶՄ",
+    "recognizableAs": "либерализм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻԲԻԴՈ",
+    "recognizableAs": "либидо",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻԲՐԵՏՈ",
+    "recognizableAs": "либретто",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻԳԱ",
+    "recognizableAs": "лига",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻԹԻՈՒՄ",
+    "recognizableAs": "литий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻՄՈՆ",
+    "recognizableAs": "лимон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻՄՈՒԶԻՆ",
+    "recognizableAs": "лимузин",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻՎԵՐՄՈՐԻՈՒՄ",
+    "recognizableAs": "ливерморий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻՏՐ",
+    "recognizableAs": "литр",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՅՈՒՍՏՐԱ",
+    "recognizableAs": "люстра",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈԲԲԻ",
+    "recognizableAs": "лобби",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈԳԱՐԻԹՄ",
+    "recognizableAs": "логарифм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈԳԻԿԱ",
+    "recognizableAs": "логика",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈԳԻՆ",
+    "recognizableAs": "логин",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈԼԻԿ",
+    "recognizableAs": "лолик (помидор)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈՏՈ",
+    "recognizableAs": "лото",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈՏՈՍ",
+    "recognizableAs": "лотос",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՍԿ",
+    "recognizableAs": "так (isk)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԻՐ",
+    "recognizableAs": "вещь (ir)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԼԱՎ",
+    "recognizableAs": "хорошо (lav)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԼԻ",
+    "recognizableAs": "полный (li)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԼԻՃ",
+    "recognizableAs": "озеро (lich)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԼՈՒՅՍ",
+    "recognizableAs": "свет (luys)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԼՈՒՌ",
+    "recognizableAs": "тихий (lur)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱԼԻՖ",
+    "recognizableAs": "caliph",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱԼՏՈՒՐԱ",
+    "recognizableAs": "khaltura (halktura)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՂ",
+    "recognizableAs": "game",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՂԱԼ",
+    "recognizableAs": "play",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՂԱՂ",
+    "recognizableAs": "peaceful",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՂԱՏՈՒՆ",
+    "recognizableAs": "casino",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՂՈՂ",
+    "recognizableAs": "grape",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՄՈՆ",
+    "recognizableAs": "jamon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՆՈՒԹ",
+    "recognizableAs": "shop",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՇ",
+    "recognizableAs": "khash",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՇԵԼ",
+    "recognizableAs": "boil",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՉԱԿԻՐ",
+    "recognizableAs": "crusader",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՉԱՊՈՒՐԻ",
+    "recognizableAs": "khachapuri",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՉԲԱՌ",
+    "recognizableAs": "crossword",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՉՄԵՐՈՒԿ",
+    "recognizableAs": "intersection",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԱՌՆԱՐԱՆ",
+    "recognizableAs": "crater",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՎԻԱՐ",
+    "recognizableAs": "caviar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՐԱԿԻՐԻ",
+    "recognizableAs": "hara-kiri",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԱՐԻՍԽ",
+    "recognizableAs": "anchor",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽԵԼԱԽՈՍ",
+    "recognizableAs": "smartphone",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽԻՐՈՒՐԳ",
+    "recognizableAs": "surgeon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՃԱՆԿԱՐ",
+    "recognizableAs": "mosaic",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՄԲԱԳԻՐ",
+    "recognizableAs": "editor",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՄԲԱՎԱՐ",
+    "recognizableAs": "conductor",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՅՈՒՍ",
+    "recognizableAs": "puree",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈԶԱԳՐԻՊ",
+    "recognizableAs": "swine flu",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈԼԵՐԱ",
+    "recognizableAs": "cholera",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈԼՈՐՁ",
+    "recognizableAs": "orchid",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈՀԱՆՈՑ",
+    "recognizableAs": "kitchen",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՈՀԱՐԱՐ",
+    "recognizableAs": "chef",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՈՂՈՎԱԿ",
+    "recognizableAs": "pipe",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՈՇՈՐԱՑՈՒՅՑ",
+    "recognizableAs": "magnifier",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈՍԱՓՈՂ",
+    "recognizableAs": "microphone",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՈՐԱՆԱՐԴ",
+    "recognizableAs": "cube",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈՐՀՐԴԱԺՈՂՈՎ",
+    "recognizableAs": "congress",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈՐՀՐԴԱՆԻՇ",
+    "recognizableAs": "symbol",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՈՐՀՐԴԱՐԱՆ",
+    "recognizableAs": "parliament",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՈՐՈՎԱԾ",
+    "recognizableAs": "shashlik",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԽՈՒԼԻԳԱՆ",
+    "recognizableAs": "hooligan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈՒՃԱՊ",
+    "recognizableAs": "panic",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈՒՆՏԱ",
+    "recognizableAs": "junta",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՏՐԱԿԱՆՈՒԹՅՈՒՆ",
+    "recognizableAs": "discrimination",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՐԻԶՈՊՐԱԶ",
+    "recognizableAs": "chrysoprase",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՑԱՆ",
+    "recognizableAs": "cork",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱԴՄԻՈՒՄ",
+    "recognizableAs": "cadmium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԶԱՐՄԱ",
+    "recognizableAs": "kazarma (barracks)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԶԻՆՈ",
+    "recognizableAs": "casino",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԹՈԴ",
+    "recognizableAs": "cathode",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԹՈԼԻԿ",
+    "recognizableAs": "Catholic",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԹՈՂԻԿՈՍ",
+    "recognizableAs": "catholicos",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԼԻՈՒՄ",
+    "recognizableAs": "potassium (kalium)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԼԻՖՈՌՆԻՈՒՄ",
+    "recognizableAs": "californium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԼՎԻՆԱԿԱՆ",
+    "recognizableAs": "Calvinist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԼՑԻՈՒՄ",
+    "recognizableAs": "calcium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԿՏՈՒՍ",
+    "recognizableAs": "cactus",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՃԱՌ",
+    "recognizableAs": "academy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՅՖ",
+    "recognizableAs": "kef (bliss/intoxication)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՆԿԱՆ",
+    "recognizableAs": "cancan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՆՈՆ",
+    "recognizableAs": "canon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԾԱ",
+    "recognizableAs": "c (tsa)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԾԱԿ",
+    "recognizableAs": "hole (tsak)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԾԱՓ",
+    "recognizableAs": "clap (tsap)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԾԵՓ",
+    "recognizableAs": "plaster (tsep)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԾԻՏ",
+    "recognizableAs": "sparrow (tsit)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԾՈՒՆԿ",
+    "recognizableAs": "knee (tsunk)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՆՏՈՆ",
+    "recognizableAs": "canton",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՊԻԿ",
+    "recognizableAs": "kapuchin (monkey)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՊԻՇՈՆ",
+    "recognizableAs": "kapushon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՊԻՏԱԼԻԶՄ",
+    "recognizableAs": "capitalism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՊԻՏԱՆ",
+    "recognizableAs": "kapitan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՍՏԱ",
+    "recognizableAs": "kasta",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՏԱԼԻԶԱՏՈՐ",
+    "recognizableAs": "katalizator",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՏԻՈՆ",
+    "recognizableAs": "kation",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐԱՄԵԼ",
+    "recognizableAs": "karamel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐԱՆՏԻՆ",
+    "recognizableAs": "karantin",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐԱՏԵ",
+    "recognizableAs": "karate",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐԴԻՆԱԼ",
+    "recognizableAs": "kardinal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐԻԲՅԱՆ",
+    "recognizableAs": "karibyan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐԻՉ",
+    "recognizableAs": "karich (stapler)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐՈՒՍԵԼ",
+    "recognizableAs": "karusel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐՊԵՏ",
+    "recognizableAs": "karpet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐՏՈՇԿԱ",
+    "recognizableAs": "kartoshka",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՖԵ",
+    "recognizableAs": "kafe",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԵՆԳՈՒՐՈՒ",
+    "recognizableAs": "kenguru",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԵՆՍԱՔԻՄԻԱ",
+    "recognizableAs": "kensakimia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԵՆՍԱՖԻԶԻԿԱ",
+    "recognizableAs": "kensafizika",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԵՆՏԱՎՐՈՍ",
+    "recognizableAs": "kentavros",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԵՆՏՐՈՆ",
+    "recognizableAs": "kentron",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԵՏՉՈՒՊ",
+    "recognizableAs": "ketchup",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԻԲԵՌՆԵՏԻԿԱ",
+    "recognizableAs": "kibernetika",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԻԹԱՌ",
+    "recognizableAs": "kitar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԻԼՈՄԵՏՐ",
+    "recognizableAs": "kilometr",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԻՆԱՄՈՆ",
+    "recognizableAs": "kinamon",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԻՆՈ",
+    "recognizableAs": "kino",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԻՍԱՖԱԲՐԻԿԱՏ",
+    "recognizableAs": "kisafabrikat",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԻՐԻԼԻՑԱ",
+    "recognizableAs": "kirilitsa",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԼԵՅ",
+    "recognizableAs": "kley",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԼԻՄԱ",
+    "recognizableAs": "klima",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԼՈՈՒՆ",
+    "recognizableAs": "kloun",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՊ",
+    "recognizableAs": "kap (connection)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՊՈՒՅՏ",
+    "recognizableAs": "kapuyt (blue)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՌՈՒՅՑ",
+    "recognizableAs": "karuyts (structure)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՎ",
+    "recognizableAs": "kav (clay)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՏԱԿ",
+    "recognizableAs": "katak (joke)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՏՈՒ",
+    "recognizableAs": "katu (cat)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՐԴԱԼ",
+    "recognizableAs": "kardal (read)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՐԾԻՔ",
+    "recognizableAs": "kartsik (opinion)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՐՃ",
+    "recognizableAs": "karch (short)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՐՄԻՐ",
+    "recognizableAs": "karmir (red)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՑԻՆ",
+    "recognizableAs": "katsin (axe)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԱՔԱՎ",
+    "recognizableAs": "kakav (partridge)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԵՍ",
+    "recognizableAs": "kes (half)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԵՏ",
+    "recognizableAs": "ket (dot/whale)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿԻՆ",
+    "recognizableAs": "kin (woman)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՂԶԻ",
+    "recognizableAs": "kghzi (island)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՃՂԱԿ",
+    "recognizableAs": "kchghak (hoof)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՄԱԽՔ",
+    "recognizableAs": "kmakhk (skeleton)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈԱԼԱ",
+    "recognizableAs": "koala",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԱԼԻՑԻԱ",
+    "recognizableAs": "coalition",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԲԱԼՏ",
+    "recognizableAs": "cobalt",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԼԻԲՐԻ",
+    "recognizableAs": "hummingbird (colibri)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԿԱԻՆ",
+    "recognizableAs": "cocaine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԿՈՍ",
+    "recognizableAs": "coconut",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԿՈՐԴԻԼՈՍ",
+    "recognizableAs": "crocodile",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԿՏԵՅԼ",
+    "recognizableAs": "cocktail",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄԲԱՅՆ",
+    "recognizableAs": "combine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄԲԻՆԱՏ",
+    "recognizableAs": "kombinat",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄՈՒՆԻԶՄ",
+    "recognizableAs": "communism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄՈՒՆԻԿԱՑԻԱ",
+    "recognizableAs": "communication",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄՈՒՆԻՍՏ",
+    "recognizableAs": "communist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄՊ",
+    "recognizableAs": "computer",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄՊՈՆԵՆՏ",
+    "recognizableAs": "component",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՄՊՐՈՄԻՍ",
+    "recognizableAs": "compromise",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆԳՐԵՍ",
+    "recognizableAs": "congress",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆԿՐԵՏ",
+    "recognizableAs": "concrete (specific)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՍՈԼԻԴԱՑԻԱ",
+    "recognizableAs": "consolidation",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՍՏՐՈՒԿՏԻՎ",
+    "recognizableAs": "constructive",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՏԵՆՏ",
+    "recognizableAs": "content",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՏԵՔՍՏ",
+    "recognizableAs": "context",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՏՐՈԼ",
+    "recognizableAs": "control",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՑԵՊՑԻԱ",
+    "recognizableAs": "concept",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՖԵՏ",
+    "recognizableAs": "confetti/candy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՖԻԴԵՆՑԻԱԼ",
+    "recognizableAs": "confidential",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՆՖԼԻԿՏ",
+    "recognizableAs": "conflict",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՊԵԿ",
+    "recognizableAs": "kopek",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՌԵԿՏ",
+    "recognizableAs": "correct (polite)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՌՈՒՊՑԻԱ",
+    "recognizableAs": "corruption",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՍՄԵՏԻԿԱ",
+    "recognizableAs": "cosmetics",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՍՄՈՊՈԼԻՏ",
+    "recognizableAs": "cosmopolitan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՍՄՈՍ",
+    "recognizableAs": "cosmos",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՎԲՈՅ",
+    "recognizableAs": "cowboy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՏԼԵՏ",
+    "recognizableAs": "cutlet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՐՈՆԱՎԻՐՈՒՍ",
+    "recognizableAs": "coronavirus",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՐՏ",
+    "recognizableAs": "court (tennis)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՒԼՄԻՆԱՑԻԱ",
+    "recognizableAs": "culmination",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՒԽՆԻ",
+    "recognizableAs": "kukhnya (kitchen)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՒՐՍ",
+    "recognizableAs": "kurs (course)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՖԵ",
+    "recognizableAs": "coffee",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՖԵԻՆ",
+    "recognizableAs": "caffeine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՎԱՍ",
+    "recognizableAs": "kvass",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՎԱՐՑ",
+    "recognizableAs": "quartz",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՐԵԱՏԻՎ",
+    "recognizableAs": "creative",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՐԵՄ",
+    "recognizableAs": "cream",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՐԻԿԵՏ",
+    "recognizableAs": "cricket",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՐԿԵՍ",
+    "recognizableAs": "circus",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՐՈՒԱՍԱՆ",
+    "recognizableAs": "croissant",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՆԻԿ",
+    "recognizableAs": "knik (married woman)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՆՃԻԹ",
+    "recognizableAs": "knchit (trunk)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՆՃԻՌ",
+    "recognizableAs": "knchir (wrinkle)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՇԵՌՔ",
+    "recognizableAs": "ksherk (scales)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՇԻՌ",
+    "recognizableAs": "kshir (weight)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՂ",
+    "recognizableAs": "kogh (rib/side)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՃ",
+    "recognizableAs": "koch (reel/spool)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՃԱԿ",
+    "recognizableAs": "kochak (button)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՇԻԿ",
+    "recognizableAs": "koshik (shoe)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՇՏ",
+    "recognizableAs": "kosht (callus/lump)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՊ",
+    "recognizableAs": "kop (eyelid)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՒՅՐ",
+    "recognizableAs": "kuyr (blind)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՈՒՐԾՔ",
+    "recognizableAs": "kurtsk (breast)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՌԻՎ",
+    "recognizableAs": "kriv (fight/struggle)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՏՈՒՐ",
+    "recognizableAs": "ktur (roof)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ԿՏՈՒՑ",
+    "recognizableAs": "ktuts (beak)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱԿԱՕԴԱՅԻՆ",
+    "recognizableAs": "авиа (anti-aircraft)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՂԹԱԿԱՄԱՐ",
+    "recognizableAs": "арка (arch)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՂԹԱՆԱԿ",
+    "recognizableAs": "виктория (victory)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՂՈՐԴԱՎԱՐ",
+    "recognizableAs": "анкор (anchor)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՃԱԽՈՐԴ",
+    "recognizableAs": "клиент (client)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄԱԳՈՒՄԱՐ",
+    "recognizableAs": "конгресс (congress)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱԶԳԵՍՏ",
+    "recognizableAs": "униформа (uniform)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄԱԼՍԱՐԱՆ",
+    "recognizableAs": "университет (university)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱԿԱՐԳ",
+    "recognizableAs": "система (system)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄԱԿԱՐԳԻՉ",
+    "recognizableAs": "компьютер (computer)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱՆԵՐՈՒՄ",
+    "recognizableAs": "амнистия (amnesty)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱՆՈՒՆ",
+    "recognizableAs": "омоним (homonym)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱՍԵՌԱՀԱԿՈՒԹՅՈՒՆ",
+    "recognizableAs": "гомосексуальность (homosexuality)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱՍՏԵՂՈՒԹՅՈՒՆ",
+    "recognizableAs": "констелляция (constellation)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱՎԱՐԱԿ",
+    "recognizableAs": "пандемия (pandemic)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄԱՏԵՔՍՏ",
+    "recognizableAs": "контекст (context)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԱՑԱՆՑ",
+    "recognizableAs": "интернет (internet)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄԵՄԱՏԱԿԱՆ",
+    "recognizableAs": "сравнительный (comparative)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԵՐԳ",
+    "recognizableAs": "концерт (concert)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԵՐԳԱՍՐԱՀ",
+    "recognizableAs": "зал (hall)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՆԴԻՍԱՍՐԱՀ",
+    "recognizableAs": "аудитория (auditorium)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՆՐԱԳԻՏԱՐԱՆ",
+    "recognizableAs": "энциклопедия (encyclopedia)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՆՐԱԽԱՆՈՒԹ",
+    "recognizableAs": "департамент (department store)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՆՐԱԿԱՑԱՐԱՆ",
+    "recognizableAs": "хостел (hostel)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՆՐԱՊԵՏՈՒԹՅՈՒՆ",
+    "recognizableAs": "республика (republic)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՆՐԱՔՎԵ",
+    "recognizableAs": "референдум (referendum)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՆՔԱԲԱՆ",
+    "recognizableAs": "минералог (mineralogist)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՇՎԻՉ",
+    "recognizableAs": "калькулятор (calculator)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՊԱՎՈՒՄ",
+    "recognizableAs": "аббревиатура (abbreviation)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՍԱՐԱԿԱԾ",
+    "recognizableAs": "экватор (equator)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՍԻՈՒՄ",
+    "recognizableAs": "хассий (hassium)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՍՏՈՑ",
+    "recognizableAs": "станок (tool machine)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՎԱՍԱՐՈՒՄ",
+    "recognizableAs": "уравнение (equation)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՎԱՏԱՐՄԱԳՐԵԼ",
+    "recognizableAs": "аккредитация (accreditation)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱԿԵԼ",
+    "recognizableAs": "гнуть (to bend)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄ",
+    "recognizableAs": "вкус (taste)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄԱԼՐԵԼ",
+    "recognizableAs": "пополнять (to replenish)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄԱՐ",
+    "recognizableAs": "для (for)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՄՐ",
+    "recognizableAs": "немой (mute)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՅԱՑՔ",
+    "recognizableAs": "взгляд (gaze)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՅՐ",
+    "recognizableAs": "отец (father)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՆԳ",
+    "recognizableAs": "рифма (rhyme)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՆԵԼ",
+    "recognizableAs": "вынимать (to pull out)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՉԵԼ",
+    "recognizableAs": "лаять (to bark)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՍԱԿ",
+    "recognizableAs": "возраст (age)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՍԿ",
+    "recognizableAs": "колос (ear of corn)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՍՏ",
+    "recognizableAs": "толстый (thick)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՍՑԵ",
+    "recognizableAs": "адрес (address)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՎԱՔԱԾՈՒ",
+    "recognizableAs": "коллекция",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՎԱՔԱԿԱՆ",
+    "recognizableAs": "коллективный",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՎԱՔԱՐԱՐ",
+    "recognizableAs": "клинер",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՎԵԼՎԱԾ",
+    "recognizableAs": "апп/аппендикс",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՎԵՐԺՈՒԹՅՈՒՆ",
+    "recognizableAs": "вечность (eternity)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏ",
+    "recognizableAs": "штук (piece)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏԱԿԱԳԻԾ",
+    "recognizableAs": "план",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏԱՊՏՈՒՂ",
+    "recognizableAs": "ягода",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏԻԿ",
+    "recognizableAs": "зерно/гранула",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏԿԱՆԻՇ",
+    "recognizableAs": "характеристика",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏԿՈՒԹՅՈՒՆ",
+    "recognizableAs": "качество/свойство",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏՈՐ",
+    "recognizableAs": "том",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՏՈՒԿ",
+    "recognizableAs": "специальный",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՏՎԱԾ",
+    "recognizableAs": "секция",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՐԱԲԵՐԱԿԱՆ",
+    "recognizableAs": "релятивный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՐԱԲԵՐՈՒԹՅՈՒՆ",
+    "recognizableAs": "реляция",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՐԱՎ",
+    "recognizableAs": "юг",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԱՑՈՒՅՑ",
+    "recognizableAs": "парадигма",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՐԲՈՒԽ",
+    "recognizableAs": "насморк",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԳԱՆՔ",
+    "recognizableAs": "уважение",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԹ",
+    "recognizableAs": "ровный/гладкий",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԹԱԿ",
+    "recognizableAs": "платформа",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԹՈՒԿ",
+    "recognizableAs": "утюг",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԹՈՒԿԵԼ",
+    "recognizableAs": "утюжить",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԻՍԱ",
+    "recognizableAs": "хариса",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՐԿ",
+    "recognizableAs": "этаж/налог",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԿԱՅԻՆ",
+    "recognizableAs": "налоговый",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԿԱՎ",
+    "recognizableAs": "конечно",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԿԱՎՈՐ",
+    "recognizableAs": "нужно",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐԿԵԼ",
+    "recognizableAs": "облагать налогом",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՐՁԱԿՈՒՄ",
+    "recognizableAs": "атака",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՐՅՈՒՐ",
+    "recognizableAs": "сто",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՐՑԱԶՐՈՒՅՑ",
+    "recognizableAs": "интервью",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՑ",
+    "recognizableAs": "хлеб/еда",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՑԱԴՈՒԼ",
+    "recognizableAs": "голодовка",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԱՔԵՐ",
+    "recognizableAs": "хакер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՖՆԻՈՒՄ",
+    "recognizableAs": "гафний",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵԳՆԱԿԱՆ",
+    "recognizableAs": "ироничный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵԳՆԱՆՔ",
+    "recognizableAs": "ирония",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵԼԻՈՒՄ",
+    "recognizableAs": "гелий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵԼԼԵՆԻԶՄ",
+    "recognizableAs": "эллинизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵԾԱՆԻՎ",
+    "recognizableAs": "велосипед",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԵԾԵԼԱԶՈՐ",
+    "recognizableAs": "кавалерия",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵԿՏԱՐ",
+    "recognizableAs": "гектар",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՂԱՓՈԽՈՒԹՅՈՒՆ",
+    "recognizableAs": "революция",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՂԻՆԱԿ",
+    "recognizableAs": "автор",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԵՂԻՆԱԿՈՒԹՅՈՒՆ",
+    "recognizableAs": "авторитет",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՂՈՒԿ",
+    "recognizableAs": "жидкость",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՇԹԵԳ",
+    "recognizableAs": "хештег",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՌԱԽՈՍ",
+    "recognizableAs": "телефон",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԵՌԱԽՈՍԱՀԱՄԱՐ",
+    "recognizableAs": "номер телефона",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՌԱԿԱՌԱՎԱՐՈՒՄ",
+    "recognizableAs": "дистанционное управление",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՌՈՒՍՏԱՏԵՍՈՒԹՅՈՒՆ",
+    "recognizableAs": "телевидение",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՌՈՒՍՏԱՑՈՒՅՑ",
+    "recognizableAs": "телевизор",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՏ",
+    "recognizableAs": "с (with)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԵՐԹ",
+    "recognizableAs": "очередь",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԵՐՈՍ",
+    "recognizableAs": "герой",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՐՈՍԱԿԱՆ",
+    "recognizableAs": "героический",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՐՈՍՈՒԹՅՈՒՆ",
+    "recognizableAs": "героизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՔԻԱԹ",
+    "recognizableAs": "сказка",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԶՈՐ",
+    "recognizableAs": "мощный",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻԱՆԱԼԻ",
+    "recognizableAs": "великолепно",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻԲՐԻԴԱՅԻՆ",
+    "recognizableAs": "гибридный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻԳԻԵՆԱ",
+    "recognizableAs": "гигиена",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻԴՐԱՏ",
+    "recognizableAs": "гидрат",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻԴՐՈԼԻԶ",
+    "recognizableAs": "гидролиз",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻԵՐՈԳԼԻՖ",
+    "recognizableAs": "иероглиф",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՄԱ",
+    "recognizableAs": "сейчас",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻՄՆ",
+    "recognizableAs": "гимн",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՄՆԱԴՐԱՄ",
+    "recognizableAs": "фонд",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻՄՆԱԿԱՆ",
+    "recognizableAs": "фундаментальный",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻՆԳ",
+    "recognizableAs": "пять",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻՆԳՇԱԲԹԻ",
+    "recognizableAs": "четверг",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻՆԴԻ",
+    "recognizableAs": "хинди",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՆԴՈՒԻԶՄ",
+    "recognizableAs": "индуизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՊԵՐԲՈԼ",
+    "recognizableAs": "гипербола",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՊԵՐՄԱՐԿԵՏ",
+    "recognizableAs": "гипермаркет",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՊՆՈՍ",
+    "recognizableAs": "гипноз",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՍՈՒՆ",
+    "recognizableAs": "пятьдесят",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀԻՍՏԵՐԻԱ",
+    "recognizableAs": "истерия",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՎԱՆԴԱՆՈՑ",
+    "recognizableAs": "больница",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀՅՈՒԹ",
+    "recognizableAs": "сок",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀՅՈՒՊԱՏՈՍ",
+    "recognizableAs": "консул",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՅՈՒՊԱՏՈՍՈՒԹՅՈՒՆ",
+    "recognizableAs": "консульство",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՅՈՒՍԻՍ",
+    "recognizableAs": "север",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀՅՈՒՐԱՆՈՑ",
+    "recognizableAs": "отель",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀՆԱԳԵՏ",
+    "recognizableAs": "археолог",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՆԱԳԻՏՈՒԹՅՈՒՆ",
+    "recognizableAs": "археология",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈԲԲԻ",
+    "recognizableAs": "хобби",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈԲՈՅ",
+    "recognizableAs": "гобой",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈԿԵՅ",
+    "recognizableAs": "хоккей",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈԿՏԵՄԲԵՐ",
+    "recognizableAs": "октябрь",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈՍՊԻՏԱԼԱՑՆԵԼ",
+    "recognizableAs": "госпитализировать",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈՎԱՆՈՑ",
+    "recognizableAs": "зонтик",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀՈՐԻԶՈՆ",
+    "recognizableAs": "горизонт",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈՐՈՍԿՈՊ",
+    "recognizableAs": "гороскоп",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈՒՄԱՆԻԶՄ",
+    "recognizableAs": "гуманизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՍԿԱ",
+    "recognizableAs": "гигант (искаженное гигант)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՐԱՊԱՐԱԿ",
+    "recognizableAs": "площадь (административная)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀՈԳԻ",
+    "recognizableAs": "душа",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՀՈՆՔ",
+    "recognizableAs": "бровь",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՁԱԽ",
+    "recognizableAs": "лево",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՁՈՒ",
+    "recognizableAs": "dzu (egg/ova - scientific context)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՁՈՒԿ",
+    "recognizableAs": "dzuk (fish)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՂԵԿ",
+    "recognizableAs": "ghek (helm/steering)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃԱԿԱՏ",
+    "recognizableAs": "chakat (forehead/front)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃԱՄՊՐՈՒԿ",
+    "recognizableAs": "champruk (suitcase)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃԱՇ",
+    "recognizableAs": "chash (meal/dining)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃԱՇԱՑԱՆԿ",
+    "recognizableAs": "chashatsank (menu)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃԱՊՈՆԱԿԱՆ",
+    "recognizableAs": "chaponakan (Japanese)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՃԱՐՏԱՐԱԳԵՏ",
+    "recognizableAs": "chartaraget (engineer)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃԱՐՏԱՐԱՊԵՏ",
+    "recognizableAs": "chartarapet (architect)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՃԵՆԱՊԱԿԻ",
+    "recognizableAs": "chenapaki (porcelain)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՃԻՇՏ",
+    "recognizableAs": "chisht (right/true)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃՆՇՈՒՄ",
+    "recognizableAs": "chnshum (pressure)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՃՈՃԱԹՈՌ",
+    "recognizableAs": "chochator (rocking chair)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱԳՄԱ",
+    "recognizableAs": "magma",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԳՆԻՍ",
+    "recognizableAs": "magnis (magnet)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԳՆԻՏՈՖՈՆ",
+    "recognizableAs": "magnitofon (tape recorder)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԹԵՄԱՏԻԿԱ",
+    "recognizableAs": "matematika (math)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԼԱՐԻԱ",
+    "recognizableAs": "malaria",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԿԱՐՈՆ",
+    "recognizableAs": "makaron (macaroni)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՄՈՒԼ",
+    "recognizableAs": "mamul (press)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՅՈՆԵԶ",
+    "recognizableAs": "mayonez (mayonnaise)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՆԳՈ",
+    "recognizableAs": "mango",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՆԴԱՐԻՆ",
+    "recognizableAs": "mandarin (mandarin orange)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՆԻՊՈՒԼՅԱՑԻԱ",
+    "recognizableAs": "manipulyatsia (manipulation)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՆԿԱՊԱՐՏԵԶ",
+    "recognizableAs": "mankapartez (kindergarten)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱՆՅԱԿ",
+    "recognizableAs": "manyak (maniac)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՆՐԱԴԻՏԱԿ",
+    "recognizableAs": "manraditak (microscope)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱՇԿԱԲԱՆ",
+    "recognizableAs": "mashkaban (dermatologist)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱՌՈԺՆԻ",
+    "recognizableAs": "marozhni (ice cream)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՍՆԱԳԵՏ",
+    "recognizableAs": "masnaget (specialist)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱՍՇՏԱԲ",
+    "recognizableAs": "masshtab",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՍՈՆ",
+    "recognizableAs": "mason",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՏ",
+    "recognizableAs": "mat (checkmate)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱՏԵՐԻԱԼԻԶՄ",
+    "recognizableAs": "materializm",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՏԻՏ",
+    "recognizableAs": "matit",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱՐԳԱՐԻՆ",
+    "recognizableAs": "margarin",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐԳԱՐԻՏ",
+    "recognizableAs": "margarit",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐԻԽՈՒԱՆԱ",
+    "recognizableAs": "marihuana",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐԿ",
+    "recognizableAs": "mark",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐԿԻԶ",
+    "recognizableAs": "markiz",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐՄԱՐ",
+    "recognizableAs": "marmar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐՔՍԻԶՄ",
+    "recognizableAs": "marksizm",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐՔՍԻՍՏ",
+    "recognizableAs": "marksist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՖԻԱ",
+    "recognizableAs": "mafia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵԳԱՊՈԼԻՍ",
+    "recognizableAs": "megapolis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵԴԱԼ",
+    "recognizableAs": "medal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵԹՈԴ",
+    "recognizableAs": "metod",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵԽԱՆԻԶՄ",
+    "recognizableAs": "mekhanizm",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՂԵԴԻ",
+    "recognizableAs": "meghedi",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԵՂՐԱՄԻՍ",
+    "recognizableAs": "meghramis",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԵՆԹԱԼԻՏԵՏ",
+    "recognizableAs": "mentalitet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՆԻՆԳԻՏ",
+    "recognizableAs": "meningit",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՆՅՈՒ",
+    "recognizableAs": "menyu",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՍԻՋ",
+    "recognizableAs": "mesij",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՏԱՂ",
+    "recognizableAs": "metagh",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԵՏԱՖԻԶԻԿԱ",
+    "recognizableAs": "metafizika",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՏՐ",
+    "recognizableAs": "metr",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՏՐՈՊՈԼԻՏԵՆ",
+    "recognizableAs": "metropoliten",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՐՍԻ",
+    "recognizableAs": "mersi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՔԵՆԱ",
+    "recognizableAs": "mekena",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԹՆՈԼՈՐՏ",
+    "recognizableAs": "mtnolort",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԻԳՐԱՆՏ",
+    "recognizableAs": "migrant",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻԼԻՄԵՏՐ",
+    "recognizableAs": "milimetr",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻԼԻՑԻԱ",
+    "recognizableAs": "militsia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻԿՐՈԲ",
+    "recognizableAs": "mikrob",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻՋԱԶԳԱՅԻՆ",
+    "recognizableAs": "international",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻՋՈՒԿԱՅԻՆ",
+    "recognizableAs": "nuclear",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻՍ",
+    "recognizableAs": "meat",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԻՍՏԵՐԻԱ",
+    "recognizableAs": "mystery",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻՐԳ",
+    "recognizableAs": "fruit",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄՅՈՒՍԼԻ",
+    "recognizableAs": "muesli",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈԴԵՄ",
+    "recognizableAs": "modem",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈԴՈՒԼ",
+    "recognizableAs": "module",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈԼՈՐԱԿ",
+    "recognizableAs": "planet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՆԻՏՈՐ",
+    "recognizableAs": "monitor",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՏՈ",
+    "recognizableAs": "moto/motorcycle",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՒՄԻԱ",
+    "recognizableAs": "mummy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՒՆԻՑԻՊԱԼԻՏԵՏ",
+    "recognizableAs": "municipality",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՒՐԱԲԱ",
+    "recognizableAs": "jam",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄՈՒՐՃ",
+    "recognizableAs": "hammer",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄՍԱՂԱՑ",
+    "recognizableAs": "meatgrinder",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՅՈԳ",
+    "recognizableAs": "yogi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՅՈԳԱ",
+    "recognizableAs": "yoga",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՅՈԳՈՒՐՏ",
+    "recognizableAs": "yoghurt",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՅՈԴ",
+    "recognizableAs": "iodine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՅՈՒԲԿԱ",
+    "recognizableAs": "skirt",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԱՆՈՏԵԽՆՈԼՈԳԻԱ",
+    "recognizableAs": "nanotechnology",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԱՍԿԻ",
+    "recognizableAs": "sock",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԱՎԹ",
+    "recognizableAs": "нефть (neft)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՆԱՏՅՈՒՐՄՈՐՏ",
+    "recognizableAs": "натюрморт (natyurmort)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԱՏՐԻՈՒՄ",
+    "recognizableAs": "натрий (natriy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԱՐԴԻ",
+    "recognizableAs": "нарды (nardy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԱՑԻԶՄ",
+    "recognizableAs": "нацизм (natsizm)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵԳԱՏԻՎ",
+    "recognizableAs": "негатив (negativ)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵԳՐ",
+    "recognizableAs": "негр (negr)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵՅՏՐԱԼ",
+    "recognizableAs": "нейтральный (neytral'nyy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵՅՏՐԻՆՈ",
+    "recognizableAs": "нейтрино (neytrino)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵՅՏՐՈՆ",
+    "recognizableAs": "нейтрон (neytron)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵՈՆ",
+    "recognizableAs": "неон (neon)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԻԿԵԼ",
+    "recognizableAs": "никель (nikel')",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԻԿՈՏԻՆ",
+    "recognizableAs": "никотин (nikotin)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԻՆՋԱ",
+    "recognizableAs": "ниндзя (nindzya)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆՈՐՄԱԼ",
+    "recognizableAs": "нормальный (normal'nyy)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆՈՒԴԻԶՄ",
+    "recognizableAs": "нудизм (nudizm)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆՈՒԿԼՈՆ",
+    "recognizableAs": "нуклон (nuklon)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆՍՏԵԼ",
+    "recognizableAs": "сидеть (sidet') - note the 'st' consonant structure",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇԱՀՆՇԱՀ",
+    "recognizableAs": "шахиншах (shakhinshakh)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇԱՆՏԱԺ",
+    "recognizableAs": "шантаж (shantazh)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇԱՌԼԱՏԱՆ",
+    "recognizableAs": "шарлатан (sharlatan)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇԱՏՐՎԱՆ",
+    "recognizableAs": "фонтан (fontan) - false friend alert/check, but sounds like 'shatrvan' is distinct",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇԱՔԱՐ",
+    "recognizableAs": "сахар (sakhar) - similar sound profile",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇԻԶՈՖՐԵՆԻԱ",
+    "recognizableAs": "шизофрения",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇԻԶՈՖՐԵՆԻԿ",
+    "recognizableAs": "шизофреник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇԼԱԳԲԱՈՒՄ",
+    "recognizableAs": "шлагбаум",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՈԳԵԲԱՂՆԻՔ",
+    "recognizableAs": "сауна",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՈԿՈԼԱԴ",
+    "recognizableAs": "шоколад",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՈՆԱ",
+    "recognizableAs": "Шона",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՈՏԼԱՆԴԵՐԵՆ",
+    "recognizableAs": "шотландский",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՈՒԿԱ",
+    "recognizableAs": "базар",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇՈՖԵՐ",
+    "recognizableAs": "шофёр",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՊԻՈՆ",
+    "recognizableAs": "шпион",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՊՐԻՑ",
+    "recognizableAs": "шприц",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՏԱԲ",
+    "recognizableAs": "штаб",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՏԱՆԳԱ",
+    "recognizableAs": "штанга",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՏԱՆԳԻՍՏ",
+    "recognizableAs": "штангист",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒԴ",
+    "recognizableAs": "уд",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒԴՈՆ",
+    "recognizableAs": "удон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇԵՆ",
+    "recognizableAs": "шен",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇԵՇՏ",
+    "recognizableAs": "шешт",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇԵՐՏ",
+    "recognizableAs": "шерт",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇԻԹ",
+    "recognizableAs": "шит",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇԻՇ",
+    "recognizableAs": "шиш",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՇՈՒՆ",
+    "recognizableAs": "шун",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՈՏՔ",
+    "recognizableAs": "вотк",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՈՒՆԻԿԱԼ",
+    "recognizableAs": "уникальный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՌՈՒՑՔԱԲԱՆ",
+    "recognizableAs": "онколог",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՌՈՒՑՔԱԲԱՆՈՒԹՅՈՒՆ",
+    "recognizableAs": "онкология",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՐԱՆ",
+    "recognizableAs": "уран",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՐԴՈՒ",
+    "recognizableAs": "урду",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԱՅՆԻԿ",
+    "recognizableAs": "чайник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԵԲՈՒՐԵԿԻ",
+    "recognizableAs": "чебуреки",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԵԽ",
+    "recognizableAs": "чех",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԵԽՈԼ",
+    "recognizableAs": "чехол",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԵԿ",
+    "recognizableAs": "чек",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԵՄՊԻՈՆ",
+    "recognizableAs": "чемпион",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԵՅՆՋ",
+    "recognizableAs": "чендж (обмен валюты)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԻՆՈՎՆԻԿ",
+    "recognizableAs": "чиновник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԻՊ",
+    "recognizableAs": "чип",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱԴԵԶԴ",
+    "recognizableAs": "подъезд",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱԴՇԻՊՆԻԿ",
+    "recognizableAs": "подшипник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱԺԱՌՆԻԿ",
+    "recognizableAs": "пожарник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱԼԱԴԻՈՒՄ",
+    "recognizableAs": "палладий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՆԹԵՈՆ",
+    "recognizableAs": "пантеон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՌԼԱՄԵՆՏ",
+    "recognizableAs": "парламент",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՄ",
+    "recognizableAs": "ум",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՈՒՇ",
+    "recognizableAs": "уш",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՈՒՍ",
+    "recognizableAs": "ус",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՈՒՐ",
+    "recognizableAs": "ур",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՉԷ",
+    "recognizableAs": "че",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՉԻՔ",
+    "recognizableAs": "чик",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՉՈՐ",
+    "recognizableAs": "чор",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՉՈՐՍ",
+    "recognizableAs": "чорс",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՏՇԳԱՄԲ",
+    "recognizableAs": "балкон",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՏՎԵՐ",
+    "recognizableAs": "ордер/заказ",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՏՎԻՐԱԿՈՒԹՅՈՒՆ",
+    "recognizableAs": "делегация",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐԱԲՈԼ",
+    "recognizableAs": "парабола",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐԱԴՈՔՍ",
+    "recognizableAs": "парадокс",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐԱՆՈՅԱ",
+    "recognizableAs": "паранойя",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐԱՇՅՈՒՏ",
+    "recognizableAs": "парашют",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐԲԵՐՈՒԹՅՈՒՆ",
+    "recognizableAs": "период",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐԲՐԻՍ",
+    "recognizableAs": "ветровое стекло",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐՄԵԶԱՆ",
+    "recognizableAs": "пармезан",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐՈՆ",
+    "recognizableAs": "барон/господин",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐՏԻԶԱՆ",
+    "recognizableAs": "партизан",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵԴԱԼ",
+    "recognizableAs": "педаль",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՆԱԼ",
+    "recognizableAs": "пенальти",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՉԱՏ",
+    "recognizableAs": "печать",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՉԵՆԻ",
+    "recognizableAs": "печенье",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՍՈ",
+    "recognizableAs": "песо",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՍՏԻՑԻԴ",
+    "recognizableAs": "пестицид",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՐԵՍՏՐՈՅԿԱ",
+    "recognizableAs": "перестройка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՐՄԱՆԵՆՏ",
+    "recognizableAs": "перманент",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԻԵՍ",
+    "recognizableAs": "пьеса",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԻԼԱՍՈՍ",
+    "recognizableAs": "пылесос",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԻՋԱԿ",
+    "recognizableAs": "пиджак",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԻՎԱ",
+    "recognizableAs": "пиво",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԻՑՑԱ",
+    "recognizableAs": "пицца",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԼԱՆՏԱՑԻԱ",
+    "recognizableAs": "плантация",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԼԱՍՏԻԿ",
+    "recognizableAs": "пластик",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԼԱՏԻՆ",
+    "recognizableAs": "платина",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԼԵՆԱՐ",
+    "recognizableAs": "пленарный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԼՅԱԺ",
+    "recognizableAs": "пляж",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԼՈՒՏՈՆԻՈՒՄ",
+    "recognizableAs": "плутоний",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԵԶԴ",
+    "recognizableAs": "поезд",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԵԶԻԱ",
+    "recognizableAs": "поэзия",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԵՄ",
+    "recognizableAs": "поэма",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԶԻՏԻՎ",
+    "recognizableAs": "позитив",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԶԻՏՐՈՆ",
+    "recognizableAs": "позитрон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԼ",
+    "recognizableAs": "пол",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԼԻԿԼԻՆԻԿԱ",
+    "recognizableAs": "поликлиника",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԼԻՄԵՐ",
+    "recognizableAs": "полимер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԼԿԱ",
+    "recognizableAs": "полька",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԼՈՆԻՈՒՄ",
+    "recognizableAs": "полоний",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈԿԵՐ",
+    "recognizableAs": "покер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՄՊ",
+    "recognizableAs": "помпа",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՆՉԻԿ",
+    "recognizableAs": "пончик",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՉԿԱ",
+    "recognizableAs": "почка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՊՈՒԼԻԶՄ",
+    "recognizableAs": "популизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՊՈՒԼԻՍՏ",
+    "recognizableAs": "популист",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՍՏՄՈԴԵՌՆԻԶՄ",
+    "recognizableAs": "постмодернизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՐՈՒՉԻԿ",
+    "recognizableAs": "поручик",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՐՏՎԵՅՆ",
+    "recognizableAs": "портвейн",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՒԼՍԱՐ",
+    "recognizableAs": "пульсар",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՒԼՏ",
+    "recognizableAs": "пульт",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՒՏԻՆԻԶՄ",
+    "recognizableAs": "путинизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՌԱՇԻՎԿԱ",
+    "recognizableAs": "прошивка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՌՈԲԿԱ",
+    "recognizableAs": "пробка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐԱԶԵՈԴԻՄ",
+    "recognizableAs": "празеодим",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐԱԿՏԻԿ",
+    "recognizableAs": "практичный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐԵՄԻԵՐԱ",
+    "recognizableAs": "премьера",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐԻԶՄԱ",
+    "recognizableAs": "призма",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐԻՄԻՏԻՎ",
+    "recognizableAs": "примитив",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐԻՆՏԵՐ",
+    "recognizableAs": "принтер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈԲԼԵՄ",
+    "recognizableAs": "проблема",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈԴՈՒԿՏԻՎ",
+    "recognizableAs": "продуктивный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈԹԵԶ",
+    "recognizableAs": "протез",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈԼԵՏԱՐ",
+    "recognizableAs": "пролетарий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈԼԵՏԱՐԻԱՏ",
+    "recognizableAs": "пролетариат",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈԿՐԱՍՏԻՆԱՑԻԱ",
+    "recognizableAs": "прокрастинация",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈՄԵԹԻՈՒՄ",
+    "recognizableAs": "прометий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈՊԱԳԱՆԴԱ",
+    "recognizableAs": "пропаганда",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈՍՊԵԿՏ",
+    "recognizableAs": "проспект",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈՏԱԿՏԻՆԻՈՒՄ",
+    "recognizableAs": "протактиний",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈՏՈՆ",
+    "recognizableAs": "протон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐՈՖԵՍԻՈՆԱԼ",
+    "recognizableAs": "профессионал",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԱԶ",
+    "recognizableAs": "джаз",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԱԶՎԵ",
+    "recognizableAs": "джезва",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԱՅՆԻԶՄ",
+    "recognizableAs": "джайнизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԱՅՎ",
+    "recognizableAs": "джайв",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԻԳԻԹ",
+    "recognizableAs": "джигит",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԻՄ",
+    "recognizableAs": "джим",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԻՆ",
+    "recognizableAs": "джин",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԻՆՍ",
+    "recognizableAs": "джинсы",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՏՌԵԼ",
+    "recognizableAs": "рвать",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐ",
+    "recognizableAs": "танец",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐԱՆ",
+    "recognizableAs": "веревка",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐԱՆՈՑ",
+    "recognizableAs": "шея",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐԱՊ",
+    "recognizableAs": "пустой",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐԱՐՏ",
+    "recognizableAs": "жирный",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐԶ",
+    "recognizableAs": "чистый/ясный",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐԿ",
+    "recognizableAs": "мешок",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐՈՒՅՐ",
+    "recognizableAs": "спираль",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԱՐՏՔ",
+    "recognizableAs": "долг",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԻՆԴ",
+    "recognizableAs": "твердый",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊԻՍՏԱԿ",
+    "recognizableAs": "фисташка",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՂԻՆՁ",
+    "recognizableAs": "медь",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՂՊԵՂ",
+    "recognizableAs": "перец",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՆԱԿ",
+    "recognizableAs": "тарелка",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՆԴՈՒԿ",
+    "recognizableAs": "фундук",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՈԿԵԼ",
+    "recognizableAs": "дергать",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՈՂՈՏԱ",
+    "recognizableAs": "проспект",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՈՂՊԱՏ",
+    "recognizableAs": "сталь",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՈՉ",
+    "recognizableAs": "хвост",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՈՐՏ",
+    "recognizableAs": "пупок",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՈՒՃՈՒՐ",
+    "recognizableAs": "маленький",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՍԱԿ",
+    "recognizableAs": "венок",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՏՈՒՂ",
+    "recognizableAs": "фрукт",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՊՏՏԵԼ",
+    "recognizableAs": "крутить",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋԱՀ",
+    "recognizableAs": "люстра",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋԱՆԱԼ",
+    "recognizableAs": "стараться",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋԱՆՔ",
+    "recognizableAs": "усилие",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋԵՌՈՑ",
+    "recognizableAs": "печь",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋԻԼ",
+    "recognizableAs": "сухожилие",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋՆՋԵԼ",
+    "recognizableAs": "стирать/удалять",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋՈՒԹԱԿ",
+    "recognizableAs": "скрипка",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋՈՒՐ",
+    "recognizableAs": "вода",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՌԱԳԱՏԿԱ",
+    "recognizableAs": "рогатка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱԴԻՈ",
+    "recognizableAs": "радио",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱԴԻՈՒՄ",
+    "recognizableAs": "радий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱԴՈՆ",
+    "recognizableAs": "радон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱԶՄԱԿԱՆ",
+    "recognizableAs": "военный",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՌԱԶՎՈԴ",
+    "recognizableAs": "развод",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱՄԵՆ",
+    "recognizableAs": "рамэн",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱՆԴՈՄ",
+    "recognizableAs": "рандом",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱՍԻԶՄ",
+    "recognizableAs": "расизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱՍԻՍՏ",
+    "recognizableAs": "расист",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱՑԻՈՆԱԼ",
+    "recognizableAs": "рациональный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵԱԼ",
+    "recognizableAs": "реальный",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵԱԿՏՈՐ",
+    "recognizableAs": "реактор",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵԳԲԻ",
+    "recognizableAs": "регби",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵԶԵՐՖՈՐԴԻՈՒՄ",
+    "recognizableAs": "резерфордий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵԿԼԱՄ",
+    "recognizableAs": "реклама",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵՄՈՆՏ",
+    "recognizableAs": "ремонт",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵՅՏԻՆԳ",
+    "recognizableAs": "рейтинг",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵՆԻՈՒՄ",
+    "recognizableAs": "рений",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵՍՈՒՐՍ",
+    "recognizableAs": "ресурс",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵՍՏՈՐԱՆ",
+    "recognizableAs": "ресторан",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵՎԻԶԻՈՆԻԶՄ",
+    "recognizableAs": "ревизионизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԵՖՈՐՄ",
+    "recognizableAs": "реформа",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԻԹՄ",
+    "recognizableAs": "ритм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԻՆԳ",
+    "recognizableAs": "ринг",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԻՍԿ",
+    "recognizableAs": "риск",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈԴԻՈՒՄ",
+    "recognizableAs": "родий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՄ",
+    "recognizableAs": "ром",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒԲԻԴԻՈՒՄ",
+    "recognizableAs": "рубидий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒԲԼԻ",
+    "recognizableAs": "рубль",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒԹԵՆԻՈՒՄ",
+    "recognizableAs": "рутений",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒՄԲ",
+    "recognizableAs": "бомба",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒՄԲԱ",
+    "recognizableAs": "румба",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒՉԿԱ",
+    "recognizableAs": "ручка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒՍ",
+    "recognizableAs": "русский",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՌՈՒՍԱԿԱՆ",
+    "recognizableAs": "русский",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՌՈՒՍԵՐԵՆ",
+    "recognizableAs": "русский",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԱԲՈՏԱԺ",
+    "recognizableAs": "саботаж",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱԴԻԶՄ",
+    "recognizableAs": "садизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱԼ",
+    "recognizableAs": "сало",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱԼԱԹ",
+    "recognizableAs": "салат",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱԼՅԱՄԻ",
+    "recognizableAs": "салями",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱԼՖԵՏԿԱ",
+    "recognizableAs": "салфетка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱԿԵ",
+    "recognizableAs": "саке",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄԱԼՅՈՏ",
+    "recognizableAs": "самолет",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄԱՐԻՈՒՄ",
+    "recognizableAs": "самарий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄԲԱ",
+    "recognizableAs": "самба",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄԲՈ",
+    "recognizableAs": "самбо",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄՈՒՐԱՅ",
+    "recognizableAs": "самурай",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՆԿՑԻԱ",
+    "recognizableAs": "санкция",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՆՍԿՐԻՏ",
+    "recognizableAs": "санскрит",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՊՈՆ",
+    "recognizableAs": "сапун/мыло",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԱՍԻՍԿԻ",
+    "recognizableAs": "сосиски",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՏԵԼԻՏ",
+    "recognizableAs": "спутник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՐԿԱԶՄ",
+    "recognizableAs": "сарказм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՔՍՈՖՈՆ",
+    "recognizableAs": "саксофон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵԼԵՆ",
+    "recognizableAs": "селен",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՆԱՏ",
+    "recognizableAs": "сенат",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՍԻԱ",
+    "recognizableAs": "сессия",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՍՏՐԱ",
+    "recognizableAs": "сестра",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՐԺԱՆՏ",
+    "recognizableAs": "сержант",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՐՖԻՆԳ",
+    "recognizableAs": "серфинг",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՔՍԻԶՄ",
+    "recognizableAs": "сексизм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԹՐԵՍ",
+    "recognizableAs": "стресс",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻԲՈՐԳԻՈՒՄ",
+    "recognizableAs": "сиборгий",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻԳԱՐ",
+    "recognizableAs": "сигара",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻԳԱՐԵՏ",
+    "recognizableAs": "сигарета",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻԴԻ",
+    "recognizableAs": "си-ди",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻԵՍՏԱ",
+    "recognizableAs": "сиеста",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻԼԻՑԻՈՒՄ",
+    "recognizableAs": "силициум",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՄՎՈԼ",
+    "recognizableAs": "символ",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՄՎՈԼԻԿ",
+    "recognizableAs": "символический",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՍՏԵՄ",
+    "recognizableAs": "система",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՏՈՒԱՑԻԱ",
+    "recognizableAs": "ситуация",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋՐՀՈՐ",
+    "recognizableAs": "колодец",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՋՐՎԵԺ",
+    "recognizableAs": "водопад",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՌԱԿ",
+    "recognizableAs": "рак",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՌԱՆԴԱ",
+    "recognizableAs": "рубанок",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՌԵՀԱՆ",
+    "recognizableAs": "базилик",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԱԳ",
+    "recognizableAs": "гусь",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԱՆԴՈՒՂՔ",
+    "recognizableAs": "лестница",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԱՆՐ",
+    "recognizableAs": "расческа",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԱՐԴ",
+    "recognizableAs": "паук",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԵՆՅԱԿ",
+    "recognizableAs": "комната",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԼԱՅԴ",
+    "recognizableAs": "slide",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԿԱՆԴԻՆԱՎՅԱՆ",
+    "recognizableAs": "Scandinavian",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԿԱՆԴԻՈՒՄ",
+    "recognizableAs": "scandium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԿԱՆԵՐ",
+    "recognizableAs": "scanner",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԿԼԵՐՈԶ",
+    "recognizableAs": "sclerosis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՄԱՐԹՖՈՆ",
+    "recognizableAs": "smartphone",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՄՈԳ",
+    "recognizableAs": "smog",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՅՈՒՐՊՐԻԶ",
+    "recognizableAs": "surprise",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՆՈՈՒԲՈՐԴ",
+    "recognizableAs": "snowboard",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՆՈՒԿԵՐ",
+    "recognizableAs": "snooker",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈԴԱ",
+    "recognizableAs": "soda",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈԼԻՍՏ",
+    "recognizableAs": "soloist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՄԵԼԻԵ",
+    "recognizableAs": "sommelier",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՈՒԼ",
+    "recognizableAs": "soul",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՋՈՒ",
+    "recognizableAs": "soju",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՎԵՏԱԿԱՆ",
+    "recognizableAs": "Soviet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՐԳՈ",
+    "recognizableAs": "sorghum",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՑԻԱԼԱԿԱՆ",
+    "recognizableAs": "social",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՑԻԱԼԻԶՄ",
+    "recognizableAs": "socialism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՑԻՈԼՈԳ",
+    "recognizableAs": "sociologist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՑԻՈԼՈԳԻԱ",
+    "recognizableAs": "sociology",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՒԲՅԵԿՏԻՎ",
+    "recognizableAs": "subjective",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՒԼԹԱՆ",
+    "recognizableAs": "sultan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՒՄՈ",
+    "recognizableAs": "sumo",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՒՇԻ",
+    "recognizableAs": "sushi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՒՊԵՐՄԱՐԿԵՏ",
+    "recognizableAs": "supermarket",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՊԱԼՆՅԱ",
+    "recognizableAs": "bedroom (spalnya)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՊԵՑՆԱԶ",
+    "recognizableAs": "Spetsnaz",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՊԻԴՈՄԵՏՐ",
+    "recognizableAs": "speedometer",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՊԻՐՏ",
+    "recognizableAs": "spirit/alcohol",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՊՈՒՆԳ",
+    "recognizableAs": "sponge",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՊՈՒՏՆԻԿ",
+    "recognizableAs": "sputnik",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՎԱՍՏԻԿԱ",
+    "recognizableAs": "swastika",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՎԻՏԵՐ",
+    "recognizableAs": "sweater",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏԱԴԻՈՆ",
+    "recognizableAs": "stadium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏԱԼԻՆԻԶՄ",
+    "recognizableAs": "Stalinism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏԱՏԻՍՏԻԿԱ",
+    "recognizableAs": "statistics",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏԱՏՈՒՍ",
+    "recognizableAs": "status",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏԵՆԴ",
+    "recognizableAs": "stand",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏԵՆՏ",
+    "recognizableAs": "stent",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏԵՐԼԵՏ",
+    "recognizableAs": "sterlet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏՈՒԴԻԱ",
+    "recognizableAs": "studio",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏՐԱՏԵԳԻԱ",
+    "recognizableAs": "strategy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏՐՈՆՑԻՈՒՄ",
+    "recognizableAs": "strontium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՑԵՆԱՐ",
+    "recognizableAs": "scenario/script",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՑԵՆԱՐԻՍՏ",
+    "recognizableAs": "screenwriter",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱԳՈՆ",
+    "recognizableAs": "railroad car (vagon)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱԼԵՏ",
+    "recognizableAs": "jack (cards)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱԼՍ",
+    "recognizableAs": "waltz",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱԼՏՈՐՆ",
+    "recognizableAs": "French horn",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱԿՈՒՈՒՄ",
+    "recognizableAs": "vacuum",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՐՏ",
+    "recognizableAs": "heart",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԽԱԼ",
+    "recognizableAs": "mistake",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԽՏՈՐ",
+    "recognizableAs": "garlic",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԿԵՍՈՒՐ",
+    "recognizableAs": "mother-in-law",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԿԻԶԲ",
+    "recognizableAs": "beginning",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍԿՍԵԼ",
+    "recognizableAs": "to start",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՄԲՈՒԿ",
+    "recognizableAs": "eggplant",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՅՈՒՆ",
+    "recognizableAs": "column/pillar",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՆԴՈՒԿ",
+    "recognizableAs": "chest/box",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈԽ",
+    "recognizableAs": "onion",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՃԻ",
+    "recognizableAs": "pine tree",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՍԻՆՁ",
+    "recognizableAs": "glue",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՎ",
+    "recognizableAs": "famine/hunger",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՒԳ",
+    "recognizableAs": "mourning",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՒՆԿ",
+    "recognizableAs": "mushroom",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՒՏ",
+    "recognizableAs": "lie",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՒՐ",
+    "recognizableAs": "sword",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՒՐԲ",
+    "recognizableAs": "holy",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՈՒՐՃ",
+    "recognizableAs": "coffee",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՊԱՌՆԱԼ",
+    "recognizableAs": "to threaten",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՍՊԻՏԱԿ",
+    "recognizableAs": "white",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՎԱՍԱԼ",
+    "recognizableAs": "вассал",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵԴՐՈ",
+    "recognizableAs": "ведро",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵԶԻՐ",
+    "recognizableAs": "везир",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵԹԻՆԳ",
+    "recognizableAs": "веттинг",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵՆԴԵՏԱ",
+    "recognizableAs": "вендетта",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵՐՄԻՇԵԼ",
+    "recognizableAs": "вермишель",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵՐՄՈՒՏ",
+    "recognizableAs": "вермут",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻԶԱ",
+    "recognizableAs": "виза",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻՍԿԻ",
+    "recognizableAs": "виски",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻՐՈՒՍ",
+    "recognizableAs": "вирус",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻՔԵՆԴ",
+    "recognizableAs": "уикенд",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎՈԼՖՐԱՄ",
+    "recognizableAs": "вольфрам",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎՈՒՎՈՒԶԵԼԱ",
+    "recognizableAs": "вувузела",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱԲՈՒ",
+    "recognizableAs": "табу",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱԿՏԻԿԱ",
+    "recognizableAs": "тактика",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱԿՏԻԿԱԿԱՆ",
+    "recognizableAs": "тактический",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱՏ",
+    "recognizableAs": "ват (плохой)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՎԱՐԴ",
+    "recognizableAs": "вард (роза)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՎԵՃ",
+    "recognizableAs": "веч (спор)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՎԵՐՋ",
+    "recognizableAs": "вердж (конец)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՎԻԶ",
+    "recognizableAs": "виз (шея)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՎԻՇՏ",
+    "recognizableAs": "вишт (горе)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՎՐԱ",
+    "recognizableAs": "вра (на)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՏԱՆԿ",
+    "recognizableAs": "tank",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱՆՏԱԼ",
+    "recognizableAs": "tantalum",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱՊԻՈԿԱ",
+    "recognizableAs": "tapioca",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱՌԱՏԵՍԱԿ",
+    "recognizableAs": "font (taratesak)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԵԼԵՎԻԶՐ",
+    "recognizableAs": "television (televizr)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԵԽՆՈՊԱՐԿ",
+    "recognizableAs": "technopark (tekhnopark)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԵԿԻԼԱ",
+    "recognizableAs": "tequila",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԵՌՈՐԻԶՄ",
+    "recognizableAs": "terrorism (terorizm)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԵՌՈՐԻՍՏ",
+    "recognizableAs": "terrorist (terorist)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԵՐՄԻՆ",
+    "recognizableAs": "term (termin)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԻՏԱՆ",
+    "recognizableAs": "titan (titanium)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՏԵՄ",
+    "recognizableAs": "totem",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՐԹ",
+    "recognizableAs": "tort (cake)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՐՊԵԴ",
+    "recognizableAs": "torpedo",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՒԱԼԵՏ",
+    "recognizableAs": "toilet (tualet)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՒԲԵՐԿՈՒԼՅՈԶ",
+    "recognizableAs": "tuberculosis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՒԿԱՆ",
+    "recognizableAs": "toucan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՒՐԲԻՆ",
+    "recognizableAs": "turbine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՒՐԻԶՄ",
+    "recognizableAs": "tourism (turizm)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՐԱԿՏՈՐ",
+    "recognizableAs": "tractor",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՐԻԲՈՒՆԱ",
+    "recognizableAs": "tribuna (stand)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՐՈՄԲՈՆ",
+    "recognizableAs": "trombone",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԱՅՏՆՈՏ",
+    "recognizableAs": "tsaytnot (zeitnot)",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱՌ",
+    "recognizableAs": "tar (letter)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՏԱՐԻ",
+    "recognizableAs": "tari (year)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՏԱՔ",
+    "recognizableAs": "tak (hot)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՏԻԶ",
+    "recognizableAs": "tiz (tick)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՏՈՂ",
+    "recognizableAs": "togh (line)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՏՈՒՆ",
+    "recognizableAs": "tun (house)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՑԱՆԿ",
+    "recognizableAs": "list",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՑԱՆՑԱԹԱՂԱՆԹ",
+    "recognizableAs": "retina",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԱՎ",
+    "recognizableAs": "pain (tsav)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՑԱՎԱԶՐԿՈՂ",
+    "recognizableAs": "analgesic",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՑԱՐ",
+    "recognizableAs": "czar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԱՑԻԿԻ",
+    "recognizableAs": "tzatziki",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԵԶԻՈՒՄ",
+    "recognizableAs": "caesium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԵԽ",
+    "recognizableAs": "mud",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՑԵՆԶՈՒՐԱ",
+    "recognizableAs": "censorship",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԵՆՏՆԵՐ",
+    "recognizableAs": "centner",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԵՐԻՈՒՄ",
+    "recognizableAs": "cerium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԻՆԳԱ",
+    "recognizableAs": "scurvy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԻՆԻԶՄ",
+    "recognizableAs": "cynicism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԻՆԿ",
+    "recognizableAs": "zinc",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑԻՐԿՈՆԻՈՒՄ",
+    "recognizableAs": "zirconium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑՈՒԳՑՎԱՆԳ",
+    "recognizableAs": "zugzwang",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՑՏԵՍՈՒԹՅՈՒՆ",
+    "recognizableAs": "goodbye",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՓԱԶԼ",
+    "recognizableAs": "puzzle",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱԽԼԱՎԱ",
+    "recognizableAs": "baklava",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՇԱ",
+    "recognizableAs": "pasha",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՌԱՏՈՆ",
+    "recognizableAs": "festival",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՍՎՈՐԴ",
+    "recognizableAs": "password",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՍՏԱԲԱՆ",
+    "recognizableAs": "lawyer/advocate",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՓԱՐԱՎՈՆ",
+    "recognizableAs": "pharaoh",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՐԹԻ",
+    "recognizableAs": "party",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՐԻԶՅԱՆ",
+    "recognizableAs": "Parisian",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՐԻՍԵՑԻ",
+    "recognizableAs": "Pharisee",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՐՈՍ",
+    "recognizableAs": "lighthouse",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԵՅՋԵՐ",
+    "recognizableAs": "pager",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԵՆՋԱԲԻ",
+    "recognizableAs": "Punjabi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԵՇՄԱՐԳԱ",
+    "recognizableAs": "peshmerga",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԵՏՐՎԱՐ",
+    "recognizableAs": "February",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՓԵՐԻ",
+    "recognizableAs": "peri/fairy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԻԼԻՍՈՓԱ",
+    "recognizableAs": "philosopher",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԻԼԻՍՈՓԱՅՈՒԹՅՈՒՆ",
+    "recognizableAs": "philosophy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԻՂ",
+    "recognizableAs": "elephant",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՓԻՐՈՒԶ",
+    "recognizableAs": "turquoise",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԼԱՎ",
+    "recognizableAs": "pilaf",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓՈՍՏ",
+    "recognizableAs": "post/mail",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓՈՒՇԹՈՒ",
+    "recognizableAs": "Pashto",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓՍԻԽՈԶ",
+    "recognizableAs": "psychosis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՂԱՔ",
+    "recognizableAs": "city",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔԱՂԱՔԱԳԵՏ",
+    "recognizableAs": "political scientist",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՂԱՔԱԿԱՆ",
+    "recognizableAs": "political",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔԱՂԱՔԱԿԱՆՈՒԹՅՈՒՆ",
+    "recognizableAs": "politics",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՂԱՔԱԿՐԹՈՒԹՅՈՒՆ",
+    "recognizableAs": "civilization",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՂԱՔԱՑԻ",
+    "recognizableAs": "citizen",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔԱՄԱՆՉԱ",
+    "recognizableAs": "kamancheh",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՆԱԿ",
+    "recognizableAs": "quant (kana-)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔԱՈՍ",
+    "recognizableAs": "chaos",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՍԹԻՆԳ",
+    "recognizableAs": "casting",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՐԱՎԱՆ",
+    "recognizableAs": "caravan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՐՏ",
+    "recognizableAs": "card",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԱՐՏԵԶ",
+    "recognizableAs": "map (kart-)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔԱՐՏՈՒՂԱՐ",
+    "recognizableAs": "secretary",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔԵՇ",
+    "recognizableAs": "cash",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԻՄԻԱ",
+    "recognizableAs": "chemistry",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԼՈՐ",
+    "recognizableAs": "chlorine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՅԱԲԱԲ",
+    "recognizableAs": "kebab",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՅՈՒԹ",
+    "recognizableAs": "cute",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՅՈՒՖԹԱ",
+    "recognizableAs": "kofta",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՈՄԵՆԹ",
+    "recognizableAs": "comment",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՈՒՅՐ",
+    "recognizableAs": "kuyr (nurse)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔՍԱՆ",
+    "recognizableAs": "ksan (20)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔՍԵՆՈՆ",
+    "recognizableAs": "xenon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՍԵՐՈՔՍ",
+    "recognizableAs": "xerox",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՍԻԼՈՖՈՆ",
+    "recognizableAs": "xylophone",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՎԱԶԱՐ",
+    "recognizableAs": "quasar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՎԱՐԿ",
+    "recognizableAs": "quark",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՎԵ",
+    "recognizableAs": "kve (vote)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՔՐՈՄ",
+    "recognizableAs": "chromium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՐՈՄՈՍՈՄ",
+    "recognizableAs": "chromosome",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԱԶԻՍ",
+    "recognizableAs": "oasis",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԲՅԵԿՏ",
+    "recognizableAs": "object",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԲՅԵԿՏԻՎ",
+    "recognizableAs": "objective",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԲՍԻԴԻԱՆ",
+    "recognizableAs": "obsidian",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԳՈՍՏՈՍ",
+    "recognizableAs": "August",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՕԼԻԳԱՐԽ",
+    "recognizableAs": "oligarch",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԼԻԳԱՐԽԻԱ",
+    "recognizableAs": "oligarchy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԿՏԱՎԱ",
+    "recognizableAs": "octave",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՄԲՈՒԴՍՄԵՆ",
+    "recognizableAs": "ombudsman",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՊԵՐԱ",
+    "recognizableAs": "opera",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՊՏԻՄԱԼ",
+    "recognizableAs": "optimal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՐ",
+    "recognizableAs": "or (day)",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՕՐԳԱՆ",
+    "recognizableAs": "organ",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՐԳԱՆԻԶՄ",
+    "recognizableAs": "organism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՐԹՈԴՈՆՏԻԱ",
+    "recognizableAs": "orthodontics",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՐՆԻԹՈԼՈԳԻԱ",
+    "recognizableAs": "ornithology",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՔՍԻԴԵՆՏԱԼ",
+    "recognizableAs": "Occidental",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՖԻՍ",
+    "recognizableAs": "office",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԱԳՈՏ",
+    "recognizableAs": "bassoon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԱԼԱՖԵԼ",
+    "recognizableAs": "falafel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԵՈԴԱԼԻԶՄ",
+    "recognizableAs": "feudalism",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԵՏԻՇ",
+    "recognizableAs": "fetish",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԵՐՄԱ",
+    "recognizableAs": "farm",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԵՐՄԻՈՆ",
+    "recognizableAs": "fermion",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻԶԻԿԱ",
+    "recognizableAs": "физика",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻԶԻԿԱԿԱՆ",
+    "recognizableAs": "физический",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻԶԻԿՈՍ",
+    "recognizableAs": "физик",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻԼՄ",
+    "recognizableAs": "фильм",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻՆԱՆՍԱԿԱՆ",
+    "recognizableAs": "финансовый",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻՆԱՆՍՆԵՐ",
+    "recognizableAs": "финансы",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻՍՏԱՇԿԱ",
+    "recognizableAs": "фисташка",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԼԱՄԵՆԿՈ",
+    "recognizableAs": "фламенко",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԼԱՄԻՆԳՈ",
+    "recognizableAs": "фламинго",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԼԵՇՄՈԲ",
+    "recognizableAs": "флешмоб",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԼՈՄԱՍՏԵՐ",
+    "recognizableAs": "фломастер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՅՈՒՐԵՐ",
+    "recognizableAs": "фюрер",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈԼԳԱ",
+    "recognizableAs": "фольга",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈԿՈՒՍՆԻԿ",
+    "recognizableAs": "фокусник",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈՆ",
+    "recognizableAs": "фон",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈՍՖՈՐ",
+    "recognizableAs": "фосфор",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈՏՈ",
+    "recognizableAs": "фото",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈՒՏԲՈԼ",
+    "recognizableAs": "футбол",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈՒՏԲՈԼԻՍՏ",
+    "recognizableAs": "футболист",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՈՔՍՏՐՈՏ",
+    "recognizableAs": "фокстрот",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՍՅՈ",
+    "recognizableAs": "всё",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՏՈՐ",
+    "recognizableAs": "фтор",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՐԱԿ",
+    "recognizableAs": "фрак",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՐԱՆԿ",
+    "recognizableAs": "франк",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՐԻ",
+    "recognizableAs": "фри",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՇՇԱԼ",
+    "recognizableAs": "шипение",
+    "purpose": "verification"
+  },
+  {
+    "word": "ՄԱԼԹԱ",
+    "recognizableAs": "malta",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԵՐՄԱՆԻԱ",
+    "recognizableAs": "germany",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՍՊԱՆԻԱ",
+    "recognizableAs": "spain",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖՐԱՆՍԻԱ",
+    "recognizableAs": "france",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՎՐՈՊԱ",
+    "recognizableAs": "europe",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՖՐԻԿԱ",
+    "recognizableAs": "africa",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒԿՐԱԻՆԱ",
+    "recognizableAs": "ukraine",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՔՍԻԿԱ",
+    "recognizableAs": "mexico",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՎԵԴԻԱ",
+    "recognizableAs": "sweden",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇՎԵՅՑԱՐԻԱ",
+    "recognizableAs": "switzerland",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՏԱԼԻԱ",
+    "recognizableAs": "italy",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՐԵԱ",
+    "recognizableAs": "korea",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՍՐԱՅԵԼ",
+    "recognizableAs": "israel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՎՍՏՐԱԼԻԱ",
+    "recognizableAs": "australia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՐԱԶԻԼԻԱ",
+    "recognizableAs": "brazil",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆՈՐՎԵԳԻԱ",
+    "recognizableAs": "norway",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՏՎԻԱ",
+    "recognizableAs": "latvia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՐԱՔ",
+    "recognizableAs": "iraq",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍԻԱ",
+    "recognizableAs": "asia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՆԱԴԱ",
+    "recognizableAs": "canada",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐԳԵՆՏԻՆԱ",
+    "recognizableAs": "argentina",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԺԻՐ",
+    "recognizableAs": "algeria",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԳՈԼԱ",
+    "recognizableAs": "angola",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԲԱՆԻԱ",
+    "recognizableAs": "albania",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՎՍՏՐԻԱ",
+    "recognizableAs": "austria",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵԼԱՌՈՒՍ",
+    "recognizableAs": "belarus",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵԼԳԻԱ",
+    "recognizableAs": "belgium",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒԼՂԱՐԻԱ",
+    "recognizableAs": "bulgaria",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԱՆԻԱ",
+    "recognizableAs": "denmark",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷՍՏՈՆԻԱ",
+    "recognizableAs": "estonia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՌԼԱՆԴԻԱ",
+    "recognizableAs": "ireland",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՍԼԱՆԴԻԱ",
+    "recognizableAs": "iceland",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻՏՎԱ",
+    "recognizableAs": "lithuania",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՅՈՒՔՍԵՄԲՈՒՐԳ",
+    "recognizableAs": "luxembourg",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԽՈՐՎԱԹԻԱ",
+    "recognizableAs": "croatia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈԼԴՈՎԱ",
+    "recognizableAs": "moldova",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՈՐՏՈՒԳԱԼԻԱ",
+    "recognizableAs": "portugal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՐԲԻԱ",
+    "recognizableAs": "serbia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻՆԼԱՆԴԻԱ",
+    "recognizableAs": "finland",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԼՈՎԱԿԻԱ",
+    "recognizableAs": "slovakia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՀՐԵՅՆ",
+    "recognizableAs": "bahrain",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՆԳԼԱԴԵՇ",
+    "recognizableAs": "bangladesh",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՆԴՈՆԵԶԻԱ",
+    "recognizableAs": "indonesia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՐԱՆ",
+    "recognizableAs": "iran",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՈՍ",
+    "recognizableAs": "laos",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻԲԱՆԱՆ",
+    "recognizableAs": "lebanon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՆՂՈԼԻԱ",
+    "recognizableAs": "mongolia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵՊԱԼ",
+    "recognizableAs": "nepal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱԿԻՍՏԱՆ",
+    "recognizableAs": "pakistan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՐԻԱ",
+    "recognizableAs": "syria",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱԲՈՆ",
+    "recognizableAs": "gabon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵԹՈՎՊԻԱ",
+    "recognizableAs": "ethiopia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՄԵՐՈՒՆ",
+    "recognizableAs": "cameroon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԴԱԳԱՍԿԱՐ",
+    "recognizableAs": "madagascar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԻԳԵՐԻԱ",
+    "recognizableAs": "nigeria",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒԳԱՆԴԱ",
+    "recognizableAs": "uganda",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔԵՆԻԱ",
+    "recognizableAs": "kenya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԵՐԵՎԱՆ",
+    "recognizableAs": "yerevan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՈՆԴՈՆ",
+    "recognizableAs": "london",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵԼՍԻՆԿԻ",
+    "recognizableAs": "helsinki",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊՐԱԳԱ",
+    "recognizableAs": "prague",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱՐՇԱՎԱ",
+    "recognizableAs": "warsaw",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԱՐԻԶ",
+    "recognizableAs": "paris",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԿԱՐԱ",
+    "recognizableAs": "ankara",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՍՏԱՆԱ",
+    "recognizableAs": "astana",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՂԴԱԴ",
+    "recognizableAs": "baghdad",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵԼԳՐԱԴ",
+    "recognizableAs": "belgrade",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՅՐՈՒԹ",
+    "recognizableAs": "beirut",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՌԼԻՆ",
+    "recognizableAs": "berlin",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒԴԱՊԵՇՏ",
+    "recognizableAs": "budapest",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐՍ",
+    "recognizableAs": "mars",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵՐԿՈՒՐԻ",
+    "recognizableAs": "mercury",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՅՈՒՊԻՏԵՐ",
+    "recognizableAs": "jupiter",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵՊՏՈՒՆ",
+    "recognizableAs": "neptune",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԼՈՒՏՈՆ",
+    "recognizableAs": "pluto",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵՆԵՐԱ",
+    "recognizableAs": "venus",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐԱՐԱՏ",
+    "recognizableAs": "ararat",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐՄԱՎԻՐ",
+    "recognizableAs": "armavir",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻԼԻՋԱՆ",
+    "recognizableAs": "dilijan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՈՐԻՍ",
+    "recognizableAs": "goris",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՅՈՒՄՐԻ",
+    "recognizableAs": "gyumri",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԵՌՆ",
+    "recognizableAs": "bern",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՒԽԱՐԵՍՏ",
+    "recognizableAs": "bucharest",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՐԱՏԻՍԼԱՎԱ",
+    "recognizableAs": "bratislava",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՐՅՈՒՍԵԼ",
+    "recognizableAs": "brussels",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՈՒԲԼԻՆ",
+    "recognizableAs": "dublin",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԱԳՐԵԲ",
+    "recognizableAs": "zagreb",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԵՀՐԱՆ",
+    "recognizableAs": "tehran",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՍԼԱՄԱԲԱԴ",
+    "recognizableAs": "islamabad",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻՍԱԲՈՆ",
+    "recognizableAs": "lisbon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՅՈՒԲԼՅԱՆԱ",
+    "recognizableAs": "ljubljana",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՏՄԱՆԴՈՒ",
+    "recognizableAs": "kathmandu",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՃԱՄԱՅԿԱ",
+    "recognizableAs": "jamaica",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԿՎԱԴՈՐ",
+    "recognizableAs": "ecuador",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԻԵՎ",
+    "recognizableAs": "kyiv",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՊԵՆՀԱԳԵՆ",
+    "recognizableAs": "copenhagen",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԼԱՅԶԻԱ",
+    "recognizableAs": "malaysia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈՒԲԱ",
+    "recognizableAs": "cuba",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՎԱՆԱ",
+    "recognizableAs": "havana",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱԴՐԻԴ",
+    "recognizableAs": "madrid",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԻԿԱՐԱԳՈՒԱ",
+    "recognizableAs": "nicaragua",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻՆՍԿ",
+    "recognizableAs": "minsk",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԻԲԵՐԻԱ",
+    "recognizableAs": "liberia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՍԿՎԱ",
+    "recognizableAs": "moscow",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵԿԻՆ",
+    "recognizableAs": "beijing",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋԱԿԱՐՏԱ",
+    "recognizableAs": "jakarta",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԻԳԱ",
+    "recognizableAs": "riga",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԻԼԻ",
+    "recognizableAs": "chile",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՈՒԼ",
+    "recognizableAs": "seoul",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈԼԻՎԻԱ",
+    "recognizableAs": "bolivia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՖԻԱ",
+    "recognizableAs": "sofia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻԼՆՅՈՒՍ",
+    "recognizableAs": "vilnius",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱԼԼԻՆ",
+    "recognizableAs": "tallinn",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈՆԴՈՒՐԱՍ",
+    "recognizableAs": "honduras",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈԿԻՈ",
+    "recognizableAs": "tokyo",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՍԼՈ",
+    "recognizableAs": "oslo",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՏՏԱՎԱ",
+    "recognizableAs": "ottawa",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒՄԻՆԻԱ",
+    "recognizableAs": "romania",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԲԻԼԻՍԻ",
+    "recognizableAs": "tbilisi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՔՈՒ",
+    "recognizableAs": "baku",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՐԵՆ",
+    "recognizableAs": "karen",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԴՐԲԵՋԱՆ",
+    "recognizableAs": "azerbaijan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹՈՒՐՔՄԵՆՍՏԱՆ",
+    "recognizableAs": "turkmenistan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՂԱԶԱԽՍՏԱՆ",
+    "recognizableAs": "kazakhstan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱՋԻԿՍՏԱՆ",
+    "recognizableAs": "tajikistan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԱՆՈՒԲ",
+    "recognizableAs": "danube",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՐՈՒ",
+    "recognizableAs": "peru",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՈԼՈՒՄԲԻԱ",
+    "recognizableAs": "colombia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵՆԵՍՈՒԵԼԱ",
+    "recognizableAs": "venezuela",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՐԱԳՎԱՅ",
+    "recognizableAs": "paraguay",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՐՈՒԳՎԱՅ",
+    "recognizableAs": "uruguay",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՏՐՈՍ",
+    "recognizableAs": "peter",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՍԱՀԱԿ",
+    "recognizableAs": "Isaac",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՐՈԿԿՈ",
+    "recognizableAs": "morocco",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱՆԱ",
+    "recognizableAs": "ghana",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՎԱՏԵՄԱԼԱ",
+    "recognizableAs": "guatemala",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՆԱԿՈ",
+    "recognizableAs": "monaco",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԵԽԻԿՈ",
+    "recognizableAs": "mexico",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԱՆԱՄԱ",
+    "recognizableAs": "panama",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՆԵԳԱԼ",
+    "recognizableAs": "senegal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԼՈՎԵՆԻԱ",
+    "recognizableAs": "slovenia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՆԳԱՊՈՒՐ",
+    "recognizableAs": "singapore",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՄԱԼԻ",
+    "recognizableAs": "somalia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՒԴԱՆ",
+    "recognizableAs": "sudan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱՆԶԱՆԻԱ",
+    "recognizableAs": "tanzania",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹԱԻԼԱՆԴ",
+    "recognizableAs": "thailand",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹՈՒՆԻՍ",
+    "recognizableAs": "tunisia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԻԲԵԹ",
+    "recognizableAs": "tibet",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒԶԲԵԿՍՏԱՆ",
+    "recognizableAs": "uzbekistan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻԵՏՆԱՄ",
+    "recognizableAs": "vietnam",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԻՄԲԱԲՎԵ",
+    "recognizableAs": "zimbabwe",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶԱՄԲԻԱ",
+    "recognizableAs": "zambia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆՏԱՐԿՏԻԿԱ",
+    "recognizableAs": "antarctica",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՌՈՄ",
+    "recognizableAs": "rome",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄՍՏԵՐԴԱՄ",
+    "recognizableAs": "amsterdam",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱՇԻՆԳՏՈՆ",
+    "recognizableAs": "washington",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐՄԵՆ",
+    "recognizableAs": "armen",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԴԱՄ",
+    "recognizableAs": "adam",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎՈԼԳԱ",
+    "recognizableAs": "volga",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՄԱԶՈՆ",
+    "recognizableAs": "amazon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՆԵՊՐ",
+    "recognizableAs": "dnieper",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՈՆ",
+    "recognizableAs": "don",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵՂՈՍ",
+    "recognizableAs": "nile",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՎԱՆ",
+    "recognizableAs": "sevan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻԵՆՆԱ",
+    "recognizableAs": "vienna",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆՆԱ",
+    "recognizableAs": "anna",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՆԻ",
+    "recognizableAs": "ani",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԻԱՆԱ",
+    "recognizableAs": "diana",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԻՏԱ",
+    "recognizableAs": "rita",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈԲԵՐՏ",
+    "recognizableAs": "robert",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՐԳԵՅ",
+    "recognizableAs": "sergey",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐԹՈՒՐ",
+    "recognizableAs": "artur",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԼԱ",
+    "recognizableAs": "alla",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌԱՖԱՅԵԼ",
+    "recognizableAs": "rafayel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳԱԲՐԻԵԼ",
+    "recognizableAs": "gabriel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԱՆԻԵԼ",
+    "recognizableAs": "daniel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵԼԼԻ",
+    "recognizableAs": "nelli",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՇՈՏ",
+    "recognizableAs": "ashot",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԵՔՍԱՆԴՐ",
+    "recognizableAs": "alexander",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԲԵՐՏ",
+    "recognizableAs": "albert",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱՐԱՄ",
+    "recognizableAs": "aram",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԱՎԻԹ",
+    "recognizableAs": "david",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻՄՈՆ",
+    "recognizableAs": "simon",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄՎԵԼ",
+    "recognizableAs": "samuel",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԷԴԳԱՐ",
+    "recognizableAs": "edgar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՏՈԿՀՈԼՄ",
+    "recognizableAs": "stockholm",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՆԳԱ",
+    "recognizableAs": "inga",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼԻՆԱ",
+    "recognizableAs": "alina",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՔՅՈԼՆ",
+    "recognizableAs": "cologne",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԵՆԵՏԻԿ",
+    "recognizableAs": "venice",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԵԼԻ",
+    "recognizableAs": "delhi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԻԲԻՐ",
+    "recognizableAs": "siberia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՒԽՈՒՄ",
+    "recognizableAs": "sukhumi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱԶԱՆ",
+    "recognizableAs": "kazan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՀԱՐԱ",
+    "recognizableAs": "sahara",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՅՈՒՆԽԵՆ",
+    "recognizableAs": "munich",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԱՄՉԱՏԿԱ",
+    "recognizableAs": "kamchatka",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍՈՉԻ",
+    "recognizableAs": "sochi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՊԵՐ",
+    "recognizableAs": "alps",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՓԻԼԻՊՊՈՍ",
+    "recognizableAs": "philip",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԼԱԴԻՄԻՐ",
+    "recognizableAs": "vladimir",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՐՈԺ",
+    "recognizableAs": "sergey",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԵՆՐԻԿ",
+    "recognizableAs": "henry",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄԱՐՂԱՆԴ",
+    "recognizableAs": "samarkand",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏԱՇՔԵՆԴ",
+    "recognizableAs": "tashkent",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՈՒՇԱՆԲԵ",
+    "recognizableAs": "dushanbe",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԱԼՄԱԹԻ",
+    "recognizableAs": "almaty",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԻԼԱՆ",
+    "recognizableAs": "milan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԹՈՒՐԻՆ",
+    "recognizableAs": "turin",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԼՈՐԵՆՑԻԱ",
+    "recognizableAs": "florence",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆԵԱՊՈԼ",
+    "recognizableAs": "naples",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀՈՆԿՈՆԳ",
+    "recognizableAs": "hong kong",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱՅԿԱԼ",
+    "recognizableAs": "baikal",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՄՍԿ",
+    "recognizableAs": "tomsk",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿՐԱՍՆՈԴԱՐ",
+    "recognizableAs": "krasnodar",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՐԱՏՈՎ",
+    "recognizableAs": "saratov",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՆՈՎՈՍԻԲԻՐՍԿ",
+    "recognizableAs": "novosibirsk",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՐԿՈՒՏՍԿ",
+    "recognizableAs": "irkutsk",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՄԱՐԱ",
+    "recognizableAs": "samara",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕՄՍԿ",
+    "recognizableAs": "omsk",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՊԵՐՄ",
+    "recognizableAs": "perm",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՖԱ",
+    "recognizableAs": "ufa",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎՈԼԳՈԳՐԱԴ",
+    "recognizableAs": "volgograd",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԼԱԴԻՎՈՍՏՈԿ",
+    "recognizableAs": "vladivostok",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՏՈՒԼԱ",
+    "recognizableAs": "tula",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲԱԹՈՒՄ",
+    "recognizableAs": "batumi",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՈՒՐԱԼ",
+    "recognizableAs": "ural",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԻՄԱԼԱՅՆԵՐ",
+    "recognizableAs": "himalayas",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԵՏՐՈՅՏ",
+    "recognizableAs": "detroit",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄՈՒՄԲԱՅ",
+    "recognizableAs": "mumbai",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱՆԿՈՒՎԵՐ",
+    "recognizableAs": "vancouver",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻՎԱՆ",
+    "recognizableAs": "ivan",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՅՈՒԼՅԱ",
+    "recognizableAs": "yulia",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՅԻԹԻ",
+    "recognizableAs": "haiti",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՀԱՄԲՈՒՐԳ",
+    "recognizableAs": "hamburg",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼԱՅՊՑԻԳ",
+    "recognizableAs": "leipzig",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՇԱՆՀԱՅ",
+    "recognizableAs": "shanghai",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԱՍԻԼԻ",
+    "recognizableAs": "vasily",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԳՐԻԳՈՐԻ",
+    "recognizableAs": "grigory",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴԱՆԻԻԼ",
+    "recognizableAs": "daniil",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԻԼՅԱ",
+    "recognizableAs": "ilya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՄԱՎՐԻԿԻՈՍ",
+    "recognizableAs": "mauritius",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՒԲԵՆ",
+    "recognizableAs": "ruben",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԼՅՈՒԴՎԻԳ",
+    "recognizableAs": "ludwig",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՖԻԼԻՊ",
+    "recognizableAs": "philip",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԴՈՒԲԱՅ",
+    "recognizableAs": "dubai",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԶՈՅԱ",
+    "recognizableAs": "zoya",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԿԼԱՐԱ",
+    "recognizableAs": "clara",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԱՌԱ",
+    "recognizableAs": "sarah",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՌՈՍՏՈՎ",
+    "recognizableAs": "rostov",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՉԻԿԱԳՈ",
+    "recognizableAs": "chicago",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎԻԿՏՈՐ",
+    "recognizableAs": "viktor",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԲՈՍՏՈՆ",
+    "recognizableAs": "boston",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՋՈՆ",
+    "recognizableAs": "john",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎՈԼՈԴՅԱ",
+    "recognizableAs": "vladimir",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՎՈՎԱ",
+    "recognizableAs": "vladimir",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՍԵՐՅՈԺԱ",
+    "recognizableAs": "sergey",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ՕԼԳԱ",
+    "recognizableAs": "olga",
+    "purpose": "familiar"
+  },
+  {
+    "word": "ԺԱՆՆԱ",
+    "recognizableAs": "jean",
+    "purpose": "familiar"
+  }
+]

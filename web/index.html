@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f5f7" />
+  <title>Vank — чтение по-армянски</title>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar"><div class="brand"><h1>Vank</h1><span>Чтение по-армянски</span></div><span class="local-note">Прогресс хранится на этом устройстве</span></header>
+    <p id="error" role="alert" hidden></p>
+    <main class="layout" id="trainer" hidden>
+      <section class="trainer" aria-label="Практика чтения">
+        <div class="eyebrow">Адаптивная практика · CAPS</div>
+        <div class="word-wrap"><div id="word" class="armenian-word" lang="hy"></div></div>
+        <form id="answer-form">
+          <label class="sr-only" for="answer">Как читается слово?</label>
+          <div class="answer-row"><input id="answer" class="answer-input" placeholder="Как читается слово?" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="256" aria-describedby="answer-help" /><button id="check" class="primary-btn" type="submit">Проверить</button></div>
+          <div class="helper" id="answer-help"><span>Кириллицей или латиницей</span><span>Enter — проверить / дальше</span></div>
+        </form>
+        <div id="result" class="result" role="status" aria-live="polite" hidden>
+          <div id="result-title" class="result-title"></div><div id="reading" class="reading"></div><div id="meaning" class="meaning"></div><div id="mistakes" class="mistake-line"></div>
+        </div>
+        <div class="trainer-footer"><span id="session-progress" class="progress-line"></span><button id="skip" class="secondary-btn" type="button">Не знаю</button><button id="next" class="primary-btn" type="button" hidden>Дальше →</button></div>
+      </section>
+      <aside class="sidebar" aria-label="Прогресс">
+        <section class="panel"><h2>Прогресс</h2><div class="stat-grid">
+          <div class="stat"><strong id="introduced">0</strong><span>букв встречено</span></div>
+          <div class="stat"><strong id="strong">0</strong><span>сильных букв</span></div>
+          <div class="stat"><strong id="accuracy">—</strong><span>без ошибок</span></div>
+          <div class="stat"><strong id="verified">—</strong><span>без подсказки знакомого слова</span></div>
+        </div><p class="progress-line" id="rolling"></p></section>
+        <section class="panel"><h2>Нужна практика</h2><div id="weak" class="weak-list"></div></section>
+      </aside>
+    </main>
+    <p id="loading" role="status">Загрузка словаря…</p>
+    <noscript>Для практики включите JavaScript.</noscript>
+  </div>
+  <script type="module" src="/src/app.ts"></script>
+</body>
+</html>
