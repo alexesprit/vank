@@ -25,7 +25,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
   weak.replaceChildren(
     ...stats.weakLetters.map((letter) => {
       const chip = document.createElement('span');
-      chip.className = 'letter-chip';
+      chip.className = 'letter-chip armenian-font';
       chip.lang = 'hy';
       chip.textContent = letter;
       return chip;
