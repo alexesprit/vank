@@ -12,12 +12,15 @@ export function personalDifficulty(word: Word, state: LearnerState): number {
     - w.familiarity * familiarity(word) - w.frequency * (word.frequencyScore ?? 0.5)
     + w.averageUnknown * average(unknown) + w.weakest * Math.max(...unknown)));
 }
-export function selectWord(words: Word[], state: LearnerState, now: number): Selection {
+export function selectWord(words: Word[], state: LearnerState, now: number, random = Math.random): Selection {
   if (!words.length) throw new Error('Cannot train with an empty dictionary');
   const knownCount = Object.values(state.letters).filter(l => l.score > 0).length;
   const bootstrap = knownCount < config.bootstrapKnownLetters;
-  let candidates = bootstrap ? words : words.filter(w => unknownLetters(w, state).length <= config.maxUnknownLettersIntroduction);
-  if (!candidates.length) throw new Error('Dictionary has no words within the one-new-letter limit');
+  let candidates = bootstrap
+    ? words.filter(w => familiarity(w) >= config.bootstrapFamiliarityThreshold
+      && ((w.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold || w.tags.includes('loanword')))
+    : words.filter(w => unknownLetters(w, state).length <= config.maxUnknownLettersIntroduction);
+  if (!candidates.length) throw new Error(bootstrap ? 'Dictionary has no recognizable loanwords' : 'Dictionary has no words within the one-new-letter limit');
   const latest = state.recent[0]?.payload.wordId;
   const different = candidates.filter(w => w.id !== latest);
   if (different.length) candidates = different;
@@ -40,7 +43,9 @@ export function selectWord(words: Word[], state: LearnerState, now: number): Sel
     return w.weak * weak + w.spacing * Math.max(spacing, mistakes) + w.difficulty * match + w.novelty * Number(!stat)
       + w.reinforcement * Number(verification || Boolean(target && word.uniqueLetters.includes(target.letter))) - w.recent * recent;
   };
-  const word = candidates.map(word => ({ word, priority: priority(word) })).sort((a, b) => b.priority - a.priority || a.word.id.localeCompare(b.word.id))[0].word;
+  const ranked = candidates.map(word => ({ word, priority: priority(word) })).sort((a, b) => b.priority - a.priority || a.word.id.localeCompare(b.word.id));
+  const best = ranked.filter(candidate => candidate.priority === ranked[0].priority);
+  const word = best[Math.floor(random() * best.length)].word;
   const unknown = unknownLetters(word, state);
   return { word, phase: bootstrap ? 'bootstrap' : target?.remaining && word.uniqueLetters.includes(target.letter) ? 'reinforcement'
     : unknown.length ? 'introduction' : familiarity(word) <= config.verificationFamiliarityThreshold ? 'verification' : 'training',

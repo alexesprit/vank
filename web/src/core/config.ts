@@ -2,6 +2,7 @@ export const TRAINER_CONFIG = {
   learnerLanguage: 'ru', emaAlpha: 0.15, familiarityDiscount: 0.75,
   familiarWordEvidenceFloor: 0.25, verificationFamiliarityThreshold: 0.4,
   strongThreshold: 0.75, unverifiedScoreCeiling: 0.74,
+  bootstrapFamiliarityThreshold: 0.8, bootstrapLoanwordThreshold: 0.8,
   recentWordWindow: 20, bootstrapKnownLetters: 3,
   maxUnknownLettersIntroduction: 1, reinforcementWords: 3,
   targetSuccess: 0.78, spacingMs: 86_400_000,

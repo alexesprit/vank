@@ -155,7 +155,7 @@ references and the changes to imported material are recorded there.
 
 - `shared/`: canonical Eastern Armenian alphabet, dictionary types and validation.
 - `web/src/core/`: pure normalization/alignment, EMA scoring, difficulty,
-  deterministic adaptive selection, and attempt construction.
+  adaptive selection with randomized ties, and attempt construction.
 - `web/src/storage/`: versioned IndexedDB repositories and atomic attempt/progress saves.
 - `web/src/data/`: static dictionary loading and runtime validation.
 - `web/src/ui/`: rendering and input; `trainer.ts` coordinates core and persistence.
@@ -163,7 +163,7 @@ references and the changes to imported material are recorded there.
   cache/file IO, and CLI reporting.
 
 Algorithm coefficients live in `web/src/core/config.ts`. Bootstrap uses short,
-familiar words. Once enough letters have positive evidence, candidates contain
+recognizable loanwords. Once enough letters have positive evidence, candidates contain
 at most one unknown written letter; introductions schedule three reinforcement
 attempts where the dictionary supplies eligible alternatives. Familiar-word
 answers are discounted, and strong letters require lower-familiarity evidence.

@@ -9,6 +9,8 @@ import { ALPHABET } from '../shared/armenian';
 import { curatedSource } from '../builder/src/sources/curated';
 import { deriveMetadata, mergeSources } from '../builder/src/pipeline';
 
+const recognizable = (word: string) => ({ ...deriveWord(word), familiarity: { ru: 1 }, loanwordScore: 1 });
+
 it('validates the runtime dictionary and covers every written Armenian letter repeatedly', () => {
   const dictionary = parseDictionary(JSON.parse(readFileSync('web/data/words.json', 'utf8')));
   expect(dictionary.words.length).toBeGreaterThanOrEqual(50);
@@ -16,7 +18,7 @@ it('validates the runtime dictionary and covers every written Armenian letter re
 });
 it('submits once, saves before advancing, restores progress and retains stable client ID', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
-  const words = ['ՄԱՄԱ', 'ՆԱՆԱ', 'ՍԱ', 'ՄԱՍ'].map(deriveWord);
+  const words = ['ՄԱՄԱ', 'ՆԱՆԱ', 'ՍԱ', 'ՄԱՍ'].map(recognizable);
   const trainer = await createTrainer(words, repo);
   const first = trainer.current.word;
   await Promise.all([trainer.submit(first.readingLatin), trainer.submit(first.readingLatin)]);
@@ -33,7 +35,7 @@ it('submits once, saves before advancing, restores progress and retains stable c
 it('keeps the same prompt and unsaved result retryable after a storage failure', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   let fail = true;
-  const trainer = await createTrainer(['ՄԱՄԱ', 'ՆԱՆԱ'].map(deriveWord), {
+  const trainer = await createTrainer(['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable), {
     ...repo, saveAttempt: async (...args) => { if (fail) throw new Error('disk full'); await repo.saveAttempt(...args); },
   });
   const id = trainer.current.word.id;
