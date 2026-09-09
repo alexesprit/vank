@@ -4,6 +4,8 @@ A static, CAPS-only Modern Eastern Armenian reading trainer for Russian-speaking
 beginners. Type a reading in Cyrillic or Latin, press Enter to check, and Enter
 again for the next word. “Не знаю” reveals the reading and records a skip.
 
+Try it online at [vank.alexesprit.com](https://vank.alexesprit.com).
+
 ## Run
 
 Node.js 24 or later:
