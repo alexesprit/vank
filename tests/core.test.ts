@@ -102,11 +102,11 @@ describe('answer evaluation', () => {
 });
 
 describe('learning evidence', () => {
-  it('applies EMA with familiarity discount and only punishes the misread letter', () => {
+  it('discounts familiar evidence without lowering correctly read letters', () => {
     const w = word('ՏԱՔՍԻ', 1),
       state = known([w], 0.5);
     const next = updateScores(state, w, evaluate(w, 'таксо'), 100);
-    expect(next.letters.Տ.score).toBeCloseTo(0.4625);
+    expect(next.letters.Տ.score).toBeCloseTo(0.51875);
     expect(next.letters.Ի.score).toBeCloseTo(0.425);
     expect(next.letters.Ի.lastMistakeAt).toBe(100);
     expect(state.letters.Տ.score).toBe(0.5);

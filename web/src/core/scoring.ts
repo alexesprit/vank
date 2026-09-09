@@ -36,8 +36,9 @@ export function updateScores(
     const nextScore =
       observation === null
         ? old.score
-        : old.score * (1 - config.emaAlpha) +
-          observation * weight * config.emaAlpha;
+        : observation === 1
+          ? old.score + (1 - old.score) * weight * config.emaAlpha
+          : old.score * (1 - config.emaAlpha);
     letters[letter] = {
       ...old,
       score: Math.min(verified ? 1 : config.unverifiedScoreCeiling, nextScore),
