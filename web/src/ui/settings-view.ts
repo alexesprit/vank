@@ -23,7 +23,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       input.type = 'checkbox';
       input.value = font.id;
       const text = document.createElement('span');
-      text.textContent = `${font.name}${font.unlockAfterAttempts ? ` · после ${font.unlockAfterAttempts} слов` : ''}`;
+      text.textContent = font.name;
       label.append(input, text);
       return label;
     }),
@@ -40,12 +40,13 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     selected.value = fonts.selected;
     selected.disabled = fonts.mode !== 'single';
     for (const input of enabled.querySelectorAll<HTMLInputElement>('input')) {
+      const font = FONTS.find((font) => font.id === input.value);
+      if (!font) continue;
+      const locked = trainer.state.recent.length < font.unlockAfterAttempts;
       input.checked = fonts.enabled.includes(input.value);
-      input.disabled =
-        fonts.mode !== 'rotate' ||
-        trainer.state.recent.length <
-          (FONTS.find((font) => font.id === input.value)?.unlockAfterAttempts ??
-            0);
+      input.disabled = fonts.mode !== 'rotate' || locked;
+      if (input.nextElementSibling)
+        input.nextElementSibling.textContent = `${font.name}${locked ? ` · после ${font.unlockAfterAttempts} слов` : ''}`;
     }
   }
 
