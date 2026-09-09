@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { deriveWord } from '../shared/armenian';
+import { ALPHABET, deriveWord } from '../shared/armenian';
 import type { LearnerState, Word } from '../shared/types';
 import { normalizeAnswer, evaluate } from '../web/src/core/answer-checker';
 import { updateScores } from '../web/src/core/scoring';
@@ -8,8 +8,13 @@ import { completeAttempt, progress } from '../web/src/core/session';
 
 const empty = (): LearnerState => ({ letters: {}, words: {}, recent: [] });
 const word = (s: string, familiarity = 0.1): Word => ({ ...deriveWord(s), familiarity: { ru: familiarity }, loanwordScore: 1 });
+const bootstrapState = (successfulWords: number, knownLetters: number): LearnerState => ({
+  letters: Object.fromEntries(ALPHABET.slice(0, knownLetters).map(l => [l.upper, { score: 0.1, attempts: 1, correct: 1, lastSeenAt: 0, verified: 0 }])),
+  words: Object.fromEntries(Array.from({ length: successfulWords }, (_, i) => [`done-${i}`, { attempts: 1, correct: 1, lastSeenAt: 0 }])),
+  recent: [],
+});
 function known(words: Word[], score = 0.8): LearnerState {
-  const state = empty();
+  const state = bootstrapState(20, 12);
   for (const w of words) for (const l of w.uniqueLetters) state.letters[l] = { score, attempts: 10, correct: 9, lastSeenAt: 0, verified: 2 };
   return state;
 }
@@ -93,6 +98,23 @@ describe('adaptive selection', () => {
     const words = [word('ԳԱԶ', 1), word('ԶԱԼ', 1)];
     expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('ԳԱԶ');
     expect(selectWord(words, empty(), 0, () => 0.999).word.word).toBe('ԶԱԼ');
+  });
+  it('requires 20 successful words and 12 known letters to finish bootstrap', () => {
+    const words = Array.from({ length: 21 }, (_, i) => ({ ...word('ԳԱԶ', 1), id: `word-${i}` }));
+    const state = bootstrapState(19, 12);
+    expect(selectWord(words, state, 0, () => 0).phase).toBe('bootstrap');
+    state.words['done-19'] = { attempts: 1, correct: 1, lastSeenAt: 0 };
+    expect(selectWord(words, state, 0, () => 0).phase).not.toBe('bootstrap');
+    delete state.letters[ALPHABET[11].upper];
+    expect(selectWord(words, state, 0, () => 0).phase).toBe('bootstrap');
+  });
+  it('avoids bootstrap repeats, then falls back from loanwords to unseen native words', () => {
+    const loanword = word('ԳԱԶ', 1), native = { ...word('ՄԱՄԱ', 0.1), loanwordScore: 0 };
+    const state = empty();
+    state.words[loanword.id] = { attempts: 1, correct: 0, lastSeenAt: 0 };
+    expect(selectWord([loanword, native], state, 0, () => 0).word).toBe(native);
+    state.words[native.id] = { attempts: 1, correct: 0, lastSeenAt: 0 };
+    expect(selectWord([loanword, native], state, 0, () => 0).word).toBeDefined();
   });
   it('prefers weak letters over otherwise identical strong words', () => {
     const words = [word('ՄԱՄԱ'), word('ՆԱՆԱ')], state = known(words);

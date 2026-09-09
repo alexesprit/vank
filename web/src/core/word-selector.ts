@@ -15,12 +15,16 @@ export function personalDifficulty(word: Word, state: LearnerState): number {
 export function selectWord(words: Word[], state: LearnerState, now: number, random = Math.random): Selection {
   if (!words.length) throw new Error('Cannot train with an empty dictionary');
   const knownCount = Object.values(state.letters).filter(l => l.score > 0).length;
-  const bootstrap = knownCount < config.bootstrapKnownLetters;
+  const successfulWords = Object.values(state.words).filter(w => w.correct > 0).length;
+  const bootstrap = successfulWords < config.bootstrapSuccessfulWords || knownCount < config.bootstrapKnownLetters;
+  const unseen = words.filter(w => !state.words[w.id]);
+  const bootstrapPool = unseen.length ? unseen : words;
+  const loanwords = bootstrapPool.filter(w => familiarity(w) >= config.bootstrapFamiliarityThreshold
+    && ((w.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold || w.tags.includes('loanword')));
   let candidates = bootstrap
-    ? words.filter(w => familiarity(w) >= config.bootstrapFamiliarityThreshold
-      && ((w.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold || w.tags.includes('loanword')))
+    ? loanwords.length ? loanwords : bootstrapPool
     : words.filter(w => unknownLetters(w, state).length <= config.maxUnknownLettersIntroduction);
-  if (!candidates.length) throw new Error(bootstrap ? 'Dictionary has no recognizable loanwords' : 'Dictionary has no words within the one-new-letter limit');
+  if (!candidates.length) throw new Error('Dictionary has no words within the one-new-letter limit');
   const latest = state.recent[0]?.payload.wordId;
   const different = candidates.filter(w => w.id !== latest);
   if (different.length) candidates = different;

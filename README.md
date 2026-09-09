@@ -162,10 +162,12 @@ references and the changes to imported material are recorded there.
 - `builder/src/`: source adapters, independent pipeline stages, AI enrichment,
   cache/file IO, and CLI reporting.
 
-Algorithm coefficients live in `web/src/core/config.ts`. Bootstrap uses short,
-recognizable loanwords. Once enough letters have positive evidence, candidates contain
-at most one unknown written letter; introductions schedule three reinforcement
-attempts where the dictionary supplies eligible alternatives. Familiar-word
+Algorithm coefficients live in `web/src/core/config.ts`. Bootstrap prefers unseen,
+recognizable loanwords until 20 distinct words are answered correctly and 12 letters
+have positive evidence, falling back to other unseen words if loanwords run out.
+After bootstrap, candidates contain at most one unknown written letter;
+introductions schedule three reinforcement attempts where the dictionary supplies
+eligible alternatives. Familiar-word
 answers are discounted, and strong letters require lower-familiarity evidence.
 Unknown readings and ambiguous alignment do not fabricate recognition credit.
 

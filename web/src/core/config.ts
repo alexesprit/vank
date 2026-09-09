@@ -3,7 +3,7 @@ export const TRAINER_CONFIG = {
   familiarWordEvidenceFloor: 0.25, verificationFamiliarityThreshold: 0.4,
   strongThreshold: 0.75, unverifiedScoreCeiling: 0.74,
   bootstrapFamiliarityThreshold: 0.8, bootstrapLoanwordThreshold: 0.8,
-  recentWordWindow: 20, bootstrapKnownLetters: 3,
+  recentWordWindow: 20, bootstrapSuccessfulWords: 20, bootstrapKnownLetters: 12,
   maxUnknownLettersIntroduction: 1, reinforcementWords: 3,
   targetSuccess: 0.78, spacingMs: 86_400_000,
   weights: { weak: 0.35, spacing: 0.25, difficulty: 0.2, reinforcement: 0.1, novelty: 0.1, recent: 0.8 },
