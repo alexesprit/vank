@@ -1,7 +1,5 @@
 {
-  "learnerLanguages": [
-    "ru"
-  ],
+  "learnerLanguages": ["ru"],
   "limit": 1000,
   "sources": [
     {

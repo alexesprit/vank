@@ -7,12 +7,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "family"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["family"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՏԱՔՍԻ",
@@ -22,16 +18,9 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "transport"
-    ],
-    "tags": [
-      "beginner"
-    ],
-    "acceptedLatin": [
-      "taksi",
-      "taxi"
-    ]
+    "categories": ["transport"],
+    "tags": ["beginner"],
+    "acceptedLatin": ["taksi", "taxi"]
   },
   {
     "word": "ՊԻՑՑԱ",
@@ -41,17 +30,9 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ],
-    "acceptedLatin": [
-      "pitstsa",
-      "pitsa",
-      "pizza"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"],
+    "acceptedLatin": ["pitstsa", "pitsa", "pizza"]
   },
   {
     "word": "ՌԱԴԻՈ",
@@ -61,12 +42,8 @@
     "familiarity": {
       "ru": 0.98
     },
-    "categories": [
-      "technology"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["technology"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՄԵՏՐՈ",
@@ -76,12 +53,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "transport"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["transport"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԿԻՆՈ",
@@ -91,12 +64,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["everyday"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԲԱՆԱՆ",
@@ -106,12 +75,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԿԱԿԱՈ",
@@ -121,12 +86,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԿՈԼԱ",
@@ -136,12 +97,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՍՈԴԱ",
@@ -151,12 +108,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՍԱԼԱԹ",
@@ -166,12 +119,8 @@
     "familiarity": {
       "ru": 0.95
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՍՈՒՊ",
@@ -181,12 +130,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՏՈՐԹ",
@@ -196,12 +141,8 @@
     "familiarity": {
       "ru": 0.95
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՍՈՈՒՍ",
@@ -211,12 +152,8 @@
     "familiarity": {
       "ru": 0.9
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՍԱՈՒՆԱ",
@@ -226,12 +163,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["everyday"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԲԱՐ",
@@ -241,12 +174,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "restaurant"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["restaurant"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԲԱՆԿ",
@@ -256,12 +185,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "shopping"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["shopping"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՊԱՐԿ",
@@ -271,12 +196,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["everyday"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՕՊԵՐԱ",
@@ -286,12 +207,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["everyday"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՀՈՏԵԼ",
@@ -301,12 +218,8 @@
     "familiarity": {
       "ru": 0.95
     },
-    "categories": [
-      "signage"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["signage"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՍԱԼՈՆ",
@@ -316,12 +229,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "signage"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["signage"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՖՈՏՈ",
@@ -331,12 +240,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "signage"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["signage"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՖԻԼՄ",
@@ -346,12 +251,8 @@
     "familiarity": {
       "ru": 0.95
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["everyday"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԻՆՏԵՐՆԵՏ",
@@ -361,12 +262,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "technology"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["technology"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԱՆՆԱ",
@@ -376,12 +273,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "person-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["person-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՆԻՆԱ",
@@ -391,12 +284,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "person-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["person-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՄԱՐԻԱ",
@@ -406,12 +295,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "person-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["person-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԻՎԱՆ",
@@ -421,12 +306,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "person-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["person-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԱՆԴՐԵՅ",
@@ -436,12 +317,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "person-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["person-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԱՐԱՄ",
@@ -451,12 +328,8 @@
     "familiarity": {
       "ru": 0.85
     },
-    "categories": [
-      "person-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["person-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԵՐԵՎԱՆ",
@@ -466,12 +339,8 @@
     "familiarity": {
       "ru": 0.95
     },
-    "categories": [
-      "place-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["place-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ՄՈՍԿՎԱ",
@@ -481,12 +350,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "place-name"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["place-name"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԲԱՐԵՎ",
@@ -496,12 +361,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "greetings"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["greetings"],
+    "tags": ["common"]
   },
   {
     "word": "ՀԱՑ",
@@ -511,12 +372,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ՋՈՒՐ",
@@ -526,12 +383,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ԳԻՆԻ",
@@ -541,12 +394,8 @@
     "familiarity": {
       "ru": 0.1
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ԿԱԹ",
@@ -556,12 +405,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ԹԵՅ",
@@ -571,12 +416,8 @@
     "familiarity": {
       "ru": 0.3
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ՄԻՍ",
@@ -586,12 +427,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ՁՈՒ",
@@ -601,12 +438,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ԱՂ",
@@ -616,12 +449,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ՇՈՒՆ",
@@ -631,12 +460,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "animals"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["animals"],
+    "tags": ["common"]
   },
   {
     "word": "ԿԱՏՈՒ",
@@ -646,12 +471,8 @@
     "familiarity": {
       "ru": 0.3
     },
-    "categories": [
-      "animals"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["animals"],
+    "tags": ["common"]
   },
   {
     "word": "ՏՈՒՆ",
@@ -661,12 +482,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "household"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["household"],
+    "tags": ["common"]
   },
   {
     "word": "ԽԱՆՈՒԹ",
@@ -676,12 +493,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "shopping"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["shopping"],
+    "tags": ["common"]
   },
   {
     "word": "ԽՈՀԱՆՈՑ",
@@ -691,12 +504,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "household"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["household"],
+    "tags": ["common"]
   },
   {
     "word": "ԱՅՈ",
@@ -706,12 +515,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ՈՉ",
@@ -721,12 +526,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ԵՍ",
@@ -736,12 +537,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ԴՈՒ",
@@ -751,12 +548,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ՍԱ",
@@ -766,12 +559,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ՆԱ",
@@ -781,12 +570,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ՄԱԶ",
@@ -796,12 +581,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ՄԱՏ",
@@ -811,12 +592,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ԴԱՍ",
@@ -826,12 +603,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "education"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["education"],
+    "tags": ["common"]
   },
   {
     "word": "ԺԱՄ",
@@ -841,12 +614,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "numbers-time"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["numbers-time"],
+    "tags": ["common"]
   },
   {
     "word": "ԺԱՄԱՆԱԿ",
@@ -856,12 +625,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "numbers-time"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["numbers-time"],
+    "tags": ["common"]
   },
   {
     "word": "ԾԱՌ",
@@ -871,12 +636,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "nature"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["nature"],
+    "tags": ["common"]
   },
   {
     "word": "ԾՈՎ",
@@ -886,12 +647,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "nature"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["nature"],
+    "tags": ["common"]
   },
   {
     "word": "ՁՈՐ",
@@ -901,12 +658,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "nature"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["nature"],
+    "tags": ["common"]
   },
   {
     "word": "ՃԱՇ",
@@ -916,12 +669,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ՃԱՄՓԱ",
@@ -931,12 +680,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "street"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["street"],
+    "tags": ["common"]
   },
   {
     "word": "ՓՈՂ",
@@ -946,12 +691,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "shopping"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["shopping"],
+    "tags": ["common"]
   },
   {
     "word": "ՓԱԿ",
@@ -961,12 +702,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "signage"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["signage"],
+    "tags": ["common"]
   },
   {
     "word": "ԲԱՑ",
@@ -976,12 +713,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "signage"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["signage"],
+    "tags": ["common"]
   },
   {
     "word": "ՕՐ",
@@ -991,12 +724,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "numbers-time"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["numbers-time"],
+    "tags": ["common"]
   },
   {
     "word": "ԷՋ",
@@ -1006,12 +735,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "education"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["education"],
+    "tags": ["common"]
   },
   {
     "word": "ԷԿՐԱՆ",
@@ -1021,12 +746,8 @@
     "familiarity": {
       "ru": 1
     },
-    "categories": [
-      "technology"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["technology"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԸՆՏԱՆԻՔ",
@@ -1036,12 +757,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "family"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["family"],
+    "tags": ["common"]
   },
   {
     "word": "ԸՆԿԵՐ",
@@ -1051,12 +768,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["everyday"],
+    "tags": ["common"]
   },
   {
     "word": "ՔԱՂԱՔ",
@@ -1066,12 +779,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "place-name"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["place-name"],
+    "tags": ["common"]
   },
   {
     "word": "ՈՍԿԻ",
@@ -1081,12 +790,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "shopping"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["shopping"],
+    "tags": ["common"]
   },
   {
     "word": "ՈՒՏԵԼ",
@@ -1096,12 +801,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["food"],
+    "tags": ["common"]
   },
   {
     "word": "ԼՈՒՅՍ",
@@ -1111,12 +812,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "household"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["household"],
+    "tags": ["common"]
   },
   {
     "word": "ԼԵԶՈՒ",
@@ -1126,12 +823,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "education"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["education"],
+    "tags": ["common"]
   },
   {
     "word": "ՉԱՅ",
@@ -1141,12 +834,8 @@
     "familiarity": {
       "ru": 0.95
     },
-    "categories": [
-      "food"
-    ],
-    "tags": [
-      "beginner"
-    ]
+    "categories": ["food"],
+    "tags": ["beginner"]
   },
   {
     "word": "ԳԱՐՈՒՆ",
@@ -1156,12 +845,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "nature"
-    ],
-    "tags": [
-      "common"
-    ]
+    "categories": ["nature"],
+    "tags": ["common"]
   },
   {
     "word": "ԿՈՄԲՈ",
@@ -1172,13 +857,8 @@
       "ru": 1
     },
     "usefulnessScore": 1,
-    "categories": [
-      "restaurant"
-    ],
-    "tags": [
-      "beginner",
-      "loanword"
-    ],
+    "categories": ["restaurant"],
+    "tags": ["beginner", "loanword"],
     "usageEvidence": "https://artlunch.am/menu"
   },
   {
@@ -1189,12 +869,8 @@
     "familiarity": {
       "ru": 0.05
     },
-    "categories": [
-      "everyday"
-    ],
-    "tags": [
-      "verification"
-    ],
+    "categories": ["everyday"],
+    "tags": ["verification"],
     "usageEvidence": "https://en.wiktionary.org/wiki/ճիշտ#Armenian"
   }
 ]
