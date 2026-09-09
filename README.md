@@ -33,7 +33,8 @@ dictionary into `web/dist/`.
 
 Deploy `web/dist/` to any static host. Asset URLs are relative, including the
 versioned dictionary, so deployment under a GitHub Pages repository path works.
-No backend, account, runtime AI, external fonts, or external learner telemetry.
+No backend, account, runtime AI, or external learner telemetry. Optional Armenian
+fonts are fetched lazily from Google Fonts only when selected for training.
 Progress and raw attempt events stay in IndexedDB on the current browser origin.
 
 `npm test` runs Vitest in watch mode. Tests use offline fixtures and

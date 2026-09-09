@@ -12,6 +12,7 @@ export function completeAttempt(
   shownAt: number,
   now: number,
   id: string,
+  fontId = 'default',
 ): { state: LearnerState; attempt: AttemptEvent } {
   const { word } = selection,
     evaluation = evaluate(word, answer, skipped);
@@ -31,6 +32,7 @@ export function completeAttempt(
       evaluation,
       familiarity: familiarity(word),
       learnerLanguage: config.learnerLanguage,
+      fontId,
     },
   };
   const next = updateScores(state, word, evaluation, now);
@@ -57,6 +59,36 @@ export function progress(state: LearnerState) {
     items.length
       ? items.filter((a) => a.payload.correct).length / items.length
       : null;
+  const fontStats = Object.entries(
+    attempts.reduce<Record<string, AttemptEvent[]>>((byFont, attempt) => {
+      const fontId = attempt.payload.fontId ?? 'default';
+      byFont[fontId] ??= [];
+      byFont[fontId].push(attempt);
+      return byFont;
+    }, {}),
+  ).map(([fontId, fontAttempts]) => ({
+    fontId,
+    attempts: fontAttempts.length,
+    accuracy: accuracy(fontAttempts),
+    weakLetters: Object.entries(state.letters)
+      .filter(([letter, global]) => {
+        const observations = fontAttempts.flatMap((attempt) =>
+          attempt.payload.evaluation.units.flatMap((unit) =>
+            unit.source.includes(letter) && unit.observation !== null
+              ? [unit.observation]
+              : [],
+          ),
+        );
+        return (
+          observations.length > 0 &&
+          global.score -
+            observations.reduce((sum, value) => sum + value, 0) /
+              observations.length >=
+            0.2
+        );
+      })
+      .map(([letter]) => letter),
+  }));
   return {
     introduced: letters.filter((l) => l.attempts > 0).length,
     strong: letters.filter(
@@ -80,5 +112,6 @@ export function progress(state: LearnerState) {
       .sort((a, b) => a[1].score - b[1].score)
       .slice(0, 8)
       .map(([l]) => l),
+    fontStats,
   };
 }

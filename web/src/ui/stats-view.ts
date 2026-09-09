@@ -1,5 +1,6 @@
 import type { LearnerState } from '../../../shared/types.ts';
 import { progress } from '../core/session.ts';
+import { FONTS } from '../core/settings.ts';
 
 const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
@@ -35,4 +36,17 @@ export function renderStats(state: LearnerState, sessionStart: number) {
     weak.textContent = stats.introduced
       ? 'Так держать!'
       : 'Начните с первого слова';
+  const fontStats = element('font-stats');
+  fontStats.replaceChildren(
+    ...stats.fontStats.map((stat) => {
+      const row = document.createElement('p');
+      row.className = stat.weakLetters.length
+        ? 'font-stat weak-font'
+        : 'font-stat';
+      row.textContent = `${FONTS.find((font) => font.id === stat.fontId)?.name ?? stat.fontId}: ${percentage(stat.accuracy)}${stat.weakLetters.length ? ` · слабее: ${stat.weakLetters.join(' ')}` : ''}`;
+      return row;
+    }),
+  );
+  if (!stats.fontStats.length)
+    fontStats.textContent = 'Появится после первой попытки';
 }

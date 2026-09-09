@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="page">
-    <header class="topbar"><div class="brand"><h1>Vank</h1><span>Чтение по-армянски</span></div><span class="local-note">Прогресс хранится на этом устройстве</span></header>
+    <header class="topbar"><div class="brand"><h1>Vank</h1><span>Чтение по-армянски</span></div><div class="topbar-actions"><span class="local-note">Прогресс хранится на этом устройстве</span><button id="settings-open" class="icon-btn" type="button" aria-label="Настройки"><i data-lucide="settings" aria-hidden="true"></i></button></div></header>
     <p id="error" role="alert" hidden></p>
     <main class="layout" id="trainer" hidden>
       <section class="trainer" aria-label="Практика чтения">
@@ -33,11 +33,17 @@
           <div class="stat"><strong id="verified">—</strong><span>без подсказки знакомого слова</span></div>
         </div><p class="progress-line" id="rolling"></p></section>
         <section class="panel"><h2>Нужна практика</h2><div id="weak" class="weak-list"></div></section>
+        <section class="panel"><h2>По шрифтам</h2><div id="font-stats"></div></section>
       </aside>
     </main>
     <p id="loading" role="status">Загрузка словаря…</p>
     <noscript>Для практики включите JavaScript.</noscript>
   </div>
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="dialog-header"><h2 id="settings-title">Настройки</h2><button id="settings-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <fieldset><legend>Шрифт армянских слов</legend><label class="setting-row"><input type="radio" name="font-mode" value="single" /> Один шрифт</label><select id="font-selected" aria-label="Выбранный шрифт"></select><label class="setting-row"><input type="radio" name="font-mode" value="rotate" /> Чередовать доступные</label><div id="font-enabled" class="font-options"></div></fieldset>
+  </dialog>
+  <script defer src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js" integrity="sha384-hK2uiaqTSh/v1VqRxmuMQL4xmt5n0DdyBCOItx2fAs7Wv+WC8Tu0yDW1j12JooyM" crossorigin="anonymous" onload="lucide.createIcons()"></script>
   <script type="module" src="/src/app.ts"></script>
 </body>
 </html>

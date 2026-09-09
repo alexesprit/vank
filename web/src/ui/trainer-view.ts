@@ -1,5 +1,6 @@
 import { TRAINER_CONFIG } from '../core/config.ts';
 import type { Trainer } from '../trainer.ts';
+import { mountSettings } from './settings-view.ts';
 import { renderStats } from './stats-view.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
@@ -22,7 +23,9 @@ export function mountTrainer(trainer: Trainer) {
   function render() {
     const { word } = trainer.current,
       result = trainer.result;
-    element('word').textContent = word.word;
+    const prompt = element('word');
+    prompt.textContent = word.word;
+    prompt.style.fontFamily = trainer.font.family;
     element('result').hidden = !result;
     input.readOnly = Boolean(result);
     check.hidden = Boolean(result);
@@ -71,9 +74,9 @@ export function mountTrainer(trainer: Trainer) {
       check.disabled = skip.disabled = false;
     }
   }
-  function advance() {
+  async function advance() {
     try {
-      trainer.next();
+      await trainer.next();
       render();
     } catch (error) {
       showError(error);
@@ -81,12 +84,13 @@ export function mountTrainer(trainer: Trainer) {
   }
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (trainer.result) advance();
+    if (trainer.result) void advance();
     else void submit();
   });
   skip.addEventListener('click', () => void submit(true));
-  next.addEventListener('click', advance);
+  next.addEventListener('click', () => void advance());
   element('trainer').hidden = false;
   element('loading').hidden = true;
+  mountSettings(trainer, render);
   render();
 }

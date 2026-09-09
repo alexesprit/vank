@@ -5,6 +5,9 @@ import { deriveMetadata, mergeSources } from '../builder/src/pipeline';
 import { curatedSource } from '../builder/src/sources/curated';
 import { ALPHABET, deriveWord } from '../shared/armenian';
 import { parseDictionary } from '../shared/schema';
+import type { LearnerState } from '../shared/types';
+import { completeAttempt } from '../web/src/core/session';
+import { FONTS } from '../web/src/core/settings';
 import { openRepository } from '../web/src/storage/repository';
 import { createTrainer } from '../web/src/trainer';
 
@@ -13,6 +16,23 @@ const recognizable = (word: string) => ({
   familiarity: { ru: 1 },
   loanwordScore: 1,
 });
+
+function practicedState(attempts: number): LearnerState {
+  const word = recognizable('ՄԱՄԱ');
+  let state: LearnerState = { letters: {}, words: {}, recent: [] };
+  for (let index = 0; index < attempts; index++)
+    state = completeAttempt(
+      state,
+      { word, phase: 'bootstrap' },
+      word.readingLatin,
+      false,
+      'practice',
+      index,
+      index + 1,
+      `practice-${index}`,
+    ).state;
+  return state;
+}
 
 it('validates the runtime dictionary and covers every written Armenian letter repeatedly', () => {
   const dictionary = parseDictionary(
@@ -38,7 +58,7 @@ it('submits once, saves before advancing, restores progress and retains stable c
   expect(trainer.result?.correct).toBe(true);
   expect(trainer.state.recent).toHaveLength(1);
   const clientId = trainer.state.recent[0].clientId;
-  trainer.next();
+  await trainer.next();
   expect(trainer.current.word.id).not.toBe(first.id);
   const reloaded = await createTrainer(words, repo);
   expect(reloaded.state.recent).toHaveLength(1);
@@ -60,11 +80,115 @@ it('keeps the same prompt and unsaved result retryable after a storage failure',
   await expect(trainer.submit('mama')).rejects.toThrow('disk full');
   expect(trainer.result).toBeUndefined();
   expect(trainer.state.recent).toHaveLength(0);
-  trainer.next();
+  await trainer.next();
   expect(trainer.current.word.id).toBe(id);
   fail = false;
   await trainer.submit('mama');
   expect(trainer.state.recent).toHaveLength(1);
+  repo.close();
+});
+
+it('applies font settings immediately and records the font that loaded', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const loaded: string[] = [];
+  const trainer = await createTrainer(
+    ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable),
+    { ...repo, loadState: async () => practicedState(10) },
+    async (font) => {
+      loaded.push(font.id);
+      return font.id === 'noto-sans-armenian' ? font : FONTS[0];
+    },
+  );
+  await trainer.setSettings({
+    fonts: {
+      mode: 'single',
+      selected: 'noto-sans-armenian',
+      enabled: FONTS.map((font) => font.id),
+    },
+  });
+  expect(trainer.font.id).toBe('noto-sans-armenian');
+  expect(loaded).toContain('noto-sans-armenian');
+  await trainer.submit('', true);
+  expect(trainer.state.recent[0].payload.fontId).toBe('noto-sans-armenian');
+  expect(await repo.getSetting('app')).toEqual(trainer.settings);
+  await trainer.next();
+  await trainer.setSettings({
+    ...trainer.settings,
+    fonts: { ...trainer.settings.fonts, selected: 'noto-serif-armenian' },
+  });
+  expect(trainer.font.id).toBe('default');
+  await trainer.submit('', true);
+  expect(trainer.state.recent[0].payload.fontId).toBe('default');
+  repo.close();
+});
+
+it('keeps runtime settings unchanged when persistence fails', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const trainer = await createTrainer(['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable), {
+    ...repo,
+    setSetting: async (key, value) => {
+      if (key === 'app') throw new Error('disk full');
+      await repo.setSetting(key, value);
+    },
+  });
+  await expect(
+    trainer.setSettings({
+      fonts: {
+        mode: 'single',
+        selected: 'noto-sans-armenian',
+        enabled: FONTS.map((font) => font.id),
+      },
+    }),
+  ).rejects.toThrow('disk full');
+  expect(trainer.settings.fonts.selected).toBe('default');
+  expect(trainer.font.id).toBe('default');
+  repo.close();
+});
+
+it('does not let a pending next prompt overwrite newer font settings', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  let laterDefault: (font: (typeof FONTS)[number]) => void = () => {};
+  let laterSerif: (font: (typeof FONTS)[number]) => void = () => {};
+  let defaultLoads = 0;
+  const trainer = await createTrainer(
+    ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable),
+    {
+      ...repo,
+      loadState: async () => practicedState(50),
+      setSetting: async () => {},
+    },
+    (font) => {
+      if (font.id === 'default' && defaultLoads++ > 0)
+        return new Promise((resolve) => {
+          laterDefault = resolve;
+        });
+      if (font.id === 'noto-serif-armenian')
+        return new Promise((resolve) => {
+          laterSerif = resolve;
+        });
+      return Promise.resolve(font);
+    },
+  );
+  await trainer.submit('', true);
+  const advancing = trainer.next();
+  await Promise.resolve();
+  const changing = trainer.setSettings({
+    fonts: {
+      mode: 'single',
+      selected: 'noto-serif-armenian',
+      enabled: FONTS.map((font) => font.id),
+    },
+  });
+  await Promise.resolve();
+  laterSerif(
+    FONTS.find(
+      (font) => font.id === 'noto-serif-armenian',
+    ) as (typeof FONTS)[number],
+  );
+  await changing;
+  laterDefault(FONTS[0]);
+  await advancing;
+  expect(trainer.font.id).toBe('noto-serif-armenian');
   repo.close();
 });
 

@@ -89,6 +89,7 @@ export interface AttemptEvent {
     evaluation: Evaluation;
     familiarity: number;
     learnerLanguage: string;
+    fontId: string;
   };
 }
 export interface LearnerState {
