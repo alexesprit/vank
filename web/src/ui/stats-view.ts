@@ -11,6 +11,12 @@ const element = (id: string) => {
 };
 export function renderStats(state: LearnerState, sessionStart: number) {
   const stats = progress(state);
+  const emptyStats = () => {
+    const row = document.createElement('p');
+    row.className = 'font-stat';
+    row.textContent = t('progress.empty');
+    return row;
+  };
   element('strong-help').dataset.tooltip = t('progress.strongHint');
   element('verified-help').dataset.tooltip = t('progress.verifiedHint');
   for (const [id, value] of Object.entries({
@@ -113,7 +119,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
       return row;
     }),
   );
-  if (!stats.fontStats.length) fontStats.textContent = t('progress.empty');
+  if (!stats.fontStats.length) fontStats.replaceChildren(emptyStats());
   const typographyStats = element('typography-stats');
   typographyStats.replaceChildren(
     ...stats.typographyStats.map((stat) => {
@@ -124,7 +130,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
     }),
   );
   if (!stats.typographyStats.length)
-    typographyStats.textContent = t('progress.empty');
+    typographyStats.replaceChildren(emptyStats());
   const flashStats = element('flash-stats');
   flashStats.replaceChildren(
     ...[
@@ -144,7 +150,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
     }),
   );
   if (!stats.flashStats.attempts && !stats.flashRevealedStats.attempts)
-    flashStats.textContent = t('progress.empty');
+    flashStats.replaceChildren(emptyStats());
 }
 
 export function mountStatsDialog(openDebug: () => Promise<void>) {
