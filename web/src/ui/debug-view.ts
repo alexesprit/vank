@@ -39,30 +39,37 @@ function section(title: string, value: unknown, collapsed = false) {
   const h3 = document.createElement('h3');
   h3.textContent = title;
   const copy = document.createElement('button');
-  copy.className = 'secondary-btn debug-copy';
+  copy.className = 'debug-copy';
   copy.type = 'button';
-  copy.textContent = 'Копировать';
+  copy.title = 'Копировать';
+  copy.setAttribute('aria-label', 'Копировать');
+  const status = document.createElement('span');
+  status.className = 'debug-copy-status';
+  status.setAttribute('role', 'status');
   const output = document.createElement('pre');
   output.textContent = json(value);
+  const code = document.createElement('div');
+  code.className = 'debug-code';
+  code.append(output, status, copy);
   copy.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(output.textContent);
-      copy.textContent = 'Скопировано';
+      status.textContent = 'Скопировано';
     } catch {
-      copy.textContent = 'Не удалось';
+      status.textContent = 'Не удалось';
     }
     window.setTimeout(() => {
-      copy.textContent = 'Копировать';
+      status.textContent = '';
     }, 1500);
   });
-  heading.append(h3, copy);
+  heading.append(h3);
   if (collapsed) {
     const details = document.createElement('details');
     const summary = document.createElement('summary');
     summary.textContent = 'Показать JSON';
-    details.append(summary, output);
+    details.append(summary, code);
     container.append(heading, details);
-  } else container.append(heading, output);
+  } else container.append(heading, code);
   return container;
 }
 

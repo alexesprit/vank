@@ -79,13 +79,13 @@ body {
 }
 
 .icon-btn {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
   flex: none;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--panel);
   color: var(--text);
   cursor: pointer;
@@ -99,7 +99,7 @@ body {
 .brand {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 8px;
 }
 
 .brand h1 {
@@ -119,8 +119,9 @@ button {
 
 .primary-btn,
 .secondary-btn {
-  border-radius: 10px;
-  padding: 10px 14px;
+  min-height: 48px;
+  border-radius: 12px;
+  padding: 0 16px;
   border: 1px solid var(--border);
   cursor: pointer;
 }
@@ -139,7 +140,7 @@ button {
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 22px;
+  gap: 24px;
   align-items: start;
 }
 
@@ -148,7 +149,7 @@ button {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 42px;
+  padding: 24px;
   min-height: 520px;
   display: flex;
   flex-direction: column;
@@ -166,7 +167,7 @@ button {
   min-height: 150px;
   display: grid;
   place-items: center;
-  margin: 14px 0 28px;
+  margin: 12px 0 28px;
 }
 
 .armenian-font {
@@ -188,15 +189,16 @@ button {
 .answer-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px;
+  gap: 8px;
 }
 
 .answer-input {
   width: 100%;
+  height: 48px;
   min-width: 0;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 14px;
+  border-radius: 12px;
+  padding: 0 16px;
   font: inherit;
   background: var(--input);
   color: var(--text);
@@ -213,14 +215,14 @@ button {
   gap: 20px;
   color: var(--muted);
   font-size: 13px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .result {
   margin-top: 28px;
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 16px 18px;
+  padding: 16px 20px;
 }
 
 .result.success {
@@ -235,7 +237,7 @@ button {
 
 .result-title {
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .success .result-title {
@@ -248,7 +250,7 @@ button {
 .reading {
   font-size: 22px;
   font-weight: 700;
-  margin: 6px 0 2px;
+  margin: 8px 0 4px;
   overflow-wrap: anywhere;
 }
 
@@ -258,7 +260,7 @@ button {
 }
 
 .mistake-line {
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: 14px;
 }
 
@@ -266,7 +268,7 @@ button {
   margin-top: auto;
   padding-top: 28px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
 }
@@ -278,13 +280,13 @@ button {
 
 .sidebar {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 16px;
 }
 
@@ -296,19 +298,19 @@ button {
 .stat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
 .stat {
   background: var(--soft);
-  border-radius: 10px;
-  padding: 11px;
+  border-radius: 12px;
+  padding: 12px;
 }
 
 .stat strong {
   display: block;
   font-size: 21px;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .stat span {
@@ -324,12 +326,12 @@ button {
 .weak-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
 }
 
 .letter-chip {
-  padding: 7px 9px;
-  border-radius: 9px;
+  padding: 8px;
+  border-radius: 8px;
   background: var(--soft);
   border: 1px solid var(--border);
   font-weight: 700;
@@ -346,9 +348,10 @@ button {
 }
 
 dialog {
+  position: relative;
   width: min(460px, calc(100% - 32px));
   max-height: calc(100% - 32px);
-  padding: 22px;
+  padding: 24px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--panel);
@@ -362,12 +365,27 @@ dialog::backdrop {
 
 .dialog-header {
   justify-content: space-between;
+  padding-right: 48px;
   margin-bottom: 20px;
+}
+
+.dialog-header .icon-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.dialog-header .icon-btn:hover {
+  background: var(--soft);
 }
 
 .dialog-header h2 {
   margin: 0;
   font-size: 20px;
+  line-height: 24px;
 }
 
 .stats-breakdown {
@@ -396,10 +414,6 @@ dialog::backdrop {
 }
 
 .debug-section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
   margin-bottom: 8px;
 }
 
@@ -408,17 +422,81 @@ dialog::backdrop {
   font-size: 14px;
 }
 
+.debug-code {
+  position: relative;
+}
+
 .debug-copy {
-  padding: 5px 8px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.debug-copy::before,
+.debug-copy::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+}
+
+.debug-copy::before {
+  top: 8px;
+  left: 8px;
+}
+
+.debug-copy::after {
+  right: 8px;
+  bottom: 8px;
+  background: var(--soft);
+}
+
+.debug-code:hover .debug-copy,
+.debug-copy:focus-visible {
+  opacity: 1;
+}
+
+.debug-copy:hover {
+  background: var(--border);
+}
+
+.debug-copy-status {
+  position: absolute;
+  top: 8px;
+  right: 48px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--panel);
   font-size: 12px;
+}
+
+.debug-copy-status:empty {
+  display: none;
+}
+
+@media (hover: none) {
+  .debug-copy {
+    opacity: 1;
+  }
 }
 
 .debug-section pre {
   max-height: 360px;
   margin: 0;
-  padding: 12px;
+  padding: 12px 52px 12px 12px;
   overflow: auto;
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--soft);
   font-size: 12px;
   overflow-wrap: anywhere;
@@ -456,7 +534,7 @@ fieldset + fieldset {
 
 .reset-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .danger-btn {
@@ -477,15 +555,15 @@ legend {
 .font-choice {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
 }
 
 #font-selected,
 #typography-selected {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--input);
   color: var(--text);
   font: inherit;
@@ -493,8 +571,8 @@ legend {
 
 .font-options {
   display: grid;
-  gap: 9px;
-  padding-left: 25px;
+  gap: 8px;
+  padding-left: 24px;
   color: var(--muted);
   font-size: 14px;
 }
@@ -506,9 +584,6 @@ legend {
   .sidebar {
     grid-template-columns: 1fr 1fr;
   }
-  .trainer {
-    padding: 28px 22px;
-  }
   .topbar {
     align-items: flex-start;
   }
@@ -516,12 +591,12 @@ legend {
 
 @media (max-width: 560px) {
   .page {
-    padding: 18px 14px 32px;
+    padding: 16px 16px 32px;
   }
   .topbar {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 2px 12px;
+    gap: 4px 12px;
     align-items: center;
   }
   .brand {
@@ -538,7 +613,7 @@ legend {
   }
   .word-wrap {
     min-height: 110px;
-    margin: 8px 0 18px;
+    margin: 8px 0 16px;
   }
   .trainer {
     min-height: auto;
@@ -603,8 +678,5 @@ button:disabled {
 @media (max-width: 560px) {
   .brand {
     flex-wrap: wrap;
-  }
-  .trainer-footer {
-    align-items: flex-start;
   }
 }

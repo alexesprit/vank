@@ -22,6 +22,8 @@ Use Node.js 24 or later and install exact dependencies with `npm ci`.
 
 Write ESM TypeScript with space indentation, single quotes, and Biome defaults. Use `camelCase` for values and functions, `PascalCase` for types, and descriptive kebab-case filenames such as `answer-checker.ts`. Keep modules focused and reuse existing shared/core helpers before adding abstractions. Do not use non-null assertions; configured Biome security, style, complexity, and performance rules are mandatory.
 
+Use a 4px spacing grid for new or modified layout spacing: margins, padding, gaps, fixed control dimensions, and border radii should normally be multiples of 4px. Typography, borders, outlines, breakpoints, fluid dimensions, and deliberate optical or accessibility adjustments are exempt.
+
 ## Testing Guidelines
 
 Use TDD for core logic wherever practical: failing test, smallest passing change, refactor. Add focused `*.test.ts` files under `tests/`, using Vitest `describe`, `it`, and `expect`. Cover behavioral and failure paths, especially persistence, schema validation, scoring, and builder boundaries. Tests must remain offline; use `tests/fixtures/` and `fake-indexeddb` instead of live Wiktionary or OpenRouter calls. Run `npm run test:run` before submitting.
