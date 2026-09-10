@@ -1,3 +1,4 @@
+import { ALPHABET } from '../../../shared/armenian.ts';
 import type {
   AttemptEvent,
   LearnerState,
@@ -173,6 +174,23 @@ export function progress(state: LearnerState) {
     averageScore: letters.length
       ? letters.reduce((sum, l) => sum + l.score, 0) / letters.length
       : 0,
+    alphabetStats: ALPHABET.map(({ upper }) => {
+      const stat = state.letters[upper];
+      const introduced = Boolean(stat?.attempts);
+      const score = stat?.score ?? 0;
+      return {
+        letter: upper,
+        score,
+        introduced,
+        state: !introduced
+          ? 'new'
+          : score >= config.strongThreshold
+            ? 'strong'
+            : score >= config.alphabetLearningThreshold
+              ? 'learning'
+              : 'weak',
+      } as const;
+    }),
     accuracy: accuracy(ordinaryAttempts),
     verifiedAccuracy: accuracy(
       ordinaryAttempts.filter(

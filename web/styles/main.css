@@ -14,6 +14,7 @@
   --danger: #a53535;
   --danger-bg: #fff1f1;
   --danger-border: #efc8c8;
+  --warning: #9a6a16;
   --accent: #23262d;
   --on-accent: #ffffff;
   --focus: #557bc1;
@@ -515,7 +516,6 @@ button {
   color: var(--muted);
   cursor: help;
   line-height: 1;
-  outline: none;
 }
 
 .stat-help::after {
@@ -652,6 +652,145 @@ dialog::backdrop {
 .stats-breakdown h3 {
   margin: 0 0 8px;
   font-size: 14px;
+}
+
+.alphabet-summary {
+  margin: -4px 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.alphabet-summary strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.alphabet-info {
+  position: relative;
+  top: auto;
+  right: auto;
+  display: inline-grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  margin-left: 4px;
+  color: var(--muted);
+  cursor: help;
+  text-decoration: none;
+}
+
+.alphabet-info::after {
+  right: auto;
+  left: 50%;
+  transform: translate(-50%, -4px);
+}
+
+.alphabet-info:hover::after,
+.alphabet-info:focus-visible::after {
+  transform: translate(-50%, 0);
+}
+
+.alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.alphabet-cell {
+  position: relative;
+  min-width: 0;
+  min-height: 56px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  padding: 4px 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.alphabet-cell::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  left: 4px;
+  height: 4px;
+  border-radius: 99px;
+  background: linear-gradient(
+    to right,
+    var(--meter) var(--score),
+    var(--soft) var(--score)
+  );
+}
+
+.alphabet-cell.weak {
+  --meter: var(--danger);
+}
+.alphabet-cell.learning {
+  --meter: var(--warning);
+}
+.alphabet-cell.strong {
+  --meter: var(--success);
+}
+.alphabet-cell.placeholder {
+  border-style: dashed;
+  background: var(--soft);
+}
+.alphabet-cell.placeholder::after {
+  display: none;
+}
+
+.alphabet-letter,
+.alphabet-placeholder {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.alphabet-placeholder {
+  color: var(--placeholder);
+  font-family: inherit;
+  font-size: 18px;
+}
+
+.alphabet-score {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.alphabet-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.alphabet-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--meter);
+}
+
+.legend-dot.weak {
+  --meter: var(--danger);
+}
+.legend-dot.learning {
+  --meter: var(--warning);
+}
+.legend-dot.strong {
+  --meter: var(--success);
 }
 
 .debug-dialog {

@@ -27,6 +27,61 @@ export function renderStats(state: LearnerState, sessionStart: number) {
   element('session-progress').textContent = t('progress.sessionWords', {
     count: state.recent.length - sessionStart,
   });
+  element('alphabet-summary-count').textContent =
+    `${stats.introduced} / ${stats.alphabetStats.length}`;
+  element('alphabet-summary-text').textContent = ` ${t(
+    'progress.alphabetSummary',
+    { score: percentage(stats.averageScore) },
+  )}`;
+  const alphabetInfo = element('alphabet-info');
+  alphabetInfo.dataset.tooltip = t('progress.alphabetInfo');
+  alphabetInfo.setAttribute('aria-label', t('progress.alphabetInfo'));
+  const alphabetGrid = element('alphabet-grid');
+  alphabetGrid.setAttribute('aria-label', t('progress.alphabetGridLabel'));
+  alphabetGrid.replaceChildren(
+    ...stats.alphabetStats.map((stat) => {
+      const cell = document.createElement('div');
+      cell.className = `alphabet-cell ${stat.introduced ? stat.state : 'placeholder'}`;
+      cell.setAttribute(
+        'aria-label',
+        stat.introduced
+          ? t('progress.alphabetScore', {
+              letter: stat.letter,
+              score: percentage(stat.score),
+            })
+          : t('progress.alphabetNotIntroduced', { letter: stat.letter }),
+      );
+      if (stat.introduced)
+        cell.style.setProperty('--score', percentage(stat.score));
+      const letter = document.createElement('span');
+      letter.className = stat.introduced
+        ? 'alphabet-letter armenian-font'
+        : 'alphabet-placeholder';
+      letter.lang = 'hy';
+      letter.textContent = stat.introduced ? stat.letter : '·';
+      cell.append(letter);
+      if (stat.introduced) {
+        const score = document.createElement('span');
+        score.className = 'alphabet-score';
+        score.textContent = percentage(stat.score);
+        cell.append(score);
+      }
+      return cell;
+    }),
+  );
+  const legend = element('alphabet-legend');
+  legend.replaceChildren(
+    ...(['weak', 'learning', 'strong'] as const).map((state) => {
+      const item = document.createElement('span');
+      const dot = document.createElement('i');
+      dot.className = `legend-dot ${state}`;
+      item.append(
+        dot,
+        document.createTextNode(t(`progress.alphabet.${state}`)),
+      );
+      return item;
+    }),
+  );
   const weak = element('weak');
   weak.replaceChildren(
     ...stats.weakLetters.map((letter) => {

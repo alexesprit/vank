@@ -330,6 +330,23 @@ it('creates rich immutable attempt events and real progress metrics', () => {
   });
 });
 
+it('reports every Armenian letter with an introduced mastery state', () => {
+  const state = empty();
+  state.letters = {
+    Ա: { score: 0.8, attempts: 1, correct: 1, lastSeenAt: 1, verified: 1 },
+    Բ: { score: 0.65, attempts: 1, correct: 1, lastSeenAt: 1, verified: 0 },
+    Գ: { score: 0.5, attempts: 1, correct: 0, lastSeenAt: 1, verified: 0 },
+  };
+  const stats = progress(state).alphabetStats;
+  expect(stats).toHaveLength(ALPHABET.length);
+  expect(stats.slice(0, 4)).toMatchObject([
+    { letter: 'Ա', introduced: true, state: 'strong', score: 0.8 },
+    { letter: 'Բ', introduced: true, state: 'learning', score: 0.65 },
+    { letter: 'Գ', introduced: true, state: 'weak', score: 0.5 },
+    { letter: 'Դ', introduced: false, state: 'new', score: 0 },
+  ]);
+});
+
 it('does not label an unambiguous unit mistake ambiguous just because a digraph has two edit paths', () => {
   const result = evaluate(word('ԱՂ'), 'ax');
   expect(result.status).toBe('incorrect');

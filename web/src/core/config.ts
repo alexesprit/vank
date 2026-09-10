@@ -4,6 +4,7 @@ export const TRAINER_CONFIG = {
   familiarityDiscount: 0.75,
   familiarWordEvidenceFloor: 0.25,
   verificationFamiliarityThreshold: 0.4,
+  alphabetLearningThreshold: 0.6,
   strongThreshold: 0.75,
   unverifiedScoreCeiling: 0.74,
   bootstrapFamiliarityThreshold: 0.8,
