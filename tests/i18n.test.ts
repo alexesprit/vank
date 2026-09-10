@@ -44,7 +44,9 @@ describe('interface localization', () => {
   it('defines every message referenced by the static document', () => {
     const html = readFileSync('web/index.html', 'utf8');
     const keys = [
-      ...html.matchAll(/data-i18n(?:-aria-label|-placeholder)?="([^"]+)"/g),
+      ...html.matchAll(
+        /data-i18n(?:-aria-label|-placeholder|-title)?="([^"]+)"/g,
+      ),
     ].map(([, key]) => key);
     expect(keys.every((key) => t(key) !== key)).toBe(true);
     expect(html.match(/<code>/g)).toHaveLength(3);
@@ -68,6 +70,10 @@ describe('interface localization', () => {
       dataset: { i18nPlaceholder: 'trainer.answer' },
       placeholder: '',
     };
+    const title = {
+      dataset: { i18nTitle: 'progress.strongHint' },
+      title: '',
+    };
     const root = {
       documentElement: { lang: '' },
       querySelectorAll: (selector: string) =>
@@ -75,6 +81,7 @@ describe('interface localization', () => {
           '[data-i18n]': [text],
           '[data-i18n-aria-label]': [aria],
           '[data-i18n-placeholder]': [placeholder],
+          '[data-i18n-title]': [title],
         })[selector] ?? [],
     } as unknown as Document;
 
@@ -84,6 +91,9 @@ describe('interface localization', () => {
     expect(text.textContent).toBe('Проверить');
     expect(attributes.get('aria-label')).toBe('Закрыть');
     expect(placeholder.placeholder).toBe('Как читается слово?');
+    expect(title.title).toBe(
+      'Буквы со счётом не ниже 75% и хотя бы одной правильной попыткой в незнакомом слове.',
+    );
   });
 
   it('switches to the English catalog', async () => {

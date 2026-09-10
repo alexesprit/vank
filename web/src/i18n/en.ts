@@ -113,8 +113,12 @@ export const en = {
     title: 'Progress',
     introduced: 'letters encountered',
     strong: 'strong letters',
+    strongHint:
+      'Letters with a score of at least 75% and at least one correct attempt on an unfamiliar word.',
     accuracy: 'without mistakes',
     verified: 'without a familiar-word hint',
+    verifiedHint:
+      'Accuracy on words that are not considered familiar, where memory provides less help.',
     needsPractice: 'Needs practice',
     recent: 'Last 20: {{accuracy}} · Skipped: {{skips}}',
     sessionWords_one: 'Words this session: {{count}}',

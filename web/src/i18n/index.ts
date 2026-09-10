@@ -53,6 +53,12 @@ export function localizeDocument(locale: Locale, root: Document = document) {
     const key = element.dataset.i18nPlaceholder;
     if (key) element.placeholder = i18next.t(key);
   }
+  for (const element of root.querySelectorAll<HTMLElement>(
+    '[data-i18n-title]',
+  )) {
+    const key = element.dataset.i18nTitle;
+    if (key) element.title = i18next.t(key);
+  }
 }
 
 export const t = i18next.t.bind(i18next);

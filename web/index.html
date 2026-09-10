@@ -29,9 +29,9 @@
       <aside class="sidebar" aria-label="Прогресс" data-i18n-aria-label="progress.label">
         <section class="panel"><h2 data-i18n="progress.title">Прогресс</h2><div class="stat-grid">
           <div class="stat"><strong id="introduced">0</strong><span data-i18n="progress.introduced">букв встречено</span></div>
-          <div class="stat"><strong id="strong">0</strong><span data-i18n="progress.strong">сильных букв</span></div>
+          <div class="stat"><strong id="strong">0</strong><span class="stat-label"><span data-i18n="progress.strong">сильных букв</span><abbr class="stat-help" aria-label="Что такое сильные буквы?" data-i18n-aria-label="progress.strongHint" title="Буквы со счётом не ниже 75% и хотя бы одной правильной попыткой в незнакомом слове." data-i18n-title="progress.strongHint"><i data-lucide="circle-help" aria-hidden="true"></i></abbr></span></div>
           <div class="stat"><strong id="accuracy">—</strong><span data-i18n="progress.accuracy">без ошибок</span></div>
-          <div class="stat"><strong id="verified">—</strong><span data-i18n="progress.verified">без подсказки знакомого слова</span></div>
+          <div class="stat"><strong id="verified">—</strong><span class="stat-label"><span data-i18n="progress.verified">без подсказки знакомого слова</span><abbr class="stat-help" aria-label="Что означает эта точность?" data-i18n-aria-label="progress.verifiedHint" title="Точность в словах, которые не считаются знакомыми: так подсказка по памяти помогает меньше." data-i18n-title="progress.verifiedHint"><i data-lucide="circle-help" aria-hidden="true"></i></abbr></span></div>
         </div><p class="progress-line" id="rolling"></p><button id="progress-open" class="secondary-btn progress-details" type="button" data-i18n="actions.details">Подробнее</button></section>
         <section class="panel"><h2 data-i18n="progress.needsPractice">Нужна практика</h2><div id="weak" class="weak-list"></div></section>
       </aside>
