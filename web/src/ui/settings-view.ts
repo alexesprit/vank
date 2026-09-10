@@ -51,30 +51,33 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   function render() {
     const { fonts } = trainer.settings;
     const { typography } = trainer.settings;
+    const correctAnswers = trainer.state.recent.filter(
+      (attempt) => attempt.payload.correct,
+    ).length;
     for (const input of modeInputs) input.checked = input.value === fonts.mode;
     for (const option of selected.options)
       option.disabled =
-        trainer.state.recent.length <
-        (FONTS.find((font) => font.id === option.value)?.unlockAfterAttempts ??
+        correctAnswers <
+        (FONTS.find((font) => font.id === option.value)?.unlockAfterCorrect ??
           0);
     selected.value = fonts.selected;
     selected.disabled = fonts.mode !== 'single';
     for (const input of enabled.querySelectorAll<HTMLInputElement>('input')) {
       const font = FONTS.find((font) => font.id === input.value);
       if (!font) continue;
-      const locked = trainer.state.recent.length < font.unlockAfterAttempts;
+      const locked = correctAnswers < font.unlockAfterCorrect;
       input.checked = fonts.enabled.includes(input.value);
       input.disabled = fonts.mode !== 'rotate' || locked;
       if (input.nextElementSibling)
-        input.nextElementSibling.textContent = `${font.name}${locked ? ` · после ${font.unlockAfterAttempts} слов` : ''}`;
+        input.nextElementSibling.textContent = `${font.name}${locked ? ` · после ${font.unlockAfterCorrect} верных ответов` : ''}`;
     }
     for (const input of typographyModeInputs)
       input.checked = input.value === typography.mode;
     for (const option of typographySelected.options)
       option.disabled =
-        trainer.state.recent.length <
+        correctAnswers <
         (TYPOGRAPHY_MODES.find((mode) => mode.id === option.value)
-          ?.unlockAfterAttempts ?? 0);
+          ?.unlockAfterCorrect ?? 0);
     typographySelected.value = typography.selected;
     typographySelected.disabled = typography.mode !== 'single';
     for (const input of typographyEnabled.querySelectorAll<HTMLInputElement>(
@@ -82,12 +85,12 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     )) {
       const mode = TYPOGRAPHY_MODES.find((mode) => mode.id === input.value);
       if (!mode) continue;
-      const locked = trainer.state.recent.length < mode.unlockAfterAttempts;
+      const locked = correctAnswers < mode.unlockAfterCorrect;
       input.checked = typography.enabled.includes(input.value);
       input.disabled = typography.mode !== 'rotate' || locked;
       const text = input.parentElement?.lastChild;
       if (text)
-        text.textContent = `${mode.name}${locked ? ` · после ${mode.unlockAfterAttempts} слов` : ''}`;
+        text.textContent = `${mode.name}${locked ? ` · после ${mode.unlockAfterCorrect} верных ответов` : ''}`;
     }
   }
 

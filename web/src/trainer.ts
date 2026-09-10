@@ -23,10 +23,12 @@ export async function createTrainer(
     await repository.setSetting('clientId', clientId);
   }
   const installationId = clientId as string;
-  let pendingFont = fontLoader(selectFont(settings, state.recent.length));
+  const correctAnswers = () =>
+    state.recent.filter((attempt) => attempt.payload.correct).length;
+  let pendingFont = fontLoader(selectFont(settings, correctAnswers()));
   let current = selectWord(words, state, Date.now()),
     font = await pendingFont,
-    presentation = selectTypography(settings, state.recent.length),
+    presentation = selectTypography(settings, correctAnswers()),
     shownAt = Date.now();
   let result: Evaluation | undefined,
     busy = false;
@@ -85,9 +87,9 @@ export async function createTrainer(
       busy = true;
       try {
         const next = selectWord(words, state, Date.now());
-        pendingFont = fontLoader(selectFont(settings, state.recent.length));
+        pendingFont = fontLoader(selectFont(settings, correctAnswers()));
         font = await latestFont(pendingFont);
-        presentation = selectTypography(settings, state.recent.length);
+        presentation = selectTypography(settings, correctAnswers());
         current = next;
         shownAt = Date.now();
         result = undefined;
@@ -102,9 +104,9 @@ export async function createTrainer(
       const saved = parseSettings(next);
       await repository.setSetting('app', saved);
       settings = saved;
-      pendingFont = fontLoader(selectFont(saved, state.recent.length));
+      pendingFont = fontLoader(selectFont(saved, correctAnswers()));
       font = await latestFont(pendingFont);
-      presentation = selectTypography(saved, state.recent.length);
+      presentation = selectTypography(saved, correctAnswers());
     },
   };
 }

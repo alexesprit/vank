@@ -10,7 +10,7 @@ export interface FontOption {
   name: string;
   family: string;
   readability: number;
-  unlockAfterAttempts: number;
+  unlockAfterCorrect: number;
   stylesheet?: string;
   source: string;
   license: string;
@@ -22,7 +22,7 @@ export const FONTS: FontOption[] = [
     name: 'Системный',
     family: 'ui-sans-serif, system-ui, sans-serif',
     readability: 0,
-    unlockAfterAttempts: 0,
+    unlockAfterCorrect: 0,
     source: 'Шрифт устройства',
     license: 'Зависит от устройства',
   },
@@ -31,7 +31,7 @@ export const FONTS: FontOption[] = [
     name: 'Noto Sans Armenian',
     family: '"Noto Sans Armenian", sans-serif',
     readability: 1,
-    unlockAfterAttempts: 10,
+    unlockAfterCorrect: 10,
     stylesheet: googleStylesheet('Noto Sans Armenian'),
     source: 'https://fonts.google.com/noto/specimen/Noto+Sans+Armenian',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
@@ -41,7 +41,7 @@ export const FONTS: FontOption[] = [
     name: 'Google Sans',
     family: '"Google Sans", sans-serif',
     readability: 1,
-    unlockAfterAttempts: 20,
+    unlockAfterCorrect: 20,
     stylesheet: googleStylesheet('Google Sans'),
     source: 'https://fonts.google.com/specimen/Google+Sans',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
@@ -51,7 +51,7 @@ export const FONTS: FontOption[] = [
     name: 'Noto Serif Armenian',
     family: '"Noto Serif Armenian", serif',
     readability: 2,
-    unlockAfterAttempts: 40,
+    unlockAfterCorrect: 40,
     stylesheet: googleStylesheet('Noto Serif Armenian'),
     source: 'https://fonts.google.com/noto/specimen/Noto+Serif+Armenian',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
@@ -61,7 +61,7 @@ export const FONTS: FontOption[] = [
     name: 'Iosevka Charon',
     family: '"Iosevka Charon", monospace',
     readability: 3,
-    unlockAfterAttempts: 60,
+    unlockAfterCorrect: 60,
     stylesheet: googleStylesheet('Iosevka Charon'),
     source: 'https://fonts.google.com/specimen/Iosevka+Charon',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
@@ -71,7 +71,7 @@ export const FONTS: FontOption[] = [
     name: 'Handjet',
     family: 'Handjet, sans-serif',
     readability: 4,
-    unlockAfterAttempts: 80,
+    unlockAfterCorrect: 80,
     stylesheet: googleStylesheet('Handjet'),
     source: 'https://fonts.google.com/specimen/Handjet',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
@@ -97,49 +97,49 @@ export const TYPOGRAPHY_MODES = [
     name: 'ПРОПИСНЫЕ',
     caseMode: 'caps',
     italic: false,
-    unlockAfterAttempts: 0,
+    unlockAfterCorrect: 0,
   },
   {
     id: 'normal',
     name: 'Обычный регистр',
     caseMode: 'normal',
     italic: false,
-    unlockAfterAttempts: 0,
+    unlockAfterCorrect: 0,
   },
   {
     id: 'lower',
     name: 'строчные',
     caseMode: 'lower',
     italic: false,
-    unlockAfterAttempts: 0,
+    unlockAfterCorrect: 0,
   },
   {
     id: 'caps-italic',
     name: 'ПРОПИСНЫЕ · курсив',
     caseMode: 'caps',
     italic: true,
-    unlockAfterAttempts: 40,
+    unlockAfterCorrect: 40,
   },
   {
     id: 'normal-italic',
     name: 'Обычный · курсив',
     caseMode: 'normal',
     italic: true,
-    unlockAfterAttempts: 40,
+    unlockAfterCorrect: 40,
   },
   {
     id: 'lower-italic',
     name: 'строчные · курсив',
     caseMode: 'lower',
     italic: true,
-    unlockAfterAttempts: 40,
+    unlockAfterCorrect: 40,
   },
 ] satisfies Array<{
   id: string;
   name: string;
   caseMode: CaseMode;
   italic: boolean;
-  unlockAfterAttempts: number;
+  unlockAfterCorrect: number;
 }>;
 
 export const DEFAULT_PRESENTATION = {
@@ -207,11 +207,11 @@ export function parseSettings(value: unknown): AppSettings {
 
 export function selectTypography(
   settings: AppSettings,
-  attempts: number,
+  correctAnswers: number,
   random = Math.random,
 ): Omit<Presentation, 'fontId'> {
   const { typography } = settings;
-  const available = availableTypography(attempts);
+  const available = availableTypography(correctAnswers);
   const choices =
     typography.mode === 'single'
       ? available.filter((mode) => mode.id === typography.selected)
@@ -221,8 +221,8 @@ export function selectTypography(
   return { caseMode: selected.caseMode, italic: selected.italic };
 }
 
-export const availableTypography = (attempts: number) =>
-  TYPOGRAPHY_MODES.filter((mode) => attempts >= mode.unlockAfterAttempts);
+export const availableTypography = (correctAnswers: number) =>
+  TYPOGRAPHY_MODES.filter((mode) => correctAnswers >= mode.unlockAfterCorrect);
 
 export function formatPrompt(word: string, caseMode: CaseMode): string {
   if (!canonicalArmenianPattern.test(word)) return word;
@@ -233,15 +233,15 @@ export function formatPrompt(word: string, caseMode: CaseMode): string {
     : lower;
 }
 
-export const availableFonts = (attempts: number) =>
-  FONTS.filter((font) => attempts >= font.unlockAfterAttempts);
+export const availableFonts = (correctAnswers: number) =>
+  FONTS.filter((font) => correctAnswers >= font.unlockAfterCorrect);
 
 export function selectFont(
   settings: Pick<AppSettings, 'fonts'>,
-  attempts: number,
+  correctAnswers: number,
   random = Math.random,
 ): FontOption {
-  const available = availableFonts(attempts);
+  const available = availableFonts(correctAnswers);
   if (settings.fonts.mode === 'single')
     return (
       available.find((font) => font.id === settings.fonts.selected) ?? FONTS[0]

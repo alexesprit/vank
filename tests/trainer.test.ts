@@ -17,15 +17,15 @@ const recognizable = (word: string) => ({
   loanwordScore: 1,
 });
 
-function practicedState(attempts: number): LearnerState {
+function practicedState(attempts: number, mistakes = 0): LearnerState {
   const word = recognizable('ՄԱՄԱ');
   let state: LearnerState = { letters: {}, words: {}, recent: [] };
   for (let index = 0; index < attempts; index++)
     state = completeAttempt(
       state,
       { word, phase: 'bootstrap' },
-      word.readingLatin,
-      false,
+      index < mistakes ? '' : word.readingLatin,
+      index < mistakes,
       'practice',
       index,
       index + 1,
@@ -33,6 +33,35 @@ function practicedState(attempts: number): LearnerState {
     ).state;
   return state;
 }
+
+it('unlocks fonts and italic modes only after the required correct answers', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const serif = FONTS[3];
+  const trainer = await createTrainer(
+    ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable),
+    { ...repo, loadState: async () => practicedState(40, 1) },
+    async (font) => font,
+  );
+  await trainer.setSettings({
+    fonts: {
+      mode: 'single',
+      selected: serif.id,
+      enabled: [serif.id],
+    },
+    typography: {
+      mode: 'single',
+      selected: 'normal-italic',
+      enabled: ['normal-italic'],
+    },
+  });
+  expect(trainer.font.id).toBe('default');
+  expect(trainer.presentation.italic).toBe(false);
+  await trainer.submit(trainer.current.word.readingLatin);
+  await trainer.next();
+  expect(trainer.font.id).toBe(serif.id);
+  expect(trainer.presentation).toEqual({ caseMode: 'normal', italic: true });
+  repo.close();
+});
 
 it('validates the runtime dictionary and covers every written Armenian letter repeatedly', () => {
   const dictionary = parseDictionary(
