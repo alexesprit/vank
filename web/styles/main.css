@@ -345,11 +345,13 @@ button {
 }
 
 .letter-chip {
+  width: 40px;
   padding: 8px;
   border-radius: 8px;
   background: var(--soft);
   border: 1px solid var(--border);
   font-weight: 700;
+  text-align: center;
 }
 
 .font-stat {
