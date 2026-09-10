@@ -15,7 +15,6 @@ type Run = (args: string[], quiet?: boolean) => RunResult;
 export interface PublishQuality {
   language: string;
   maxWords: number;
-  minWords: number;
   minFamiliarWords: number;
   minFamiliarShare: number;
   minLetterCoverage: number;
@@ -23,8 +22,7 @@ export interface PublishQuality {
 // Mirrors the production audience policy in builder/config.json.
 export const PRODUCTION_QUALITY: PublishQuality = {
   language: 'ru',
-  maxWords: 1000,
-  minWords: 950,
+  maxWords: 3000,
   minFamiliarWords: 700,
   minFamiliarShare: 0.7,
   minLetterCoverage: 2,
@@ -38,10 +36,6 @@ export function validatePublishableDictionary(
   if (words.length > quality.maxWords)
     throw new Error(
       `Dictionary quality: ${words.length} words; maximum is ${quality.maxWords}`,
-    );
-  if (words.length < quality.minWords)
-    throw new Error(
-      `Dictionary quality: ${words.length} words; need at least ${quality.minWords}`,
     );
   const familiar = words.filter(
     (word) => (word.familiarity?.[quality.language] ?? 0) >= 0.8,

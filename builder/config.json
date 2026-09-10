@@ -1,6 +1,6 @@
 {
   "learnerLanguages": ["ru"],
-  "limit": 1000,
+  "maxWords": 4000,
   "sources": [
     {
       "type": "curated",
@@ -20,8 +20,6 @@
     "language": "ru",
     "candidates": "builder/data/recognizable-ru.json",
     "minFamiliarWords": 700,
-    "minFamiliarShare": 0.7,
-    "minWords": 950,
-    "candidateLimit": 2100
+    "minFamiliarShare": 0.7
   }
 }

@@ -8,8 +8,6 @@ export interface AudiencePolicy {
   candidates: string;
   minFamiliarWords: number;
   minFamiliarShare: number;
-  minWords?: number;
-  candidateLimit?: number;
 }
 export function parseAudience(
   value: unknown,
@@ -17,21 +15,6 @@ export function parseAudience(
   limit: number,
 ): AudiencePolicy {
   const p = object(value);
-  if (
-    p.candidateLimit !== undefined &&
-    (typeof p.candidateLimit !== 'number' ||
-      !Number.isInteger(p.candidateLimit) ||
-      p.candidateLimit < 1)
-  )
-    throw new Error('Invalid candidate limit');
-  if (
-    p.minWords !== undefined &&
-    (typeof p.minWords !== 'number' ||
-      !Number.isInteger(p.minWords) ||
-      p.minWords < 1 ||
-      p.minWords > limit)
-  )
-    throw new Error('Invalid audience minimum size');
   if (
     typeof p.language !== 'string' ||
     !languages.includes(p.language) ||
@@ -57,11 +40,11 @@ export function shortlistAudience(
   words: BuildWord[],
   value: unknown,
   policy: AudiencePolicy,
-  limit: number,
 ) {
   if (!Array.isArray(value))
     throw new Error('Expected recognition candidate array');
   const hints = new Map<string, string>();
+  const priority = new Map<string, number>();
   const purposes = new Map<string, 'familiar' | 'verification'>();
   for (const entry of value) {
     const r = object(entry);
@@ -82,6 +65,7 @@ export function shortlistAudience(
     if (hints.has(word))
       throw new Error(`Duplicate recognition candidate: ${word}`);
     hints.set(word, r.recognizableAs);
+    priority.set(word, priority.size);
     purposes.set(
       word,
       r.purpose === 'verification' ? 'verification' : 'familiar',
@@ -90,29 +74,31 @@ export function shortlistAudience(
   const available = new Set(words.map((w) => w.word));
   const missing = [...hints.keys()].filter((word) => !available.has(word));
   // Hints select attested words; they never create a lemma or certify familiarity.
-  const selected = words
-    .filter((w) => curated(w) || hints.has(w.word))
-    .sort(
-      (a, b) =>
-        Number(curated(b)) - Number(curated(a)) ||
-        a.length - b.length ||
-        a.id.localeCompare(b.id),
-    );
-  // ponytail: a reviewed concept list bounds API work; expand it when vocabulary gaps appear.
+  const group = (word: BuildWord) =>
+    curated(word) ? 0 : hints.has(word.word) ? 1 : 2;
+  const selected = words.sort(
+    (a, b) =>
+      group(a) - group(b) ||
+      (priority.get(a.word) ?? Number.MAX_SAFE_INTEGER) -
+        (priority.get(b.word) ?? Number.MAX_SAFE_INTEGER) ||
+      (b.frequencyScore ?? 0) - (a.frequencyScore ?? 0) ||
+      a.length - b.length ||
+      a.id.localeCompare(b.id),
+  );
   return {
     missing,
-    words: selected
-      .slice(0, policy.candidateLimit ?? Math.ceil(limit * 1.5))
-      .map((w) => {
-        const hint = hints.get(w.word);
-        return hint === undefined
+    words: selected.map((w) => {
+      const hint = hints.get(w.word);
+      return hint === undefined
+        ? curated(w)
           ? w
-          : {
-              ...w,
-              recognitionHints: { [policy.language]: hint },
-              audiencePurpose: purposes.get(w.word),
-            };
-      }),
+          : { ...w, audiencePurpose: 'verification' as const }
+        : {
+            ...w,
+            recognitionHints: { [policy.language]: hint },
+            audiencePurpose: purposes.get(w.word),
+          };
+    }),
   };
 }
 
@@ -159,10 +145,5 @@ export function composeAudience(
         1e-9,
     ),
   );
-  const selected = [...high, ...verification.slice(0, lowCount)];
-  if (selected.length < (policy.minWords ?? 0))
-    throw new Error(
-      `Audience shortfall: ${selected.length} accepted words; need ${policy.minWords}. Expand and evaluate more candidates.`,
-    );
-  return selected;
+  return [...high, ...verification.slice(0, lowCount)];
 }

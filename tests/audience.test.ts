@@ -31,7 +31,7 @@ const words = () =>
       : w,
   );
 
-it('shortlists attested recognition candidates and curated verification words before AI, without inventing missing words', () => {
+it('plans curated, reviewed, then unreviewed attested words without inventing missing words', () => {
   const result = shortlistAudience(
     words(),
     [
@@ -39,31 +39,27 @@ it('shortlists attested recognition candidates and curated verification words be
       { word: 'ԿՈՄԲՈ', recognizableAs: 'комбо' },
     ],
     policy,
-    1000,
   );
   expect(result.words.map((w) => w.word)).toContain('ՌՈԲՈՏ');
   expect(result.words.map((w) => w.word)).toContain('ՋՈՒՐ');
-  expect(result.words.map((w) => w.word)).not.toContain('ԾԱՌ');
+  expect(result.words.map((w) => w.word)).toContain('ԾԱՌ');
   expect(result.words.map((w) => w.word)).not.toContain('ԿՈՄԲՈ');
   expect(result.missing).toEqual(['ԿՈՄԲՈ']);
   expect(
     result.words.find((w) => w.word === 'ՌՈԲՈՏ')?.recognitionHints,
   ).toEqual({ ru: 'робот' });
+  expect(result.words.find((w) => w.word === 'ԾԱՌ')?.audiencePurpose).toBe(
+    'verification',
+  );
   expect(() =>
     shortlistAudience(
       words(),
       [{ word: 'hello', recognizableAs: 'x' }],
       policy,
-      1000,
     ),
   ).toThrow();
   expect(() =>
-    shortlistAudience(
-      words(),
-      [{ word: 'ՌՈԲՈՏ', recognizableAs: '' }],
-      policy,
-      1000,
-    ),
+    shortlistAudience(words(), [{ word: 'ՌՈԲՈՏ', recognizableAs: '' }], policy),
   ).toThrow();
 });
 
@@ -138,13 +134,12 @@ it('validates the audience policy rather than silently accepting impossible quot
   }
 });
 
-it('admits explicitly proposed verification words only after enrichment and reports an output shortfall', () => {
+it('admits explicitly proposed verification words only after enrichment', () => {
   const input = words();
   const shortlist = shortlistAudience(
     input,
     [{ word: 'ԾԱՌ', recognizableAs: 'дерево', purpose: 'verification' }],
     policy,
-    1000,
   );
   const enriched = shortlist.words.map((w) =>
     w.word === 'ԾԱՌ'
@@ -174,17 +169,22 @@ it('admits explicitly proposed verification words only after enrichment and repo
       (w) => w.word === 'ԾԱՌ',
     ),
   ).toBe(false);
-  expect(() =>
-    composeAudience(enriched, 1000, { ...policy, minWords: 950 }),
-  ).toThrow('shortfall');
-  expect(() =>
-    parseAudience({ ...policy, minWords: 1001 }, ['ru'], 1000),
-  ).toThrow();
-  expect(() =>
-    parseAudience({ ...policy, candidateLimit: 0 }, ['ru'], 1000),
-  ).toThrow();
+});
+
+it('keeps curated words first and otherwise preserves reviewed candidate order', () => {
+  const result = shortlistAudience(
+    words(),
+    [
+      { word: 'ԾԱՌ', recognizableAs: 'дерево' },
+      { word: 'ՌՈԲՈՏ', recognizableAs: 'робот' },
+    ],
+    policy,
+  );
   expect(
-    shortlistAudience(words(), [], { ...policy, candidateLimit: 2 }, 1000)
-      .words,
-  ).toHaveLength(2);
+    result.words
+      .filter(
+        (word) => !word.sources.some((source) => source.type === 'curated'),
+      )
+      .map((word) => word.word),
+  ).toEqual(['ԾԱՌ', 'ՌՈԲՈՏ']);
 });

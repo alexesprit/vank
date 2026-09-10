@@ -67,13 +67,17 @@ async function main() {
   if (!languages.length)
     throw new Error('At least one learner language is required');
   for (const language of languages) Intl.getCanonicalLocales(language);
-  const limit = config.limit ?? 1000;
-  if (typeof limit !== 'number' || !Number.isInteger(limit) || limit < 1)
+  const maxWords = config.maxWords ?? 1000;
+  if (
+    typeof maxWords !== 'number' ||
+    !Number.isInteger(maxWords) ||
+    maxWords < 1
+  )
     throw new Error('Invalid dictionary size');
   const audience =
     config.audience === undefined || values['curated-only']
       ? undefined
-      : parseAudience(config.audience, languages, limit);
+      : parseAudience(config.audience, languages, maxWords);
   if (!Array.isArray(config.sources))
     throw new Error('Expected source configuration');
   const sources = config.sources
@@ -202,6 +206,11 @@ async function main() {
       return record as unknown as BuildWord;
     });
   };
+  const overridesPath = join(directory, 'overrides.json');
+  const overrides = existsSync(overridesPath)
+    ? await readJson(overridesPath)
+    : {};
+  const overrideIds = Object.keys(object(overrides));
   if (stage === 'enrich' || stage === 'build') {
     let deterministic = await readBuilt('deterministic');
     if (audience) {
@@ -209,7 +218,6 @@ async function main() {
         deterministic,
         await readJson(audience.candidates),
         audience,
-        limit,
       );
       await writeJson(file('candidates'), shortlist);
       report({
@@ -227,7 +235,36 @@ async function main() {
           model: process.env.OPENROUTER_MODEL ?? '',
           languages,
           cacheDir: join(directory, '..', 'cache'),
+          concurrency: Number(process.env.OPENROUTER_CONCURRENCY ?? 3),
           report,
+          stopWhen: audience
+            ? (words) => {
+                if (words.length < maxWords) return false;
+                const ids = new Set(words.map((word) => word.id));
+                if (overrideIds.some((id) => !ids.has(id))) return false;
+                const overridden = applyOverrides(words, overrides);
+                if (
+                  overridden.filter((word) =>
+                    isFamiliar(word, audience.language),
+                  ).length < audience.minFamiliarWords
+                )
+                  return false;
+                const selected = composeAudience(
+                  overridden,
+                  maxWords,
+                  audience,
+                );
+                return (
+                  selected.length === maxWords &&
+                  ALPHABET.every(
+                    ({ upper }) =>
+                      selected.filter((word) =>
+                        word.uniqueLetters.includes(upper),
+                      ).length >= 2,
+                  )
+                );
+              }
+            : undefined,
         });
     await writeJson(file('enriched'), enriched);
     if (stage === 'enrich') return;
@@ -237,11 +274,7 @@ async function main() {
       // Recompute AI/manual review rejects; rerunning validation must not count them twice.
       rejects = rejects.filter((r) => !('id' in object(r)));
       const words = await readBuilt('enriched');
-      const overridesPath = join(directory, 'overrides.json');
-      const overridden = applyOverrides(
-        words,
-        existsSync(overridesPath) ? await readJson(overridesPath) : {},
-      );
+      const overridden = applyOverrides(words, overrides);
       // Validate every candidate before composition so filtering cannot hide hard errors.
       validateDataset(overridden);
       rejects.push(
@@ -250,8 +283,8 @@ async function main() {
           .map((w) => ({ id: w.id, word: w.word, reason: w.flags })),
       );
       const selected = audience
-        ? composeAudience(overridden, limit, audience)
-        : composeDataset(overridden, limit);
+        ? composeAudience(overridden, maxWords, audience)
+        : composeDataset(overridden, maxWords);
       if (audience) {
         const familiar = selected.filter((w) =>
           isFamiliar(w, audience.language),
@@ -270,7 +303,7 @@ async function main() {
         const quality = {
           language: audience.language,
           total: selected.length,
-          limit,
+          maxWords,
           familiar: familiar.length,
           familiarShare: familiar.length / selected.length,
           coverage,

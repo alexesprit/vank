@@ -100,7 +100,7 @@ it('builds a fixture without network, retains intermediate stages, supports quie
       config,
       JSON.stringify({
         learnerLanguages: ['ru'],
-        limit: 1000,
+        maxWords: 1000,
         sources: [
           {
             type: 'curated',
@@ -253,7 +253,7 @@ it('applies audience selection before enrichment and preserves the runtime file 
       config,
       JSON.stringify({
         learnerLanguages: ['ru'],
-        limit: 1000,
+        maxWords: 1000,
         audience: {
           language: 'ru',
           candidates: resolve('builder/data/recognizable-ru.json'),

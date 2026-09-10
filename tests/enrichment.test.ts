@@ -92,6 +92,13 @@ describe('AI response boundary', () => {
     ).not.toBe(key);
   });
 });
+it('validates enrichment concurrency', async () => {
+  const cacheDir = await directory();
+  for (const concurrency of [0, 1.5, 11])
+    await expect(
+      enrichWords([], { apiKey: '', model: 'm', cacheDir, concurrency }),
+    ).rejects.toThrow('Concurrency must be 1..10');
+});
 it('batches, validates, caches individual words and resumes after an interruption', async () => {
   const cacheDir = await directory(),
     dataset = words();
@@ -140,10 +147,10 @@ it('batches, validates, caches individual words and resumes after an interruptio
     batchSize: 1,
     report: (p) => reports.push(p),
   });
-  expect(fetcher).toHaveBeenCalledTimes(3);
+  expect(fetcher).toHaveBeenCalledTimes(4);
   expect(result).toHaveLength(3);
   expect(reports).toContainEqual(
-    expect.objectContaining({ cached: 2, api: 1, processed: 3, total: 3 }),
+    expect.objectContaining({ cached: 1, api: 2, processed: 3, total: 3 }),
   );
   expect(result.find((w) => w.word === 'ՏԱՔՍԻ')?.familiarity?.ru).toBe(1);
   expect(result[0].ai).toMatchObject({
@@ -158,6 +165,87 @@ it('batches, validates, caches individual words and resumes after an interruptio
       throw new Error('must use cache');
     },
   });
+});
+
+it('stops before uncached batches once the supplied target is reached', async () => {
+  const cacheDir = await directory();
+  const fetcher = vi.fn(
+    async (_url: string | URL | Request, init?: RequestInit) => {
+      const body = JSON.parse(String(init?.body));
+      const payload = JSON.parse(body.messages[1].content);
+      return Response.json({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                items: payload.words.map((word: { id: string }) =>
+                  item(word.id),
+                ),
+              }),
+            },
+          },
+        ],
+      });
+    },
+  );
+  const options = {
+    apiKey: 'key',
+    model: 'm',
+    cacheDir,
+    batchSize: 1,
+    fetcher,
+    stopWhen: (enriched: ReturnType<typeof words>) => enriched.length === 2,
+  };
+  expect(await enrichWords(words(), options)).toHaveLength(2);
+  expect(fetcher).toHaveBeenCalledTimes(3);
+  await expect(
+    enrichWords(words(), {
+      ...options,
+      apiKey: '',
+      fetcher: async () => {
+        throw new Error('must not request another batch');
+      },
+    }),
+  ).resolves.toHaveLength(2);
+});
+
+it('does not let a later cached candidate skip the ordered prefix', async () => {
+  const cacheDir = await directory();
+  const dataset = words();
+  const fetcher = vi.fn(
+    async (_url: string | URL | Request, init?: RequestInit) => {
+      const body = JSON.parse(String(init?.body));
+      const payload = JSON.parse(body.messages[1].content);
+      return Response.json({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                items: payload.words.map((word: { id: string }) =>
+                  item(word.id),
+                ),
+              }),
+            },
+          },
+        ],
+      });
+    },
+  );
+  const options = {
+    apiKey: 'key',
+    model: 'm',
+    cacheDir,
+    fetcher,
+    batchSize: 1,
+  };
+  await enrichWords(dataset.slice(2), options);
+  fetcher.mockClear();
+  const result = await enrichWords(dataset, {
+    ...options,
+    stopWhen: (enriched: ReturnType<typeof words>) => enriched.length === 1,
+  });
+  expect(result.map((word) => word.id)).toEqual([dataset[0].id]);
+  expect(fetcher).toHaveBeenCalledTimes(2);
 });
 it('retries a transient failure, reports it, and never caches an invalid payload', async () => {
   const cacheDir = await directory();

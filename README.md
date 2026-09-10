@@ -39,7 +39,7 @@ npm run dictionary:publish
 ```
 
 `dictionary:publish` reruns the production quality gate before calling GitHub:
-the release must contain 950–1,000 words, at least 700 familiar words with a
+the release may contain at most 3,000 words, with at least 700 familiar words, a
 70% familiar share, and at least two words for every written Armenian letter.
 
 The release contains only the runtime file. Rich provenance and enrichment data
@@ -61,10 +61,8 @@ fake-indexeddb; they do not call Wiktionary or OpenRouter.
 
 ## Dictionary builder
 
-The dictionary targets Russian-recognizable vocabulary, with a maximum of 1,000
-words. The current build contains **1,000 words: 700 highly familiar (70%) and
-300 verification words**, with every written alphabet letter appearing at least
-twice. Familiarity scores are curated or AI estimates, not learner-study results.
+The dictionary targets Russian-recognizable vocabulary, with a maximum of 3,000
+words. Familiarity scores are curated or AI estimates, not learner-study results.
 A separate 79-word curated seed remains available for offline development.
 
 ```sh
@@ -77,7 +75,7 @@ npm run validate                  # apply overrides, compose, validate, emit wor
 npm run build:dictionary           # all stages; reuse source files and AI item caches
 ```
 
-Configure sources, explicit priorities, learner languages, and output count in
+Configure sources, explicit priorities, learner languages, and the output ceiling in
 `builder/config.json`. Source paths are relative to the repository working
 directory. The Wiktionary adapter reads structured Wiktextract JSONL extracted
 from Wikimedia dumps; it does not scrape HTML. A local export can replace the
@@ -89,32 +87,34 @@ records use the last supplied field value; definitions and provenance accumulate
 For live enrichment, create an ignored `.env` with the variable names in
 `.env.example`, or export `OPENROUTER_API_KEY` and `OPENROUTER_MODEL`. The model
 must support structured JSON-schema responses. No provider/model is hardcoded.
+`OPENROUTER_CONCURRENCY` controls parallel requests, defaults to 3, and accepts 1–10.
 `ru` is the default enrichment language; adding languages is a configuration change.
-The configured audience policy shortlists words **before** AI enrichment:
+The configured audience policy plans words **before** AI enrichment:
 
 - `builder/data/recognizable-ru.json` pairs attested Armenian spellings with
   recognition hints and an optional `purpose` (`familiar` or `verification`).
   Hints are hypotheses, not guaranteed familiarity scores. Add reviewed
   concepts here to expand the vocabulary.
-- Only matching imported lemmas plus the curated vocabulary enter enrichment;
-  missing spellings are reported, never invented. `candidateLimit` caps work
-  at 2,100 candidates, with curated words first and shorter words next.
+- Curated words are assessed first, followed by imported candidates in
+  reviewed-list order, then the remaining Wiktionary vocabulary by source
+  frequency and length. Missing reviewed spellings are reported, never invented.
+  Enrichment stops once the output ceiling and audience-quality checks are satisfied.
   `selected-names.json` explicitly allows source-attested names through the
   otherwise name-excluding Wiktionary adapter.
 - AI receives source definitions, parts of speech, and recognition hints. It
   checks current usage, meaning, recognizability, and beginner usefulness.
-- Final composition requires at least **950 accepted words**, including at
-  least **700 words with familiarity >= 0.8** and a **70% familiar share**.
+- Final composition includes at most **3,000 accepted words**, with at least
+  **700 words having familiarity >= 0.8** and a **70% familiar share**.
   Imported words need AI confidence >= 0.8; flagged words are excluded.
   Usefulness ranks familiar words. Verification words must be explicitly
   selected or curated, have familiarity <= 0.4, and imported verification
-  words also need usefulness >= 0.5. Composition reserves up to 300 slots
-  for verification words.
+  words also need usefulness >= 0.5. Composition includes verification words
+  only while the familiar share remains at least 70%.
 - Every written Armenian letter must occur in at least two selected words.
   `audience-report.json` also reports familiar and verification coverage per
   letter; some letters have no natural Russian-recognizable examples.
 
-The limit is a ceiling, not a target to pad with arbitrary words. Quality-gate
+`maxWords` is a ceiling, not a target to pad with arbitrary words. Quality-gate
 failure leaves the previous runtime dictionary intact. `candidates.json` records
 the shortlist and missing candidates. The concept list is reviewed and intentionally finite; it does not exhaust
 all Armenian loanwords. The optional `node builder/scripts/discover.ts` command

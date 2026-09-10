@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterEach, expect, it, vi } from 'vitest';
+import { afterEach, expect, it } from 'vitest';
 import {
   publishDictionary,
   validatePublishableDictionary,
@@ -15,7 +15,6 @@ const directories: string[] = [];
 const testQuality = {
   language: 'ru',
   maxWords: 1,
-  minWords: 1,
   minFamiliarWords: 0,
   minFamiliarShare: 0,
   minLetterCoverage: 0,
@@ -140,23 +139,23 @@ it('does not deploy a release with a mismatched asset', async () => {
   expect(commands.some((args) => args[0] === 'workflow')).toBe(false);
 });
 
-it('rejects a dictionary that is valid but below the production quality gate', async () => {
-  const directory = await mkdtemp(join(tmpdir(), 'vank-publish-'));
-  directories.push(directory);
-  const path = join(directory, 'words.json');
+it('enforces only the maximum size when audience quality passes', () => {
   const dictionary = parseDictionary({
     version: 1,
     schemaVersion: 1,
     generatedAt: '2026-09-10T00:00:00Z',
     words: [deriveWord('ՄԱՄԱ')],
   });
-  expect(() => validatePublishableDictionary(dictionary)).toThrow(
-    'need at least 950',
-  );
-  await writeFile(path, JSON.stringify(runtimeDictionary(dictionary)));
-  const run = vi.fn();
-  await expect(publishDictionary(path, run)).rejects.toThrow(
-    'need at least 950',
-  );
-  expect(run).not.toHaveBeenCalled();
+  expect(() =>
+    validatePublishableDictionary(dictionary, {
+      ...testQuality,
+      maxWords: 3000,
+    }),
+  ).not.toThrow();
+  expect(() =>
+    validatePublishableDictionary(dictionary, {
+      ...testQuality,
+      maxWords: 0,
+    }),
+  ).toThrow('maximum');
 });
