@@ -2,7 +2,9 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
+import { ALPHABET } from '../../shared/armenian.ts';
 import { parseDictionary } from '../../shared/schema.ts';
+import type { Dictionary } from '../../shared/types.ts';
 import { runtimeDictionary } from '../src/runtime.ts';
 
 interface RunResult {
@@ -10,6 +12,59 @@ interface RunResult {
   stdout: string;
 }
 type Run = (args: string[], quiet?: boolean) => RunResult;
+export interface PublishQuality {
+  language: string;
+  maxWords: number;
+  minWords: number;
+  minFamiliarWords: number;
+  minFamiliarShare: number;
+  minLetterCoverage: number;
+}
+// Mirrors the production audience policy in builder/config.json.
+export const PRODUCTION_QUALITY: PublishQuality = {
+  language: 'ru',
+  maxWords: 1000,
+  minWords: 950,
+  minFamiliarWords: 700,
+  minFamiliarShare: 0.7,
+  minLetterCoverage: 2,
+};
+
+export function validatePublishableDictionary(
+  dictionary: Dictionary,
+  quality: PublishQuality = PRODUCTION_QUALITY,
+): void {
+  const { words } = dictionary;
+  if (words.length > quality.maxWords)
+    throw new Error(
+      `Dictionary quality: ${words.length} words; maximum is ${quality.maxWords}`,
+    );
+  if (words.length < quality.minWords)
+    throw new Error(
+      `Dictionary quality: ${words.length} words; need at least ${quality.minWords}`,
+    );
+  const familiar = words.filter(
+    (word) => (word.familiarity?.[quality.language] ?? 0) >= 0.8,
+  ).length;
+  if (familiar < quality.minFamiliarWords)
+    throw new Error(
+      `Dictionary quality: ${familiar} familiar ${quality.language} words; need at least ${quality.minFamiliarWords}`,
+    );
+  if (familiar / words.length < quality.minFamiliarShare)
+    throw new Error(
+      `Dictionary quality: familiar share ${familiar / words.length}; need at least ${quality.minFamiliarShare}`,
+    );
+  for (const { upper } of ALPHABET) {
+    const coverage = words.filter((word) =>
+      word.uniqueLetters.includes(upper),
+    ).length;
+    if (coverage < quality.minLetterCoverage)
+      throw new Error(
+        `Dictionary quality: letter ${upper} appears in ${coverage} words; need at least ${quality.minLetterCoverage}`,
+      );
+  }
+}
+
 const runGh: Run = (args, quiet = false) => {
   const result = spawnSync('gh', args, {
     encoding: 'utf8',
@@ -24,9 +79,11 @@ const runGh: Run = (args, quiet = false) => {
 export async function publishDictionary(
   path = 'web/data/words.json',
   run: Run = runGh,
+  quality: PublishQuality = PRODUCTION_QUALITY,
 ) {
   const data = await readFile(path, 'utf8');
   const dictionary = parseDictionary(JSON.parse(data));
+  validatePublishableDictionary(dictionary, quality);
   if (data !== JSON.stringify(runtimeDictionary(dictionary)))
     throw new Error('Dictionary must be a stripped, minified runtime build');
 

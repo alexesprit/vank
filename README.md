@@ -3,6 +3,9 @@
 A static Modern Eastern Armenian reading trainer for Russian-speaking
 beginners. Type a reading in Cyrillic or Latin, press Enter to check, and Enter
 again for the next word. “Не знаю” reveals the reading and records a skip.
+This is a complete client-side training product: it includes
+adaptive selection, progress tracking, typography and font practice, flash
+recognition, metadata hints, bilingual UI, and local persistence.
 
 Try it online at [vank.alexesprit.com](https://vank.alexesprit.com).
 
@@ -12,6 +15,7 @@ Node.js 24 or later:
 
 ```sh
 npm ci
+npm run build:seed          # required once in a fresh checkout
 npm run dev
 npm run test:run
 npm run build
@@ -19,7 +23,9 @@ npm run preview
 ```
 
 `web/data/words.json` is a minified build artifact and is not stored in Git.
-Local development uses a locally built file. `DICTIONARY_URL` and
+Run `npm run build:seed` first after cloning (or after removing the artifact),
+then local development and tests use that deterministic 79-word dictionary.
+`DICTIONARY_URL` and
 `DICTIONARY_SHA256` remain available in `.env` when an external artifact is
 needed explicitly.
 
@@ -32,6 +38,10 @@ npm run build:dictionary
 npm run dictionary:publish
 ```
 
+`dictionary:publish` reruns the production quality gate before calling GitHub:
+the release must contain 950–1,000 words, at least 700 familiar words with a
+70% familiar share, and at least two words for every written Armenian letter.
+
 The release contains only the runtime file. Rich provenance and enrichment data
 remain in the builder intermediates, including `builder/data/words.json`.
 Deterministic letter decomposition is also omitted and reconstructed when the
@@ -41,6 +51,9 @@ Deploy `web/dist/` to any static host. Asset URLs are relative, including the
 versioned dictionary, so deployment under a GitHub Pages repository path works.
 No backend, account, runtime AI, or external learner telemetry. Optional Armenian
 fonts are fetched lazily from Google Fonts only when selected for training.
+The small `i18next` runtime dependency is intentional: it provides locale
+fallbacks and pluralization without maintaining a second interpolation system.
+Interface icons use the pinned, SRI-verified Lucide asset loaded from unpkg.
 Progress and raw attempt events stay in IndexedDB on the current browser origin.
 
 `npm test` runs Vitest in watch mode. Tests use offline fixtures and
@@ -161,34 +174,13 @@ as an ignored local sidecar. The committed
 `web/public/ATTRIBUTION.txt` is copied into every static deployment. Licensing
 references and the changes to imported material are recorded there.
 
-## Implementation boundaries
+## License
 
-- `shared/`: canonical Eastern Armenian alphabet, dictionary types and validation.
-- `web/src/core/`: pure normalization/alignment, EMA scoring, difficulty,
-  adaptive selection with randomized ties, and attempt construction.
-- `web/src/storage/`: versioned IndexedDB repositories and atomic attempt/progress saves.
-- `web/src/data/`: static dictionary loading and runtime validation.
-- `web/src/ui/`: rendering and input; `trainer.ts` coordinates core and persistence.
-- `builder/src/`: source adapters, independent pipeline stages, AI enrichment,
-  cache/file IO, and CLI reporting.
+The application source code is available under the MIT License; see
+[`LICENSE.md`](LICENSE.md).
 
-Algorithm coefficients live in `web/src/core/config.ts`. Bootstrap prefers unseen,
-recognizable loanwords until 20 distinct words are answered correctly and 12 letters
-have positive evidence, falling back to other unseen words if loanwords run out.
-After bootstrap, candidates contain at most one unknown written letter;
-introductions schedule three reinforcement attempts where the dictionary supplies
-eligible alternatives. Familiar-word
-answers are discounted, and strong letters require lower-familiarity evidence.
-Unknown readings and ambiguous alignment do not fabricate recognition credit.
-
-Readings use a simple learner notation, not IPA: `kh` for Խ, `gh` for Ղ, `j` for
-Ջ, `ts` for Ծ/Ց, `y` for Ը/Յ, with explicit Cyrillic forms and accepted aliases.
-`ՈՒ` is one pronunciation unit while evidence is retained for both written
-characters. Aspiration distinctions are not required in typed answers. Eastern
-sound values and position-sensitive vowels are tested. Lexical pronunciation
-exceptions require reviewed dictionary corrections; AI cannot rewrite readings.
-
-Remaining Part F features are out of scope: no response-time scoring,
-achievements, confusion engine, images, extra training modes, or backend sync.
-Attempt UUIDs, client identity, timestamps, raw answers, and alignment are retained
-for future use without building those features now.
+The bundled seed vocabulary is project-owned curated data. Dictionaries rebuilt
+with Wiktionary records include adapted material under Creative Commons
+Attribution-ShareAlike 4.0 where indicated. See
+[`web/public/ATTRIBUTION.txt`](web/public/ATTRIBUTION.txt) for source credits,
+licensing references, and a description of the dataset changes.
