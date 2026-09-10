@@ -149,6 +149,28 @@ describe('learning evidence', () => {
       attempts: 1,
       correct: 0,
     });
+
+    const completed = completeAttempt(
+      known([w], 0.8),
+      { word: w, phase: 'training' },
+      '',
+      true,
+      'client',
+      0,
+      200,
+      'skip',
+    );
+    expect(completed.state.letters.Շ).toMatchObject({
+      score: 0.68,
+      attempts: 11,
+      correct: 9,
+      lastMistakeAt: 200,
+    });
+    expect(completed.state.words[w.id]).toMatchObject({
+      attempts: 1,
+      correct: 0,
+    });
+    expect(completed.attempt.payload.evaluation.status).toBe('unknown');
   });
 });
 

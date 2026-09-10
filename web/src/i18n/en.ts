@@ -158,7 +158,7 @@ export const en = {
     partialPrefix: "If you don't know one letter, enter",
     or: 'or',
     partialSuffix: 'The other letters will still count.',
-    skip: "If you don't know the whole word, select “I don't know”.",
+    skip: "If you don't know the whole word, select “I don't know”. This lowers the mastery score for its letters.",
     result: 'Vank will show the reading and choose what to practise next.',
     storage:
       'Progress is stored on this device and is removed when browser data is cleared.',
