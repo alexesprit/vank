@@ -1,4 +1,4 @@
-import type { Dictionary } from '../../../shared/types.ts';
+import type { Dictionary, Evaluation } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { availableTypography, formatPrompt } from '../core/settings.ts';
@@ -10,6 +10,15 @@ import { mountStatsDialog, renderStats } from './stats-view.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
+export function formatMistakes(units: Evaluation['units']) {
+  return [
+    ...new Set(
+      units
+        .filter((unit) => unit.observation === 0)
+        .map((unit) => `${unit.source} → ${unit.expected}`),
+    ),
+  ].join(' · ');
+}
 export function showError(error: unknown) {
   const message = element('error');
   message.hidden = false;
@@ -137,16 +146,12 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
         `${word.acceptedCyrillic[0]} · ${word.readingLatin}`;
       element('meaning').textContent =
         word.meaning?.[TRAINER_CONFIG.learnerLanguage] ?? '';
-      const mistakes = result.units.filter((u) => u.observation === 0);
+      const mistakes = formatMistakes(result.units);
       element('mistakes').textContent =
         result.status === 'unknown'
           ? ''
-          : mistakes.length
-            ? t('trainer.mistakes', {
-                mistakes: mistakes
-                  .map((u) => `${u.source} → ${u.expected}`)
-                  .join(' · '),
-              })
+          : mistakes
+            ? t('trainer.mistakes', { mistakes })
             : result.status === 'ambiguous'
               ? t('trainer.compareReading')
               : '';
