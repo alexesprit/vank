@@ -391,6 +391,31 @@ fieldset + fieldset {
   margin-top: 24px;
 }
 
+.reset-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.reset-section h3,
+.reset-confirmation p {
+  margin: 0 0 12px;
+}
+
+.reset-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.danger-btn {
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+
+.reset-error {
+  color: var(--danger);
+}
+
 legend {
   margin-bottom: 12px;
   font-weight: 700;

@@ -87,6 +87,18 @@ export async function openRepository(name = 'vank') {
       tx.objectStore('settings').put(value, key);
       await done;
     },
+    async clearProgress() {
+      const tx = db.transaction(
+          ['attempts', 'letterStats', 'wordStats', 'settings'],
+          'readwrite',
+        ),
+        done = committed(tx);
+      tx.objectStore('attempts').clear();
+      tx.objectStore('letterStats').clear();
+      tx.objectStore('wordStats').clear();
+      tx.objectStore('settings').delete('reinforcement');
+      await done;
+    },
     async loadState(): Promise<LearnerState> {
       const store = db.transaction('wordStats').objectStore('wordStats');
       const [keys, values, letters, recent, reinforcement] = await Promise.all([

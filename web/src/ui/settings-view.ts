@@ -6,6 +6,8 @@ const element = <T extends HTMLElement>(id: string) =>
 
 export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   const dialog = element<HTMLDialogElement>('settings-dialog');
+  const progressChannel = new BroadcastChannel('vank-progress');
+  progressChannel.addEventListener('message', () => window.location.reload());
   const modeInputs = [
     ...document.querySelectorAll<HTMLInputElement>('[name="font-mode"]'),
   ];
@@ -16,6 +18,11 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   ] as HTMLInputElement[];
   const typographySelected = element<HTMLSelectElement>('typography-selected');
   const typographyEnabled = element('typography-enabled');
+  const resetOpen = element<HTMLButtonElement>('reset-open');
+  const resetConfirmation = element('reset-confirmation');
+  const resetCancel = element<HTMLButtonElement>('reset-cancel');
+  const resetConfirm = element<HTMLButtonElement>('reset-confirm');
+  const resetError = element('reset-error');
 
   selected.replaceChildren(
     ...FONTS.map((font) => new Option(font.name, font.id)),
@@ -138,8 +145,39 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     dialog.showModal();
   });
   element('settings-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => {
+    resetConfirmation.hidden = true;
+    resetOpen.hidden = false;
+    resetError.hidden = true;
+  });
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
+  });
+  resetOpen.addEventListener('click', () => {
+    resetOpen.hidden = true;
+    resetConfirmation.hidden = false;
+    resetCancel.focus();
+  });
+  resetCancel.addEventListener('click', () => {
+    resetConfirmation.hidden = true;
+    resetOpen.hidden = false;
+    resetError.hidden = true;
+    resetOpen.focus();
+  });
+  resetConfirm.addEventListener('click', async () => {
+    resetConfirm.disabled = resetCancel.disabled = true;
+    try {
+      await trainer.clearProgress();
+      progressChannel.postMessage('reset');
+      window.location.reload();
+    } catch (error) {
+      resetConfirm.disabled = resetCancel.disabled = false;
+      resetError.hidden = false;
+      resetError.textContent =
+        error instanceof Error
+          ? error.message
+          : 'Не удалось сбросить статистику.';
+    }
   });
   for (const control of [
     ...modeInputs,

@@ -108,6 +108,7 @@ export async function createTrainer(
       font = await latestFont(pendingFont);
       presentation = selectTypography(saved, correctAnswers());
     },
+    clearProgress: () => repository.clearProgress(),
   };
 }
 export type Trainer = Awaited<ReturnType<typeof createTrainer>>;

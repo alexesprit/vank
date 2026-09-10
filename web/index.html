@@ -49,6 +49,16 @@
     <div class="dialog-header"><h2 id="settings-title">Настройки</h2><button id="settings-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
     <fieldset><legend>Шрифт армянских слов</legend><label class="setting-row"><input type="radio" name="font-mode" value="single" /> Один шрифт</label><select id="font-selected" aria-label="Выбранный шрифт"></select><label class="setting-row"><input type="radio" name="font-mode" value="rotate" /> Чередовать доступные</label><div id="font-enabled" class="font-options"></div></fieldset>
     <fieldset><legend>Начертание</legend><label class="setting-row"><input type="radio" name="typography-mode" value="single" /> Одно начертание</label><select id="typography-selected" aria-label="Выбранное начертание"></select><label class="setting-row"><input type="radio" name="typography-mode" value="rotate" /> Чередовать выбранные</label><div id="typography-enabled" class="font-options"></div></fieldset>
+    <section class="reset-section" aria-labelledby="reset-title">
+      <h3 id="reset-title">Статистика</h3>
+      <button id="reset-open" class="secondary-btn danger-btn" type="button">Сбросить статистику</button>
+      <fieldset id="reset-confirmation" class="reset-confirmation" aria-describedby="reset-warning" hidden>
+        <legend class="sr-only">Подтверждение сброса статистики</legend>
+        <p id="reset-warning">Удалить всю статистику? Это действие нельзя отменить.</p>
+        <p id="reset-error" class="reset-error" role="alert" hidden></p>
+        <div class="reset-actions"><button id="reset-cancel" class="secondary-btn" type="button">Отмена</button><button id="reset-confirm" class="secondary-btn danger-btn" type="button">Удалить статистику</button></div>
+      </fieldset>
+    </section>
   </dialog>
   <script defer src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js" integrity="sha384-hK2uiaqTSh/v1VqRxmuMQL4xmt5n0DdyBCOItx2fAs7Wv+WC8Tu0yDW1j12JooyM" crossorigin="anonymous" onload="lucide.createIcons()"></script>
   <script type="module" src="/src/app.ts"></script>

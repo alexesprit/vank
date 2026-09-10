@@ -78,3 +78,34 @@ it('writes attempts and progress atomically, rejecting duplicate event IDs witho
   expect(await repo.getRecentAttempts(10)).toHaveLength(1);
   repo.close();
 });
+
+it('clears progress without clearing preferences or the client ID', async () => {
+  const repo = await openRepository(`test-${crypto.randomUUID()}`);
+  await repo.setSetting('app', { font: 'preferred' });
+  await repo.setSetting('clientId', 'client-1');
+  const state = await repo.loadState();
+  const result = completeAttempt(
+    state,
+    { word: deriveWord('ՄԱՄԱ'), phase: 'bootstrap' },
+    'mama',
+    false,
+    'client-1',
+    1,
+    2,
+    'attempt-1',
+  );
+  result.state.reinforcement = { letter: 'Մ', remaining: 1 };
+  await repo.saveAttempt(result.attempt, result.state);
+
+  await repo.clearProgress();
+
+  expect(await repo.loadState()).toEqual({
+    letters: {},
+    words: {},
+    recent: [],
+    reinforcement: undefined,
+  });
+  expect(await repo.getSetting('app')).toEqual({ font: 'preferred' });
+  expect(await repo.getSetting('clientId')).toBe('client-1');
+  repo.close();
+});
