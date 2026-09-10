@@ -120,6 +120,7 @@ it('submits once, saves before advancing, restores progress and retains stable c
   expect(trainer.current.word.id).not.toBe(first.id);
   const reloaded = await createTrainer(words, repo);
   expect(reloaded.state.recent).toHaveLength(1);
+  expect(reloaded.current.word.id).not.toBe(first.id);
   await reloaded.submit('', true);
   expect(reloaded.state.recent[0].clientId).toBe(clientId);
   repo.close();

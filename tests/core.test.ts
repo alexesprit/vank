@@ -204,6 +204,36 @@ describe('adaptive selection', () => {
       selectWord([loanword, native], state, 0, () => 0).word,
     ).toBeDefined();
   });
+  it('throws when no post-bootstrap word fits the introduction limit', () => {
+    expect(() => selectWord([word('ՖՔ')], bootstrapState(20, 12), 0)).toThrow(
+      'Dictionary has no words within the one-new-letter limit',
+    );
+  });
+  it('falls back to regular candidates when reinforcement has no match', () => {
+    const candidate = word('ՄԱՄԱ', 1),
+      state = known([candidate]);
+    state.reinforcement = { letter: 'Է', remaining: 3 };
+    const selected = selectWord([candidate], state, 0);
+    expect(selected.word).toBe(candidate);
+    expect(selected.phase).toBe('training');
+    expect(selected.diagnostics?.candidates.afterReinforcement).toBe(1);
+  });
+  it('allows the latest word when it is the only candidate', () => {
+    const candidate = word('ՄԱՄԱ', 1),
+      state = completeAttempt(
+        known([candidate]),
+        { word: candidate, phase: 'training' },
+        candidate.readingLatin,
+        false,
+        'client',
+        0,
+        1,
+        'attempt',
+      ).state;
+    const selected = selectWord([candidate], state, 2);
+    expect(selected.word).toBe(candidate);
+    expect(selected.diagnostics?.candidates.afterRecentExclusion).toBe(1);
+  });
   it('prefers weak letters over otherwise identical strong words', () => {
     const words = [word('ՄԱՄԱ'), word('ՆԱՆԱ')],
       state = known(words);
