@@ -2,12 +2,45 @@ import 'fake-indexeddb/auto';
 import { expect, it, vi } from 'vitest';
 import { deriveWord } from '../shared/armenian';
 import type { LearnerState } from '../shared/types';
+import { createFlashSession } from '../web/src/core/flash-session';
 import { completeAttempt, progress } from '../web/src/core/session';
 import { DEFAULT_SETTINGS, flashExposureMs } from '../web/src/core/settings';
 import { openRepository } from '../web/src/storage/repository';
 import { createTrainer } from '../web/src/trainer';
 
 const empty = (): LearnerState => ({ letters: {}, words: {}, recent: [] });
+
+it('disposes flash timers and visibility listeners', () => {
+  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+  try {
+    const listeners = new Set<() => void>();
+    vi.stubGlobal('document', {
+      visibilityState: 'visible',
+      addEventListener: (_type: string, listener: () => void) =>
+        listeners.add(listener),
+      removeEventListener: (_type: string, listener: () => void) =>
+        listeners.delete(listener),
+    });
+    const session = createFlashSession({
+      getEnabled: () => true,
+      getCorrectAnswers: () => 10,
+      getBaseExposureMs: () => 1_000,
+      getWordLength: () => 4,
+      getHasResult: () => false,
+      onChange: () => {},
+    });
+
+    session.start();
+    expect(listeners).toHaveLength(1);
+    session.dispose();
+    expect(listeners).toHaveLength(0);
+    vi.advanceTimersByTime(1_000);
+    expect(session.hidden).toBe(false);
+  } finally {
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  }
+});
 
 it('adds a capped letter allowance to the configured base exposure', () => {
   expect(flashExposureMs(3_000, 4)).toBe(3_000);

@@ -1,4 +1,5 @@
 import { metadataHintLabels } from '../core/metadata-hints.ts';
+import { countCorrectAnswers } from '../core/session.ts';
 import {
   FLASH_UNLOCK_AFTER_CORRECT,
   FONTS,
@@ -144,11 +145,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     metadataHints.checked = trainer.settings.metadataHints;
     flashEnabled.checked = trainer.settings.flash.enabled;
     flashDurationHint.dataset.tooltip = t('settings.flashDurationHint');
-    const correctAnswers = trainer.state.recent.filter(
-      (attempt) =>
-        attempt.payload.correct &&
-        (!attempt.payload.flashMode || attempt.payload.flashRevealed),
-    ).length;
+    const correctAnswers = countCorrectAnswers(trainer.state.recent);
     const flashUnlocked = flashAvailable(correctAnswers);
     flashEnabled.disabled = !flashUnlocked;
     flashEnabledLabel.textContent = flashUnlocked

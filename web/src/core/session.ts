@@ -8,6 +8,13 @@ import { evaluate } from './answer-checker.ts';
 import { TRAINER_CONFIG as config } from './config.ts';
 import { familiarity, updateScores } from './scoring.ts';
 import type { Selection } from './word-selector.ts';
+
+const countsAsCorrect = (attempt: AttemptEvent) =>
+  attempt.payload.correct &&
+  (!attempt.payload.flashMode || attempt.payload.flashRevealed);
+export const countCorrectAnswers = (attempts: AttemptEvent[]) =>
+  attempts.filter(countsAsCorrect).length;
+
 export function completeAttempt(
   state: LearnerState,
   selection: Selection,

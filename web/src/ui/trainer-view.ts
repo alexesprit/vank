@@ -1,6 +1,7 @@
 import type { Dictionary, Evaluation } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
+import { countCorrectAnswers } from '../core/session.ts';
 import { availableTypography, formatPrompt } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
@@ -124,13 +125,7 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     });
     presentationLabel.disabled =
       trainer.flashHidden ||
-      availableTypography(
-        trainer.state.recent.filter(
-          (attempt) =>
-            attempt.payload.correct &&
-            (!attempt.payload.flashMode || attempt.payload.flashRevealed),
-        ).length,
-      ).length < 2;
+      availableTypography(countCorrectAnswers(trainer.state.recent)).length < 2;
     element('result').hidden = !result;
     input.readOnly = Boolean(result);
     check.hidden = Boolean(result);
