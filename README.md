@@ -38,9 +38,8 @@ npm run build:dictionary
 npm run dictionary:publish
 ```
 
-`dictionary:publish` reruns the production quality gate before calling GitHub:
-the release may contain at most 3,000 words, with at least 700 familiar words, a
-70% familiar share, and at least two words for every written Armenian letter.
+`dictionary:publish` reruns the production quality gate from
+`builder/config.json` before calling GitHub.
 
 The release contains only the runtime file. Rich provenance and enrichment data
 remain in the builder intermediates, including `builder/data/words.json`.
@@ -61,8 +60,8 @@ fake-indexeddb; they do not call Wiktionary or OpenRouter.
 
 ## Dictionary builder
 
-The dictionary targets Russian-recognizable vocabulary, with a maximum of 3,000
-words. Familiarity scores are curated or AI estimates, not learner-study results.
+The dictionary targets Russian-recognizable vocabulary, up to the configured
+maximum. Familiarity scores are curated or AI estimates, not learner-study results.
 A separate 79-word curated seed remains available for offline development.
 
 ```sh
@@ -103,8 +102,8 @@ The configured audience policy plans words **before** AI enrichment:
   otherwise name-excluding Wiktionary adapter.
 - AI receives source definitions, parts of speech, and recognition hints. It
   checks current usage, meaning, recognizability, and beginner usefulness.
-- Final composition includes at most **3,000 accepted words**, with at least
-  **700 words having familiarity >= 0.8** and a **70% familiar share**.
+- Final composition follows the configured maximum, familiar-word minimum, and
+  familiar-share requirement.
   Imported words need AI confidence >= 0.8; flagged words are excluded.
   Usefulness ranks familiar words. Verification words must be explicitly
   selected or curated, have familiarity <= 0.4, and imported verification

@@ -8,6 +8,7 @@ export interface AudiencePolicy {
   candidates: string;
   minFamiliarWords: number;
   minFamiliarShare: number;
+  minLetterCoverage: number;
 }
 export function parseAudience(
   value: unknown,
@@ -27,7 +28,10 @@ export function parseAudience(
     typeof p.minFamiliarShare !== 'number' ||
     !Number.isFinite(p.minFamiliarShare) ||
     p.minFamiliarShare <= 0 ||
-    p.minFamiliarShare > 1
+    p.minFamiliarShare > 1 ||
+    typeof p.minLetterCoverage !== 'number' ||
+    !Number.isInteger(p.minLetterCoverage) ||
+    p.minLetterCoverage < 1
   )
     throw new Error('Invalid audience policy');
   return p as unknown as AudiencePolicy;

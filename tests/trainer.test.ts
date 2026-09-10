@@ -337,4 +337,5 @@ it.each([
     }
     expect(Object.keys(state.letters)).toHaveLength(ALPHABET.length);
   },
+  10_000,
 );

@@ -12,6 +12,7 @@ const policy = {
   candidates: 'fixture.json',
   minFamiliarWords: 2,
   minFamiliarShare: 0.7,
+  minLetterCoverage: 2,
 };
 const words = () =>
   deriveMetadata(
@@ -126,6 +127,7 @@ it('validates the audience policy rather than silently accepting impossible quot
     { minFamiliarWords: 1001 },
     { minFamiliarShare: 0 },
     { minFamiliarShare: 1.1 },
+    { minLetterCoverage: 0 },
     { candidates: '' },
   ]) {
     expect(() =>

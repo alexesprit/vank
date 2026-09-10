@@ -3,7 +3,9 @@ import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, expect, it } from 'vitest';
+import config from '../builder/config.json' with { type: 'json' };
 import {
+  PRODUCTION_QUALITY,
   publishDictionary,
   validatePublishableDictionary,
 } from '../builder/scripts/publish-dictionary.ts';
@@ -23,6 +25,16 @@ afterEach(async () => {
   await Promise.all(
     directories.splice(0).map((path) => rm(path, { recursive: true })),
   );
+});
+
+it('uses the builder config as the production quality gate', () => {
+  expect(PRODUCTION_QUALITY).toEqual({
+    language: config.audience.language,
+    maxWords: config.maxWords,
+    minFamiliarWords: config.audience.minFamiliarWords,
+    minFamiliarShare: config.audience.minFamiliarShare,
+    minLetterCoverage: config.audience.minLetterCoverage,
+  });
 });
 
 it('publishes the minified runtime dictionary and starts deployment', async () => {

@@ -259,6 +259,7 @@ it('applies audience selection before enrichment and preserves the runtime file 
           candidates: resolve('builder/data/recognizable-ru.json'),
           minFamiliarWords: 150,
           minFamiliarShare: 0.7,
+          minLetterCoverage: 2,
         },
         sources: [
           {

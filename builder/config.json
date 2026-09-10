@@ -20,6 +20,7 @@
     "language": "ru",
     "candidates": "builder/data/recognizable-ru.json",
     "minFamiliarWords": 700,
-    "minFamiliarShare": 0.7
+    "minFamiliarShare": 0.7,
+    "minLetterCoverage": 2
   }
 }

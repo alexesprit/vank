@@ -5,6 +5,8 @@ import { pathToFileURL } from 'node:url';
 import { ALPHABET } from '../../shared/armenian.ts';
 import { parseDictionary } from '../../shared/schema.ts';
 import type { Dictionary } from '../../shared/types.ts';
+import config from '../config.json' with { type: 'json' };
+import { parseAudience } from '../src/audience.ts';
 import { runtimeDictionary } from '../src/runtime.ts';
 
 interface RunResult {
@@ -19,13 +21,19 @@ export interface PublishQuality {
   minFamiliarShare: number;
   minLetterCoverage: number;
 }
-// Mirrors the production audience policy in builder/config.json.
+if (!Number.isInteger(config.maxWords) || config.maxWords < 1)
+  throw new Error('Invalid dictionary size');
+const audience = parseAudience(
+  config.audience,
+  config.learnerLanguages,
+  config.maxWords,
+);
 export const PRODUCTION_QUALITY: PublishQuality = {
-  language: 'ru',
-  maxWords: 3000,
-  minFamiliarWords: 700,
-  minFamiliarShare: 0.7,
-  minLetterCoverage: 2,
+  language: audience.language,
+  maxWords: config.maxWords,
+  minFamiliarWords: audience.minFamiliarWords,
+  minFamiliarShare: audience.minFamiliarShare,
+  minLetterCoverage: audience.minLetterCoverage,
 };
 
 export function validatePublishableDictionary(

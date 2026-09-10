@@ -260,7 +260,7 @@ async function main() {
                     ({ upper }) =>
                       selected.filter((word) =>
                         word.uniqueLetters.includes(upper),
-                      ).length >= 2,
+                      ).length >= audience.minLetterCoverage,
                   )
                 );
               }
@@ -309,9 +309,9 @@ async function main() {
           coverage,
         };
         await writeJson(file('audience-report'), quality);
-        if (coverage.some((c) => c.words < 2))
+        if (coverage.some((c) => c.words < audience.minLetterCoverage))
           throw new Error(
-            'Audience quality: every Armenian letter needs at least two words; see audience-report.json',
+            `Audience quality: every Armenian letter needs at least ${audience.minLetterCoverage} words; see audience-report.json`,
           );
         report({
           stage: 'audience',
