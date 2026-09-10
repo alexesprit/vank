@@ -2,6 +2,7 @@ import type { Alignment, Evaluation, Word } from '../../../shared/types.ts';
 
 const cyrillicPattern = /\p{Script=Cyrillic}/u;
 const latinPattern = /\p{Script=Latin}/u;
+const placeholderPattern = /^[-_*]$/u;
 
 export function normalizeAnswer(answer: string): string {
   return answer.normalize('NFC').trim().toLowerCase().replace(/\s+/gu, ' ');
@@ -9,6 +10,7 @@ export function normalizeAnswer(answer: string): string {
 function align(
   expected: string,
   actual: string,
+  units: string[] = [],
 ): {
   distance: number;
   alignment: Alignment[];
@@ -16,6 +18,14 @@ function align(
 } {
   const a = [...expected],
     b = [...actual];
+  let end = 0;
+  const ranges = units.map((unit) => {
+    const start = end;
+    end += [...unit].length;
+    return { start, end };
+  });
+  const rangeByStart = new Map(ranges.map((range) => [range.start, range]));
+  const rangeByEnd = new Map(ranges.map((range) => [range.end, range]));
   const costs = Array.from({ length: a.length + 1 }, (_, i) =>
     Array.from({ length: b.length + 1 }, (_, j) => (i ? (j ? 0 : i) : j)),
   );
@@ -26,6 +36,9 @@ function align(
         costs[i - 1][j] + 1,
         costs[i][j - 1] + 1,
       ];
+      const range = rangeByEnd.get(i);
+      if (placeholderPattern.test(b[j - 1]) && range)
+        options.push(costs[range.start][j - 1] + 1);
       const best = Math.min(...options);
       costs[i][j] = best;
     }
@@ -34,16 +47,32 @@ function align(
     for (let j = b.length; j >= 0; j--) {
       if (i === a.length) remaining[i][j] = b.length - j;
       else if (j === b.length) remaining[i][j] = a.length - i;
-      else
+      else {
+        const range = rangeByStart.get(i);
         remaining[i][j] = Math.min(
           remaining[i + 1][j + 1] + Number(a[i] !== b[j]),
           remaining[i + 1][j] + 1,
           remaining[i][j + 1] + 1,
+          ...(placeholderPattern.test(b[j]) && range
+            ? [remaining[range.end][j + 1] + 1]
+            : []),
         );
+      }
     }
   const recognized = a.map((letter, i) => {
     const observations = new Set<boolean>();
+    const range = ranges.find(
+      (candidate) => candidate.start <= i && i < candidate.end,
+    );
     for (let j = 0; j <= b.length; j++) {
+      if (
+        range &&
+        j < b.length &&
+        placeholderPattern.test(b[j]) &&
+        costs[range.start][j] + 1 + remaining[range.end][j + 1] ===
+          costs[a.length][b.length]
+      )
+        observations.add(false);
       if (costs[i][j] + 1 + remaining[i + 1][j] === costs[a.length][b.length])
         observations.add(false);
       if (
@@ -59,7 +88,22 @@ function align(
   let i = a.length,
     j = b.length;
   while (i || j) {
+    const range = rangeByEnd.get(i);
     if (
+      j &&
+      placeholderPattern.test(b[j - 1]) &&
+      range &&
+      costs[i][j] === costs[range.start][j - 1] + 1
+    ) {
+      alignment.push({
+        expected: a.slice(range.start, range.end).join(''),
+        actual: b[j - 1],
+        expectedIndex: range.start,
+        operation: 'replace',
+      });
+      i = range.start;
+      j--;
+    } else if (
       i &&
       j &&
       costs[i][j] === costs[i - 1][j - 1] + Number(a[i - 1] !== b[j - 1])
@@ -108,16 +152,20 @@ export function evaluate(
   const accepted = (
     isCyrillic ? word.acceptedCyrillic : word.acceptedLatin
   ).map(normalizeAnswer);
+  const unitReadings = word.units?.map((u) => normalizeAnswer(u[script])) ?? [];
+  const canonical = unitReadings.join('');
   // Input length is bounded in the UI and here so edit alignment cannot allocate unbounded memory.
   const supplied = normalizedAnswer.slice(0, 256);
   const candidates = accepted
-    .map((expected) => ({ expected, ...align(expected, supplied) }))
+    .map((expected) => ({
+      expected,
+      ...align(expected, supplied, expected === canonical ? unitReadings : []),
+    }))
     .sort((a, b) => a.distance - b.distance);
   const best = candidates[0];
   const unknown = skipped || !normalizedAnswer;
   const correct =
     !unknown && !mixed && normalizedAnswer.length <= 256 && best.distance === 0;
-  const canonical = word.units?.map((u) => normalizeAnswer(u[script])).join('');
   let offset = 0;
   const units = (word.units ?? []).map((u, position) => {
     const expected = normalizeAnswer(u[script]),

@@ -89,6 +89,20 @@ describe('answer evaluation', () => {
         ?.observation,
     ).toBe(0);
   });
+  it('treats fillers as one unknown pronunciation unit', () => {
+    const latin = evaluate(word('ՇՈՒՆ'), '_un');
+    expect(latin.units.map((u) => u.observation)).toEqual([0, 1, 1]);
+    expect(latin.distance).toBe(1);
+    expect(latin.alignment[0]).toMatchObject({ expected: 'sh', actual: '_' });
+
+    expect(
+      evaluate(word('ՁՈՒԿ'), '_ук').units.map((u) => u.observation),
+    ).toEqual([0, 1, 1]);
+    for (const filler of ['-', '*'])
+      expect(
+        evaluate(word('ՇՈՒՆ'), `${filler}un`).units.map((u) => u.observation),
+      ).toEqual([0, 1, 1]);
+  });
   it('does not invent letter evidence for unmapped accepted aliases', () => {
     const pizza = { ...word('ՊԻՑՑԱ'), acceptedLatin: ['pitstsa', 'pizza'] };
     expect(evaluate(pizza, 'pizza').correct).toBe(true);
