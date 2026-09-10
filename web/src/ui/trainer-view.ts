@@ -1,4 +1,5 @@
 import { TRAINER_CONFIG } from '../core/config.ts';
+import { formatPrompt } from '../core/settings.ts';
 import type { Trainer } from '../trainer.ts';
 import { mountSettings } from './settings-view.ts';
 import { renderStats } from './stats-view.ts';
@@ -24,8 +25,11 @@ export function mountTrainer(trainer: Trainer) {
     const { word } = trainer.current,
       result = trainer.result;
     const prompt = element('word');
-    prompt.textContent = word.word;
+    prompt.textContent = formatPrompt(word.word, trainer.presentation.caseMode);
     prompt.style.fontFamily = trainer.font.family;
+    prompt.style.fontStyle = trainer.presentation.italic ? 'italic' : 'normal';
+    element('presentation-label').textContent =
+      `Адаптивная практика · ${{ caps: 'CAPS', normal: 'Обычный регистр', lower: 'Строчные' }[trainer.presentation.caseMode]}${trainer.presentation.italic ? ' · курсив' : ''}`;
     element('result').hidden = !result;
     input.readOnly = Boolean(result);
     check.hidden = Boolean(result);

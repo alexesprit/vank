@@ -1,4 +1,8 @@
-import type { AttemptEvent, LearnerState } from '../../../shared/types.ts';
+import type {
+  AttemptEvent,
+  LearnerState,
+  Presentation,
+} from '../../../shared/types.ts';
 import { evaluate } from './answer-checker.ts';
 import { TRAINER_CONFIG as config } from './config.ts';
 import { familiarity, updateScores } from './scoring.ts';
@@ -13,6 +17,10 @@ export function completeAttempt(
   now: number,
   id: string,
   fontId = 'default',
+  presentation: Omit<Presentation, 'fontId'> = {
+    caseMode: 'caps',
+    italic: false,
+  },
 ): { state: LearnerState; attempt: AttemptEvent } {
   const { word } = selection,
     evaluation = evaluate(word, answer, skipped);
@@ -33,6 +41,7 @@ export function completeAttempt(
       familiarity: familiarity(word),
       learnerLanguage: config.learnerLanguage,
       fontId,
+      presentation: { ...presentation, fontId },
     },
   };
   const next = updateScores(state, word, evaluation, now);
@@ -89,6 +98,32 @@ export function progress(state: LearnerState) {
       })
       .map(([letter]) => letter),
   }));
+  const typographyStats = Object.values(
+    attempts.reduce<
+      Record<
+        string,
+        {
+          caseMode: Presentation['caseMode'];
+          italic: boolean;
+          events: AttemptEvent[];
+        }
+      >
+    >((groups, attempt) => {
+      const presentation = attempt.payload.presentation ?? {
+        caseMode: 'caps',
+        italic: false,
+      };
+      const key = `${presentation.caseMode}:${presentation.italic}`;
+      groups[key] ??= { ...presentation, events: [] };
+      groups[key].events.push(attempt);
+      return groups;
+    }, {}),
+  ).map(({ caseMode, italic, events }) => ({
+    caseMode,
+    italic,
+    attempts: events.length,
+    accuracy: accuracy(events),
+  }));
   return {
     introduced: letters.filter((l) => l.attempts > 0).length,
     strong: letters.filter(
@@ -113,5 +148,6 @@ export function progress(state: LearnerState) {
       .slice(0, 8)
       .map(([l]) => l),
     fontStats,
+    typographyStats,
   };
 }

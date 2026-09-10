@@ -93,7 +93,7 @@ it('applies font settings immediately and records the font that loaded', async (
   const loaded: string[] = [];
   const trainer = await createTrainer(
     ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable),
-    { ...repo, loadState: async () => practicedState(10) },
+    { ...repo, loadState: async () => practicedState(40) },
     async (font) => {
       loaded.push(font.id);
       return font.id === 'noto-sans-armenian' ? font : FONTS[0];
@@ -105,11 +105,22 @@ it('applies font settings immediately and records the font that loaded', async (
       selected: 'noto-sans-armenian',
       enabled: FONTS.map((font) => font.id),
     },
+    typography: {
+      mode: 'single',
+      selected: 'normal-italic',
+      enabled: ['normal-italic'],
+    },
   });
   expect(trainer.font.id).toBe('noto-sans-armenian');
+  expect(trainer.presentation).toEqual({ caseMode: 'normal', italic: true });
   expect(loaded).toContain('noto-sans-armenian');
   await trainer.submit('', true);
   expect(trainer.state.recent[0].payload.fontId).toBe('noto-sans-armenian');
+  expect(trainer.state.recent[0].payload.presentation).toEqual({
+    caseMode: 'normal',
+    fontId: 'noto-sans-armenian',
+    italic: true,
+  });
   expect(await repo.getSetting('app')).toEqual(trainer.settings);
   await trainer.next();
   await trainer.setSettings({

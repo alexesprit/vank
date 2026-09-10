@@ -1,4 +1,4 @@
-import { FONTS } from '../core/settings.ts';
+import { FONTS, TYPOGRAPHY_MODES } from '../core/settings.ts';
 import type { Trainer } from '../trainer.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
@@ -11,6 +11,11 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   ];
   const selected = element<HTMLSelectElement>('font-selected');
   const enabled = element('font-enabled');
+  const typographyModeInputs = [
+    ...document.getElementsByName('typography-mode'),
+  ] as HTMLInputElement[];
+  const typographySelected = element<HTMLSelectElement>('typography-selected');
+  const typographyEnabled = element('typography-enabled');
 
   selected.replaceChildren(
     ...FONTS.map((font) => new Option(font.name, font.id)),
@@ -28,9 +33,24 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       return label;
     }),
   );
+  typographySelected.replaceChildren(
+    ...TYPOGRAPHY_MODES.map((mode) => new Option(mode.name, mode.id)),
+  );
+  typographyEnabled.replaceChildren(
+    ...TYPOGRAPHY_MODES.map((mode) => {
+      const label = document.createElement('label');
+      label.className = 'font-choice';
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.value = mode.id;
+      label.append(input, document.createTextNode(mode.name));
+      return label;
+    }),
+  );
 
   function render() {
     const { fonts } = trainer.settings;
+    const { typography } = trainer.settings;
     for (const input of modeInputs) input.checked = input.value === fonts.mode;
     for (const option of selected.options)
       option.disabled =
@@ -48,6 +68,27 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       if (input.nextElementSibling)
         input.nextElementSibling.textContent = `${font.name}${locked ? ` · после ${font.unlockAfterAttempts} слов` : ''}`;
     }
+    for (const input of typographyModeInputs)
+      input.checked = input.value === typography.mode;
+    for (const option of typographySelected.options)
+      option.disabled =
+        trainer.state.recent.length <
+        (TYPOGRAPHY_MODES.find((mode) => mode.id === option.value)
+          ?.unlockAfterAttempts ?? 0);
+    typographySelected.value = typography.selected;
+    typographySelected.disabled = typography.mode !== 'single';
+    for (const input of typographyEnabled.querySelectorAll<HTMLInputElement>(
+      'input',
+    )) {
+      const mode = TYPOGRAPHY_MODES.find((mode) => mode.id === input.value);
+      if (!mode) continue;
+      const locked = trainer.state.recent.length < mode.unlockAfterAttempts;
+      input.checked = typography.enabled.includes(input.value);
+      input.disabled = typography.mode !== 'rotate' || locked;
+      const text = input.parentElement?.lastChild;
+      if (text)
+        text.textContent = `${mode.name}${locked ? ` · после ${mode.unlockAfterAttempts} слов` : ''}`;
+    }
   }
 
   async function apply() {
@@ -57,12 +98,22 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     const checked = [
       ...enabled.querySelectorAll<HTMLInputElement>('input:checked'),
     ].map((input) => input.value);
+    const typographyMode = typographyModeInputs.find((input) => input.checked)
+      ?.value as 'single' | 'rotate';
+    const typographyChecked = [
+      ...typographyEnabled.querySelectorAll<HTMLInputElement>('input:checked'),
+    ].map((input) => input.value);
     try {
       await trainer.setSettings({
         fonts: {
           mode,
           selected: selected.value,
           enabled: checked.length ? checked : ['default'],
+        },
+        typography: {
+          mode: typographyMode,
+          selected: typographySelected.value,
+          enabled: typographyChecked.length ? typographyChecked : ['caps'],
         },
       });
       render();
@@ -91,6 +142,9 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     ...modeInputs,
     selected,
     ...enabled.querySelectorAll('input'),
+    ...typographyModeInputs,
+    typographySelected,
+    ...typographyEnabled.querySelectorAll('input'),
   ])
     control.addEventListener('change', () => void apply());
   render();

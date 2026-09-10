@@ -1,6 +1,6 @@
 # Vank
 
-A static, CAPS-only Modern Eastern Armenian reading trainer for Russian-speaking
+A static Modern Eastern Armenian reading trainer for Russian-speaking
 beginners. Type a reading in Cyrillic or Latin, press Enter to check, and Enter
 again for the next word. “Не знаю” reveals the reading and records a skip.
 
@@ -188,7 +188,7 @@ characters. Aspiration distinctions are not required in typed answers. Eastern
 sound values and position-sensitive vowels are tested. Lexical pronunciation
 exceptions require reviewed dictionary corrections; AI cannot rewrite readings.
 
-Part F features remain out of scope: no typography modes, response-time scoring,
+Remaining Part F features are out of scope: no response-time scoring,
 achievements, confusion engine, images, extra training modes, or backend sync.
 Attempt UUIDs, client identity, timestamps, raw answers, and alignment are retained
 for future use without building those features now.

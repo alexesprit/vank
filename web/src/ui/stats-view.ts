@@ -49,4 +49,15 @@ export function renderStats(state: LearnerState, sessionStart: number) {
   );
   if (!stats.fontStats.length)
     fontStats.textContent = 'Появится после первой попытки';
+  const typographyStats = element('typography-stats');
+  typographyStats.replaceChildren(
+    ...stats.typographyStats.map((stat) => {
+      const row = document.createElement('p');
+      row.className = 'font-stat';
+      row.textContent = `${{ caps: 'ПРОПИСНЫЕ', normal: 'Обычный регистр', lower: 'Строчные' }[stat.caseMode]}${stat.italic ? ' · курсив' : ''}: ${percentage(stat.accuracy)}`;
+      return row;
+    }),
+  );
+  if (!stats.typographyStats.length)
+    typographyStats.textContent = 'Появится после первой попытки';
 }

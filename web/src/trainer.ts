@@ -6,6 +6,7 @@ import {
   loadFont,
   parseSettings,
   selectFont,
+  selectTypography,
 } from './core/settings.ts';
 import { selectWord } from './core/word-selector.ts';
 import type { Repository } from './storage/repository.ts';
@@ -25,6 +26,7 @@ export async function createTrainer(
   let pendingFont = fontLoader(selectFont(settings, state.recent.length));
   let current = selectWord(words, state, Date.now()),
     font = await pendingFont,
+    presentation = selectTypography(settings, state.recent.length),
     shownAt = Date.now();
   let result: Evaluation | undefined,
     busy = false;
@@ -52,6 +54,9 @@ export async function createTrainer(
     get font() {
       return font;
     },
+    get presentation() {
+      return presentation;
+    },
     async submit(answer: string, skipped = false) {
       if (busy || result) return;
       busy = true;
@@ -66,6 +71,7 @@ export async function createTrainer(
           Date.now(),
           crypto.randomUUID(),
           font.id,
+          presentation,
         );
         await repository.saveAttempt(completed.attempt, completed.state);
         state = completed.state;
@@ -81,6 +87,7 @@ export async function createTrainer(
         const next = selectWord(words, state, Date.now());
         pendingFont = fontLoader(selectFont(settings, state.recent.length));
         font = await latestFont(pendingFont);
+        presentation = selectTypography(settings, state.recent.length);
         current = next;
         shownAt = Date.now();
         result = undefined;
@@ -88,12 +95,16 @@ export async function createTrainer(
         busy = false;
       }
     },
-    async setSettings(next: AppSettings) {
+    async setSettings(
+      next: Pick<AppSettings, 'fonts'> &
+        Partial<Pick<AppSettings, 'typography'>>,
+    ) {
       const saved = parseSettings(next);
       await repository.setSetting('app', saved);
       settings = saved;
       pendingFont = fontLoader(selectFont(saved, state.recent.length));
       font = await latestFont(pendingFont);
+      presentation = selectTypography(saved, state.recent.length);
     },
   };
 }

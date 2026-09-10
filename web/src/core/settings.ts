@@ -1,7 +1,9 @@
 import { ALPHABET } from '../../../shared/armenian.ts';
+import type { CaseMode, Presentation } from '../../../shared/types.ts';
 
 const googleStylesheet = (family: string) =>
   `https://fonts.googleapis.com/css2?family=${family.replaceAll(' ', '+')}:wght@700&display=swap`;
+const canonicalArmenianPattern = /^[Ա-Ֆ]+$/u;
 
 export interface FontOption {
   id: string;
@@ -82,7 +84,68 @@ export interface AppSettings {
     selected: string;
     enabled: string[];
   };
+  typography: {
+    mode: 'single' | 'rotate';
+    selected: string;
+    enabled: string[];
+  };
 }
+
+export const TYPOGRAPHY_MODES = [
+  {
+    id: 'caps',
+    name: 'ПРОПИСНЫЕ',
+    caseMode: 'caps',
+    italic: false,
+    unlockAfterAttempts: 0,
+  },
+  {
+    id: 'normal',
+    name: 'Обычный регистр',
+    caseMode: 'normal',
+    italic: false,
+    unlockAfterAttempts: 0,
+  },
+  {
+    id: 'lower',
+    name: 'строчные',
+    caseMode: 'lower',
+    italic: false,
+    unlockAfterAttempts: 0,
+  },
+  {
+    id: 'caps-italic',
+    name: 'ПРОПИСНЫЕ · курсив',
+    caseMode: 'caps',
+    italic: true,
+    unlockAfterAttempts: 40,
+  },
+  {
+    id: 'normal-italic',
+    name: 'Обычный · курсив',
+    caseMode: 'normal',
+    italic: true,
+    unlockAfterAttempts: 40,
+  },
+  {
+    id: 'lower-italic',
+    name: 'строчные · курсив',
+    caseMode: 'lower',
+    italic: true,
+    unlockAfterAttempts: 40,
+  },
+] satisfies Array<{
+  id: string;
+  name: string;
+  caseMode: CaseMode;
+  italic: boolean;
+  unlockAfterAttempts: number;
+}>;
+
+export const DEFAULT_PRESENTATION = {
+  caseMode: 'caps',
+  italic: false,
+} as const;
 
 export const DEFAULT_SETTINGS: AppSettings = {
   fonts: {
@@ -90,12 +153,18 @@ export const DEFAULT_SETTINGS: AppSettings = {
     selected: 'default',
     enabled: FONTS.map((font) => font.id),
   },
+  typography: {
+    mode: 'single',
+    selected: 'caps',
+    enabled: TYPOGRAPHY_MODES.map((mode) => mode.id),
+  },
 };
 
 export function parseSettings(value: unknown): AppSettings {
   if (!value || typeof value !== 'object')
     return structuredClone(DEFAULT_SETTINGS);
-  const fonts = (value as { fonts?: unknown }).fonts;
+  const saved = value as { fonts?: unknown; typography?: unknown };
+  const fonts = saved.fonts;
   if (!fonts || typeof fonts !== 'object')
     return structuredClone(DEFAULT_SETTINGS);
   const candidate = fonts as Partial<AppSettings['fonts']>;
@@ -107,20 +176,68 @@ export function parseSettings(value: unknown): AppSettings {
     !candidate.enabled.every((id) => typeof id === 'string' && ids.has(id))
   )
     return structuredClone(DEFAULT_SETTINGS);
+  const typography = saved.typography;
+  const parsedTypography = (() => {
+    if (!typography || typeof typography !== 'object')
+      return structuredClone(DEFAULT_SETTINGS.typography);
+    const candidate = typography as Partial<AppSettings['typography']>;
+    const ids = new Set(TYPOGRAPHY_MODES.map((mode) => mode.id));
+    if (
+      !['single', 'rotate'].includes(candidate.mode ?? '') ||
+      !ids.has(candidate.selected ?? '') ||
+      !Array.isArray(candidate.enabled) ||
+      !candidate.enabled.every((id) => typeof id === 'string' && ids.has(id))
+    )
+      return structuredClone(DEFAULT_SETTINGS.typography);
+    return {
+      mode: candidate.mode as AppSettings['typography']['mode'],
+      selected: candidate.selected as string,
+      enabled: [...new Set(candidate.enabled)],
+    };
+  })();
   return {
     fonts: {
       mode: candidate.mode as AppSettings['fonts']['mode'],
       selected: candidate.selected as string,
       enabled: [...new Set(candidate.enabled)],
     },
+    typography: parsedTypography,
   };
+}
+
+export function selectTypography(
+  settings: AppSettings,
+  attempts: number,
+  random = Math.random,
+): Omit<Presentation, 'fontId'> {
+  const { typography } = settings;
+  const available = availableTypography(attempts);
+  const choices =
+    typography.mode === 'single'
+      ? available.filter((mode) => mode.id === typography.selected)
+      : available.filter((mode) => typography.enabled.includes(mode.id));
+  const selected =
+    choices[Math.floor(random() * choices.length)] ?? TYPOGRAPHY_MODES[0];
+  return { caseMode: selected.caseMode, italic: selected.italic };
+}
+
+export const availableTypography = (attempts: number) =>
+  TYPOGRAPHY_MODES.filter((mode) => attempts >= mode.unlockAfterAttempts);
+
+export function formatPrompt(word: string, caseMode: CaseMode): string {
+  if (!canonicalArmenianPattern.test(word)) return word;
+  if (caseMode === 'caps') return word;
+  const lower = word.toLocaleLowerCase('hy').replaceAll('եվ', 'և');
+  return caseMode === 'normal'
+    ? lower[0].toLocaleUpperCase('hy') + lower.slice(1)
+    : lower;
 }
 
 export const availableFonts = (attempts: number) =>
   FONTS.filter((font) => attempts >= font.unlockAfterAttempts);
 
 export function selectFont(
-  settings: AppSettings,
+  settings: Pick<AppSettings, 'fonts'>,
   attempts: number,
   random = Math.random,
 ): FontOption {

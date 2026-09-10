@@ -372,6 +372,10 @@ fieldset {
   border: 0;
 }
 
+fieldset + fieldset {
+  margin-top: 24px;
+}
+
 legend {
   margin-bottom: 12px;
   font-weight: 700;
@@ -384,7 +388,8 @@ legend {
   gap: 9px;
 }
 
-#font-selected {
+#font-selected,
+#typography-selected {
   width: 100%;
   padding: 10px;
   border: 1px solid var(--border);

@@ -73,6 +73,12 @@ export interface Evaluation {
   alignment: Alignment[];
   units: UnitEvidence[];
 }
+export type CaseMode = 'caps' | 'normal' | 'lower';
+export interface Presentation {
+  caseMode: CaseMode;
+  fontId: string;
+  italic: boolean;
+}
 export interface AttemptEvent {
   id: string;
   type: 'attempt.completed';
@@ -90,6 +96,7 @@ export interface AttemptEvent {
     familiarity: number;
     learnerLanguage: string;
     fontId: string;
+    presentation?: Presentation;
   };
 }
 export interface LearnerState {
