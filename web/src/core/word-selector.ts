@@ -10,6 +10,34 @@ export interface Selection {
     | 'reinforcement'
     | 'verification';
   introducedLetter?: string;
+  diagnostics?: SelectionDiagnostics;
+}
+export interface CandidateDiagnostics {
+  wordId: string;
+  word: string;
+  priority: number;
+  components: Record<string, number>;
+}
+export interface SelectionDiagnostics {
+  bootstrap: boolean;
+  knownLetters: number;
+  successfulWords: number;
+  unknownLetters: string[];
+  needsConfidence: boolean;
+  confidenceBreak: boolean;
+  reinforcement?: LearnerState['reinforcement'];
+  candidates: {
+    dictionary: number;
+    unseen: number;
+    bootstrapPool: number;
+    loanwords: number;
+    eligible: number;
+    afterRecentExclusion: number;
+    afterConfidenceBreak: number;
+    afterReinforcement: number;
+  };
+  selected: CandidateDiagnostics;
+  alternatives: CandidateDiagnostics[];
 }
 export const unknownLetters = (word: Word, state: LearnerState): string[] =>
   word.uniqueLetters.filter((l) => !(state.letters[l]?.score > 0));
@@ -67,11 +95,13 @@ export function selectWord(
           unknownLetters(w, state).length <=
           config.maxUnknownLettersIntroduction,
       );
+  const eligible = candidates.length;
   if (!candidates.length)
     throw new Error('Dictionary has no words within the one-new-letter limit');
   const latest = state.recent[0]?.payload.wordId;
   const different = candidates.filter((w) => w.id !== latest);
   if (different.length) candidates = different;
+  const afterRecentExclusion = candidates.length;
   const needsConfidence =
     !bootstrap &&
     state.recent.length >= 2 &&
@@ -95,6 +125,7 @@ export function selectWord(
       confidenceBreak = true;
     }
   }
+  const afterConfidenceBreak = candidates.length;
   const target = state.reinforcement;
   if (!bootstrap && !confidenceBreak && target?.remaining) {
     const reinforcement = candidates.filter((w) =>
@@ -102,7 +133,8 @@ export function selectWord(
     );
     if (reinforcement.length) candidates = reinforcement;
   }
-  const priority = (word: Word): number => {
+  const afterReinforcement = candidates.length;
+  const diagnose = (word: Word): CandidateDiagnostics => {
     const recentIndex = state.recent
       .slice(0, config.recentWordWindow)
       .findIndex((a) => a.payload.wordId === word.id);
@@ -110,10 +142,20 @@ export function selectWord(
       recentIndex < 0
         ? 0
         : (config.recentWordWindow - recentIndex) / config.recentWordWindow;
-    if (bootstrap)
-      return (
-        familiarity(word) - word.length / 30 - recent * config.weights.recent
-      );
+    if (bootstrap) {
+      const components = {
+        familiarity: familiarity(word),
+        length: -word.length / 30,
+        recent: -recent * config.weights.recent,
+      };
+      return {
+        wordId: word.id,
+        word: word.word,
+        priority:
+          components.familiarity + components.length + components.recent,
+        components,
+      };
+    }
     const weak = average(
       word.uniqueLetters.map((l) => 1 - (state.letters[l]?.score ?? 0)),
     );
@@ -138,44 +180,86 @@ export function selectWord(
           (state.letters[l]?.correct ?? 0) > 0 && !state.letters[l]?.verified,
       );
     const w = config.weights;
-    return (
-      w.weak * weak +
-      w.spacing * Math.max(spacing, mistakes) +
-      w.difficulty * match +
-      w.novelty * Number(!stat) +
-      w.reinforcement *
+    const components = {
+      weak: w.weak * weak,
+      spacingOrMistake: w.spacing * Math.max(spacing, mistakes),
+      difficulty: w.difficulty * match,
+      novelty: w.novelty * Number(!stat),
+      reinforcement:
+        w.reinforcement *
         Number(
           verification ||
             Boolean(target && word.uniqueLetters.includes(target.letter)),
-        ) -
-      w.recent * recent
-    );
+        ),
+      recent: -w.recent * recent,
+    };
+    return {
+      wordId: word.id,
+      word: word.word,
+      priority:
+        components.weak +
+        components.spacingOrMistake +
+        components.difficulty +
+        components.novelty +
+        components.reinforcement +
+        components.recent,
+      components,
+    };
   };
   const ranked = candidates
-    .map((word) => ({ word, priority: priority(word) }))
+    .map((word) => ({ word, diagnostic: diagnose(word) }))
     .sort(
-      (a, b) => b.priority - a.priority || a.word.id.localeCompare(b.word.id),
+      (a, b) =>
+        b.diagnostic.priority - a.diagnostic.priority ||
+        a.word.id.localeCompare(b.word.id),
     );
   const best = ranked.filter(
-    (candidate) => candidate.priority === ranked[0].priority,
+    (candidate) =>
+      candidate.diagnostic.priority === ranked[0].diagnostic.priority,
   );
-  const word = best[Math.floor(random() * best.length)].word;
+  const chosen = best[Math.floor(random() * best.length)];
+  const word = chosen.word;
   const unknown = unknownLetters(word, state);
+  const phase = bootstrap
+    ? 'bootstrap'
+    : !confidenceBreak &&
+        target?.remaining &&
+        word.uniqueLetters.includes(target.letter)
+      ? 'reinforcement'
+      : unknown.length
+        ? 'introduction'
+        : familiarity(word) <= config.verificationFamiliarityThreshold
+          ? 'verification'
+          : 'training';
   return {
     word,
-    phase: bootstrap
-      ? 'bootstrap'
-      : !confidenceBreak &&
-          target?.remaining &&
-          word.uniqueLetters.includes(target.letter)
-        ? 'reinforcement'
-        : unknown.length
-          ? 'introduction'
-          : familiarity(word) <= config.verificationFamiliarityThreshold
-            ? 'verification'
-            : 'training',
+    phase,
     ...(!bootstrap && unknown.length === 1
       ? { introducedLetter: unknown[0] }
       : {}),
+    diagnostics: {
+      bootstrap,
+      knownLetters: knownCount,
+      successfulWords,
+      unknownLetters: unknown,
+      needsConfidence,
+      confidenceBreak,
+      reinforcement: target,
+      candidates: {
+        dictionary: words.length,
+        unseen: unseen.length,
+        bootstrapPool: bootstrapPool.length,
+        loanwords: loanwords.length,
+        eligible,
+        afterRecentExclusion,
+        afterConfidenceBreak,
+        afterReinforcement,
+      },
+      selected: chosen.diagnostic,
+      alternatives: ranked
+        .filter((candidate) => candidate.word !== word)
+        .slice(0, 5)
+        .map((candidate) => candidate.diagnostic),
+    },
   };
 }

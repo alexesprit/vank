@@ -1,4 +1,10 @@
-import type { Evaluation, Word } from '../../shared/types.ts';
+import type {
+  Evaluation,
+  LetterStat,
+  Word,
+  WordStat,
+} from '../../shared/types.ts';
+import { TRAINER_CONFIG } from './core/config.ts';
 import { completeAttempt } from './core/session.ts';
 import {
   type AppSettings,
@@ -8,8 +14,17 @@ import {
   selectFont,
   selectTypography,
 } from './core/settings.ts';
+import type { Selection } from './core/word-selector.ts';
 import { selectWord } from './core/word-selector.ts';
 import type { Repository } from './storage/repository.ts';
+
+interface ScoreUpdateDiagnostics {
+  wordId: string;
+  phase: Selection['phase'];
+  evidenceWeight: number;
+  letters: Record<string, { before: LetterStat | null; after: LetterStat }>;
+  word: { before: WordStat | null; after: WordStat };
+}
 export async function createTrainer(
   words: Word[],
   repository: Repository,
@@ -31,7 +46,8 @@ export async function createTrainer(
     presentation = selectTypography(settings, correctAnswers()),
     shownAt = Date.now();
   let result: Evaluation | undefined,
-    busy = false;
+    busy = false,
+    lastScoreUpdate: ScoreUpdateDiagnostics | undefined;
   const latestFont = async (requested: Promise<FontOption>) => {
     let loaded = await requested;
     while (requested !== pendingFont) {
@@ -59,6 +75,9 @@ export async function createTrainer(
     get presentation() {
       return presentation;
     },
+    get lastScoreUpdate() {
+      return lastScoreUpdate;
+    },
     async submit(answer: string, skipped = false) {
       if (busy || result) return;
       busy = true;
@@ -76,6 +95,28 @@ export async function createTrainer(
           presentation,
         );
         await repository.saveAttempt(completed.attempt, completed.state);
+        const familiarity = completed.attempt.payload.familiarity;
+        lastScoreUpdate = {
+          wordId: current.word.id,
+          phase: current.phase,
+          evidenceWeight: Math.max(
+            TRAINER_CONFIG.familiarWordEvidenceFloor,
+            1 - familiarity * TRAINER_CONFIG.familiarityDiscount,
+          ),
+          letters: Object.fromEntries(
+            current.word.uniqueLetters.map((letter) => [
+              letter,
+              {
+                before: state.letters[letter] ?? null,
+                after: completed.state.letters[letter],
+              },
+            ]),
+          ),
+          word: {
+            before: state.words[current.word.id] ?? null,
+            after: completed.state.words[current.word.id],
+          },
+        };
         state = completed.state;
         result = completed.attempt.payload.evaluation;
       } finally {

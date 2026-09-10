@@ -380,6 +380,58 @@ dialog::backdrop {
   font-size: 14px;
 }
 
+.debug-dialog {
+  width: min(900px, calc(100% - 32px));
+}
+
+.debug-hint {
+  margin: -12px 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.debug-content {
+  display: grid;
+  gap: 20px;
+}
+
+.debug-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.debug-section h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.debug-copy {
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.debug-section pre {
+  max-height: 360px;
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.debug-section summary {
+  margin-bottom: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+}
+
 fieldset {
   display: grid;
   gap: 12px;

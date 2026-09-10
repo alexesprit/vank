@@ -150,6 +150,23 @@ describe('adaptive selection', () => {
     expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('ԳԱԶ');
     expect(selectWord(words, empty(), 0, () => 0.999).word.word).toBe('ԶԱԼ');
   });
+  it('retains the selection decision for diagnostics', () => {
+    const words = [word('ԳԱԶ', 1), word('ԶԱԼ', 1)];
+    const selected = selectWord(words, empty(), 0, () => 0);
+    expect(selected.diagnostics).toMatchObject({
+      bootstrap: true,
+      unknownLetters: selected.word.uniqueLetters,
+      candidates: { dictionary: 2, unseen: 2, loanwords: 2, eligible: 2 },
+      selected: { wordId: selected.word.id },
+    });
+    expect(selected.diagnostics?.alternatives).toHaveLength(1);
+    expect(
+      Object.values(selected.diagnostics?.selected.components ?? {}).reduce(
+        (sum, component) => sum + component,
+        0,
+      ),
+    ).toBeCloseTo(selected.diagnostics?.selected.priority ?? 0);
+  });
   it('requires 20 successful words and 12 known letters to finish bootstrap', () => {
     const words = Array.from({ length: 21 }, (_, i) => ({
       ...word('ԳԱԶ', 1),

@@ -86,6 +86,11 @@ it('submits once, saves before advancing, restores progress and retains stable c
   ]);
   expect(trainer.result?.correct).toBe(true);
   expect(trainer.state.recent).toHaveLength(1);
+  expect(trainer.lastScoreUpdate).toMatchObject({
+    wordId: first.id,
+    phase: 'bootstrap',
+    word: { before: null, after: { attempts: 1, correct: 1 } },
+  });
   const clientId = trainer.state.recent[0].clientId;
   await trainer.next();
   expect(trainer.current.word.id).not.toBe(first.id);

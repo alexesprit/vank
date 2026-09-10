@@ -1,0 +1,159 @@
+import { version as appVersion } from '../../../package.json';
+import type { Dictionary } from '../../../shared/types.ts';
+import { TRAINER_CONFIG } from '../core/config.ts';
+import { progress } from '../core/session.ts';
+import { PROGRESS_SCHEMA_VERSION } from '../storage/repository.ts';
+import type { Trainer } from '../trainer.ts';
+
+const element = <T extends HTMLElement>(id: string) =>
+  document.getElementById(id) as T;
+const json = (value: unknown) =>
+  JSON.stringify(
+    value,
+    (_key, item) =>
+      typeof item === 'number' && !Number.isInteger(item)
+        ? Number(item.toFixed(4))
+        : item,
+    2,
+  );
+
+async function storageDiagnostics() {
+  if (!navigator.storage) return { available: false };
+  const [estimate, persisted] = await Promise.all([
+    navigator.storage.estimate().catch((): StorageEstimate => ({})),
+    navigator.storage.persisted().catch(() => undefined),
+  ]);
+  return {
+    available: true,
+    usageBytes: estimate.usage,
+    quotaBytes: estimate.quota,
+    persisted,
+  };
+}
+
+function section(title: string, value: unknown, collapsed = false) {
+  const container = document.createElement('section');
+  container.className = 'debug-section';
+  const heading = document.createElement('div');
+  heading.className = 'debug-section-heading';
+  const h3 = document.createElement('h3');
+  h3.textContent = title;
+  const copy = document.createElement('button');
+  copy.className = 'secondary-btn debug-copy';
+  copy.type = 'button';
+  copy.textContent = 'Копировать';
+  const output = document.createElement('pre');
+  output.textContent = json(value);
+  copy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(output.textContent);
+      copy.textContent = 'Скопировано';
+    } catch {
+      copy.textContent = 'Не удалось';
+    }
+    window.setTimeout(() => {
+      copy.textContent = 'Копировать';
+    }, 1500);
+  });
+  heading.append(h3, copy);
+  if (collapsed) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Показать JSON';
+    details.append(summary, output);
+    container.append(heading, details);
+  } else container.append(heading, output);
+  return container;
+}
+
+export function mountDebugDialog(trainer: Trainer, dictionary: Dictionary) {
+  const dialog = element<HTMLDialogElement>('debug-dialog');
+  const content = element('debug-content');
+
+  element('debug-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  return async () => {
+    const state = trainer.state;
+    const attempt = state.recent[0];
+    const stats = progress(state);
+    const skipped = state.recent.filter(
+      (item) => item.payload.evaluation.status === 'unknown',
+    ).length;
+    const incorrect = state.recent.filter(
+      (item) =>
+        !item.payload.correct && item.payload.evaluation.status !== 'unknown',
+    ).length;
+    const snapshot = {
+      selection: {
+        wordId: trainer.current.word.id,
+        word: trainer.current.word.word,
+        phase: trainer.current.phase,
+        introducedLetter: trainer.current.introducedLetter,
+        unknownLetters: trainer.current.diagnostics?.unknownLetters,
+        diagnostics: trainer.current.diagnostics,
+      },
+      currentWord: trainer.current.word,
+      lastEvaluation: attempt
+        ? {
+            wordId: attempt.payload.wordId,
+            answer: attempt.payload.answer,
+            durationMs: attempt.payload.answeredAt - attempt.payload.shownAt,
+            ...attempt.payload.evaluation,
+          }
+        : null,
+      scoreUpdate: trainer.lastScoreUpdate ?? null,
+      learner: {
+        attempts: state.recent.length,
+        correct: state.recent.filter((item) => item.payload.correct).length,
+        incorrect,
+        skipped,
+        uniqueWordsSeen: Object.keys(state.words).length,
+        verifiedLetters: Object.values(state.letters).filter(
+          (letter) => letter.verified > 0,
+        ).length,
+        reinforcement: state.reinforcement,
+        progress: stats,
+        weakestLetters: Object.entries(state.letters)
+          .sort((a, b) => a[1].score - b[1].score)
+          .slice(0, 10)
+          .map(([letter, stat]) => ({ letter, ...stat })),
+      },
+      presentation: {
+        font: trainer.font,
+        typography: trainer.presentation,
+        settings: trainer.settings,
+      },
+      runtime: {
+        appVersion,
+        dictionary: {
+          version: dictionary.version,
+          schemaVersion: dictionary.schemaVersion,
+          generatedAt: dictionary.generatedAt,
+          words: dictionary.words.length,
+        },
+        progressSchemaVersion: PROGRESS_SCHEMA_VERSION,
+        config: TRAINER_CONFIG,
+        language: navigator.language,
+        online: navigator.onLine,
+        viewport: `${window.innerWidth}×${window.innerHeight}`,
+        storage: await storageDiagnostics(),
+      },
+    };
+    content.replaceChildren(
+      section('Выбор слова', snapshot.selection),
+      section('Текущее слово', snapshot.currentWord),
+      section('Последняя проверка', snapshot.lastEvaluation),
+      section('Изменение оценок', snapshot.scoreUpdate),
+      section('Состояние обучения', snapshot.learner),
+      section('Отображение', snapshot.presentation),
+      section('Среда выполнения', snapshot.runtime),
+      section('Raw: selection', trainer.current, true),
+      section('Raw: last attempt', attempt ?? null, true),
+      section('Raw: learner state', state, true),
+    );
+    dialog.showModal();
+  };
+}

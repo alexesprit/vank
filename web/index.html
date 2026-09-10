@@ -60,6 +60,11 @@
       </fieldset>
     </section>
   </dialog>
+  <dialog id="debug-dialog" class="debug-dialog" aria-labelledby="debug-title">
+    <div class="dialog-header"><h2 id="debug-title">Диагностика</h2><button id="debug-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <p class="debug-hint">Открыто через Cmd/Ctrl + «Подробнее»</p>
+    <div id="debug-content" class="debug-content"></div>
+  </dialog>
   <script defer src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js" integrity="sha384-hK2uiaqTSh/v1VqRxmuMQL4xmt5n0DdyBCOItx2fAs7Wv+WC8Tu0yDW1j12JooyM" crossorigin="anonymous" onload="lucide.createIcons()"></script>
   <script type="module" src="/src/app.ts"></script>
 </body>

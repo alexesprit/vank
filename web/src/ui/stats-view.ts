@@ -62,9 +62,12 @@ export function renderStats(state: LearnerState, sessionStart: number) {
     typographyStats.textContent = 'Появится после первой попытки';
 }
 
-export function mountStatsDialog() {
+export function mountStatsDialog(openDebug: () => Promise<void>) {
   const dialog = element('progress-dialog') as HTMLDialogElement;
-  element('progress-open').addEventListener('click', () => dialog.showModal());
+  element('progress-open').addEventListener('click', (event) => {
+    if (event.metaKey || event.ctrlKey) void openDebug();
+    else dialog.showModal();
+  });
   element('progress-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();

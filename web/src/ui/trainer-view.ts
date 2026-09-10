@@ -1,6 +1,8 @@
+import type { Dictionary } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { formatPrompt } from '../core/settings.ts';
 import type { Trainer } from '../trainer.ts';
+import { mountDebugDialog } from './debug-view.ts';
 import { mountSettings } from './settings-view.ts';
 import { mountStatsDialog, renderStats } from './stats-view.ts';
 
@@ -14,7 +16,7 @@ export function showError(error: unknown) {
       ? error.message
       : 'Не удалось продолжить. Попробуйте ещё раз.';
 }
-export function mountTrainer(trainer: Trainer) {
+export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   const input = element<HTMLInputElement>('answer'),
     form = element<HTMLFormElement>('answer-form');
   const check = element<HTMLButtonElement>('check'),
@@ -95,7 +97,7 @@ export function mountTrainer(trainer: Trainer) {
   next.addEventListener('click', () => void advance());
   element('trainer').hidden = false;
   element('loading').hidden = true;
-  mountStatsDialog();
+  mountStatsDialog(mountDebugDialog(trainer, dictionary));
   mountSettings(trainer, render);
   render();
 }

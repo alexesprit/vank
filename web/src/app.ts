@@ -7,7 +7,7 @@ import { mountTrainer, showError } from './ui/trainer-view.ts';
 async function start() {
   const dictionary = await loadDictionary();
   const repository = await openRepository();
-  mountTrainer(await createTrainer(dictionary.words, repository));
+  mountTrainer(await createTrainer(dictionary.words, repository), dictionary);
 }
 start().catch((error) => {
   const loading = document.getElementById('loading');
