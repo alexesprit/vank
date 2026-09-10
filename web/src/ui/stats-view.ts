@@ -61,3 +61,12 @@ export function renderStats(state: LearnerState, sessionStart: number) {
   if (!stats.typographyStats.length)
     typographyStats.textContent = 'Появится после первой попытки';
 }
+
+export function mountStatsDialog() {
+  const dialog = element('progress-dialog') as HTMLDialogElement;
+  element('progress-open').addEventListener('click', () => dialog.showModal());
+  element('progress-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+}

@@ -31,15 +31,20 @@
           <div class="stat"><strong id="strong">0</strong><span>сильных букв</span></div>
           <div class="stat"><strong id="accuracy">—</strong><span>без ошибок</span></div>
           <div class="stat"><strong id="verified">—</strong><span>без подсказки знакомого слова</span></div>
-        </div><p class="progress-line" id="rolling"></p></section>
+        </div><p class="progress-line" id="rolling"></p><button id="progress-open" class="secondary-btn progress-details" type="button">Подробнее</button></section>
         <section class="panel"><h2>Нужна практика</h2><div id="weak" class="weak-list"></div></section>
-        <section class="panel"><h2>По шрифтам</h2><div id="font-stats"></div></section>
-        <section class="panel"><h2>По начертанию</h2><div id="typography-stats"></div></section>
       </aside>
     </main>
     <p id="loading" role="status">Загрузка словаря…</p>
     <noscript>Для практики включите JavaScript.</noscript>
   </div>
+  <dialog id="progress-dialog" aria-labelledby="progress-title">
+    <div class="dialog-header"><h2 id="progress-title">Подробная статистика</h2><button id="progress-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <div class="stats-breakdown">
+      <section><h3>По шрифтам</h3><div id="font-stats"></div></section>
+      <section><h3>По начертанию</h3><div id="typography-stats"></div></section>
+    </div>
+  </dialog>
   <dialog id="settings-dialog" aria-labelledby="settings-title">
     <div class="dialog-header"><h2 id="settings-title">Настройки</h2><button id="settings-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
     <fieldset><legend>Шрифт армянских слов</legend><label class="setting-row"><input type="radio" name="font-mode" value="single" /> Один шрифт</label><select id="font-selected" aria-label="Выбранный шрифт"></select><label class="setting-row"><input type="radio" name="font-mode" value="rotate" /> Чередовать доступные</label><div id="font-enabled" class="font-options"></div></fieldset>

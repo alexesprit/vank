@@ -2,7 +2,7 @@ import { TRAINER_CONFIG } from '../core/config.ts';
 import { formatPrompt } from '../core/settings.ts';
 import type { Trainer } from '../trainer.ts';
 import { mountSettings } from './settings-view.ts';
-import { renderStats } from './stats-view.ts';
+import { mountStatsDialog, renderStats } from './stats-view.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
@@ -95,6 +95,7 @@ export function mountTrainer(trainer: Trainer) {
   next.addEventListener('click', () => void advance());
   element('trainer').hidden = false;
   element('loading').hidden = true;
+  mountStatsDialog();
   mountSettings(trainer, render);
   render();
 }

@@ -316,6 +316,11 @@ button {
   font-size: 12px;
 }
 
+.progress-details {
+  width: 100%;
+  margin-top: 12px;
+}
+
 .weak-list {
   display: flex;
   flex-wrap: wrap;
@@ -363,6 +368,16 @@ dialog::backdrop {
 .dialog-header h2 {
   margin: 0;
   font-size: 20px;
+}
+
+.stats-breakdown {
+  display: grid;
+  gap: 24px;
+}
+
+.stats-breakdown h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
 }
 
 fieldset {
