@@ -1,6 +1,6 @@
 import type { Dictionary } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
-import { formatPrompt } from '../core/settings.ts';
+import { availableTypography, formatPrompt } from '../core/settings.ts';
 import type { Trainer } from '../trainer.ts';
 import { mountDebugDialog } from './debug-view.ts';
 import { mountSettings } from './settings-view.ts';
@@ -44,8 +44,14 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     prompt.textContent = formatPrompt(word.word, trainer.presentation.caseMode);
     prompt.style.fontFamily = trainer.font.family;
     prompt.style.fontStyle = trainer.presentation.italic ? 'italic' : 'normal';
-    element('presentation-label').textContent =
-      `Адаптивная практика · ${{ caps: 'CAPS', normal: 'Обычный регистр', lower: 'Строчные' }[trainer.presentation.caseMode]}${trainer.presentation.italic ? ' · курсив' : ''}`;
+    const presentationLabel = element<HTMLButtonElement>('presentation-label');
+    presentationLabel.textContent = `Адаптивная практика · ${{ caps: 'CAPS', normal: 'Обычный регистр', lower: 'Строчные' }[trainer.presentation.caseMode]}${trainer.presentation.italic ? ' · курсив' : ''}`;
+    presentationLabel.ariaLabel = `Сменить начертание: ${presentationLabel.textContent}`;
+    presentationLabel.disabled =
+      availableTypography(
+        trainer.state.recent.filter((attempt) => attempt.payload.correct)
+          .length,
+      ).length < 2;
     element('result').hidden = !result;
     input.readOnly = Boolean(result);
     check.hidden = Boolean(result);
@@ -109,6 +115,12 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   });
   skip.addEventListener('click', () => void submit(true));
   next.addEventListener('click', () => void advance());
+  element('presentation-label').addEventListener('click', () => {
+    if (trainer.cycleTypography()) {
+      render();
+      element('presentation-label').focus();
+    }
+  });
   element('trainer').hidden = false;
   element('loading').hidden = true;
   mountIntro(trainer);

@@ -8,6 +8,7 @@ import { TRAINER_CONFIG } from './core/config.ts';
 import { completeAttempt } from './core/session.ts';
 import {
   type AppSettings,
+  availableTypography,
   type FontOption,
   loadFont,
   parseSettings,
@@ -78,6 +79,18 @@ export async function createTrainer(
     },
     get presentation() {
       return presentation;
+    },
+    cycleTypography() {
+      const available = availableTypography(correctAnswers());
+      if (available.length < 2) return false;
+      const current = available.findIndex(
+        (mode) =>
+          mode.caseMode === presentation.caseMode &&
+          mode.italic === presentation.italic,
+      );
+      const next = available[(current + 1) % available.length];
+      presentation = { caseMode: next.caseMode, italic: next.italic };
+      return true;
     },
     get lastScoreUpdate() {
       return lastScoreUpdate;

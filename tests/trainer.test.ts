@@ -6,7 +6,7 @@ import { curatedSource } from '../builder/src/sources/curated';
 import { ALPHABET, deriveWord } from '../shared/armenian';
 import { parseDictionary } from '../shared/schema';
 import type { LearnerState } from '../shared/types';
-import { completeAttempt } from '../web/src/core/session';
+import { completeAttempt, progress } from '../web/src/core/session';
 import { FONTS } from '../web/src/core/settings';
 import { openRepository } from '../web/src/storage/repository';
 import { createTrainer } from '../web/src/trainer';
@@ -60,6 +60,30 @@ it('unlocks fonts and italic modes only after the required correct answers', asy
   await trainer.next();
   expect(trainer.font.id).toBe(serif.id);
   expect(trainer.presentation).toEqual({ caseMode: 'normal', italic: true });
+  repo.close();
+});
+
+it('cycles the current presentation through unlocked typography modes', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const trainer = await createTrainer(['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable), repo);
+  expect(trainer.presentation).toEqual({ caseMode: 'caps', italic: false });
+  expect(trainer.cycleTypography()).toBe(true);
+  expect(trainer.presentation).toEqual({ caseMode: 'normal', italic: false });
+  expect(trainer.cycleTypography()).toBe(true);
+  expect(trainer.presentation).toEqual({ caseMode: 'lower', italic: false });
+  expect(trainer.cycleTypography()).toBe(true);
+  expect(trainer.presentation).toEqual({ caseMode: 'caps', italic: false });
+  expect(trainer.cycleTypography()).toBe(true);
+  await trainer.submit(trainer.current.word.readingLatin);
+  expect(trainer.state.recent[0].payload.presentation).toMatchObject({
+    caseMode: 'normal',
+    italic: false,
+  });
+  expect(progress(trainer.state).typographyStats[0]).toMatchObject({
+    caseMode: 'normal',
+    italic: false,
+  });
+  expect(await repo.getSetting('app')).toBeUndefined();
   repo.close();
 });
 

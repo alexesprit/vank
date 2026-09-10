@@ -163,6 +163,21 @@ button {
   margin-bottom: 8px;
 }
 
+.presentation-label {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.presentation-label:not(:disabled) {
+  cursor: pointer;
+}
+
+.presentation-label:disabled {
+  cursor: default;
+}
+
 .word-wrap {
   min-height: 150px;
   display: grid;
