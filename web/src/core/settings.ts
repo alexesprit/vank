@@ -77,6 +77,7 @@ export const FONTS: FontOption[] = [
 
 export interface AppSettings {
   language: LanguagePreference;
+  metadataHints: boolean;
   fonts: {
     mode: 'single' | 'rotate';
     selected: string;
@@ -140,6 +141,7 @@ export const DEFAULT_PRESENTATION = {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   language: 'auto',
+  metadataHints: false,
   fonts: {
     mode: 'single',
     selected: 'default',
@@ -158,6 +160,7 @@ export function parseSettings(value: unknown): AppSettings {
   const saved = value as {
     fonts?: unknown;
     language?: unknown;
+    metadataHints?: unknown;
     typography?: unknown;
   };
   const fonts = saved.fonts;
@@ -197,6 +200,10 @@ export function parseSettings(value: unknown): AppSettings {
     )
       ? (saved.language as LanguagePreference)
       : 'auto',
+    metadataHints:
+      typeof saved.metadataHints === 'boolean'
+        ? saved.metadataHints
+        : DEFAULT_SETTINGS.metadataHints,
     fonts: {
       mode: candidate.mode as AppSettings['fonts']['mode'],
       selected: candidate.selected as string,

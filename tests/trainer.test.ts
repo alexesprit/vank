@@ -7,7 +7,7 @@ import { ALPHABET, deriveWord } from '../shared/armenian';
 import { parseDictionary } from '../shared/schema';
 import type { LearnerState } from '../shared/types';
 import { completeAttempt, progress } from '../web/src/core/session';
-import { FONTS } from '../web/src/core/settings';
+import { DEFAULT_SETTINGS, FONTS } from '../web/src/core/settings';
 import { openRepository } from '../web/src/storage/repository';
 import { createTrainer } from '../web/src/trainer';
 
@@ -198,6 +198,22 @@ it('applies font settings immediately and records the font that loaded', async (
   expect(trainer.font.id).toBe('default');
   await trainer.submit('', true);
   expect(trainer.state.recent[0].payload.fontId).toBe('default');
+  repo.close();
+});
+
+it('latches metadata hint visibility for the prompt being answered', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  await repo.setSetting('app', {
+    ...DEFAULT_SETTINGS,
+    metadataHints: true,
+  });
+  const word = { ...recognizable('ՄԱՄԱ'), categories: ['family'] };
+  const trainer = await createTrainer([word], repo, async (font) => font);
+  trainer.setMetadataHintsShown(true);
+  await trainer.setSettings({ ...trainer.settings, metadataHints: false });
+  trainer.setMetadataHintsShown(false);
+  await trainer.submit(word.readingLatin);
+  expect(trainer.state.recent[0].payload.metadataHintsShown).toBe(true);
   repo.close();
 });
 

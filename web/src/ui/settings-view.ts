@@ -1,3 +1,4 @@
+import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { FONTS, TYPOGRAPHY_MODES } from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
 import type { LanguagePreference } from '../i18n/types.ts';
@@ -14,6 +15,11 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     ...document.querySelectorAll<HTMLInputElement>('[name="font-mode"]'),
   ];
   const language = element<HTMLSelectElement>('language');
+  const metadataHints = element<HTMLInputElement>('metadata-hints-setting');
+  const metadataHintsPreview = element('metadata-hints-preview-chips');
+  const introMetadataHintsPreview = element(
+    'intro-metadata-hints-preview-chips',
+  );
   const selected = element<HTMLSelectElement>('font-selected');
   const enabled = element('font-enabled');
   const typographyModeInputs = [
@@ -63,10 +69,25 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     }),
   );
 
+  const previewLabels = metadataHintLabels(
+    { categories: ['transport'], tags: ['beginner'] },
+    (key, fallback) => t(key, { defaultValue: fallback }),
+  );
+  for (const preview of [metadataHintsPreview, introMetadataHintsPreview])
+    preview.replaceChildren(
+      ...previewLabels.map((label) => {
+        const chip = document.createElement('span');
+        chip.className = 'metadata-chip';
+        chip.textContent = label;
+        return chip;
+      }),
+    );
+
   function render() {
     const { fonts } = trainer.settings;
     const { typography } = trainer.settings;
     language.value = trainer.settings.language;
+    metadataHints.checked = trainer.settings.metadataHints;
     const correctAnswers = trainer.state.recent.filter(
       (attempt) => attempt.payload.correct,
     ).length;
@@ -136,6 +157,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     try {
       await trainer.setSettings({
         language: language.value as LanguagePreference,
+        metadataHints: metadataHints.checked,
         fonts: {
           mode,
           selected: selected.value,
@@ -204,6 +226,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   });
   for (const control of [
     language,
+    metadataHints,
     ...modeInputs,
     selected,
     ...enabled.querySelectorAll('input'),

@@ -185,6 +185,61 @@ button {
   margin: 12px 0 28px;
 }
 
+.metadata-hints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: -16px 0 28px;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+
+.metadata-chip {
+  max-width: 100%;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.metadata-hints-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metadata-preview-word {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.metadata-preview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.metadata-hints-setting-group {
+  gap: 8px;
+}
+
+.metadata-hints-setting-group .metadata-hints-preview {
+  margin-top: -4px;
+}
+
 .armenian-font {
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -593,6 +648,22 @@ legend {
   padding-left: 24px;
   color: var(--muted);
   font-size: 14px;
+}
+
+.intro-quick-settings {
+  margin-top: 24px;
+  padding-top: 24px;
+  padding-bottom: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.intro-quick-settings h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.intro-quick-settings .metadata-hints-preview {
+  margin-top: 4px;
 }
 
 @media (max-width: 820px) {

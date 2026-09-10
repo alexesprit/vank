@@ -96,6 +96,7 @@ export interface AttemptEvent {
     familiarity: number;
     learnerLanguage: string;
     fontId: string;
+    metadataHintsShown?: boolean;
     presentation?: Presentation;
   };
 }

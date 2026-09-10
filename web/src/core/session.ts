@@ -21,6 +21,7 @@ export function completeAttempt(
     caseMode: 'caps',
     italic: false,
   },
+  metadataHintsShown?: boolean,
 ): { state: LearnerState; attempt: AttemptEvent } {
   const { word } = selection,
     evaluation = evaluate(word, answer, skipped);
@@ -41,6 +42,7 @@ export function completeAttempt(
       familiarity: familiarity(word),
       learnerLanguage: config.learnerLanguage,
       fontId,
+      ...(metadataHintsShown === undefined ? {} : { metadataHintsShown }),
       presentation: { ...presentation, fontId },
     },
   };

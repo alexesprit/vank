@@ -1,5 +1,6 @@
 import type { Dictionary } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
+import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { availableTypography, formatPrompt } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
@@ -15,16 +16,39 @@ export function showError(error: unknown) {
   message.textContent =
     error instanceof Error ? error.message : t('status.genericError');
 }
-function mountIntro(trainer: Trainer) {
+function mountIntro(trainer: Trainer, renderTrainer: () => void) {
   const dialog = element<HTMLDialogElement>('intro-dialog');
-  const close = () => dialog.close();
+  const quickSettings = element('intro-quick-settings');
+  const quickMetadataHints = element<HTMLInputElement>(
+    'intro-metadata-hints-setting',
+  );
+  const firstRun = !trainer.introShown;
+  const close = () => {
+    dialog.close();
+    quickSettings.hidden = true;
+    renderTrainer();
+  };
   element('help-open').addEventListener('click', () => dialog.showModal());
   element('intro-close').addEventListener('click', close);
   element('intro-start').addEventListener('click', close);
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) close();
   });
-  if (!trainer.introShown) {
+  if (firstRun) {
+    quickSettings.hidden = false;
+    quickMetadataHints.checked = trainer.settings.metadataHints;
+    quickMetadataHints.addEventListener('change', async () => {
+      try {
+        await trainer.setSettings({
+          ...trainer.settings,
+          metadataHints: quickMetadataHints.checked,
+        });
+        renderTrainer();
+      } catch (error) {
+        quickMetadataHints.checked = trainer.settings.metadataHints;
+        showError(error);
+      }
+    });
     dialog.showModal();
     void trainer.markIntroShown().catch(showError);
   }
@@ -43,6 +67,24 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     prompt.textContent = formatPrompt(word.word, trainer.presentation.caseMode);
     prompt.style.fontFamily = trainer.font.family;
     prompt.style.fontStyle = trainer.presentation.italic ? 'italic' : 'normal';
+    const hintRow = element('metadata-hint-row');
+    const labels = trainer.metadataHintsEnabled
+      ? metadataHintLabels(word, (key, fallback) =>
+          t(key, { defaultValue: fallback }),
+        )
+      : [];
+    hintRow.replaceChildren(
+      ...labels.map((label) => {
+        const chip = document.createElement('li');
+        chip.className = 'metadata-chip';
+        chip.textContent = label;
+        return chip;
+      }),
+    );
+    hintRow.hidden = labels.length === 0;
+    hintRow.setAttribute('aria-label', t('metadata.label'));
+    if (!element<HTMLDialogElement>('intro-dialog').open)
+      trainer.setMetadataHintsShown(labels.length > 0);
     const presentationLabel = element<HTMLButtonElement>('presentation-label');
     presentationLabel.textContent = t('trainer.adaptive', {
       mode: typographyName(
@@ -129,7 +171,7 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   });
   element('trainer').hidden = false;
   element('loading').hidden = true;
-  mountIntro(trainer);
+  mountIntro(trainer, render);
   mountStatsDialog(mountDebugDialog(trainer, dictionary));
   mountSettings(trainer, render);
   render();

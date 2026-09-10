@@ -5,6 +5,7 @@ import type {
   WordStat,
 } from '../../shared/types.ts';
 import { TRAINER_CONFIG } from './core/config.ts';
+import { hasMetadataHints } from './core/metadata-hints.ts';
 import { completeAttempt } from './core/session.ts';
 import {
   type AppSettings,
@@ -26,10 +27,15 @@ interface ScoreUpdateDiagnostics {
   letters: Record<string, { before: LetterStat | null; after: LetterStat }>;
   word: { before: WordStat | null; after: WordStat };
 }
+export interface TrainerOptions {
+  /** Session-level override; diagnostic sessions can explicitly hide hints. */
+  metadataHints?: boolean;
+}
 export async function createTrainer(
   words: Word[],
   repository: Repository,
   fontLoader: (font: FontOption) => Promise<FontOption> = loadFont,
+  options: TrainerOptions = {},
 ) {
   let state = await repository.loadState();
   let settings = parseSettings(await repository.getSetting('app'));
@@ -47,6 +53,9 @@ export async function createTrainer(
     font = await pendingFont,
     presentation = selectTypography(settings, correctAnswers()),
     shownAt = Date.now();
+  const hintsEnabled = () => options.metadataHints ?? settings.metadataHints;
+  let metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+  let metadataHintsCaptured = false;
   let result: Evaluation | undefined,
     busy = false,
     lastScoreUpdate: ScoreUpdateDiagnostics | undefined;
@@ -80,6 +89,18 @@ export async function createTrainer(
     get presentation() {
       return presentation;
     },
+    get metadataHintsEnabled() {
+      return hintsEnabled();
+    },
+    get metadataHintsShown() {
+      return metadataHintsShown;
+    },
+    setMetadataHintsShown(shown: boolean) {
+      if (!metadataHintsCaptured) {
+        metadataHintsShown = shown;
+        metadataHintsCaptured = true;
+      }
+    },
     cycleTypography() {
       const available = availableTypography(correctAnswers());
       if (available.length < 2) return false;
@@ -110,6 +131,7 @@ export async function createTrainer(
           crypto.randomUUID(),
           font.id,
           presentation,
+          metadataHintsShown,
         );
         await repository.saveAttempt(completed.attempt, completed.state);
         const familiarity = completed.attempt.payload.familiarity;
@@ -149,6 +171,8 @@ export async function createTrainer(
         font = await latestFont(pendingFont);
         presentation = selectTypography(settings, correctAnswers());
         current = next;
+        metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+        metadataHintsCaptured = false;
         shownAt = Date.now();
         result = undefined;
       } finally {
@@ -157,7 +181,7 @@ export async function createTrainer(
     },
     async setSettings(
       next: Pick<AppSettings, 'fonts'> &
-        Partial<Pick<AppSettings, 'language' | 'typography'>>,
+        Partial<Pick<AppSettings, 'language' | 'metadataHints' | 'typography'>>,
     ) {
       const saved = parseSettings(next);
       await repository.setSetting('app', saved);
@@ -165,6 +189,8 @@ export async function createTrainer(
       pendingFont = fontLoader(selectFont(saved, correctAnswers()));
       font = await latestFont(pendingFont);
       presentation = selectTypography(saved, correctAnswers());
+      if (!metadataHintsCaptured)
+        metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
     },
     async markIntroShown() {
       await repository.setSetting('introShown', true);
