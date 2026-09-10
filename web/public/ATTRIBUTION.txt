@@ -10,9 +10,9 @@ Structured extraction: Wiktextract / Kaikki, Tatu Ylonen and contributors
 https://kaikki.org/dictionary/Armenian/
 https://github.com/tatuylonen/wiktextract
 
-Each imported entry retains its source URL and source name in words.json;
-follow its Wiktionary page's history for contributors. The builder also emits
-an entry-by-entry ATTRIBUTION.txt beside its dictionary output.
+The builder intermediates retain source URLs and source names. The runtime
+words.json omits build-only provenance; the builder emits an entry-by-entry
+ATTRIBUTION.txt beside its dictionary output.
 
 Changes: filtering, uppercase normalization, merging curated vocabulary,
 deterministic Eastern Armenian learner readings, structural metadata, and

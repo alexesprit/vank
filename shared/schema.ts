@@ -165,7 +165,17 @@ export function parseDictionary(value: unknown): Dictionary {
     throw new Error('Invalid dictionary version/date');
   if (!Array.isArray(d.words) || !d.words.length)
     throw new Error('Dictionary is empty');
-  const words = d.words.map(parseWord);
+  const words = d.words.map((value) => {
+    const word = object(value);
+    if (typeof word.word !== 'string') return parseWord(word);
+    const letters = [...word.word];
+    return parseWord({
+      ...word,
+      letters: word.letters ?? letters,
+      uniqueLetters: word.uniqueLetters ?? [...new Set(letters)],
+      length: word.length ?? letters.length,
+    });
+  });
   if (
     new Set(words.map((w) => w.id)).size !== words.length ||
     new Set(words.map((w) => w.word)).size !== words.length

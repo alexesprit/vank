@@ -22,6 +22,10 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
+concurrency:
+  group: vercel-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -31,5 +35,15 @@ jobs:
         with:
           node-version: 24
       - run: npx --yes vercel@59.11.2 pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Resolve latest dictionary release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          asset="$(gh api repos/${{ github.repository }}/releases/latest --jq '[.assets[] | select(.name == "words.json")] | if length == 1 then [.[0].browser_download_url, .[0].digest] | @tsv else error("Expected one words.json asset") end')"
+          IFS=$'\t' read -r url digest <<< "$asset"
+          [[ "$url" =~ ^https://github\.com/[^[:space:]]+$ ]]
+          [[ "$digest" =~ ^sha256:[a-f0-9]{64}$ ]]
+          echo "DICTIONARY_URL=$url" >> "$GITHUB_ENV"
+          echo "DICTIONARY_SHA256=${digest#sha256:}" >> "$GITHUB_ENV"
       - run: npx --yes vercel@59.11.2 build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - run: npx --yes vercel@59.11.2 deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

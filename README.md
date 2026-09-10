@@ -18,18 +18,24 @@ npm run build
 npm run preview
 ```
 
-`web/data/words.json` is a downloaded build artifact and is not stored in Git.
-Set `DICTIONARY_URL` to an immutable HTTPS artifact URL and
-`DICTIONARY_SHA256` to its SHA-256 digest in `.env` locally and in the Vercel
-project settings for Preview and Production. The `dev`, `test`, and `build`
-scripts download and validate the dictionary automatically. A locally built
-dictionary can be used without these variables while the file exists.
+`web/data/words.json` is a minified build artifact and is not stored in Git.
+Local development uses a locally built file. `DICTIONARY_URL` and
+`DICTIONARY_SHA256` remain available in `.env` when an external artifact is
+needed explicitly.
 
-To publish a new dictionary, run `npm run build:dictionary`, upload
-`web/data/words.json` to object storage or a release, calculate its digest with
-`shasum -a 256 web/data/words.json`, update both environment variables, and
-redeploy. Vercel needs no storage SDK; its normal build emits the downloaded
-dictionary into `web/dist/`.
+The online deployment resolves the latest GitHub Release `words.json` asset and
+its SHA-256 during the GitHub Actions build; no dictionary variables are needed
+in Vercel. Publish and redeploy a locally built dictionary with:
+
+```sh
+npm run build:dictionary
+npm run dictionary:publish
+```
+
+The release contains only the runtime file. Rich provenance and enrichment data
+remain in the builder intermediates, including `builder/data/words.json`.
+Deterministic letter decomposition is also omitted and reconstructed when the
+app validates the downloaded dictionary.
 
 Deploy `web/dist/` to any static host. Asset URLs are relative, including the
 versioned dictionary, so deployment under a GitHub Pages repository path works.
@@ -148,9 +154,10 @@ are retained during enrichment. Optional pronunciation corrections must retain
 consistent source units and accepted readings; invalid output fails the build
 without replacing the previous runtime dictionary.
 
-Imported entries retain source URLs, licensing, definitions, per-field metadata
-provenance, and AI version/model metadata. The builder writes attribution beside
-its output as an ignored local sidecar. The committed
+Builder intermediates retain source URLs, licensing, definitions, per-field
+metadata provenance, and AI version/model metadata. The minified runtime output
+omits those build-only fields. The builder writes attribution beside its output
+as an ignored local sidecar. The committed
 `web/public/ATTRIBUTION.txt` is copied into every static deployment. Licensing
 references and the changes to imported material are recorded there.
 

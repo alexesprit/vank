@@ -26,6 +26,7 @@ import {
   validateDataset,
 } from './pipeline.ts';
 import { createReporter } from './progress.ts';
+import { writeRuntimeDictionary } from './runtime.ts';
 import { curatedSource } from './sources/curated.ts';
 import type { BuildWord, MergedWord, RawWord } from './types.ts';
 
@@ -289,7 +290,7 @@ async function main() {
       const dictionary = validateDataset(selected);
       await writeJson(file('words'), dictionary);
       await writeJson(file('rejected'), rejects);
-      await writeJson(resolve(output), dictionary);
+      await writeRuntimeDictionary(resolve(output), dictionary);
       const sources = [
         ...new Set(
           selected.flatMap((w) =>

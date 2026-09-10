@@ -129,7 +129,18 @@ it('builds a fixture without network, retains intermediate stages, supports quie
     ];
     const { stdout } = await exec(process.execPath, [...args, '--quiet']);
     expect(stdout).toBe('');
-    const dictionary = JSON.parse(await readFile(output, 'utf8'));
+    const outputText = await readFile(output, 'utf8');
+    const dictionary = JSON.parse(outputText);
+    expect(outputText).toBe(JSON.stringify(dictionary));
+    expect(dictionary.words[0]).not.toHaveProperty('source');
+    expect(dictionary.words[0]).not.toHaveProperty('sources');
+    expect(dictionary.words[0]).not.toHaveProperty('metadataSource');
+    expect(dictionary.words[0]).not.toHaveProperty('rawDefinitions');
+    expect(dictionary.words[0]).not.toHaveProperty('rawPos');
+    expect(dictionary.words[0]).not.toHaveProperty('transliterationVersion');
+    expect(dictionary.words[0]).not.toHaveProperty('letters');
+    expect(dictionary.words[0]).not.toHaveProperty('uniqueLetters');
+    expect(dictionary.words[0]).not.toHaveProperty('length');
     expect(dictionary.words.length).toBeGreaterThanOrEqual(77);
     for (const stage of [
       'raw',
@@ -140,6 +151,9 @@ it('builds a fixture without network, retains intermediate stages, supports quie
       'rejected',
     ])
       expect(await readFile(join(dir, `${stage}.json`), 'utf8')).toBeTruthy();
+    expect(
+      JSON.parse(await readFile(join(dir, 'words.json'), 'utf8')).words[0],
+    ).toHaveProperty('metadataSource');
     expect(
       await readFile(join(dir, 'web', 'ATTRIBUTION.txt'), 'utf8'),
     ).toContain('CC-BY-SA-4.0');

@@ -71,6 +71,18 @@ describe('runtime dictionary boundary', () => {
     });
     expect(parseDictionary(data).words[0].meaning?.en).toBe('taxi');
   });
+  it('derives decomposition omitted from the runtime file', () => {
+    const word = { ...deriveWord('ՏԱՔՍԻ') } as Record<string, unknown>;
+    for (const field of ['letters', 'uniqueLetters', 'length'])
+      delete word[field];
+    expect(
+      parseDictionary({ ...dataset(), words: [word] }).words[0],
+    ).toMatchObject({
+      letters: ['Տ', 'Ա', 'Ք', 'Ս', 'Ի'],
+      uniqueLetters: ['Տ', 'Ա', 'Ք', 'Ս', 'Ի'],
+      length: 5,
+    });
+  });
   it('rejects future schemas, duplicate IDs, invalid decomposition, scores and readings', () => {
     expect(() => parseDictionary({ ...dataset(), schemaVersion: 2 })).toThrow(
       'schema',
