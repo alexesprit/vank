@@ -22,6 +22,11 @@ export function completeAttempt(
     italic: false,
   },
   metadataHintsShown?: boolean,
+  flash?: {
+    exposureMs: number;
+    visibleDurationMs?: number;
+    revealed: boolean;
+  },
 ): { state: LearnerState; attempt: AttemptEvent } {
   const { word } = selection,
     evaluation = evaluate(word, answer, skipped);
@@ -44,16 +49,37 @@ export function completeAttempt(
       fontId,
       ...(metadataHintsShown === undefined ? {} : { metadataHintsShown }),
       presentation: { ...presentation, fontId },
+      ...(flash
+        ? {
+            flashMode: true,
+            flashExposureMs: flash.exposureMs,
+            ...(flash.visibleDurationMs === undefined
+              ? {}
+              : { flashVisibleDurationMs: flash.visibleDurationMs }),
+            flashRevealed: flash.revealed,
+          }
+        : {}),
     },
   };
-  const next = updateScores(state, word, evaluation, now);
+  const next =
+    flash && !flash.revealed
+      ? { ...state, recent: [...state.recent] }
+      : updateScores(state, word, evaluation, now);
   next.recent = [attempt, ...state.recent];
-  if (selection.phase === 'introduction' && selection.introducedLetter)
+  if (
+    !(flash && !flash.revealed) &&
+    selection.phase === 'introduction' &&
+    selection.introducedLetter
+  )
     next.reinforcement = {
       letter: selection.introducedLetter,
       remaining: config.reinforcementWords,
     };
-  else if (selection.phase === 'reinforcement' && state.reinforcement)
+  else if (
+    !(flash && !flash.revealed) &&
+    selection.phase === 'reinforcement' &&
+    state.reinforcement
+  )
     next.reinforcement =
       state.reinforcement.remaining > 1
         ? {
@@ -66,17 +92,30 @@ export function completeAttempt(
 export function progress(state: LearnerState) {
   const letters = Object.values(state.letters),
     attempts = state.recent;
+  const ordinaryAttempts = attempts.filter(
+    (attempt) => !(attempt.payload.flashMode && !attempt.payload.flashRevealed),
+  );
+  const flashAttempts = attempts.filter((attempt) => attempt.payload.flashMode);
+  const unrevealedFlashAttempts = flashAttempts.filter(
+    (attempt) => !attempt.payload.flashRevealed,
+  );
+  const revealedFlashAttempts = flashAttempts.filter(
+    (attempt) => attempt.payload.flashRevealed,
+  );
   const accuracy = (items: AttemptEvent[]) =>
     items.length
       ? items.filter((a) => a.payload.correct).length / items.length
       : null;
   const fontStats = Object.entries(
-    attempts.reduce<Record<string, AttemptEvent[]>>((byFont, attempt) => {
-      const fontId = attempt.payload.fontId ?? 'default';
-      byFont[fontId] ??= [];
-      byFont[fontId].push(attempt);
-      return byFont;
-    }, {}),
+    ordinaryAttempts.reduce<Record<string, AttemptEvent[]>>(
+      (byFont, attempt) => {
+        const fontId = attempt.payload.fontId ?? 'default';
+        byFont[fontId] ??= [];
+        byFont[fontId].push(attempt);
+        return byFont;
+      },
+      {},
+    ),
   ).map(([fontId, fontAttempts]) => ({
     fontId,
     attempts: fontAttempts.length,
@@ -101,7 +140,7 @@ export function progress(state: LearnerState) {
       .map(([letter]) => letter),
   }));
   const typographyStats = Object.values(
-    attempts.reduce<
+    ordinaryAttempts.reduce<
       Record<
         string,
         {
@@ -134,16 +173,17 @@ export function progress(state: LearnerState) {
     averageScore: letters.length
       ? letters.reduce((sum, l) => sum + l.score, 0) / letters.length
       : 0,
-    accuracy: accuracy(attempts),
+    accuracy: accuracy(ordinaryAttempts),
     verifiedAccuracy: accuracy(
-      attempts.filter(
+      ordinaryAttempts.filter(
         (a) => a.payload.familiarity <= config.verificationFamiliarityThreshold,
       ),
     ),
-    rolling20: accuracy(attempts.slice(0, 20)),
-    rolling50: accuracy(attempts.slice(0, 50)),
-    skips: attempts.filter((a) => a.payload.evaluation.status === 'unknown')
-      .length,
+    rolling20: accuracy(ordinaryAttempts.slice(0, 20)),
+    rolling50: accuracy(ordinaryAttempts.slice(0, 50)),
+    skips: ordinaryAttempts.filter(
+      (a) => a.payload.evaluation.status === 'unknown',
+    ).length,
     weakLetters: Object.entries(state.letters)
       .filter(([, s]) => s.score < config.strongThreshold)
       .sort((a, b) => a[1].score - b[1].score)
@@ -151,5 +191,16 @@ export function progress(state: LearnerState) {
       .map(([l]) => l),
     fontStats,
     typographyStats,
+    flashStats: {
+      attempts: unrevealedFlashAttempts.length,
+      unrevealed: unrevealedFlashAttempts.length,
+      revealed: revealedFlashAttempts.length,
+      accuracy: accuracy(unrevealedFlashAttempts),
+      unrevealedAccuracy: accuracy(unrevealedFlashAttempts),
+    },
+    flashRevealedStats: {
+      attempts: revealedFlashAttempts.length,
+      accuracy: accuracy(revealedFlashAttempts),
+    },
   };
 }

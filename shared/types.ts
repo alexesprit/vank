@@ -98,6 +98,10 @@ export interface AttemptEvent {
     fontId: string;
     metadataHintsShown?: boolean;
     presentation?: Presentation;
+    flashMode?: boolean;
+    flashExposureMs?: number;
+    flashVisibleDurationMs?: number;
+    flashRevealed?: boolean;
   };
 }
 export interface LearnerState {

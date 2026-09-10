@@ -12,6 +12,7 @@ export const ru = {
     next: 'Дальше →',
     details: 'Подробнее',
     cancel: 'Отмена',
+    reveal: 'Показать слово',
   },
   trainer: {
     practice: 'Практика чтения',
@@ -126,6 +127,9 @@ export const ru = {
     dialogTitle: 'Подробная статистика',
     byFont: 'По шрифтам',
     byTypography: 'По начертанию',
+    byFlash: 'По мгновенному распознаванию',
+    flashUnrevealed: 'Без показа: {{count}} · {{accuracy}}',
+    flashRevealed: 'С показом: {{count}} · {{accuracy}}',
   },
   intro: {
     title: 'Как работает Vank',
@@ -161,6 +165,12 @@ export const ru = {
     showMetadataHints: 'Показывать категории и теги',
     metadataPreview: 'Пример',
     metadataPreviewLabel: 'Пример подсказок по метаданным',
+    flash: 'Мгновенное распознавание',
+    enableFlash: 'Скрывать слово после короткого показа',
+    flashDuration: 'Базовое время показа',
+    flashDurationHint:
+      'Для каждой буквы после четвёртой добавляется 250 мс, но общее время не превышает 12 секунд.',
+    flashPreviewLabel: 'Предпросмотр мгновенного распознавания',
     unlockAfter_one: '{{name}} · после {{count}} верного ответа',
     unlockAfter_few: '{{name}} · после {{count}} верных ответов',
     unlockAfter_many: '{{name}} · после {{count}} верных ответов',

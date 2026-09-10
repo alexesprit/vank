@@ -16,19 +16,31 @@ export function showError(error: unknown) {
   message.textContent =
     error instanceof Error ? error.message : t('status.genericError');
 }
-function mountIntro(trainer: Trainer, renderTrainer: () => void) {
+function mountIntro(
+  trainer: Trainer,
+  renderTrainer: () => void,
+  startFlash: () => void,
+) {
   const dialog = element<HTMLDialogElement>('intro-dialog');
   const quickSettings = element('intro-quick-settings');
   const quickMetadataHints = element<HTMLInputElement>(
     'intro-metadata-hints-setting',
   );
   const firstRun = !trainer.introShown;
+  let promptStarted = !firstRun;
   const close = () => {
     dialog.close();
     quickSettings.hidden = true;
     renderTrainer();
+    if (!promptStarted) {
+      promptStarted = true;
+      startFlash();
+    } else trainer.resumeFlash();
   };
-  element('help-open').addEventListener('click', () => dialog.showModal());
+  element('help-open').addEventListener('click', () => {
+    trainer.pauseFlash();
+    dialog.showModal();
+  });
   element('intro-close').addEventListener('click', close);
   element('intro-start').addEventListener('click', close);
   dialog.addEventListener('click', (event) => {
@@ -59,12 +71,18 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   const check = element<HTMLButtonElement>('check'),
     skip = element<HTMLButtonElement>('skip'),
     next = element<HTMLButtonElement>('next');
+  const wordWrap = element('word-wrap');
+  const flashReveal = element<HTMLButtonElement>('flash-reveal');
   const sessionStart = trainer.state.recent.length;
-  function render() {
+  function render(resetInput = true) {
     const { word } = trainer.current,
       result = trainer.result;
     const prompt = element('word');
     prompt.textContent = formatPrompt(word.word, trainer.presentation.caseMode);
+    const canReveal = trainer.flashHidden && !result;
+    wordWrap.classList.toggle('flash-is-hidden', canReveal);
+    flashReveal.ariaHidden = String(!canReveal);
+    flashReveal.tabIndex = canReveal ? 0 : -1;
     prompt.style.fontFamily = trainer.font.family;
     prompt.style.fontStyle = trainer.presentation.italic ? 'italic' : 'normal';
     const hintRow = element('metadata-hint-row');
@@ -96,9 +114,13 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
       label: presentationLabel.textContent,
     });
     presentationLabel.disabled =
+      trainer.flashHidden ||
       availableTypography(
-        trainer.state.recent.filter((attempt) => attempt.payload.correct)
-          .length,
+        trainer.state.recent.filter(
+          (attempt) =>
+            attempt.payload.correct &&
+            (!attempt.payload.flashMode || attempt.payload.flashRevealed),
+        ).length,
       ).length < 2;
     element('result').hidden = !result;
     input.readOnly = Boolean(result);
@@ -130,8 +152,10 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
               : '';
       next.focus();
     } else {
-      input.value = '';
-      input.focus();
+      if (resetInput) {
+        input.value = '';
+        input.focus();
+      }
     }
     renderStats(trainer.state, sessionStart);
   }
@@ -152,6 +176,7 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     try {
       await trainer.next();
       render();
+      trainer.startFlash();
     } catch (error) {
       showError(error);
     }
@@ -169,10 +194,17 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
       element('presentation-label').focus();
     }
   });
+  flashReveal.addEventListener('click', () => {
+    trainer.revealFlash();
+    render(false);
+    input.focus();
+  });
+  trainer.onFlashChange(() => render(false));
   element('trainer').hidden = false;
   element('loading').hidden = true;
-  mountIntro(trainer, render);
+  mountIntro(trainer, render, () => trainer.startFlash());
   mountStatsDialog(mountDebugDialog(trainer, dictionary));
   mountSettings(trainer, render);
   render();
+  if (trainer.introShown) trainer.startFlash();
 }

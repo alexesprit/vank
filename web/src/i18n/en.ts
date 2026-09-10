@@ -18,6 +18,7 @@ export const en = {
     next: 'Next →',
     details: 'Details',
     cancel: 'Cancel',
+    reveal: 'Reveal word',
   },
   trainer: {
     practice: 'Reading practice',
@@ -132,6 +133,9 @@ export const en = {
     dialogTitle: 'Detailed statistics',
     byFont: 'By font',
     byTypography: 'By typography',
+    byFlash: 'By flash recognition',
+    flashUnrevealed: 'Unrevealed: {{count}} · {{accuracy}}',
+    flashRevealed: 'Revealed: {{count}} · {{accuracy}}',
   },
   intro: {
     title: 'How Vank works',
@@ -166,6 +170,12 @@ export const en = {
     showMetadataHints: 'Show category and tag hints',
     metadataPreview: 'Example',
     metadataPreviewLabel: 'Preview of metadata hints',
+    flash: 'Flash recognition',
+    enableFlash: 'Hide words after a short exposure',
+    flashDuration: 'Base exposure',
+    flashDurationHint:
+      'The base time is increased by 250 ms for each letter after four, up to 12 seconds.',
+    flashPreviewLabel: 'Flash recognition preview',
     unlockAfter_one: '{{name}} · after {{count}} correct answer',
     unlockAfter_few: '{{name}} · after {{count}} correct answers',
     unlockAfter_many: '{{name}} · after {{count}} correct answers',

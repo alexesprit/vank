@@ -11,6 +11,8 @@ const element = (id: string) => {
 };
 export function renderStats(state: LearnerState, sessionStart: number) {
   const stats = progress(state);
+  element('strong-help').dataset.tooltip = t('progress.strongHint');
+  element('verified-help').dataset.tooltip = t('progress.verifiedHint');
   for (const [id, value] of Object.entries({
     introduced: stats.introduced,
     strong: stats.strong,
@@ -68,6 +70,26 @@ export function renderStats(state: LearnerState, sessionStart: number) {
   );
   if (!stats.typographyStats.length)
     typographyStats.textContent = t('progress.empty');
+  const flashStats = element('flash-stats');
+  flashStats.replaceChildren(
+    ...[
+      t('progress.flashUnrevealed', {
+        count: stats.flashStats.unrevealed,
+        accuracy: percentage(stats.flashStats.unrevealedAccuracy),
+      }),
+      t('progress.flashRevealed', {
+        count: stats.flashStats.revealed,
+        accuracy: percentage(stats.flashRevealedStats.accuracy),
+      }),
+    ].map((text) => {
+      const row = document.createElement('p');
+      row.className = 'font-stat';
+      row.textContent = text;
+      return row;
+    }),
+  );
+  if (!stats.flashStats.attempts && !stats.flashRevealedStats.attempts)
+    flashStats.textContent = t('progress.empty');
 }
 
 export function mountStatsDialog(openDebug: () => Promise<void>) {

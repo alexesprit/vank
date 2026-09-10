@@ -179,10 +179,57 @@ button {
 }
 
 .word-wrap {
+  position: relative;
   min-height: 150px;
   display: grid;
   place-items: center;
   margin: 12px 0 28px;
+}
+
+.armenian-word,
+.flash-preview-word,
+.flash-reveal,
+.flash-preview-reveal {
+  transition: opacity 500ms ease;
+}
+
+.flash-is-hidden .armenian-word,
+.flash-preview.is-hidden .flash-preview-word {
+  opacity: 0;
+}
+
+.flash-reveal,
+.flash-preview-reveal {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  padding: 0;
+  font-size: clamp(44px, 8vw, 92px);
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 250ms ease,
+    visibility 0s linear 250ms;
+}
+
+.flash-is-hidden .flash-reveal,
+.flash-preview.is-hidden .flash-preview-reveal {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 250ms, 250ms;
+}
+
+.flash-reveal svg,
+.flash-preview-reveal svg {
+  width: 1em;
+  height: 1em;
 }
 
 .metadata-hints {
@@ -238,6 +285,67 @@ button {
 
 .metadata-hints-setting-group .metadata-hints-preview {
   margin-top: -4px;
+}
+
+.flash-duration-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.flash-duration-row input {
+  min-width: 0;
+  width: 100%;
+}
+
+.flash-duration-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.flash-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 104px;
+  padding: 4px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.flash-preview-word {
+  min-height: 52px;
+  font-size: 40px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.flash-preview-countdown {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.flash-preview-reveal {
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  padding: 0;
+  font-size: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
 }
 
 .armenian-font {
@@ -416,14 +524,14 @@ button {
   right: -8px;
   z-index: 1;
   width: max-content;
-  max-width: 220px;
+  max-width: min(220px, calc(100vw - 32px));
   padding: 8px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--panel);
   box-shadow: var(--shadow);
   color: var(--text);
-  content: attr(title);
+  content: attr(data-tooltip);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
@@ -435,7 +543,8 @@ button {
     transform 120ms ease;
 }
 
-.stat-help:hover::after {
+.stat-help:hover::after,
+.stat-help:focus-visible::after {
   opacity: 1;
   transform: translateY(0);
 }
@@ -443,6 +552,24 @@ button {
 .stat-help svg {
   width: 14px;
   height: 14px;
+}
+
+.flash-duration-label .stat-help {
+  position: relative;
+  top: auto;
+  right: auto;
+}
+
+.flash-duration-label .stat-help::after {
+  left: 50%;
+  right: auto;
+  max-width: min(180px, calc(100vw - 32px));
+  transform: translate(-50%, -4px);
+}
+
+.flash-duration-label .stat-help:hover::after,
+.flash-duration-label .stat-help:focus-visible::after {
+  transform: translate(-50%, 0);
 }
 
 .progress-details {

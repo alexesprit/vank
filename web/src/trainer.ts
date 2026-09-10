@@ -11,6 +11,8 @@ import {
   type AppSettings,
   availableTypography,
   type FontOption,
+  flashAvailable,
+  flashExposureMs,
   loadFont,
   parseSettings,
   selectFont,
@@ -47,18 +49,119 @@ export async function createTrainer(
   }
   const installationId = clientId as string;
   const correctAnswers = () =>
-    state.recent.filter((attempt) => attempt.payload.correct).length;
+    state.recent.filter(
+      (attempt) =>
+        attempt.payload.correct &&
+        (!attempt.payload.flashMode || attempt.payload.flashRevealed),
+    ).length;
   let pendingFont = fontLoader(selectFont(settings, correctAnswers()));
   let current = selectWord(words, state, Date.now()),
     font = await pendingFont,
     presentation = selectTypography(settings, correctAnswers()),
     shownAt = Date.now();
+  let flashHidden = false;
+  let flashRevealed = false;
+  let flashTimer: ReturnType<typeof setTimeout> | undefined;
+  let flashChange: (() => void) | undefined;
+  let flashTimingInvalid = false;
+  let flashStarted = false;
+  let flashPaused = false;
+  let flashVisibilityPaused = false;
+  let flashVisibleSince: number | undefined;
+  let flashElapsedMs = 0;
+  let flashPlannedExposureMs = 0;
   const hintsEnabled = () => options.metadataHints ?? settings.metadataHints;
   let metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
   let metadataHintsCaptured = false;
   let result: Evaluation | undefined,
     busy = false,
     lastScoreUpdate: ScoreUpdateDiagnostics | undefined;
+  const clearFlashTimer = () => {
+    if (flashTimer !== undefined) clearTimeout(flashTimer);
+    flashTimer = undefined;
+  };
+  const recordVisibleTime = () => {
+    if (flashVisibleSince === undefined) return;
+    flashElapsedMs += Math.max(0, Date.now() - flashVisibleSince);
+    flashVisibleSince = undefined;
+  };
+  const hideFlash = () => {
+    if (!flashStarted || flashPaused || result) return;
+    recordVisibleTime();
+    clearFlashTimer();
+    flashHidden = true;
+    flashChange?.();
+  };
+  const armFlashTimer = () => {
+    if (
+      result ||
+      !flashStarted ||
+      flashPaused ||
+      flashHidden ||
+      flashRevealed ||
+      !settings.flash.enabled ||
+      !flashAvailable(correctAnswers())
+    )
+      return;
+    const remaining = Math.max(0, flashPlannedExposureMs - flashElapsedMs);
+    if (!remaining) {
+      hideFlash();
+      return;
+    }
+    flashVisibleSince = Date.now();
+    flashTimer = setTimeout(hideFlash, remaining);
+  };
+  const startFlash = () => {
+    clearFlashTimer();
+    flashHidden = false;
+    flashRevealed = false;
+    flashTimingInvalid = false;
+    flashStarted = true;
+    flashPaused = false;
+    flashVisibilityPaused = false;
+    flashElapsedMs = 0;
+    shownAt = Date.now();
+    flashPlannedExposureMs = flashExposureMs(
+      settings.flash.exposureMs,
+      current.word.length,
+    );
+    armFlashTimer();
+  };
+  const pauseFlash = () => {
+    if (!flashStarted || flashPaused || flashHidden || flashRevealed || result)
+      return;
+    recordVisibleTime();
+    clearFlashTimer();
+    flashPaused = true;
+  };
+  const resumeFlash = () => {
+    if (!flashStarted || !flashPaused || flashHidden || flashRevealed || result)
+      return;
+    flashPaused = false;
+    armFlashTimer();
+  };
+  if (typeof document !== 'undefined')
+    document.addEventListener('visibilitychange', () => {
+      if (result) return;
+      if (document.visibilityState === 'hidden') {
+        if (!flashStarted || flashHidden || flashRevealed) return;
+        const alreadyPaused = flashPaused;
+        recordVisibleTime();
+        clearFlashTimer();
+        flashPaused = true;
+        flashVisibilityPaused = !alreadyPaused;
+        flashTimingInvalid = true;
+      } else if (
+        document.visibilityState === 'visible' &&
+        flashVisibilityPaused
+      ) {
+        flashVisibilityPaused = false;
+        if (flashPaused && !flashHidden && !flashRevealed) {
+          flashPaused = false;
+          armFlashTimer();
+        }
+      }
+    });
   const latestFont = async (requested: Promise<FontOption>) => {
     let loaded = await requested;
     while (requested !== pendingFont) {
@@ -95,6 +198,28 @@ export async function createTrainer(
     get metadataHintsShown() {
       return metadataHintsShown;
     },
+    get flashHidden() {
+      return flashHidden;
+    },
+    get flashRevealed() {
+      return flashRevealed;
+    },
+    startFlash,
+    pauseFlash,
+    resumeFlash,
+    onFlashChange(callback: () => void) {
+      flashChange = callback;
+      return () => {
+        if (flashChange === callback) flashChange = undefined;
+      };
+    },
+    revealFlash() {
+      if (!flashHidden || result) return;
+      flashRevealed = true;
+      flashHidden = false;
+      clearFlashTimer();
+      flashChange?.();
+    },
     setMetadataHintsShown(shown: boolean) {
       if (!metadataHintsCaptured) {
         metadataHintsShown = shown;
@@ -120,6 +245,22 @@ export async function createTrainer(
       if (busy || result) return;
       busy = true;
       try {
+        recordVisibleTime();
+        clearFlashTimer();
+        const flash =
+          flashStarted &&
+          settings.flash.enabled &&
+          flashAvailable(correctAnswers())
+            ? {
+                exposureMs: flashPlannedExposureMs,
+                ...(flashTimingInvalid
+                  ? {}
+                  : {
+                      visibleDurationMs: flashElapsedMs,
+                    }),
+                revealed: flashRevealed,
+              }
+            : undefined;
         const completed = completeAttempt(
           state,
           current,
@@ -132,30 +273,34 @@ export async function createTrainer(
           font.id,
           presentation,
           metadataHintsShown,
+          flash,
         );
         await repository.saveAttempt(completed.attempt, completed.state);
         const familiarity = completed.attempt.payload.familiarity;
-        lastScoreUpdate = {
-          wordId: current.word.id,
-          phase: current.phase,
-          evidenceWeight: Math.max(
-            TRAINER_CONFIG.familiarWordEvidenceFloor,
-            1 - familiarity * TRAINER_CONFIG.familiarityDiscount,
-          ),
-          letters: Object.fromEntries(
-            current.word.uniqueLetters.map((letter) => [
-              letter,
-              {
-                before: state.letters[letter] ?? null,
-                after: completed.state.letters[letter],
-              },
-            ]),
-          ),
-          word: {
-            before: state.words[current.word.id] ?? null,
-            after: completed.state.words[current.word.id],
-          },
-        };
+        lastScoreUpdate =
+          flash && !flash.revealed
+            ? undefined
+            : {
+                wordId: current.word.id,
+                phase: current.phase,
+                evidenceWeight: Math.max(
+                  TRAINER_CONFIG.familiarWordEvidenceFloor,
+                  1 - familiarity * TRAINER_CONFIG.familiarityDiscount,
+                ),
+                letters: Object.fromEntries(
+                  current.word.uniqueLetters.map((letter) => [
+                    letter,
+                    {
+                      before: state.letters[letter] ?? null,
+                      after: completed.state.letters[letter],
+                    },
+                  ]),
+                ),
+                word: {
+                  before: state.words[current.word.id] ?? null,
+                  after: completed.state.words[current.word.id],
+                },
+              };
         state = completed.state;
         result = completed.attempt.payload.evaluation;
       } finally {
@@ -173,22 +318,42 @@ export async function createTrainer(
         current = next;
         metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
         metadataHintsCaptured = false;
-        shownAt = Date.now();
         result = undefined;
+        flashHidden = false;
+        flashRevealed = false;
+        flashStarted = false;
+        flashPaused = false;
+        flashVisibilityPaused = false;
+        flashVisibleSince = undefined;
+        clearFlashTimer();
       } finally {
         busy = false;
       }
     },
     async setSettings(
       next: Pick<AppSettings, 'fonts'> &
-        Partial<Pick<AppSettings, 'language' | 'metadataHints' | 'typography'>>,
+        Partial<
+          Pick<
+            AppSettings,
+            'language' | 'metadataHints' | 'typography' | 'flash'
+          >
+        >,
     ) {
       const saved = parseSettings(next);
       await repository.setSetting('app', saved);
       settings = saved;
+      if (!saved.flash.enabled && flashHidden) {
+        flashHidden = false;
+        flashChange?.();
+      }
       pendingFont = fontLoader(selectFont(saved, correctAnswers()));
       font = await latestFont(pendingFont);
       presentation = selectTypography(saved, correctAnswers());
+      if (flashStarted && !result && !flashHidden && !flashRevealed) {
+        const wasPaused = flashPaused;
+        startFlash();
+        if (wasPaused) pauseFlash();
+      }
       if (!metadataHintsCaptured)
         metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
     },

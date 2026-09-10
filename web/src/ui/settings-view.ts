@@ -1,5 +1,11 @@
 import { metadataHintLabels } from '../core/metadata-hints.ts';
-import { FONTS, TYPOGRAPHY_MODES } from '../core/settings.ts';
+import {
+  FLASH_UNLOCK_AFTER_CORRECT,
+  FONTS,
+  flashAvailable,
+  flashExposureMs,
+  TYPOGRAPHY_MODES,
+} from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
 import type { LanguagePreference } from '../i18n/types.ts';
 import type { Trainer } from '../trainer.ts';
@@ -27,11 +33,59 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   ] as HTMLInputElement[];
   const typographySelected = element<HTMLSelectElement>('typography-selected');
   const typographyEnabled = element('typography-enabled');
+  const flashEnabled = element<HTMLInputElement>('flash-enabled');
+  const flashEnabledLabel = element('flash-enabled-label');
+  const flashDurationHint = element('flash-duration-hint');
+  const flashDuration = element<HTMLInputElement>('flash-duration');
+  const flashDurationValue = element('flash-duration-value');
+  const flashPreviewWord = element('flash-preview-word');
+  const flashPreviewCountdown = element('flash-preview-countdown');
+  const flashPreviewReveal = element<HTMLButtonElement>('flash-preview-reveal');
+  let previewInterval: ReturnType<typeof setInterval> | undefined;
+  let previewHideTimer: ReturnType<typeof setTimeout> | undefined;
+  let previewRemaining = 0;
   const resetOpen = element<HTMLButtonElement>('reset-open');
   const resetConfirmation = element('reset-confirmation');
   const resetCancel = element<HTMLButtonElement>('reset-cancel');
   const resetConfirm = element<HTMLButtonElement>('reset-confirm');
   const resetError = element('reset-error');
+
+  function stopPreview() {
+    if (previewInterval !== undefined) clearInterval(previewInterval);
+    if (previewHideTimer !== undefined) clearTimeout(previewHideTimer);
+    previewInterval = undefined;
+    previewHideTimer = undefined;
+  }
+
+  function setPreviewHidden(hidden: boolean) {
+    flashPreviewWord.parentElement?.classList.toggle('is-hidden', hidden);
+    flashPreviewReveal.ariaHidden = String(!hidden);
+    flashPreviewReveal.tabIndex = hidden ? 0 : -1;
+  }
+
+  function startPreview() {
+    stopPreview();
+    const exposureMs = flashExposureMs(
+      Number(flashDuration.value) * 1000,
+      [...flashPreviewWord.textContent].length,
+    );
+    previewRemaining = Math.ceil(exposureMs / 1000);
+    setPreviewHidden(false);
+    flashPreviewCountdown.textContent = `${previewRemaining} s`;
+    previewInterval = setInterval(() => {
+      if (previewRemaining > 1) {
+        previewRemaining -= 1;
+        flashPreviewCountdown.textContent = `${previewRemaining} s`;
+      }
+    }, 1000);
+    previewHideTimer = setTimeout(() => {
+      if (previewInterval !== undefined) clearInterval(previewInterval);
+      previewInterval = undefined;
+      setPreviewHidden(true);
+      flashPreviewCountdown.textContent = '';
+      previewHideTimer = setTimeout(startPreview, 2000);
+    }, exposureMs);
+  }
 
   selected.replaceChildren(
     ...FONTS.map((font) => new Option(fontName(font.id), font.id)),
@@ -88,9 +142,23 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     const { typography } = trainer.settings;
     language.value = trainer.settings.language;
     metadataHints.checked = trainer.settings.metadataHints;
+    flashEnabled.checked = trainer.settings.flash.enabled;
+    flashDurationHint.dataset.tooltip = t('settings.flashDurationHint');
     const correctAnswers = trainer.state.recent.filter(
-      (attempt) => attempt.payload.correct,
+      (attempt) =>
+        attempt.payload.correct &&
+        (!attempt.payload.flashMode || attempt.payload.flashRevealed),
     ).length;
+    const flashUnlocked = flashAvailable(correctAnswers);
+    flashEnabled.disabled = !flashUnlocked;
+    flashEnabledLabel.textContent = flashUnlocked
+      ? t('settings.enableFlash')
+      : t('settings.unlockAfter', {
+          count: FLASH_UNLOCK_AFTER_CORRECT,
+          name: t('settings.flash'),
+        });
+    flashDuration.value = String(trainer.settings.flash.exposureMs / 1000);
+    flashDurationValue.textContent = `${flashDuration.value} s`;
     for (const input of modeInputs) input.checked = input.value === fonts.mode;
     for (const option of selected.options)
       option.disabled =
@@ -158,6 +226,10 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       await trainer.setSettings({
         language: language.value as LanguagePreference,
         metadataHints: metadataHints.checked,
+        flash: {
+          enabled: flashEnabled.checked,
+          exposureMs: Number(flashDuration.value) * 1000,
+        },
         fonts: {
           mode,
           selected: selected.value,
@@ -175,6 +247,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       }
       render();
       renderTrainer();
+      startPreview();
     } catch (error) {
       const message = document.getElementById('error');
       if (message) {
@@ -188,11 +261,15 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   }
 
   element('settings-open').addEventListener('click', () => {
+    trainer.pauseFlash();
     render();
     dialog.showModal();
+    startPreview();
   });
   element('settings-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
+    stopPreview();
+    trainer.resumeFlash();
     resetConfirmation.hidden = true;
     resetOpen.hidden = false;
     resetError.hidden = true;
@@ -224,6 +301,14 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
         error instanceof Error ? error.message : t('status.resetError');
     }
   });
+  flashDuration.addEventListener('input', () => {
+    flashDurationValue.textContent = `${flashDuration.value} s`;
+    if (dialog.open) startPreview();
+  });
+  flashPreviewReveal.addEventListener('click', () => {
+    startPreview();
+    flashDuration.focus();
+  });
   for (const control of [
     language,
     metadataHints,
@@ -233,6 +318,8 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     ...typographyModeInputs,
     typographySelected,
     ...typographyEnabled.querySelectorAll('input'),
+    flashEnabled,
+    flashDuration,
   ])
     control.addEventListener('change', () => void apply());
   render();

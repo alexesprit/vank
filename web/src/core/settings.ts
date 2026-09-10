@@ -78,6 +78,10 @@ export const FONTS: FontOption[] = [
 export interface AppSettings {
   language: LanguagePreference;
   metadataHints: boolean;
+  flash: {
+    enabled: boolean;
+    exposureMs: number;
+  };
   fonts: {
     mode: 'single' | 'rotate';
     selected: string;
@@ -142,6 +146,10 @@ export const DEFAULT_PRESENTATION = {
 export const DEFAULT_SETTINGS: AppSettings = {
   language: 'auto',
   metadataHints: false,
+  flash: {
+    enabled: false,
+    exposureMs: 3000,
+  },
   fonts: {
     mode: 'single',
     selected: 'default',
@@ -161,6 +169,7 @@ export function parseSettings(value: unknown): AppSettings {
     fonts?: unknown;
     language?: unknown;
     metadataHints?: unknown;
+    flash?: unknown;
     typography?: unknown;
   };
   const fonts = saved.fonts;
@@ -194,6 +203,20 @@ export function parseSettings(value: unknown): AppSettings {
       enabled: [...new Set(candidate.enabled)],
     };
   })();
+  const flash =
+    saved.flash && typeof saved.flash === 'object'
+      ? (saved.flash as Partial<AppSettings['flash']> & {
+          durationMs?: unknown;
+        })
+      : {};
+  const rawExposureMs = flash.exposureMs ?? flash.durationMs;
+  const exposureMs =
+    typeof rawExposureMs === 'number' &&
+    Number.isFinite(rawExposureMs) &&
+    rawExposureMs >= 1000 &&
+    rawExposureMs <= 10000
+      ? Math.round(rawExposureMs / 1000) * 1000
+      : DEFAULT_SETTINGS.flash.exposureMs;
   return {
     language: LANGUAGE_PREFERENCES.includes(
       saved.language as LanguagePreference,
@@ -204,6 +227,13 @@ export function parseSettings(value: unknown): AppSettings {
       typeof saved.metadataHints === 'boolean'
         ? saved.metadataHints
         : DEFAULT_SETTINGS.metadataHints,
+    flash: {
+      enabled:
+        typeof flash.enabled === 'boolean'
+          ? flash.enabled
+          : DEFAULT_SETTINGS.flash.enabled,
+      exposureMs,
+    },
     fonts: {
       mode: candidate.mode as AppSettings['fonts']['mode'],
       selected: candidate.selected as string,
@@ -211,6 +241,24 @@ export function parseSettings(value: unknown): AppSettings {
     },
     typography: parsedTypography,
   };
+}
+
+export const FLASH_UNLOCK_AFTER_CORRECT = 10;
+export const FLASH_EXTRA_MS_PER_LETTER = 250;
+export const FLASH_BASELINE_LETTERS = 4;
+export const FLASH_MAX_EXPOSURE_MS = 12000;
+
+export function flashExposureMs(baseMs: number, wordLength: number) {
+  return Math.min(
+    FLASH_MAX_EXPOSURE_MS,
+    baseMs +
+      Math.max(0, wordLength - FLASH_BASELINE_LETTERS) *
+        FLASH_EXTRA_MS_PER_LETTER,
+  );
+}
+
+export function flashAvailable(correctAnswers: number) {
+  return correctAnswers >= FLASH_UNLOCK_AFTER_CORRECT;
 }
 
 export function selectTypography(
