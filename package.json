@@ -48,5 +48,8 @@
   },
   "engines": {
     "node": ">=24"
+  },
+  "dependencies": {
+    "i18next": "26.4.1"
   }
 }

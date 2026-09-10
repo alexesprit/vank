@@ -2,6 +2,7 @@ import { version as appVersion } from '../../../package.json';
 import type { Dictionary } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { progress } from '../core/session.ts';
+import { t } from '../i18n/index.ts';
 import { PROGRESS_SCHEMA_VERSION } from '../storage/repository.ts';
 import type { Trainer } from '../trainer.ts';
 
@@ -41,8 +42,8 @@ function section(title: string, value: unknown, collapsed = false) {
   const copy = document.createElement('button');
   copy.className = 'debug-copy';
   copy.type = 'button';
-  copy.title = 'Копировать';
-  copy.setAttribute('aria-label', 'Копировать');
+  copy.title = t('debug.copy');
+  copy.setAttribute('aria-label', t('debug.copy'));
   const status = document.createElement('span');
   status.className = 'debug-copy-status';
   status.setAttribute('role', 'status');
@@ -54,9 +55,9 @@ function section(title: string, value: unknown, collapsed = false) {
   copy.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(output.textContent);
-      status.textContent = 'Скопировано';
+      status.textContent = t('debug.copied');
     } catch {
-      status.textContent = 'Не удалось';
+      status.textContent = t('debug.failed');
     }
     window.setTimeout(() => {
       status.textContent = '';
@@ -66,7 +67,7 @@ function section(title: string, value: unknown, collapsed = false) {
   if (collapsed) {
     const details = document.createElement('details');
     const summary = document.createElement('summary');
-    summary.textContent = 'Показать JSON';
+    summary.textContent = t('debug.showJson');
     details.append(summary, code);
     container.append(heading, details);
   } else container.append(heading, code);
@@ -150,16 +151,16 @@ export function mountDebugDialog(trainer: Trainer, dictionary: Dictionary) {
       },
     };
     content.replaceChildren(
-      section('Выбор слова', snapshot.selection),
-      section('Текущее слово', snapshot.currentWord),
-      section('Последняя проверка', snapshot.lastEvaluation),
-      section('Изменение оценок', snapshot.scoreUpdate),
-      section('Состояние обучения', snapshot.learner),
-      section('Отображение', snapshot.presentation),
-      section('Среда выполнения', snapshot.runtime),
-      section('Raw: selection', trainer.current, true),
-      section('Raw: last attempt', attempt ?? null, true),
-      section('Raw: learner state', state, true),
+      section(t('debug.selection'), snapshot.selection),
+      section(t('debug.currentWord'), snapshot.currentWord),
+      section(t('debug.lastEvaluation'), snapshot.lastEvaluation),
+      section(t('debug.scoreUpdate'), snapshot.scoreUpdate),
+      section(t('debug.learner'), snapshot.learner),
+      section(t('debug.presentation'), snapshot.presentation),
+      section(t('debug.runtime'), snapshot.runtime),
+      section(t('debug.rawSelection'), trainer.current, true),
+      section(t('debug.rawAttempt'), attempt ?? null, true),
+      section(t('debug.rawState'), state, true),
     );
     dialog.showModal();
   };

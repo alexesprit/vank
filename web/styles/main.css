@@ -575,6 +575,7 @@ legend {
   gap: 8px;
 }
 
+#language,
 #font-selected,
 #typography-selected {
   width: 100%;

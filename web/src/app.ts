@@ -1,12 +1,26 @@
 import '../styles/main.css';
+import { parseSettings } from './core/settings.ts';
 import { loadDictionary } from './data/dictionary.ts';
+import { initializeI18n, localizeDocument } from './i18n/index.ts';
+import type { LanguagePreference } from './i18n/types.ts';
 import { openRepository } from './storage/repository.ts';
 import { createTrainer } from './trainer.ts';
 import { mountTrainer, showError } from './ui/trainer-view.ts';
 
 async function start() {
+  let language: LanguagePreference = 'auto';
+  let repository: Awaited<ReturnType<typeof openRepository>>;
+  try {
+    repository = await openRepository();
+    language = parseSettings(await repository.getSetting('app')).language;
+  } catch (error) {
+    const locale = await initializeI18n('auto', navigator.languages);
+    localizeDocument(locale);
+    throw error;
+  }
+  const locale = await initializeI18n(language, navigator.languages);
+  localizeDocument(locale);
   const dictionary = await loadDictionary();
-  const repository = await openRepository();
   mountTrainer(await createTrainer(dictionary.words, repository), dictionary);
 }
 start().catch((error) => {

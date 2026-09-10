@@ -1,4 +1,6 @@
 import { FONTS, TYPOGRAPHY_MODES } from '../core/settings.ts';
+import { fontName, t, typographyName } from '../i18n/index.ts';
+import type { LanguagePreference } from '../i18n/types.ts';
 import type { Trainer } from '../trainer.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
@@ -11,6 +13,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   const modeInputs = [
     ...document.querySelectorAll<HTMLInputElement>('[name="font-mode"]'),
   ];
+  const language = element<HTMLSelectElement>('language');
   const selected = element<HTMLSelectElement>('font-selected');
   const enabled = element('font-enabled');
   const typographyModeInputs = [
@@ -25,7 +28,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   const resetError = element('reset-error');
 
   selected.replaceChildren(
-    ...FONTS.map((font) => new Option(font.name, font.id)),
+    ...FONTS.map((font) => new Option(fontName(font.id), font.id)),
   );
   enabled.replaceChildren(
     ...FONTS.map((font) => {
@@ -35,13 +38,15 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       input.type = 'checkbox';
       input.value = font.id;
       const text = document.createElement('span');
-      text.textContent = font.name;
+      text.textContent = fontName(font.id);
       label.append(input, text);
       return label;
     }),
   );
   typographySelected.replaceChildren(
-    ...TYPOGRAPHY_MODES.map((mode) => new Option(mode.name, mode.id)),
+    ...TYPOGRAPHY_MODES.map(
+      (mode) => new Option(typographyName(mode.caseMode, mode.italic), mode.id),
+    ),
   );
   typographyEnabled.replaceChildren(
     ...TYPOGRAPHY_MODES.map((mode) => {
@@ -50,7 +55,10 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       const input = document.createElement('input');
       input.type = 'checkbox';
       input.value = mode.id;
-      label.append(input, document.createTextNode(mode.name));
+      label.append(
+        input,
+        document.createTextNode(typographyName(mode.caseMode, mode.italic)),
+      );
       return label;
     }),
   );
@@ -58,6 +66,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   function render() {
     const { fonts } = trainer.settings;
     const { typography } = trainer.settings;
+    language.value = trainer.settings.language;
     const correctAnswers = trainer.state.recent.filter(
       (attempt) => attempt.payload.correct,
     ).length;
@@ -76,7 +85,12 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       input.checked = fonts.enabled.includes(input.value);
       input.disabled = fonts.mode !== 'rotate' || locked;
       if (input.nextElementSibling)
-        input.nextElementSibling.textContent = `${font.name}${locked ? ` · после ${font.unlockAfterCorrect} верных ответов` : ''}`;
+        input.nextElementSibling.textContent = locked
+          ? t('settings.unlockAfter', {
+              count: font.unlockAfterCorrect,
+              name: fontName(font.id),
+            })
+          : fontName(font.id);
     }
     for (const input of typographyModeInputs)
       input.checked = input.value === typography.mode;
@@ -97,11 +111,17 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       input.disabled = typography.mode !== 'rotate' || locked;
       const text = input.parentElement?.lastChild;
       if (text)
-        text.textContent = `${mode.name}${locked ? ` · после ${mode.unlockAfterCorrect} верных ответов` : ''}`;
+        text.textContent = locked
+          ? t('settings.unlockAfter', {
+              count: mode.unlockAfterCorrect,
+              name: typographyName(mode.caseMode, mode.italic),
+            })
+          : typographyName(mode.caseMode, mode.italic);
     }
   }
 
   async function apply() {
+    const languageChanged = language.value !== trainer.settings.language;
     const mode = modeInputs.find((input) => input.checked)?.value as
       | 'single'
       | 'rotate';
@@ -115,6 +135,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     ].map((input) => input.value);
     try {
       await trainer.setSettings({
+        language: language.value as LanguagePreference,
         fonts: {
           mode,
           selected: selected.value,
@@ -126,6 +147,10 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
           enabled: typographyChecked.length ? typographyChecked : ['caps'],
         },
       });
+      if (languageChanged) {
+        window.location.reload();
+        return;
+      }
       render();
       renderTrainer();
     } catch (error) {
@@ -135,7 +160,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
         message.textContent =
           error instanceof Error
             ? error.message
-            : 'Не удалось сохранить настройки.';
+            : t('status.saveSettingsError');
       }
     }
   }
@@ -174,12 +199,11 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       resetConfirm.disabled = resetCancel.disabled = false;
       resetError.hidden = false;
       resetError.textContent =
-        error instanceof Error
-          ? error.message
-          : 'Не удалось сбросить статистику.';
+        error instanceof Error ? error.message : t('status.resetError');
     }
   });
   for (const control of [
+    language,
     ...modeInputs,
     selected,
     ...enabled.querySelectorAll('input'),

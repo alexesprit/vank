@@ -157,7 +157,7 @@ export async function createTrainer(
     },
     async setSettings(
       next: Pick<AppSettings, 'fonts'> &
-        Partial<Pick<AppSettings, 'typography'>>,
+        Partial<Pick<AppSettings, 'language' | 'typography'>>,
     ) {
       const saved = parseSettings(next);
       await repository.setSetting('app', saved);

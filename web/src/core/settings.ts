@@ -1,5 +1,9 @@
 import { ALPHABET } from '../../../shared/armenian.ts';
 import type { CaseMode, Presentation } from '../../../shared/types.ts';
+import {
+  LANGUAGE_PREFERENCES,
+  type LanguagePreference,
+} from '../i18n/types.ts';
 
 const googleStylesheet = (family: string) =>
   `https://fonts.googleapis.com/css2?family=${family.replaceAll(' ', '+')}:wght@700&display=swap`;
@@ -7,7 +11,6 @@ const canonicalArmenianPattern = /^[Ա-Ֆ]+$/u;
 
 export interface FontOption {
   id: string;
-  name: string;
   family: string;
   readability: number;
   unlockAfterCorrect: number;
@@ -19,7 +22,6 @@ export interface FontOption {
 export const FONTS: FontOption[] = [
   {
     id: 'default',
-    name: 'Системный',
     family: 'ui-sans-serif, system-ui, sans-serif',
     readability: 0,
     unlockAfterCorrect: 0,
@@ -28,7 +30,6 @@ export const FONTS: FontOption[] = [
   },
   {
     id: 'noto-sans-armenian',
-    name: 'Noto Sans Armenian',
     family: '"Noto Sans Armenian", sans-serif',
     readability: 1,
     unlockAfterCorrect: 10,
@@ -38,7 +39,6 @@ export const FONTS: FontOption[] = [
   },
   {
     id: 'google-sans',
-    name: 'Google Sans',
     family: '"Google Sans", sans-serif',
     readability: 1,
     unlockAfterCorrect: 20,
@@ -48,7 +48,6 @@ export const FONTS: FontOption[] = [
   },
   {
     id: 'noto-serif-armenian',
-    name: 'Noto Serif Armenian',
     family: '"Noto Serif Armenian", serif',
     readability: 2,
     unlockAfterCorrect: 40,
@@ -58,7 +57,6 @@ export const FONTS: FontOption[] = [
   },
   {
     id: 'iosevka-charon',
-    name: 'Iosevka Charon',
     family: '"Iosevka Charon", monospace',
     readability: 3,
     unlockAfterCorrect: 60,
@@ -68,7 +66,6 @@ export const FONTS: FontOption[] = [
   },
   {
     id: 'handjet',
-    name: 'Handjet',
     family: 'Handjet, sans-serif',
     readability: 4,
     unlockAfterCorrect: 80,
@@ -79,6 +76,7 @@ export const FONTS: FontOption[] = [
 ];
 
 export interface AppSettings {
+  language: LanguagePreference;
   fonts: {
     mode: 'single' | 'rotate';
     selected: string;
@@ -94,49 +92,42 @@ export interface AppSettings {
 export const TYPOGRAPHY_MODES = [
   {
     id: 'caps',
-    name: 'ПРОПИСНЫЕ',
     caseMode: 'caps',
     italic: false,
     unlockAfterCorrect: 0,
   },
   {
     id: 'normal',
-    name: 'Обычный регистр',
     caseMode: 'normal',
     italic: false,
     unlockAfterCorrect: 0,
   },
   {
     id: 'lower',
-    name: 'строчные',
     caseMode: 'lower',
     italic: false,
     unlockAfterCorrect: 0,
   },
   {
     id: 'caps-italic',
-    name: 'ПРОПИСНЫЕ · курсив',
     caseMode: 'caps',
     italic: true,
     unlockAfterCorrect: 40,
   },
   {
     id: 'normal-italic',
-    name: 'Обычный · курсив',
     caseMode: 'normal',
     italic: true,
     unlockAfterCorrect: 40,
   },
   {
     id: 'lower-italic',
-    name: 'строчные · курсив',
     caseMode: 'lower',
     italic: true,
     unlockAfterCorrect: 40,
   },
 ] satisfies Array<{
   id: string;
-  name: string;
   caseMode: CaseMode;
   italic: boolean;
   unlockAfterCorrect: number;
@@ -148,6 +139,7 @@ export const DEFAULT_PRESENTATION = {
 } as const;
 
 export const DEFAULT_SETTINGS: AppSettings = {
+  language: 'auto',
   fonts: {
     mode: 'single',
     selected: 'default',
@@ -163,7 +155,11 @@ export const DEFAULT_SETTINGS: AppSettings = {
 export function parseSettings(value: unknown): AppSettings {
   if (!value || typeof value !== 'object')
     return structuredClone(DEFAULT_SETTINGS);
-  const saved = value as { fonts?: unknown; typography?: unknown };
+  const saved = value as {
+    fonts?: unknown;
+    language?: unknown;
+    typography?: unknown;
+  };
   const fonts = saved.fonts;
   if (!fonts || typeof fonts !== 'object')
     return structuredClone(DEFAULT_SETTINGS);
@@ -196,6 +192,11 @@ export function parseSettings(value: unknown): AppSettings {
     };
   })();
   return {
+    language: LANGUAGE_PREFERENCES.includes(
+      saved.language as LanguagePreference,
+    )
+      ? (saved.language as LanguagePreference)
+      : 'auto',
     fonts: {
       mode: candidate.mode as AppSettings['fonts']['mode'],
       selected: candidate.selected as string,

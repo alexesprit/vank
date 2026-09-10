@@ -1,6 +1,7 @@
 import type { Dictionary } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { availableTypography, formatPrompt } from '../core/settings.ts';
+import { t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
 import { mountDebugDialog } from './debug-view.ts';
 import { mountSettings } from './settings-view.ts';
@@ -12,9 +13,7 @@ export function showError(error: unknown) {
   const message = element('error');
   message.hidden = false;
   message.textContent =
-    error instanceof Error
-      ? error.message
-      : 'Не удалось продолжить. Попробуйте ещё раз.';
+    error instanceof Error ? error.message : t('status.genericError');
 }
 function mountIntro(trainer: Trainer) {
   const dialog = element<HTMLDialogElement>('intro-dialog');
@@ -45,8 +44,15 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     prompt.style.fontFamily = trainer.font.family;
     prompt.style.fontStyle = trainer.presentation.italic ? 'italic' : 'normal';
     const presentationLabel = element<HTMLButtonElement>('presentation-label');
-    presentationLabel.textContent = `Адаптивная практика · ${{ caps: 'CAPS', normal: 'Обычный регистр', lower: 'Строчные' }[trainer.presentation.caseMode]}${trainer.presentation.italic ? ' · курсив' : ''}`;
-    presentationLabel.ariaLabel = `Сменить начертание: ${presentationLabel.textContent}`;
+    presentationLabel.textContent = t('trainer.adaptive', {
+      mode: typographyName(
+        trainer.presentation.caseMode,
+        trainer.presentation.italic,
+      ),
+    });
+    presentationLabel.ariaLabel = t('trainer.changeTypography', {
+      label: presentationLabel.textContent,
+    });
     presentationLabel.disabled =
       availableTypography(
         trainer.state.recent.filter((attempt) => attempt.payload.correct)
@@ -60,13 +66,9 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     if (result) {
       element('result').className =
         `result ${result.correct ? 'success' : result.status === 'unknown' ? 'neutral' : 'error'}`;
-      element('result-title').textContent = {
-        correct: 'Верно',
-        partial: 'Почти верно',
-        incorrect: 'Пока неверно',
-        unknown: 'Запомним это слово',
-        ambiguous: 'Неоднозначный ответ',
-      }[result.status];
+      element('result-title').textContent = t(
+        `trainer.result.${result.status}`,
+      );
       element('reading').textContent =
         `${word.acceptedCyrillic[0]} · ${word.readingLatin}`;
       element('meaning').textContent =
@@ -76,9 +78,13 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
         result.status === 'unknown'
           ? ''
           : mistakes.length
-            ? `Обратите внимание: ${mistakes.map((u) => `${u.source} → ${u.expected}`).join(' · ')}`
+            ? t('trainer.mistakes', {
+                mistakes: mistakes
+                  .map((u) => `${u.source} → ${u.expected}`)
+                  .join(' · '),
+              })
             : result.status === 'ambiguous'
-              ? 'Сравните ответ с чтением выше.'
+              ? t('trainer.compareReading')
               : '';
       next.focus();
     } else {

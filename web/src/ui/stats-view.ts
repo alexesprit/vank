@@ -1,6 +1,6 @@
 import type { LearnerState } from '../../../shared/types.ts';
 import { progress } from '../core/session.ts';
-import { FONTS } from '../core/settings.ts';
+import { fontName, t, typographyName } from '../i18n/index.ts';
 
 const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
@@ -18,10 +18,13 @@ export function renderStats(state: LearnerState, sessionStart: number) {
     verified: percentage(stats.verifiedAccuracy),
   }))
     element(id).textContent = String(value);
-  element('rolling').textContent =
-    `Последние 20: ${percentage(stats.rolling20)} · Пропущено: ${stats.skips}`;
-  element('session-progress').textContent =
-    `Слов за сессию: ${state.recent.length - sessionStart}`;
+  element('rolling').textContent = t('progress.recent', {
+    accuracy: percentage(stats.rolling20),
+    skips: stats.skips,
+  });
+  element('session-progress').textContent = t('progress.sessionWords', {
+    count: state.recent.length - sessionStart,
+  });
   const weak = element('weak');
   weak.replaceChildren(
     ...stats.weakLetters.map((letter) => {
@@ -34,8 +37,8 @@ export function renderStats(state: LearnerState, sessionStart: number) {
   );
   if (!stats.weakLetters.length)
     weak.textContent = stats.introduced
-      ? 'Так держать!'
-      : 'Начните с первого слова';
+      ? t('progress.keepGoing')
+      : t('progress.start');
   const fontStats = element('font-stats');
   fontStats.replaceChildren(
     ...stats.fontStats.map((stat) => {
@@ -43,23 +46,28 @@ export function renderStats(state: LearnerState, sessionStart: number) {
       row.className = stat.weakLetters.length
         ? 'font-stat weak-font'
         : 'font-stat';
-      row.textContent = `${FONTS.find((font) => font.id === stat.fontId)?.name ?? stat.fontId}: ${percentage(stat.accuracy)}${stat.weakLetters.length ? ` · слабее: ${stat.weakLetters.join(' ')}` : ''}`;
+      const summary = `${fontName(stat.fontId)}: ${percentage(stat.accuracy)}`;
+      row.textContent = stat.weakLetters.length
+        ? t('progress.weaker', {
+            letters: stat.weakLetters.join(' '),
+            summary,
+          })
+        : summary;
       return row;
     }),
   );
-  if (!stats.fontStats.length)
-    fontStats.textContent = 'Появится после первой попытки';
+  if (!stats.fontStats.length) fontStats.textContent = t('progress.empty');
   const typographyStats = element('typography-stats');
   typographyStats.replaceChildren(
     ...stats.typographyStats.map((stat) => {
       const row = document.createElement('p');
       row.className = 'font-stat';
-      row.textContent = `${{ caps: 'ПРОПИСНЫЕ', normal: 'Обычный регистр', lower: 'Строчные' }[stat.caseMode]}${stat.italic ? ' · курсив' : ''}: ${percentage(stat.accuracy)}`;
+      row.textContent = `${typographyName(stat.caseMode, stat.italic)}: ${percentage(stat.accuracy)}`;
       return row;
     }),
   );
   if (!stats.typographyStats.length)
-    typographyStats.textContent = 'Появится после первой попытки';
+    typographyStats.textContent = t('progress.empty');
 }
 
 export function mountStatsDialog(openDebug: () => Promise<void>) {

@@ -5,76 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
-  <title>Vank — чтение по-армянски</title>
+  <title data-i18n="meta.title">Vank — чтение по-армянски</title>
 </head>
 <body>
   <div class="page">
-    <header class="topbar"><div class="brand"><h1>Vank</h1><span>Чтение по-армянски</span></div><div class="topbar-actions"><button id="help-open" class="icon-btn" type="button" aria-label="Как это работает"><i data-lucide="circle-help" aria-hidden="true"></i></button><button id="settings-open" class="icon-btn" type="button" aria-label="Настройки"><i data-lucide="settings" aria-hidden="true"></i></button></div></header>
+    <header class="topbar"><div class="brand"><h1>Vank</h1><span data-i18n="meta.tagline">Чтение по-армянски</span></div><div class="topbar-actions"><button id="help-open" class="icon-btn" type="button" aria-label="Как это работает" data-i18n-aria-label="actions.help"><i data-lucide="circle-help" aria-hidden="true"></i></button><button id="settings-open" class="icon-btn" type="button" aria-label="Настройки" data-i18n-aria-label="actions.settings"><i data-lucide="settings" aria-hidden="true"></i></button></div></header>
     <p id="error" role="alert" hidden></p>
     <main class="layout" id="trainer" hidden>
-      <section class="trainer" aria-label="Практика чтения">
+      <section class="trainer" aria-label="Практика чтения" data-i18n-aria-label="trainer.practice">
         <button id="presentation-label" class="eyebrow presentation-label" type="button">Адаптивная практика · CAPS</button>
         <div class="word-wrap"><div id="word" class="armenian-word armenian-font" lang="hy"></div></div>
         <form id="answer-form">
-          <label class="sr-only" for="answer">Как читается слово?</label>
-          <div class="answer-row"><input id="answer" class="answer-input" placeholder="Как читается слово?" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="256" aria-describedby="answer-help" /><button id="check" class="primary-btn" type="submit">Проверить</button></div>
-          <div class="helper" id="answer-help"><span>Кириллицей или латиницей</span><span>Enter — проверить / дальше</span></div>
+          <label class="sr-only" for="answer" data-i18n="trainer.answer">Как читается слово?</label>
+          <div class="answer-row"><input id="answer" class="answer-input" placeholder="Как читается слово?" data-i18n-placeholder="trainer.answer" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="256" aria-describedby="answer-help" /><button id="check" class="primary-btn" type="submit" data-i18n="actions.check">Проверить</button></div>
+          <div class="helper" id="answer-help"><span data-i18n="trainer.answerScripts">Кириллицей или латиницей</span><span data-i18n="trainer.enterHint">Enter — проверить / дальше</span></div>
         </form>
         <div id="result" class="result" role="status" aria-live="polite" hidden>
           <div id="result-title" class="result-title"></div><div id="reading" class="reading"></div><div id="meaning" class="meaning"></div><div id="mistakes" class="mistake-line"></div>
         </div>
-        <div class="trainer-footer"><span id="session-progress" class="progress-line"></span><button id="skip" class="secondary-btn" type="button">Не знаю</button><button id="next" class="primary-btn" type="button" hidden>Дальше →</button></div>
+        <div class="trainer-footer"><span id="session-progress" class="progress-line"></span><button id="skip" class="secondary-btn" type="button" data-i18n="actions.skip">Не знаю</button><button id="next" class="primary-btn" type="button" data-i18n="actions.next" hidden>Дальше →</button></div>
       </section>
-      <aside class="sidebar" aria-label="Прогресс">
-        <section class="panel"><h2>Прогресс</h2><div class="stat-grid">
-          <div class="stat"><strong id="introduced">0</strong><span>букв встречено</span></div>
-          <div class="stat"><strong id="strong">0</strong><span>сильных букв</span></div>
-          <div class="stat"><strong id="accuracy">—</strong><span>без ошибок</span></div>
-          <div class="stat"><strong id="verified">—</strong><span>без подсказки знакомого слова</span></div>
-        </div><p class="progress-line" id="rolling"></p><button id="progress-open" class="secondary-btn progress-details" type="button">Подробнее</button></section>
-        <section class="panel"><h2>Нужна практика</h2><div id="weak" class="weak-list"></div></section>
+      <aside class="sidebar" aria-label="Прогресс" data-i18n-aria-label="progress.label">
+        <section class="panel"><h2 data-i18n="progress.title">Прогресс</h2><div class="stat-grid">
+          <div class="stat"><strong id="introduced">0</strong><span data-i18n="progress.introduced">букв встречено</span></div>
+          <div class="stat"><strong id="strong">0</strong><span data-i18n="progress.strong">сильных букв</span></div>
+          <div class="stat"><strong id="accuracy">—</strong><span data-i18n="progress.accuracy">без ошибок</span></div>
+          <div class="stat"><strong id="verified">—</strong><span data-i18n="progress.verified">без подсказки знакомого слова</span></div>
+        </div><p class="progress-line" id="rolling"></p><button id="progress-open" class="secondary-btn progress-details" type="button" data-i18n="actions.details">Подробнее</button></section>
+        <section class="panel"><h2 data-i18n="progress.needsPractice">Нужна практика</h2><div id="weak" class="weak-list"></div></section>
       </aside>
     </main>
-    <p id="loading" role="status">Загрузка словаря…</p>
-    <noscript>Для практики включите JavaScript.</noscript>
+    <p id="loading" role="status" data-i18n="status.loading">Загрузка словаря…</p>
+    <noscript data-i18n="status.noscript">Для практики включите JavaScript.</noscript>
   </div>
   <dialog id="intro-dialog" aria-labelledby="intro-title">
-    <div class="dialog-header"><h2 id="intro-title">Как работает Vank</h2><button id="intro-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
-    <p>Читайте армянское слово и вводите его произношение.</p>
+    <div class="dialog-header"><h2 id="intro-title" data-i18n="intro.title">Как работает Vank</h2><button id="intro-close" class="icon-btn" type="button" aria-label="Закрыть" data-i18n-aria-label="actions.close"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <p data-i18n="intro.lead">Читайте армянское слово и вводите его произношение.</p>
     <ul>
-      <li>Можно отвечать кириллицей или латиницей.</li>
-      <li>Если не знаете одну букву, поставьте на её месте <code>_</code>, <code>-</code> или <code>*</code>. Остальные буквы всё равно будут учтены.</li>
-      <li>Если не знаете всё слово, нажмите «Не знаю».</li>
-      <li>После проверки Vank покажет чтение и подберёт дальнейшую практику.</li>
-      <li>Прогресс хранится на этом устройстве и будет удалён при очистке данных браузера.</li>
+      <li data-i18n="intro.scripts">Можно отвечать кириллицей или латиницей.</li>
+      <li><span data-i18n="intro.partialPrefix">Если не знаете одну букву, поставьте на её месте</span> <code>_</code>, <code>-</code> <span data-i18n="intro.or">или</span> <code>*</code>. <span data-i18n="intro.partialSuffix">Остальные буквы всё равно будут учтены.</span></li>
+      <li data-i18n="intro.skip">Если не знаете всё слово, нажмите «Не знаю».</li>
+      <li data-i18n="intro.result">После проверки Vank покажет чтение и подберёт дальнейшую практику.</li>
+      <li data-i18n="intro.storage">Прогресс хранится на этом устройстве и будет удалён при очистке данных браузера.</li>
     </ul>
-    <button id="intro-start" class="primary-btn" type="button">Начать практику</button>
+    <button id="intro-start" class="primary-btn" type="button" data-i18n="intro.start">Начать практику</button>
   </dialog>
   <dialog id="progress-dialog" aria-labelledby="progress-title">
-    <div class="dialog-header"><h2 id="progress-title">Подробная статистика</h2><button id="progress-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <div class="dialog-header"><h2 id="progress-title" data-i18n="progress.dialogTitle">Подробная статистика</h2><button id="progress-close" class="icon-btn" type="button" aria-label="Закрыть" data-i18n-aria-label="actions.close"><i data-lucide="x" aria-hidden="true"></i></button></div>
     <div class="stats-breakdown">
-      <section><h3>По шрифтам</h3><div id="font-stats"></div></section>
-      <section><h3>По начертанию</h3><div id="typography-stats"></div></section>
+      <section><h3 data-i18n="progress.byFont">По шрифтам</h3><div id="font-stats"></div></section>
+      <section><h3 data-i18n="progress.byTypography">По начертанию</h3><div id="typography-stats"></div></section>
     </div>
   </dialog>
   <dialog id="settings-dialog" aria-labelledby="settings-title">
-    <div class="dialog-header"><h2 id="settings-title">Настройки</h2><button id="settings-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
-    <fieldset><legend>Шрифт армянских слов</legend><label class="setting-row"><input type="radio" name="font-mode" value="single" /> Один шрифт</label><select id="font-selected" aria-label="Выбранный шрифт"></select><label class="setting-row"><input type="radio" name="font-mode" value="rotate" /> Чередовать доступные</label><div id="font-enabled" class="font-options"></div></fieldset>
-    <fieldset><legend>Начертание</legend><label class="setting-row"><input type="radio" name="typography-mode" value="single" /> Одно начертание</label><select id="typography-selected" aria-label="Выбранное начертание"></select><label class="setting-row"><input type="radio" name="typography-mode" value="rotate" /> Чередовать выбранные</label><div id="typography-enabled" class="font-options"></div></fieldset>
+    <div class="dialog-header"><h2 id="settings-title" data-i18n="settings.title">Настройки</h2><button id="settings-close" class="icon-btn" type="button" aria-label="Закрыть" data-i18n-aria-label="actions.close"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <fieldset><legend data-i18n="settings.language">Язык интерфейса</legend><select id="language" aria-label="Выбранный язык интерфейса" data-i18n-aria-label="settings.languageSelected"><option value="auto" data-i18n="settings.languageAuto">Как в браузере</option><option value="ru" data-i18n="settings.languageRu">Русский</option><option value="en" data-i18n="settings.languageEn">English</option></select></fieldset>
+    <fieldset><legend data-i18n="settings.font">Шрифт армянских слов</legend><label class="setting-row"><input type="radio" name="font-mode" value="single" /> <span data-i18n="settings.oneFont">Один шрифт</span></label><select id="font-selected" aria-label="Выбранный шрифт" data-i18n-aria-label="settings.selectedFont"></select><label class="setting-row"><input type="radio" name="font-mode" value="rotate" /> <span data-i18n="settings.rotateFonts">Чередовать доступные</span></label><div id="font-enabled" class="font-options"></div></fieldset>
+    <fieldset><legend data-i18n="settings.typography">Начертание</legend><label class="setting-row"><input type="radio" name="typography-mode" value="single" /> <span data-i18n="settings.oneTypography">Одно начертание</span></label><select id="typography-selected" aria-label="Выбранное начертание" data-i18n-aria-label="settings.selectedTypography"></select><label class="setting-row"><input type="radio" name="typography-mode" value="rotate" /> <span data-i18n="settings.rotateTypography">Чередовать выбранные</span></label><div id="typography-enabled" class="font-options"></div></fieldset>
     <section class="reset-section" aria-labelledby="reset-title">
-      <h3 id="reset-title">Статистика</h3>
-      <button id="reset-open" class="secondary-btn danger-btn" type="button">Сбросить статистику</button>
+      <h3 id="reset-title" data-i18n="settings.statistics">Статистика</h3>
+      <button id="reset-open" class="secondary-btn danger-btn" type="button" data-i18n="settings.reset">Сбросить статистику</button>
       <fieldset id="reset-confirmation" class="reset-confirmation" aria-describedby="reset-warning" hidden>
-        <legend class="sr-only">Подтверждение сброса статистики</legend>
-        <p id="reset-warning">Удалить всю статистику? Это действие нельзя отменить.</p>
+        <legend class="sr-only" data-i18n="settings.resetConfirmation">Подтверждение сброса статистики</legend>
+        <p id="reset-warning" data-i18n="settings.resetWarning">Удалить всю статистику? Это действие нельзя отменить.</p>
         <p id="reset-error" class="reset-error" role="alert" hidden></p>
-        <div class="reset-actions"><button id="reset-cancel" class="secondary-btn" type="button">Отмена</button><button id="reset-confirm" class="secondary-btn danger-btn" type="button">Удалить статистику</button></div>
+        <div class="reset-actions"><button id="reset-cancel" class="secondary-btn" type="button" data-i18n="actions.cancel">Отмена</button><button id="reset-confirm" class="secondary-btn danger-btn" type="button" data-i18n="settings.delete">Удалить статистику</button></div>
       </fieldset>
     </section>
   </dialog>
   <dialog id="debug-dialog" class="debug-dialog" aria-labelledby="debug-title">
-    <div class="dialog-header"><h2 id="debug-title">Диагностика</h2><button id="debug-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
-    <p class="debug-hint">Открыто через Cmd/Ctrl + «Подробнее»</p>
+    <div class="dialog-header"><h2 id="debug-title" data-i18n="debug.title">Диагностика</h2><button id="debug-close" class="icon-btn" type="button" aria-label="Закрыть" data-i18n-aria-label="actions.close"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <p class="debug-hint" data-i18n="debug.hint">Открыто через Cmd/Ctrl + «Подробнее»</p>
     <div id="debug-content" class="debug-content"></div>
   </dialog>
   <script defer src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js" integrity="sha384-hK2uiaqTSh/v1VqRxmuMQL4xmt5n0DdyBCOItx2fAs7Wv+WC8Tu0yDW1j12JooyM" crossorigin="anonymous" onload="lucide.createIcons()"></script>
