@@ -182,6 +182,33 @@ describe('adaptive selection', () => {
       personalDifficulty(words[0], state),
     );
   });
+  it('offers a familiar word after two failed verification words', () => {
+    const familiar = word('ԲԱՆԿ', 1),
+      native = [word('ԵՍ', 0.05), word('ՆԱ', 0.05)],
+      state = known([familiar, ...native]);
+    state.reinforcement = { letter: 'Ե', remaining: 3 };
+    let next = completeAttempt(
+      state,
+      { word: native[0], phase: 'verification' },
+      '',
+      true,
+      'c',
+      0,
+      1,
+      'a',
+    ).state;
+    next = completeAttempt(
+      next,
+      { word: native[1], phase: 'verification' },
+      '_',
+      false,
+      'c',
+      2,
+      3,
+      'b',
+    ).state;
+    expect(selectWord([familiar, ...native], next, 4).word).toBe(familiar);
+  });
   it('never introduces multiple unknown letters after bootstrap', () => {
     const words = [word('ՄԱՄԱ'), word('ՆԱՆԱ'), word('ՏԱՔՍԻ', 1), word('ՄԱՍ')];
     const state = known(words.slice(0, 2));

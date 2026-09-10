@@ -72,8 +72,31 @@ export function selectWord(
   const latest = state.recent[0]?.payload.wordId;
   const different = candidates.filter((w) => w.id !== latest);
   if (different.length) candidates = different;
+  const needsConfidence =
+    !bootstrap &&
+    state.recent.length >= 2 &&
+    state.recent
+      .slice(0, 2)
+      .every(
+        (attempt) =>
+          !attempt.payload.correct &&
+          attempt.payload.familiarity <=
+            config.verificationFamiliarityThreshold,
+      );
+  let confidenceBreak = false;
+  if (needsConfidence) {
+    const familiar = candidates.filter(
+      (w) =>
+        familiarity(w) >= config.bootstrapFamiliarityThreshold &&
+        !unknownLetters(w, state).length,
+    );
+    if (familiar.length) {
+      candidates = familiar;
+      confidenceBreak = true;
+    }
+  }
   const target = state.reinforcement;
-  if (!bootstrap && target?.remaining) {
+  if (!bootstrap && !confidenceBreak && target?.remaining) {
     const reinforcement = candidates.filter((w) =>
       w.uniqueLetters.includes(target.letter),
     );
@@ -142,7 +165,9 @@ export function selectWord(
     word,
     phase: bootstrap
       ? 'bootstrap'
-      : target?.remaining && word.uniqueLetters.includes(target.letter)
+      : !confidenceBreak &&
+          target?.remaining &&
+          word.uniqueLetters.includes(target.letter)
         ? 'reinforcement'
         : unknown.length
           ? 'introduction'
