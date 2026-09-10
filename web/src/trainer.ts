@@ -32,6 +32,7 @@ export async function createTrainer(
 ) {
   let state = await repository.loadState();
   let settings = parseSettings(await repository.getSetting('app'));
+  let introShown = (await repository.getSetting('introShown')) === true;
   let clientId = await repository.getSetting('clientId');
   if (typeof clientId !== 'string') {
     clientId = crypto.randomUUID();
@@ -68,6 +69,9 @@ export async function createTrainer(
     },
     get settings() {
       return settings;
+    },
+    get introShown() {
+      return introShown;
     },
     get font() {
       return font;
@@ -148,6 +152,10 @@ export async function createTrainer(
       pendingFont = fontLoader(selectFont(saved, correctAnswers()));
       font = await latestFont(pendingFont);
       presentation = selectTypography(saved, correctAnswers());
+    },
+    async markIntroShown() {
+      await repository.setSetting('introShown', true);
+      introShown = true;
     },
     clearProgress: () => repository.clearProgress(),
   };

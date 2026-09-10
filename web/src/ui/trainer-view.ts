@@ -16,6 +16,20 @@ export function showError(error: unknown) {
       ? error.message
       : 'Не удалось продолжить. Попробуйте ещё раз.';
 }
+function mountIntro(trainer: Trainer) {
+  const dialog = element<HTMLDialogElement>('intro-dialog');
+  const close = () => dialog.close();
+  element('help-open').addEventListener('click', () => dialog.showModal());
+  element('intro-close').addEventListener('click', close);
+  element('intro-start').addEventListener('click', close);
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) close();
+  });
+  if (!trainer.introShown) {
+    dialog.showModal();
+    void trainer.markIntroShown().catch(showError);
+  }
+}
 export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   const input = element<HTMLInputElement>('answer'),
     form = element<HTMLFormElement>('answer-form');
@@ -97,6 +111,7 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   next.addEventListener('click', () => void advance());
   element('trainer').hidden = false;
   element('loading').hidden = true;
+  mountIntro(trainer);
   mountStatsDialog(mountDebugDialog(trainer, dictionary));
   mountSettings(trainer, render);
   render();

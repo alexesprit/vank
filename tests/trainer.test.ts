@@ -100,6 +100,16 @@ it('submits once, saves before advancing, restores progress and retains stable c
   expect(reloaded.state.recent[0].clientId).toBe(clientId);
   repo.close();
 });
+it('shows the introduction once per browser profile', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const words = ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable);
+  const trainer = await createTrainer(words, repo);
+  expect(trainer.introShown).toBe(false);
+  await trainer.markIntroShown();
+  expect(trainer.introShown).toBe(true);
+  expect((await createTrainer(words, repo)).introShown).toBe(true);
+  repo.close();
+});
 it('keeps the same prompt and unsaved result retryable after a storage failure', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   let fail = true;

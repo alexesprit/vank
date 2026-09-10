@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="page">
-    <header class="topbar"><div class="brand"><h1>Vank</h1><span>Чтение по-армянски</span></div><div class="topbar-actions"><span class="local-note">Прогресс хранится на этом устройстве</span><button id="settings-open" class="icon-btn" type="button" aria-label="Настройки"><i data-lucide="settings" aria-hidden="true"></i></button></div></header>
+    <header class="topbar"><div class="brand"><h1>Vank</h1><span>Чтение по-армянски</span></div><div class="topbar-actions"><span class="local-note">Прогресс хранится на этом устройстве</span><button id="help-open" class="icon-btn" type="button" aria-label="Как это работает"><i data-lucide="circle-help" aria-hidden="true"></i></button><button id="settings-open" class="icon-btn" type="button" aria-label="Настройки"><i data-lucide="settings" aria-hidden="true"></i></button></div></header>
     <p id="error" role="alert" hidden></p>
     <main class="layout" id="trainer" hidden>
       <section class="trainer" aria-label="Практика чтения">
@@ -38,6 +38,17 @@
     <p id="loading" role="status">Загрузка словаря…</p>
     <noscript>Для практики включите JavaScript.</noscript>
   </div>
+  <dialog id="intro-dialog" aria-labelledby="intro-title">
+    <div class="dialog-header"><h2 id="intro-title">Как работает Vank</h2><button id="intro-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <p>Читайте армянское слово и вводите его произношение.</p>
+    <ul>
+      <li>Можно отвечать кириллицей или латиницей.</li>
+      <li>Если не знаете одну букву, поставьте на её месте <code>_</code>, <code>-</code> или <code>*</code>. Остальные буквы всё равно будут учтены.</li>
+      <li>Если не знаете всё слово, нажмите «Не знаю».</li>
+      <li>После проверки Vank покажет чтение и подберёт дальнейшую практику.</li>
+    </ul>
+    <button id="intro-start" class="primary-btn" type="button">Начать практику</button>
+  </dialog>
   <dialog id="progress-dialog" aria-labelledby="progress-title">
     <div class="dialog-header"><h2 id="progress-title">Подробная статистика</h2><button id="progress-close" class="icon-btn" type="button" aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
     <div class="stats-breakdown">
