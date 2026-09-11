@@ -1,0 +1,235 @@
+.sidebar {
+  display: grid;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.panel h2 {
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stat {
+  position: relative;
+  background: var(--soft);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 21px;
+  margin-bottom: 4px;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stat-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-help {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  place-items: center;
+  color: var(--muted);
+  cursor: help;
+  line-height: 1;
+}
+
+.stat-help::after,
+.mode-tooltip {
+  position: absolute;
+  z-index: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.stat-help::after {
+  top: calc(100% + 8px);
+  right: -8px;
+  width: max-content;
+  max-width: min(220px, calc(100vw - 32px));
+  content: attr(data-tooltip);
+}
+
+.stat-help:hover::after,
+.stat-help:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-help svg {
+  width: 14px;
+  height: 14px;
+}
+
+.practice-mode-help {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.practice-mode-help > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.practice-mode-help .stat-help {
+  position: static;
+  top: auto;
+  right: auto;
+}
+
+.practice-mode-help .stat-help::after {
+  display: none;
+}
+
+.mode-tooltip {
+  display: block;
+}
+
+.mode-tooltip:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.flash-duration-label .stat-help {
+  position: relative;
+  top: auto;
+  right: auto;
+}
+
+.flash-duration-label .stat-help::after {
+  left: 50%;
+  right: auto;
+  max-width: min(180px, calc(100vw - 32px));
+  transform: translate(-50%, -4px);
+}
+
+.flash-duration-label .stat-help:hover::after,
+.flash-duration-label .stat-help:focus-visible::after {
+  transform: translate(-50%, 0);
+}
+
+.progress-details {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.achievement-summary {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 20px;
+  gap: 12px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--soft);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.achievement-summary-icon,
+.achievement-icon,
+.snackbar-icon {
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+}
+
+.achievement-summary-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--panel);
+}
+
+.achievement-summary-copy,
+.achievements-heading,
+.snackbar-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.achievement-summary-copy strong {
+  font-size: 14px;
+}
+
+.achievement-summary-copy span,
+.achievement-summary-chevron,
+.achievements-heading > span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.achievement-summary-chevron {
+  align-self: center;
+}
+
+.weak-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.letter-chip {
+  width: 40px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  text-align: center;
+}
+
+.font-stat {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.font-stat.weak-font {
+  color: var(--danger);
+}

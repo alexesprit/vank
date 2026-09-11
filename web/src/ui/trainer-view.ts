@@ -67,7 +67,7 @@ function renderMistakeMappings(
       const chip = document.createElement('span');
       chip.className = 'mapping-chip';
       const sourceElement = document.createElement('span');
-      sourceElement.className = 'mapping-source armenian-font';
+      sourceElement.className = 'mapping-source';
       sourceElement.lang = 'hy';
       sourceElement.textContent = source;
       const arrow = document.createElement('span');

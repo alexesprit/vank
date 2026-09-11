@@ -1,0 +1,130 @@
+fieldset {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+}
+
+fieldset + fieldset {
+  margin-top: 24px;
+}
+
+.reset-section {
+  margin-top: 24px;
+  padding-top: 24px;
+}
+
+.reset-section h3,
+.reset-confirmation p {
+  margin: 0 0 12px;
+}
+
+.reset-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.danger-btn {
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+
+.reset-error {
+  color: var(--danger);
+}
+
+legend {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.setting-row,
+.font-choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.analytics-notice {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  content: "";
+  pointer-events: none;
+  transform: translateY(-70%) rotate(45deg);
+}
+
+.select-wrap select {
+  width: 100%;
+  padding: 12px 48px 12px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--input);
+  color: var(--text);
+  font: inherit;
+  appearance: none;
+}
+
+.font-options {
+  display: grid;
+  gap: 8px;
+  padding-left: 24px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.intro-quick-settings {
+  margin-top: 24px;
+}
+
+.intro-quick-settings summary {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.quick-settings-content {
+  display: grid;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.quick-setting {
+  display: grid;
+  gap: 4px;
+}
+
+.intro-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  margin: 24px -24px 0;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.intro-actions .primary-btn {
+  width: 100%;
+}
+
+#intro-dialog .dialog-body > ul {
+  display: grid;
+  gap: 12px;
+}

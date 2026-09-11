@@ -1,0 +1,107 @@
+.debug-hint {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.debug-content {
+  display: grid;
+  gap: 20px;
+}
+
+.debug-section-heading {
+  margin-bottom: 8px;
+}
+
+.debug-section h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.debug-code {
+  position: relative;
+}
+
+.debug-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.debug-copy::before,
+.debug-copy::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+}
+
+.debug-copy::before {
+  top: 8px;
+  left: 8px;
+}
+
+.debug-copy::after {
+  right: 8px;
+  bottom: 8px;
+  background: var(--soft);
+}
+
+.debug-code:hover .debug-copy,
+.debug-copy:focus-visible {
+  opacity: 1;
+}
+
+.debug-copy:hover {
+  background: var(--border);
+}
+
+.debug-copy-status {
+  position: absolute;
+  top: 8px;
+  right: 48px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--panel);
+  font-size: 12px;
+}
+
+.debug-copy-status:empty {
+  display: none;
+}
+
+@media (hover: none) {
+  .debug-copy {
+    opacity: 1;
+  }
+}
+
+.debug-section pre {
+  max-height: 360px;
+  margin: 0;
+  padding: 12px 52px 12px 12px;
+  overflow: auto;
+  border-radius: 12px;
+  background: var(--soft);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.debug-section summary {
+  margin-bottom: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+}

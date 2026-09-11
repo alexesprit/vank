@@ -1,0 +1,71 @@
+@media (max-width: 820px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sidebar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .topbar {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 16px 16px 32px;
+  }
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+    align-items: center;
+  }
+  .brand {
+    display: contents;
+  }
+  .brand h1 {
+    grid-area: 1 / 1;
+  }
+  .brand span {
+    grid-area: 2 / 1 / auto / -1;
+  }
+  .topbar-actions {
+    grid-area: 1 / 2 / 3;
+  }
+  .word-wrap {
+    min-height: 110px;
+    margin: 8px 0 16px;
+  }
+  .trainer {
+    min-height: auto;
+  }
+  .answer-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+  .helper {
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 16px;
+  }
+  dialog {
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  .achievements-dialog .achievement-list {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+  }
+  .dialog-body {
+    flex: 1 1 auto;
+  }
+}

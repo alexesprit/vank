@@ -61,7 +61,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
         cell.style.setProperty('--score', percentage(stat.score));
       const letter = document.createElement('span');
       letter.className = stat.introduced
-        ? 'alphabet-letter armenian-font'
+        ? 'alphabet-letter'
         : 'alphabet-placeholder';
       letter.lang = 'hy';
       letter.textContent = stat.introduced ? stat.letter : '·';
@@ -92,7 +92,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
   weak.replaceChildren(
     ...stats.weakLetters.map((letter) => {
       const chip = document.createElement('span');
-      chip.className = 'letter-chip armenian-font';
+      chip.className = 'letter-chip';
       chip.lang = 'hy';
       chip.textContent = letter;
       return chip;
