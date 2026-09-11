@@ -82,12 +82,25 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     skip = element<HTMLButtonElement>('skip'),
     next = element<HTMLButtonElement>('next');
   const wordWrap = element('word-wrap');
+  const prompt = element('word');
   const flashReveal = element<HTMLButtonElement>('flash-reveal');
   const sessionStart = trainer.state.recent.length;
+  const fitPrompt = () => {
+    const availableWidth = wordWrap.clientWidth;
+    if (!availableWidth) return;
+    prompt.style.fontSize = '';
+    const maxSize = Number.parseFloat(getComputedStyle(prompt).fontSize);
+    const renderedWidth = prompt.scrollWidth;
+    if (renderedWidth <= availableWidth) return;
+    const estimatedSize = (maxSize * availableWidth * 0.99) / renderedWidth;
+    prompt.style.fontSize = `${estimatedSize}px`;
+    if (prompt.scrollWidth > availableWidth)
+      prompt.style.fontSize = `${(estimatedSize * availableWidth * 0.99) / prompt.scrollWidth}px`;
+  };
+  new ResizeObserver(fitPrompt).observe(wordWrap);
   function render(resetInput = true) {
     const { word } = trainer.current,
       result = trainer.result;
-    const prompt = element('word');
     prompt.textContent = formatPrompt(word.word, trainer.presentation.caseMode);
     const canReveal = trainer.flashHidden && !result;
     wordWrap.classList.toggle('flash-is-hidden', canReveal);
@@ -95,6 +108,7 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     flashReveal.tabIndex = canReveal ? 0 : -1;
     prompt.style.fontFamily = trainer.font.family;
     prompt.style.fontStyle = trainer.presentation.italic ? 'italic' : 'normal';
+    fitPrompt();
     const hintRow = element('metadata-hint-row');
     const labels = trainer.metadataHintsEnabled
       ? metadataHintLabels(word, (key, fallback) =>
