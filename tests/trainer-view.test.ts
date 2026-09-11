@@ -9,4 +9,12 @@ describe('mistake summaries', () => {
 
     expect(formatMistakes(evaluation.units)).toBe('Ջ → дж · Ն → н');
   });
+
+  it('keeps the full mapping available when the answer is skipped', () => {
+    const evaluation = evaluate(deriveWord('ՏԱՔՍԻ'), '', true);
+
+    expect(formatMistakes(evaluation.units)).toBe(
+      'Տ → t · Ա → a · Ք → k · Ս → s · Ի → i',
+    );
+  });
 });

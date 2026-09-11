@@ -161,14 +161,16 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
       element('meaning').textContent =
         word.meaning?.[TRAINER_CONFIG.learnerLanguage] ?? '';
       const mistakes = formatMistakes(result.units);
-      element('mistakes').textContent =
-        result.status === 'unknown'
-          ? ''
-          : mistakes
-            ? t('trainer.mistakes', { mistakes })
-            : result.status === 'ambiguous'
-              ? t('trainer.compareReading')
-              : '';
+      element('mistakes').textContent = mistakes
+        ? t(
+            result.status === 'unknown'
+              ? 'trainer.mapping'
+              : 'trainer.mistakes',
+            { mapping: mistakes, mistakes },
+          )
+        : result.status === 'ambiguous'
+          ? t('trainer.compareReading')
+          : '';
       next.focus();
     } else {
       if (resetInput) {

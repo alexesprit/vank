@@ -35,6 +35,7 @@ export const en = {
       ambiguous: 'Ambiguous answer',
     },
     mistakes: 'Pay attention to: {{mistakes}}',
+    mapping: 'Letter mapping: {{mapping}}',
     compareReading: 'Compare your answer with the reading above.',
   },
   metadata: {
@@ -154,6 +155,8 @@ export const en = {
     title: 'How Vank works',
     quickSettings: 'Quick settings',
     lead: 'Read the Armenian word and enter its pronunciation.',
+    prerequisite:
+      'Vank is for reading practice, not learning the alphabet. Start when you already know at least some Armenian letters.',
     scripts: 'You can answer using Cyrillic or Latin letters.',
     partialPrefix: "If you don't know one letter, enter",
     or: 'or',

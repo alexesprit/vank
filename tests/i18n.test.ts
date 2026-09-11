@@ -101,6 +101,9 @@ describe('interface localization', () => {
     expect(t('trainer.mistakes', { mistakes: 'Մ → մ' })).toBe(
       'Pay attention to: Մ → մ',
     );
+    expect(t('trainer.mapping', { mapping: 'Մ → մ' })).toBe(
+      'Letter mapping: Մ → մ',
+    );
     expect(t('progress.sessionWords', { count: 2 })).toBe(
       'Words this session: 2',
     );
