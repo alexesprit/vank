@@ -247,7 +247,11 @@ async function main() {
                 if (
                   overridden.filter((word) =>
                     isFamiliar(word, audience.language),
-                  ).length < audience.minFamiliarWords
+                  ).length <
+                  Math.max(
+                    audience.minFamiliarWords,
+                    Math.ceil(maxWords * audience.minFamiliarShare),
+                  )
                 )
                   return false;
                 const selected = composeAudience(
