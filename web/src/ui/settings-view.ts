@@ -89,7 +89,9 @@ export function mountSettings(
   }
 
   function setPreviewHidden(hidden: boolean) {
-    flashPreviewWord.parentElement?.classList.toggle('is-hidden', hidden);
+    flashPreviewWord
+      .closest('.flash-preview')
+      ?.classList.toggle('is-hidden', hidden);
     flashPreviewReveal.ariaHidden = String(!hidden);
     flashPreviewReveal.tabIndex = hidden ? 0 : -1;
   }
