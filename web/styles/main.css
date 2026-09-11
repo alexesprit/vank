@@ -1363,8 +1363,8 @@ legend {
   .achievements-dialog {
     width: 100%;
     max-width: none;
-    height: 100%;
-    max-height: none;
+    height: 100dvh;
+    max-height: 100dvh;
     margin: 0;
     border: 0;
     border-radius: 0;
