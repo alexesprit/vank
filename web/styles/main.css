@@ -1035,16 +1035,32 @@ legend {
   gap: 8px;
 }
 
-#language,
-#font-selected,
-#typography-selected {
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  content: "";
+  pointer-events: none;
+  transform: translateY(-70%) rotate(45deg);
+}
+
+.select-wrap select {
   width: 100%;
-  padding: 12px;
+  padding: 12px 48px 12px 12px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--input);
   color: var(--text);
   font: inherit;
+  appearance: none;
 }
 
 .font-options {
