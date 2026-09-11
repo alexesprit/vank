@@ -173,6 +173,32 @@ it('admits explicitly proposed verification words only after enrichment', () => 
   ).toBe(false);
 });
 
+it('uses verification slots to improve letter distribution', () => {
+  const enriched = words().map((word) =>
+    ['ԾԱՌ', 'ՌՈԲՈՏ'].includes(word.word)
+      ? {
+          ...word,
+          audiencePurpose: 'verification' as const,
+          familiarity: { ru: 0.05 },
+          usefulnessScore: word.word === 'ՌՈԲՈՏ' ? 0.9 : 0.5,
+          ai: {
+            model: 'fixture',
+            promptVersion: 2,
+            schemaVersion: 1,
+            confidence: 0.9,
+          },
+        }
+      : word,
+  );
+  const selected = composeAudience(enriched, 4, {
+    ...policy,
+    minFamiliarShare: 0.5,
+  });
+
+  expect(selected.map((word) => word.word)).toContain('ԾԱՌ');
+  expect(selected.map((word) => word.word)).not.toContain('ՌՈԲՈՏ');
+});
+
 it('keeps curated words first and otherwise preserves reviewed candidate order', () => {
   const result = shortlistAudience(
     words(),

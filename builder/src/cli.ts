@@ -2,10 +2,11 @@ import { existsSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { ALPHABET, normalizeArmenian } from '../../shared/armenian.ts';
+import { normalizeArmenian } from '../../shared/armenian.ts';
 import { object, parseWord, strings } from '../../shared/schema.ts';
 import {
   composeAudience,
+  countLetterCoverage,
   isFamiliar,
   parseAudience,
   shortlistAudience,
@@ -256,11 +257,8 @@ async function main() {
                 );
                 return (
                   selected.length === maxWords &&
-                  ALPHABET.every(
-                    ({ upper }) =>
-                      selected.filter((word) =>
-                        word.uniqueLetters.includes(upper),
-                      ).length >= audience.minLetterCoverage,
+                  countLetterCoverage(selected).every(
+                    ({ words }) => words >= audience.minLetterCoverage,
                   )
                 );
               }
@@ -289,17 +287,27 @@ async function main() {
         const familiar = selected.filter((w) =>
           isFamiliar(w, audience.language),
         );
-        const coverage = ALPHABET.map(({ upper }) => ({
-          letter: upper,
-          words: selected.filter((w) => w.uniqueLetters.includes(upper)).length,
-          familiar: familiar.filter((w) => w.uniqueLetters.includes(upper))
-            .length,
-          verification: selected.filter(
-            (w) =>
-              (w.familiarity?.[audience.language] ?? 1) <= 0.4 &&
-              w.uniqueLetters.includes(upper),
-          ).length,
-        }));
+        const familiarCoverage = new Map(
+          countLetterCoverage(familiar).map(({ letter, words }) => [
+            letter,
+            words,
+          ]),
+        );
+        const verificationCoverage = new Map(
+          countLetterCoverage(
+            selected.filter(
+              (word) => (word.familiarity?.[audience.language] ?? 1) <= 0.4,
+            ),
+          ).map(({ letter, words }) => [letter, words]),
+        );
+        const coverage = countLetterCoverage(selected).map(
+          ({ letter, words }) => ({
+            letter,
+            words,
+            familiar: familiarCoverage.get(letter) ?? 0,
+            verification: verificationCoverage.get(letter) ?? 0,
+          }),
+        );
         const quality = {
           language: audience.language,
           total: selected.length,
@@ -309,6 +317,12 @@ async function main() {
           coverage,
         };
         await writeJson(file('audience-report'), quality);
+        if (!values.quiet)
+          console.log(
+            `Alphabet coverage (words): ${coverage
+              .map(({ letter, words }) => `${letter}:${words}`)
+              .join(' ')}`,
+          );
         if (coverage.some((c) => c.words < audience.minLetterCoverage))
           throw new Error(
             `Audience quality: every Armenian letter needs at least ${audience.minLetterCoverage} words; see audience-report.json`,

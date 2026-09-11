@@ -2,11 +2,10 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
-import { ALPHABET } from '../../shared/armenian.ts';
 import { parseDictionary } from '../../shared/schema.ts';
 import type { Dictionary } from '../../shared/types.ts';
 import config from '../config.json' with { type: 'json' };
-import { parseAudience } from '../src/audience.ts';
+import { countLetterCoverage, parseAudience } from '../src/audience.ts';
 import { runtimeDictionary } from '../src/runtime.ts';
 
 interface RunResult {
@@ -36,6 +35,13 @@ export const PRODUCTION_QUALITY: PublishQuality = {
   minLetterCoverage: audience.minLetterCoverage,
 };
 
+export const dictionaryReleaseNotes = (dictionary: Dictionary) =>
+  `${dictionary.words.length} runtime words\n\nAlphabet coverage (words containing each letter):\n\n| Letter | Words |\n| --- | ---: |\n${countLetterCoverage(
+    dictionary.words,
+  )
+    .map(({ letter, words }) => `| ${letter} | ${words} |`)
+    .join('\n')}`;
+
 export function validatePublishableDictionary(
   dictionary: Dictionary,
   quality: PublishQuality = PRODUCTION_QUALITY,
@@ -56,13 +62,10 @@ export function validatePublishableDictionary(
     throw new Error(
       `Dictionary quality: familiar share ${familiar / words.length}; need at least ${quality.minFamiliarShare}`,
     );
-  for (const { upper } of ALPHABET) {
-    const coverage = words.filter((word) =>
-      word.uniqueLetters.includes(upper),
-    ).length;
+  for (const { letter, words: coverage } of countLetterCoverage(words)) {
     if (coverage < quality.minLetterCoverage)
       throw new Error(
-        `Dictionary quality: letter ${upper} appears in ${coverage} words; need at least ${quality.minLetterCoverage}`,
+        `Dictionary quality: letter ${letter} appears in ${coverage} words; need at least ${quality.minLetterCoverage}`,
       );
   }
 }
@@ -92,6 +95,7 @@ export async function publishDictionary(
   const digest = createHash('sha256').update(data).digest('hex');
   const tag = `dictionary-${digest.slice(0, 12)}`;
   const title = `Dictionary ${dictionary.generatedAt.slice(0, 10)}`;
+  const notes = dictionaryReleaseNotes(dictionary);
   const inspect = () => {
     const result = run(
       [
@@ -115,14 +119,24 @@ export async function publishDictionary(
     if (existing.draft) {
       if (run(['release', 'upload', tag, path, '--clobber']).status)
         throw new Error('Could not repair the draft dictionary release');
-      if (run(['release', 'edit', tag, '--draft=false', '--latest']).status)
+      if (
+        run([
+          'release',
+          'edit',
+          tag,
+          '--draft=false',
+          '--latest',
+          '--notes',
+          notes,
+        ]).status
+      )
         throw new Error('Could not publish the dictionary release');
     } else {
       if (existing.digest && existing.digest !== `sha256:${digest}`)
         throw new Error('Existing dictionary release has a different digest');
       if (!existing.digest && run(['release', 'upload', tag, path]).status)
         throw new Error('Could not repair the dictionary release asset');
-      if (run(['release', 'edit', tag, '--latest']).status)
+      if (run(['release', 'edit', tag, '--latest', '--notes', notes]).status)
         throw new Error('Could not mark the dictionary release as latest');
     }
   } else if (
@@ -134,7 +148,7 @@ export async function publishDictionary(
       '--title',
       title,
       '--notes',
-      `${dictionary.words.length} runtime words`,
+      notes,
       '--latest',
     ]).status
   )

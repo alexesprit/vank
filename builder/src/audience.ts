@@ -1,5 +1,10 @@
-import { deriveWord, normalizeArmenian } from '../../shared/armenian.ts';
+import {
+  ALPHABET,
+  deriveWord,
+  normalizeArmenian,
+} from '../../shared/armenian.ts';
 import { object } from '../../shared/schema.ts';
+import type { Word } from '../../shared/types.ts';
 import { composeDataset } from './pipeline.ts';
 import type { BuildWord } from './types.ts';
 
@@ -39,6 +44,45 @@ export function parseAudience(
 const curated = (w: BuildWord) => w.sources.some((s) => s.type === 'curated');
 export const isFamiliar = (w: BuildWord, language: string) =>
   (w.familiarity?.[language] ?? 0) >= 0.8;
+
+export const countLetterCoverage = (words: Pick<Word, 'uniqueLetters'>[]) =>
+  ALPHABET.map(({ upper: letter }) => ({
+    letter,
+    words: words.filter((word) => word.uniqueLetters.includes(letter)).length,
+  }));
+
+function balanceByLetterCoverage(
+  words: BuildWord[],
+  limit: number,
+  selected: BuildWord[],
+): BuildWord[] {
+  const counts = new Map(
+    countLetterCoverage(selected).map(({ letter, words }) => [letter, words]),
+  );
+  const remaining = [...words];
+  const result: BuildWord[] = [];
+  // ponytail: quadratic greedy scan is plenty for a few thousand dictionary words.
+  while (result.length < limit && remaining.length) {
+    let best = 0;
+    let bestGain = -1;
+    for (const [index, word] of remaining.entries()) {
+      const gain = word.uniqueLetters.reduce(
+        (sum, letter) => sum + 1 / ((counts.get(letter) ?? 0) + 1),
+        0,
+      );
+      if (gain > bestGain) {
+        best = index;
+        bestGain = gain;
+      }
+    }
+    const [word] = remaining.splice(best, 1);
+    if (!word) break;
+    result.push(word);
+    for (const letter of word.uniqueLetters)
+      counts.set(letter, (counts.get(letter) ?? 0) + 1);
+  }
+  return result;
+}
 
 export function shortlistAudience(
   words: BuildWord[],
@@ -149,5 +193,11 @@ export function composeAudience(
         1e-9,
     ),
   );
-  return [...high, ...verification.slice(0, lowCount)];
+  const required = verification.filter(curated).slice(0, lowCount);
+  const balanced = balanceByLetterCoverage(
+    verification.filter((word) => !curated(word)),
+    lowCount - required.length,
+    [...high, ...required],
+  );
+  return [...high, ...required, ...balanced];
 }

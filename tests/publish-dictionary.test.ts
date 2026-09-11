@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { afterEach, expect, it } from 'vitest';
 import config from '../builder/config.json' with { type: 'json' };
 import {
+  dictionaryReleaseNotes,
   PRODUCTION_QUALITY,
   publishDictionary,
   validatePublishableDictionary,
@@ -75,6 +76,9 @@ it('publishes the minified runtime dictionary and starts deployment', async () =
     ['api', expect.any(String)],
     ['workflow', 'run'],
   ]);
+  const notes = dictionaryReleaseNotes(parseDictionary(dictionary));
+  expect(notes).toContain('| Ա | 1 |');
+  expect(commands.find((args) => args[1] === 'create')).toContain(notes);
 });
 
 it('repairs an incomplete draft before deployment', async () => {

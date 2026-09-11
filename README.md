@@ -110,8 +110,8 @@ The configured audience policy plans words **before** AI enrichment:
   words also need usefulness >= 0.5. Composition includes verification words
   only while the familiar share remains at least 70%.
 - Every written Armenian letter must occur in at least two selected words.
-  `audience-report.json` also reports familiar and verification coverage per
-  letter; some letters have no natural Russian-recognizable examples.
+  The CLI, `audience-report.json`, and GitHub release notes report coverage per
+  letter; the JSON report also separates familiar and verification coverage.
 
 `maxWords` is a ceiling, not a target to pad with arbitrary words. Quality-gate
 failure leaves the previous runtime dictionary intact. `candidates.json` records
