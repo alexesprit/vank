@@ -1,6 +1,11 @@
+import type { Dictionary } from '../../../shared/types.ts';
 import { doNotTrackEnabled } from '../analytics.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
-import { PRACTICE_MODES, type PracticeModeGroup } from '../core/modes.ts';
+import {
+  PRACTICE_MODES,
+  type PracticeModeGroup,
+  type PracticeModeId,
+} from '../core/modes.ts';
 import { countCorrectAnswers } from '../core/session.ts';
 import {
   FLASH_UNLOCK_AFTER_CORRECT,
@@ -10,6 +15,7 @@ import {
   SYLLABLE_COLOR_THRESHOLDS,
   TYPOGRAPHY_MODES,
 } from '../core/settings.ts';
+import { loadDictionary } from '../data/dictionary.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
 import type { LanguagePreference } from '../i18n/types.ts';
 import type { Trainer } from '../trainer.ts';
@@ -22,6 +28,7 @@ export function mountSettings(
   trainer: Trainer,
   renderTrainer: () => void,
   startAnalytics: () => void,
+  onPracticeModeChanged: (dictionary: Dictionary) => void = () => {},
 ) {
   const dialog = element<HTMLDialogElement>('settings-dialog');
   const progressChannel = new BroadcastChannel('vank-progress');
@@ -67,6 +74,7 @@ export function mountSettings(
   let previewInterval: ReturnType<typeof setInterval> | undefined;
   let previewHideTimer: ReturnType<typeof setTimeout> | undefined;
   let previewRemaining = 0;
+  let latestApply = 0;
   const resetOpen = element<HTMLButtonElement>('reset-open');
   const resetConfirmation = element('reset-confirmation');
   const resetCancel = element<HTMLButtonElement>('reset-cancel');
@@ -302,9 +310,11 @@ export function mountSettings(
   }
 
   async function apply() {
+    const applyId = ++latestApply;
     const languageChanged = language.value !== trainer.settings.language;
     const practiceModeChanged =
       practiceMode.value !== trainer.settings.practiceMode;
+    const requestedPracticeMode = practiceMode.value as PracticeModeId;
     const analyticsChanged = analytics.checked !== trainer.settings.analytics;
     const dnt = doNotTrackEnabled();
     const mode = modeInputs.find((input) => input.checked)?.value as
@@ -319,29 +329,36 @@ export function mountSettings(
       ...typographyEnabled.querySelectorAll<HTMLInputElement>('input:checked'),
     ].map((input) => input.value);
     try {
-      await trainer.setSettings({
-        analytics: dnt ? trainer.settings.analytics : analytics.checked,
-        language: language.value as LanguagePreference,
-        practiceMode:
-          practiceMode.value as typeof trainer.settings.practiceMode,
-        metadataHints: metadataHints.checked,
-        syllableColors: selectedSyllableThreshold(),
-        flash: {
-          enabled: flashEnabled.checked,
-          exposureMs: Number(flashDuration.value) * 1000,
+      const dictionary = practiceModeChanged
+        ? await loadDictionary(requestedPracticeMode)
+        : undefined;
+      if (applyId !== latestApply) return;
+      await trainer.setSettings(
+        {
+          analytics: dnt ? trainer.settings.analytics : analytics.checked,
+          language: language.value as LanguagePreference,
+          practiceMode: requestedPracticeMode,
+          metadataHints: metadataHints.checked,
+          syllableColors: selectedSyllableThreshold(),
+          flash: {
+            enabled: flashEnabled.checked,
+            exposureMs: Number(flashDuration.value) * 1000,
+          },
+          fonts: {
+            mode,
+            selected: selected.value,
+            enabled: checked.length ? checked : ['default'],
+          },
+          typography: {
+            mode: typographyMode,
+            selected: typographySelected.value,
+            enabled: typographyChecked.length ? typographyChecked : ['caps'],
+          },
         },
-        fonts: {
-          mode,
-          selected: selected.value,
-          enabled: checked.length ? checked : ['default'],
-        },
-        typography: {
-          mode: typographyMode,
-          selected: typographySelected.value,
-          enabled: typographyChecked.length ? typographyChecked : ['caps'],
-        },
-      });
-      if (languageChanged || practiceModeChanged) {
+        dictionary,
+      );
+      if (dictionary) onPracticeModeChanged(dictionary);
+      if (languageChanged) {
         trainer.dispose();
         window.location.reload();
         return;
@@ -351,6 +368,8 @@ export function mountSettings(
       renderTrainer();
       startPreview();
     } catch (error) {
+      if (applyId !== latestApply) return;
+      render();
       const message = document.getElementById('error');
       if (message) {
         message.hidden = false;

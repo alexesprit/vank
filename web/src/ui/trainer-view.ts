@@ -171,6 +171,7 @@ export function mountTrainer(
   dictionary: Dictionary,
   startAnalytics: () => void,
 ) {
+  let activeDictionary = dictionary;
   const input = element<HTMLInputElement>('answer'),
     form = element<HTMLFormElement>('answer-form');
   const check = element<HTMLButtonElement>('check'),
@@ -321,9 +322,11 @@ export function mountTrainer(
   element('trainer').hidden = false;
   element('loading').hidden = true;
   mountIntro(trainer, render, () => trainer.startFlash(), startAnalytics);
-  mountStatsDialog(mountDebugDialog(trainer, dictionary));
+  mountStatsDialog(mountDebugDialog(trainer, () => activeDictionary));
   const achievements = mountAchievements(trainer);
-  mountSettings(trainer, render, startAnalytics);
+  mountSettings(trainer, render, startAnalytics, (nextDictionary) => {
+    activeDictionary = nextDictionary;
+  });
   render();
   if (trainer.introShown) trainer.startFlash();
 }

@@ -5,7 +5,7 @@ import { deriveMetadata, mergeSources } from '../builder/src/pipeline';
 import { curatedSource } from '../builder/src/sources/curated';
 import { ALPHABET, deriveWord } from '../shared/armenian';
 import { parseDictionary } from '../shared/schema';
-import type { LearnerState } from '../shared/types';
+import type { Dictionary, LearnerState } from '../shared/types';
 import { PRACTICE_MODES } from '../web/src/core/modes';
 import { completeAttempt, progress } from '../web/src/core/session';
 import { DEFAULT_SETTINGS, FONTS } from '../web/src/core/settings';
@@ -146,6 +146,85 @@ it('uses the injected selector and records the active practice mode', async () =
   expect(selections).toBe(2);
   repo.close();
 });
+
+it('switches practice mode on the existing trainer', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const packWord = recognizable('ՆԱ');
+  const dictionary: Dictionary = {
+    version: 1,
+    schemaVersion: 1,
+    generatedAt: '2026-09-09',
+    words: [packWord],
+  };
+  const trainer = await createTrainer(
+    [recognizable('ՄԱՄԱ')],
+    repo,
+    async (font) => font,
+  );
+
+  await trainer.submit('', true);
+  await trainer.setSettings(
+    { fonts: trainer.settings.fonts, practiceMode: 'names' },
+    dictionary,
+  );
+
+  expect(trainer.settings.practiceMode).toBe('names');
+  expect(trainer.current.word.id).toBe(packWord.id);
+  expect(trainer.result).toBeUndefined();
+  await trainer.submit(packWord.readingLatin);
+  expect(trainer.state.recent[0]?.payload.practiceMode).toBe('names');
+  repo.close();
+});
+
+it('queues a mode switch behind an in-flight submission', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const firstWord = recognizable('ՄԱՄԱ');
+  const packWord = recognizable('ՆԱ');
+  const dictionary: Dictionary = {
+    version: 1,
+    schemaVersion: 1,
+    generatedAt: '2026-09-09',
+    words: [packWord],
+  };
+  let releaseSave = () => {};
+  let markSaveStarted = () => {};
+  const saveGate = new Promise<void>((resolve) => {
+    releaseSave = resolve;
+  });
+  const saveStarted = new Promise<void>((resolve) => {
+    markSaveStarted = resolve;
+  });
+  const delayedRepo = {
+    ...repo,
+    saveAttempt: async (...args: Parameters<typeof repo.saveAttempt>) => {
+      markSaveStarted();
+      await saveGate;
+      return repo.saveAttempt(...args);
+    },
+  };
+  const trainer = await createTrainer(
+    [firstWord],
+    delayedRepo,
+    async (font) => font,
+  );
+
+  const submitting = trainer.submit(firstWord.readingLatin);
+  await saveStarted;
+  const switching = trainer.setSettings(
+    { fonts: trainer.settings.fonts, practiceMode: 'names' },
+    dictionary,
+  );
+  expect(trainer.settings.practiceMode).toBe('words');
+  releaseSave();
+  await submitting;
+  await switching;
+
+  expect(trainer.settings.practiceMode).toBe('names');
+  expect(trainer.current.word.id).toBe(packWord.id);
+  expect(trainer.result).toBeUndefined();
+  repo.close();
+});
+
 it('shows the introduction once per browser profile', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   const words = ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable);

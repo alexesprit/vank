@@ -1,4 +1,5 @@
 import type {
+  Dictionary,
   Evaluation,
   LetterStat,
   PracticeModeId,
@@ -65,8 +66,8 @@ export async function createTrainer(
   let lastAchievementUnlocks: AchievementUnlock[] = [];
   let settings =
     options.settings ?? parseSettings(await repository.getSetting('app'));
-  const mode = options.mode ?? getPracticeMode(settings.practiceMode);
-  const select = options.selector ?? createWordSelector(words, mode.strategy);
+  let mode = options.mode ?? getPracticeMode(settings.practiceMode);
+  let select = options.selector ?? createWordSelector(words, mode.strategy);
   let introShown = (await repository.getSetting('introShown')) === true;
   let clientId = await repository.getSetting('clientId');
   if (typeof clientId !== 'string') {
@@ -85,8 +86,16 @@ export async function createTrainer(
   let metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
   let metadataHintsCaptured = false;
   let result: Evaluation | undefined,
-    busy = false,
     lastScoreUpdate: ScoreUpdateDiagnostics | undefined;
+  let operation: Promise<void> = Promise.resolve();
+  const serialize = <T>(task: () => Promise<T>) => {
+    const pending = operation.then(task, task);
+    operation = pending.then(
+      () => undefined,
+      () => undefined,
+    );
+    return pending;
+  };
   const flash = createFlashSession({
     getEnabled: () => settings.flash.enabled,
     getCorrectAnswers: correctAnswers,
@@ -186,9 +195,8 @@ export async function createTrainer(
       return lastScoreUpdate;
     },
     async submit(answer: string, skipped = false) {
-      if (busy || result) return;
-      busy = true;
-      try {
+      return serialize(async () => {
+        if (result) return;
         const flashAttempt = flash.capture();
         const completed = completeAttempt(
           state,
@@ -244,14 +252,11 @@ export async function createTrainer(
         achievementUnlocks = [...achievementUnlocks, ...newAchievementUnlocks];
         lastAchievementUnlocks = newAchievementUnlocks;
         result = completed.attempt.payload.evaluation;
-      } finally {
-        busy = false;
-      }
+      });
     },
     async next() {
-      if (busy || !result) return;
-      busy = true;
-      try {
+      return serialize(async () => {
+        if (!result) return;
         const next = select(state, Date.now());
         pendingFont = fontLoader(selectFont(settings, correctAnswers()));
         font = await latestFont(pendingFont);
@@ -262,9 +267,7 @@ export async function createTrainer(
         result = undefined;
         lastAchievementUnlocks = [];
         flash.reset();
-      } finally {
-        busy = false;
-      }
+      });
     },
     async setSettings(
       next: Pick<AppSettings, 'fonts'> &
@@ -280,21 +283,56 @@ export async function createTrainer(
             | 'flash'
           >
         >,
+      dictionary?: Dictionary,
     ) {
-      const saved = parseSettings({ ...settings, ...next });
-      await repository.setSetting('app', saved);
-      settings = saved;
-      if (!saved.flash.enabled) flash.show();
-      pendingFont = fontLoader(selectFont(saved, correctAnswers()));
-      font = await latestFont(pendingFont);
-      presentation = selectTypography(saved, correctAnswers());
-      if (flash.started && !result && !flash.hidden && !flash.revealed) {
-        const wasPaused = flash.paused;
-        startFlash();
-        if (wasPaused) pauseFlash();
-      }
-      if (!metadataHintsCaptured)
-        metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+      const practiceModeChanged =
+        parseSettings({ ...settings, ...next }).practiceMode !==
+        settings.practiceMode;
+      const applySettings = async () => {
+        const saved = parseSettings({ ...settings, ...next });
+        const modeChanged = saved.practiceMode !== settings.practiceMode;
+        let nextMode = mode;
+        let nextSelect = select;
+        let nextCurrent = current;
+        if (modeChanged) {
+          if (!dictionary)
+            throw new Error('A dictionary is required to change practice mode');
+          nextMode = getPracticeMode(saved.practiceMode);
+          nextSelect = createWordSelector(dictionary.words, nextMode.strategy);
+          nextCurrent = nextSelect(state, Date.now());
+        }
+        await repository.setSetting('app', saved);
+        settings = saved;
+        if (modeChanged) {
+          const wasStarted = flash.started;
+          const wasPaused = flash.paused;
+          mode = nextMode;
+          select = nextSelect;
+          current = nextCurrent;
+          result = undefined;
+          lastScoreUpdate = undefined;
+          lastAchievementUnlocks = [];
+          metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+          metadataHintsCaptured = false;
+          flash.reset();
+          if (wasStarted) {
+            startFlash();
+            if (wasPaused) pauseFlash();
+          }
+        }
+        if (!saved.flash.enabled) flash.show();
+        pendingFont = fontLoader(selectFont(saved, correctAnswers()));
+        font = await latestFont(pendingFont);
+        presentation = selectTypography(saved, correctAnswers());
+        if (flash.started && !result && !flash.hidden && !flash.revealed) {
+          const wasPaused = flash.paused;
+          startFlash();
+          if (wasPaused) pauseFlash();
+        }
+        if (!metadataHintsCaptured)
+          metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+      };
+      return practiceModeChanged ? serialize(applySettings) : applySettings();
     },
     async markIntroShown() {
       await repository.setSetting('introShown', true);

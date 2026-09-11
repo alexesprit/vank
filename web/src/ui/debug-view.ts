@@ -74,7 +74,12 @@ function section(title: string, value: unknown, collapsed = false) {
   return container;
 }
 
-export function mountDebugDialog(trainer: Trainer, dictionary: Dictionary) {
+export function mountDebugDialog(
+  trainer: Trainer,
+  dictionary: Dictionary | (() => Dictionary),
+) {
+  const getDictionary =
+    typeof dictionary === 'function' ? dictionary : () => dictionary;
   const dialog = element<HTMLDialogElement>('debug-dialog');
   const content = element('debug-content');
 
@@ -84,6 +89,7 @@ export function mountDebugDialog(trainer: Trainer, dictionary: Dictionary) {
   });
 
   return async () => {
+    const dictionary = getDictionary();
     const state = trainer.state;
     const attempt = state.recent[0];
     const stats = progress(state);
