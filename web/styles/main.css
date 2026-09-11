@@ -1071,6 +1071,15 @@ legend {
   margin-top: 4px;
 }
 
+.intro-quick-settings .syllable-colors-row {
+  margin-top: 24px;
+}
+
+#intro-dialog > ul {
+  display: grid;
+  gap: 12px;
+}
+
 @media (max-width: 820px) {
   .layout {
     grid-template-columns: 1fr;

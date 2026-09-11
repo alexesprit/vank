@@ -108,8 +108,9 @@ function mountIntro(
       startFlash();
     } else trainer.resumeFlash();
   };
-  element('help-open').addEventListener('click', () => {
+  element('help-open').addEventListener('click', (event) => {
     trainer.pauseFlash();
+    quickSettings.hidden = !(event.metaKey || event.ctrlKey);
     dialog.showModal();
   });
   element('intro-close').addEventListener('click', close);

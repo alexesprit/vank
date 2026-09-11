@@ -28,6 +28,13 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   const syllableColors = element<HTMLInputElement>('syllable-colors-setting');
   const syllableColorsValue = element('syllable-colors-value');
   const syllableColorsPreview = element('syllable-colors-preview-word');
+  const introSyllableColors = element<HTMLInputElement>(
+    'intro-syllable-colors-setting',
+  );
+  const introSyllableColorsValue = element('intro-syllable-colors-value');
+  const introSyllableColorsPreview = element(
+    'intro-syllable-colors-preview-word',
+  );
   const metadataHintsPreview = element('metadata-hints-preview-chips');
   const introMetadataHintsPreview = element(
     'intro-metadata-hints-preview-chips',
@@ -149,7 +156,10 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   function renderSyllableThreshold(threshold = selectedSyllableThreshold()) {
     const label = threshold ? `${threshold}+` : t('settings.syllableColorsOff');
     syllableColorsValue.textContent = label;
+    introSyllableColorsValue.textContent = label;
     syllableColors.setAttribute('aria-valuetext', label);
+    introSyllableColors.setAttribute('aria-valuetext', label);
+    renderSyllables(introSyllableColorsPreview, 'ԲՈՒՐԺՈՒԱԿԱՆ', threshold);
   }
 
   function render() {
@@ -160,6 +170,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     syllableColors.value = String(
       SYLLABLE_COLOR_THRESHOLDS.indexOf(trainer.settings.syllableColors),
     );
+    introSyllableColors.value = syllableColors.value;
     renderSyllableThreshold(trainer.settings.syllableColors);
     renderSyllables(syllableColorsPreview, 'ԲՈՒՐԺՈՒԱԿԱՆ', 2);
     flashEnabled.checked = trainer.settings.flash.enabled;
@@ -322,7 +333,14 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     flashDurationValue.textContent = `${flashDuration.value} s`;
     if (dialog.open) startPreview();
   });
-  syllableColors.addEventListener('input', () => renderSyllableThreshold());
+  syllableColors.addEventListener('input', () => {
+    introSyllableColors.value = syllableColors.value;
+    renderSyllableThreshold();
+  });
+  introSyllableColors.addEventListener('input', () => {
+    syllableColors.value = introSyllableColors.value;
+    renderSyllableThreshold();
+  });
   flashPreviewReveal.addEventListener('click', () => {
     startPreview();
     flashDuration.focus();
@@ -331,6 +349,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     language,
     metadataHints,
     syllableColors,
+    introSyllableColors,
     ...modeInputs,
     selected,
     ...enabled.querySelectorAll('input'),
