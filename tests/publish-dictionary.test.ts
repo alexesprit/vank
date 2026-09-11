@@ -7,6 +7,7 @@ import config from '../builder/config.json' with { type: 'json' };
 import {
   dictionaryReleaseNotes,
   PRODUCTION_QUALITY,
+  publishDictionaries,
   publishDictionary,
   validatePublishableDictionary,
 } from '../builder/scripts/publish-dictionary.ts';
@@ -120,6 +121,53 @@ it('repairs an incomplete draft before deployment', async () => {
     ['api', expect.any(String)],
     ['workflow', 'run'],
   ]);
+});
+
+it('publishes multiple dictionary assets in one release', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'vank-publish-'));
+  directories.push(directory);
+  const dictionary = runtimeDictionary(
+    parseDictionary({
+      version: 1,
+      schemaVersion: 1,
+      generatedAt: '2026-09-10T00:00:00Z',
+      words: [deriveWord('ՄԱՄԱ')],
+    }),
+  );
+  const data = JSON.stringify(dictionary);
+  const digest = createHash('sha256').update(data).digest('hex');
+  const wordsPath = join(directory, 'words.json');
+  const toponymsPath = join(directory, 'toponyms.json');
+  await Promise.all([
+    writeFile(wordsPath, data),
+    writeFile(toponymsPath, data),
+  ]);
+  const commands: string[][] = [];
+  let inspections = 0;
+  await publishDictionaries(
+    [
+      { path: wordsPath, name: 'words.json', quality: testQuality },
+      { path: toponymsPath, name: 'toponyms.json', quality: testQuality },
+    ],
+    (args) => {
+      commands.push(args);
+      if (args[0] !== 'api') return { status: 0, stdout: '' };
+      inspections++;
+      return inspections === 1
+        ? { status: 1, stdout: '' }
+        : { status: 0, stdout: `false\tsha256:${digest}\tsha256:${digest}\n` };
+    },
+  );
+
+  expect(commands.map((args) => args.slice(0, 2))).toEqual([
+    ['api', expect.any(String)],
+    ['release', 'create'],
+    ['api', expect.any(String)],
+    ['workflow', 'run'],
+  ]);
+  expect(commands.find((args) => args[1] === 'create')).toEqual(
+    expect.arrayContaining([wordsPath, toponymsPath]),
+  );
 });
 
 it('does not deploy a release with a mismatched asset', async () => {

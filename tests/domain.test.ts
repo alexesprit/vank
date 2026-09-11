@@ -71,6 +71,11 @@ describe('runtime dictionary boundary', () => {
     });
     expect(parseDictionary(data).words[0].meaning?.en).toBe('taxi');
   });
+  it('accepts country metadata for specialized dictionaries', () => {
+    const data = dataset();
+    Object.assign(data.words[0], { categories: ['country'], tags: [] });
+    expect(parseDictionary(data).words[0].categories).toEqual(['country']);
+  });
   it('derives decomposition omitted from the runtime file', () => {
     const word = { ...deriveWord('ՏԱՔՍԻ') } as Record<string, unknown>;
     for (const field of ['letters', 'uniqueLetters', 'length'])

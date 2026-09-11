@@ -21,12 +21,14 @@
     "prepare": "lefthook install",
     "dictionary:download": "node builder/scripts/download-dictionary.ts",
     "dictionary:publish": "node builder/scripts/publish-dictionary.ts",
+    "dictionary:publish-all": "node builder/scripts/publish-dictionaries.ts",
     "fetch": "node builder/src/cli.ts fetch",
     "normalize": "node builder/src/cli.ts normalize",
     "derive": "node builder/src/cli.ts derive",
     "enrich": "node builder/src/cli.ts enrich",
     "validate": "node builder/src/cli.ts validate",
     "build:dictionary": "node builder/src/cli.ts build",
+    "build:dictionaries": "node builder/scripts/build-dictionaries.ts",
     "build:seed": "node builder/src/cli.ts build --curated-only --no-ai --data-dir builder/data/seed"
   },
   "knip": {

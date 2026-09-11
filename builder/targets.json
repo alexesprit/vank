@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "words": {
+      "enabled": true,
+      "required": true,
+      "config": "builder/config.json",
+      "dataDir": "builder/data",
+      "output": "web/data/words.json",
+      "asset": "words.json",
+      "enrichment": "openrouter",
+      "checks": ["audience", "achievements"]
+    }
+  }
+}

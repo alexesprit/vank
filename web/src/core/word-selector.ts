@@ -318,4 +318,11 @@ export function createWordSelector(
   throw new Error(`Selection strategy is not implemented: ${strategy}`);
 }
 
-export const selectWord = selectAdaptiveWord;
+export function selectWord(
+  words: Word[],
+  state: LearnerState,
+  now: number,
+  random?: () => number,
+): Selection {
+  return selectAdaptiveWord(words, state, now, random);
+}

@@ -4,6 +4,7 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parseDictionary } from '../../shared/schema.ts';
+import { readTargetManifest, selectTargets } from '../src/targets.ts';
 
 const checksumPattern = /^[a-f0-9]{64}$/;
 const digest = (data: Uint8Array) =>
@@ -55,18 +56,30 @@ export async function ensureDictionary(
   return 'downloaded';
 }
 
+export async function downloadDictionaries(
+  manifestPath = 'builder/targets.json',
+  environment: NodeJS.ProcessEnv = process.env,
+) {
+  const manifest = await readTargetManifest(manifestPath);
+  for (const target of selectTargets(manifest)) {
+    const suffix = target.id.replaceAll(/[^a-z0-9]+/gi, '_').toUpperCase();
+    const result = await ensureDictionary(
+      target.output,
+      environment[`DICTIONARY_URL_${suffix}`] ??
+        (target.id === 'words' ? environment.DICTIONARY_URL : undefined),
+      environment[`DICTIONARY_SHA256_${suffix}`] ??
+        (target.id === 'words' ? environment.DICTIONARY_SHA256 : undefined),
+    );
+    console.log(
+      `${result === 'downloaded' ? 'Downloaded' : result === 'cached' ? 'Using cached' : 'Using existing'} ${target.output}`,
+    );
+  }
+}
+
 if (
   process.argv[1] &&
   import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
   if (existsSync('.env')) process.loadEnvFile('.env');
-  const output = 'web/data/words.json';
-  const result = await ensureDictionary(
-    output,
-    process.env.DICTIONARY_URL,
-    process.env.DICTIONARY_SHA256,
-  );
-  console.log(
-    `${result === 'downloaded' ? 'Downloaded' : result === 'cached' ? 'Using cached' : 'Using existing'} ${output}`,
-  );
+  await downloadDictionaries();
 }

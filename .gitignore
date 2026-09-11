@@ -2,7 +2,7 @@
 node_modules/
 web/dist/
 web/data/ATTRIBUTION.txt
-web/data/words.json
+web/data/*.json
 builder/cache/
 .env
 builder/data/wiktionary.jsonl

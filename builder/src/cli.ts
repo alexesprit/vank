@@ -43,6 +43,8 @@ async function main() {
       quiet: { type: 'boolean' },
       verbose: { type: 'boolean' },
       'no-ai': { type: 'boolean' },
+      'no-audience': { type: 'boolean' },
+      'no-achievements': { type: 'boolean' },
       'curated-only': { type: 'boolean' },
       help: { type: 'boolean' },
     },
@@ -50,7 +52,7 @@ async function main() {
   const stage = positionals[0] ?? 'build';
   if (values.help) {
     console.log(
-      'Vank builder: fetch | normalize | derive | enrich | validate | build\nOptions: --config FILE --data-dir DIR --output FILE --no-ai --curated-only --quiet --verbose',
+      'Vank builder: fetch | normalize | derive | enrich | validate | build\nOptions: --config FILE --data-dir DIR --output FILE --no-ai --no-audience --no-achievements --curated-only --quiet --verbose',
     );
     return;
   }
@@ -77,7 +79,9 @@ async function main() {
   )
     throw new Error('Invalid dictionary size');
   const audience =
-    config.audience === undefined || values['curated-only']
+    config.audience === undefined ||
+    values['curated-only'] ||
+    values['no-audience']
       ? undefined
       : parseAudience(config.audience, languages, maxWords);
   if (!Array.isArray(config.sources))
@@ -340,13 +344,15 @@ async function main() {
         });
       }
       const dictionary = validateDataset(selected);
-      validateAchievementDictionary(dictionary.words);
-      report({
-        stage: 'achievements',
-        processed: dictionary.words.length,
-        total: dictionary.words.length,
-        detail: 'complete: achievement prerequisites verified',
-      });
+      if (!values['no-achievements']) {
+        validateAchievementDictionary(dictionary.words);
+        report({
+          stage: 'achievements',
+          processed: dictionary.words.length,
+          total: dictionary.words.length,
+          detail: 'complete: achievement prerequisites verified',
+        });
+      }
       await writeJson(file('words'), dictionary);
       await writeJson(file('rejected'), rejects);
       await writeRuntimeDictionary(resolve(output), dictionary);

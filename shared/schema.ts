@@ -14,6 +14,7 @@ export const CATEGORIES = [
   'shopping',
   'transport',
   'signage',
+  'country',
   'street',
   'place-name',
   'person-name',

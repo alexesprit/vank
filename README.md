@@ -22,7 +22,7 @@ npm run build
 npm run preview
 ```
 
-`web/data/words.json` is a minified build artifact and is not stored in Git.
+`web/data/*.json` are minified build artifacts and are not stored in Git.
 Run `npm run build:seed` first after cloning (or after removing the artifact),
 then local development and tests use that deterministic 79-word dictionary.
 `DICTIONARY_URL` and
@@ -75,7 +75,15 @@ npm run derive                    # read normalized.json; derive technical metad
 npm run enrich                    # read deterministic.json; cached OpenRouter batches
 npm run validate                  # apply overrides, compose, validate, emit words.json
 npm run build:dictionary           # all stages; reuse source files and AI item caches
+npm run build:dictionaries         # run all required targets from builder/targets.json
+npm run dictionary:publish-all     # publish target assets in one GitHub release
 ```
+
+`builder/targets.json` defines each dictionary entrypoint: its builder config,
+intermediate directory, runtime output, release asset name, enrichment mode,
+and validation checks. The current manifest contains only the required `words`
+target; specialized targets can be enabled there when their curated sources
+are ready.
 
 Configure sources, explicit priorities, learner languages, and the output ceiling in
 `builder/config.json`. Source paths are relative to the repository working
