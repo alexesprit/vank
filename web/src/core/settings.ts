@@ -79,6 +79,7 @@ export const FONTS: FontOption[] = [
 ];
 
 export interface AppSettings {
+  analytics: boolean;
   language: LanguagePreference;
   metadataHints: boolean;
   syllableColors: SyllableColorThreshold;
@@ -148,6 +149,8 @@ export const DEFAULT_PRESENTATION = {
 } as const;
 
 export const DEFAULT_SETTINGS: AppSettings = {
+  // Existing installations keep analytics off until the learner opts in.
+  analytics: false,
   language: 'auto',
   metadataHints: false,
   syllableColors: 0,
@@ -171,6 +174,7 @@ export function parseSettings(value: unknown): AppSettings {
   if (!value || typeof value !== 'object')
     return structuredClone(DEFAULT_SETTINGS);
   const saved = value as {
+    analytics?: unknown;
     fonts?: unknown;
     language?: unknown;
     metadataHints?: unknown;
@@ -224,6 +228,10 @@ export function parseSettings(value: unknown): AppSettings {
       ? Math.round(rawExposureMs / 1000) * 1000
       : DEFAULT_SETTINGS.flash.exposureMs;
   return {
+    analytics:
+      typeof saved.analytics === 'boolean'
+        ? saved.analytics
+        : DEFAULT_SETTINGS.analytics,
     language: LANGUAGE_PREFERENCES.includes(
       saved.language as LanguagePreference,
     )

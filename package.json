@@ -50,6 +50,7 @@
     "node": ">=24"
   },
   "dependencies": {
+    "@vercel/analytics": "2.0.1",
     "i18next": "26.4.1",
     "vankatum": "0.1.1"
   }

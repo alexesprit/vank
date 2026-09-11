@@ -11,6 +11,8 @@ export const ru = {
     skip: 'Не знаю',
     next: 'Дальше →',
     details: 'Подробнее',
+    // biome-ignore lint/security/noSecrets: Russian copy triggers the entropy heuristic.
+    privacy: 'Конфиденциальность',
     cancel: 'Отмена',
     reveal: 'Показать слово',
   },
@@ -245,6 +247,8 @@ export const ru = {
       'После проверки Vank покажет чтение и подберёт дальнейшую практику.',
     storage:
       'Прогресс хранится на этом устройстве и будет удалён при очистке данных браузера.',
+    analyticsNotice:
+      'Vank отправляет только анонимную статистику посещений — без ответов, слов и прогресса.',
     start: 'Начать практику',
   },
   settings: {
@@ -254,6 +258,11 @@ export const ru = {
     languageAuto: 'Как в браузере',
     languageRu: 'Русский',
     languageEn: 'English',
+    analytics: 'Анонимная статистика',
+    analyticsEnabled: 'Отправлять анонимную статистику',
+    analyticsNotice:
+      'Помогает понять, откуда приходят пользователи и начинают ли они практику. Не отправляет ответы, слова, прогресс или личные данные.',
+    analyticsDnt: 'Отключено: браузер отправляет Do Not Track.',
     font: 'Шрифт армянских слов',
     oneFont: 'Один шрифт',
     selectedFont: 'Выбранный шрифт',

@@ -1,4 +1,5 @@
 import '../styles/main.css';
+import { startAnalytics } from './analytics.ts';
 import { parseSettings } from './core/settings.ts';
 import { loadDictionary } from './data/dictionary.ts';
 import { initializeI18n, localizeDocument } from './i18n/index.ts';
@@ -21,7 +22,11 @@ async function start() {
   const locale = await initializeI18n(language, navigator.languages);
   localizeDocument(locale);
   const dictionary = await loadDictionary();
-  mountTrainer(await createTrainer(dictionary.words, repository), dictionary);
+  const trainer = await createTrainer(dictionary.words, repository);
+  mountTrainer(trainer, dictionary, () =>
+    startAnalytics(trainer.settings.analytics),
+  );
+  if (trainer.introShown) startAnalytics(trainer.settings.analytics);
 }
 start().catch((error) => {
   const loading = document.getElementById('loading');

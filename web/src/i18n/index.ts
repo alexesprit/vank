@@ -37,6 +37,10 @@ export async function initializeI18n(
 
 export function localizeDocument(locale: Locale, root: Document = document) {
   root.documentElement.lang = locale;
+  for (const link of root.querySelectorAll<HTMLAnchorElement>(
+    '[data-privacy-link]',
+  ))
+    link.href = `./privacy.html?lang=${locale}`;
   for (const element of root.querySelectorAll<HTMLElement>('[data-i18n]')) {
     const key = element.dataset.i18n;
     if (key) element.textContent = i18next.t(key);

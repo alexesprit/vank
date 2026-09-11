@@ -64,8 +64,11 @@ body {
 
 .page {
   max-width: 1180px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  padding: 28px 24px 48px;
+  padding: 28px 24px 24px;
 }
 
 .topbar {
@@ -147,6 +150,18 @@ button {
   grid-template-columns: minmax(0, 1fr) 280px;
   gap: 24px;
   align-items: start;
+}
+
+.site-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.site-footer a {
+  color: inherit;
 }
 
 .trainer {
@@ -1204,6 +1219,12 @@ legend {
   gap: 8px;
 }
 
+.analytics-notice {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .select-wrap {
   position: relative;
 }
@@ -1241,6 +1262,8 @@ legend {
 }
 
 .intro-quick-settings {
+  display: grid;
+  gap: 24px;
   margin-top: 24px;
   padding-top: 24px;
   padding-bottom: 32px;
@@ -1248,16 +1271,13 @@ legend {
 }
 
 .intro-quick-settings h3 {
-  margin: 0 0 12px;
+  margin: 0;
   font-size: 18px;
 }
 
-.intro-quick-settings .metadata-hints-preview {
-  margin-top: 4px;
-}
-
-.intro-quick-settings .syllable-colors-row {
-  margin-top: 24px;
+.quick-setting {
+  display: grid;
+  gap: 4px;
 }
 
 #intro-dialog > ul {

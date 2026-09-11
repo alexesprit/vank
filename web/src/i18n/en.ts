@@ -17,6 +17,7 @@ export const en = {
     skip: "I don't know",
     next: 'Next →',
     details: 'Details',
+    privacy: 'Privacy',
     cancel: 'Cancel',
     reveal: 'Reveal word',
   },
@@ -247,6 +248,8 @@ export const en = {
     result: 'Vank will show the reading and choose what to practise next.',
     storage:
       'Progress is stored on this device and is removed when browser data is cleared.',
+    analyticsNotice:
+      'Vank sends only anonymous visit statistics — never answers, words, or progress.',
     start: 'Start practising',
   },
   settings: {
@@ -256,6 +259,11 @@ export const en = {
     languageAuto: 'Use browser language',
     languageRu: 'Русский',
     languageEn: 'English',
+    analytics: 'Anonymous analytics',
+    analyticsEnabled: 'Send anonymous analytics',
+    analyticsNotice:
+      'Helps understand where visitors come from and whether they start practising. It never sends answers, words, progress, or personal data.',
+    analyticsDnt: 'Disabled because your browser sends Do Not Track.',
     font: 'Armenian word font',
     oneFont: 'One font',
     selectedFont: 'Selected font',

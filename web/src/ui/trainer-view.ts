@@ -1,4 +1,5 @@
 import type { Dictionary, Evaluation, Word } from '../../../shared/types.ts';
+import { doNotTrackEnabled } from '../analytics.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { countCorrectAnswers } from '../core/session.ts';
@@ -92,12 +93,15 @@ function mountIntro(
   trainer: Trainer,
   renderTrainer: () => void,
   startFlash: () => void,
+  startAnalytics: () => void,
 ) {
   const dialog = element<HTMLDialogElement>('intro-dialog');
   const quickSettings = element('intro-quick-settings');
   const quickMetadataHints = element<HTMLInputElement>(
     'intro-metadata-hints-setting',
   );
+  const quickAnalytics = element<HTMLInputElement>('intro-analytics-setting');
+  const quickAnalyticsDnt = element('intro-analytics-dnt');
   const firstRun = !trainer.introShown;
   let promptStarted = !firstRun;
   const close = () => {
@@ -115,13 +119,33 @@ function mountIntro(
     dialog.showModal();
   });
   element('intro-close').addEventListener('click', close);
-  element('intro-start').addEventListener('click', close);
+  element('intro-start').addEventListener('click', () => {
+    if (!firstRun) {
+      close();
+      return;
+    }
+    void (async () => {
+      try {
+        await trainer.setSettings({
+          ...trainer.settings,
+          analytics: quickAnalytics.checked,
+        });
+        close();
+        startAnalytics();
+      } catch (error) {
+        showError(error);
+      }
+    })();
+  });
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) close();
   });
   if (firstRun) {
     quickSettings.hidden = false;
     quickMetadataHints.checked = trainer.settings.metadataHints;
+    quickAnalytics.checked = !doNotTrackEnabled();
+    quickAnalytics.disabled = doNotTrackEnabled();
+    quickAnalyticsDnt.hidden = !doNotTrackEnabled();
     quickMetadataHints.addEventListener('change', async () => {
       try {
         await trainer.setSettings({
@@ -138,7 +162,11 @@ function mountIntro(
     void trainer.markIntroShown().catch(showError);
   }
 }
-export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
+export function mountTrainer(
+  trainer: Trainer,
+  dictionary: Dictionary,
+  startAnalytics: () => void,
+) {
   const input = element<HTMLInputElement>('answer'),
     form = element<HTMLFormElement>('answer-form');
   const check = element<HTMLButtonElement>('check'),
@@ -285,10 +313,10 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   trainer.onFlashChange(() => render(false));
   element('trainer').hidden = false;
   element('loading').hidden = true;
-  mountIntro(trainer, render, () => trainer.startFlash());
+  mountIntro(trainer, render, () => trainer.startFlash(), startAnalytics);
   mountStatsDialog(mountDebugDialog(trainer, dictionary));
   const achievements = mountAchievements(trainer);
-  mountSettings(trainer, render);
+  mountSettings(trainer, render, startAnalytics);
   render();
   if (trainer.introShown) trainer.startFlash();
 }

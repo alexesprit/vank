@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
+  <title>Vank — Конфиденциальность</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: #f4f5f7;
+      color: #191b20;
+    }
+    * { box-sizing: border-box; }
+    body { max-width: 720px; margin: 0 auto; padding: 28px 24px 48px; }
+    a { color: inherit; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    .brand { display: flex; align-items: baseline; gap: 8px; }
+    .brand strong { font-size: 24px; letter-spacing: -0.02em; }
+    .brand span, .updated, .muted { color: #6f7580; }
+    .back { padding: 12px 16px; border: 1px solid #d8dce3; border-radius: 12px; background: #fff; text-decoration: none; }
+    main { padding: 28px; border: 1px solid #d8dce3; border-radius: 16px; background: #fff; box-shadow: 0 12px 40px rgba(22, 26, 33, 0.08); }
+    h1 { margin: 0; font-size: clamp(28px, 6vw, 40px); letter-spacing: -0.03em; }
+    h2 { margin: 32px 0 12px; font-size: 18px; }
+    p { line-height: 1.6; }
+    .updated { margin: 8px 0 0; font-size: 14px; }
+    .notice { margin-top: 24px; padding: 16px; border: 1px solid #d8dce3; border-radius: 12px; background: #eef0f3; }
+    .notice p { margin: 0; }
+    @media (prefers-color-scheme: dark) {
+      :root { background: #111318; color: #f1f3f5; }
+      .brand span, .updated, .muted { color: #a4abb6; }
+      .back, main { border-color: #343943; background: #191c22; }
+      .notice { border-color: #343943; background: #242830; }
+      main { box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+    }
+    @media (max-width: 520px) {
+      body { padding: 20px 16px 32px; }
+      main { padding: 24px; }
+      .topbar { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><strong>Vank</strong><span>Конфиденциальность</span></div>
+    <a class="back" href="./">← К практике</a>
+  </header>
+  <main>
+    <section data-locale="ru">
+      <h1>Конфиденциальность</h1>
+      <p class="updated">Обновлено: 11 сентября 2026 года.</p>
+      <section class="notice"><p>Прогресс остаётся на вашем устройстве. Анонимную статистику можно выключить в настройках, а Do Not Track всегда её блокирует.</p></section>
+      <h2>Прогресс</h2>
+      <p>Прогресс, ответы и настройки обучения хранятся только в браузере на вашем устройстве. Они удаляются при очистке данных сайта.</p>
+      <h2>Анонимная статистика</h2>
+      <p>Для новых пользователей Vank предлагает включить анонимную статистику перед началом практики. Если вы уже видели это окно до появления этой функции, статистика выключена, пока вы сами не включите её в настройках.</p>
+      <p>При включении Vank загружает Vercel Web Analytics. Vercel получает агрегированные данные о посещении: время, страницу, источник перехода, если браузер его передал, примерное местоположение, тип устройства, браузер и операционную систему. Vercel не использует cookies; его идентификатор посетителя основан на хеше запроса и сбрасывается через сутки.</p>
+      <p>Мы не отправляем Vercel ответы, армянские слова, ошибки, скорость ответов, прогресс обучения, настройки обучения, имя, email или постоянный идентификатор.</p>
+      <p>Если в браузере включён Do Not Track, Vank не загружает аналитику независимо от настройки. Аналитику также можно выключить в настройках Vank; это предотвращает её загрузку при следующих посещениях.</p>
+      <p>Подробнее о том, как Vercel обрабатывает эту статистику: <a href="https://vercel.com/docs/analytics/privacy-policy">Vercel Web Analytics Privacy</a>.</p>
+      <h2>Контакты</h2>
+      <p>Вопросы или запросы: <a href="https://github.com/alexesprit/vank/issues">GitHub Issues проекта Vank</a>.</p>
+    </section>
+    <section data-locale="en" hidden>
+      <h1>Privacy</h1>
+      <p class="updated">Updated: September 11, 2026.</p>
+      <section class="notice"><p>Your progress stays on your device. You can turn anonymous analytics off in Settings, and Do Not Track always blocks it.</p></section>
+      <h2>Progress</h2>
+      <p>Your progress, answers, and learning settings are stored only in your browser on this device. They are removed when you clear this site's data.</p>
+      <h2>Anonymous analytics</h2>
+      <p>Before starting practice, Vank offers new learners a choice to enable anonymous analytics. If you had already seen this screen before this feature was introduced, analytics remains off until you turn it on in Settings.</p>
+      <p>When enabled, Vank loads Vercel Web Analytics. Vercel receives aggregated visit data: time, page, referring source when supplied by the browser, approximate location, device type, browser, and operating system. Vercel does not use cookies; its visitor identifier is based on a request hash and resets after one day.</p>
+      <p>We do not send Vercel your answers, Armenian words, mistakes, response speed, learning progress, learning settings, name, email address, or a persistent identifier.</p>
+      <p>If your browser enables Do Not Track, Vank does not load analytics regardless of the setting. You can also disable analytics in Vank Settings; this prevents it loading on later visits.</p>
+      <p>More about Vercel's handling of this analytics data: <a href="https://vercel.com/docs/analytics/privacy-policy">Vercel Web Analytics Privacy</a>.</p>
+      <h2>Contact</h2>
+      <p>Questions or requests: <a href="https://github.com/alexesprit/vank/issues">Vank GitHub Issues</a>.</p>
+    </section>
+  </main>
+  <script>
+    const locale = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'ru';
+    document.documentElement.lang = locale;
+    document.querySelectorAll('[data-locale]').forEach((section) => {
+      section.hidden = section.dataset.locale !== locale;
+    });
+    if (locale === 'en') {
+      document.querySelector('.brand span').textContent = 'Privacy';
+      document.querySelector('.back').textContent = '← Back to practice';
+    }
+  </script>
+</body>
+</html>

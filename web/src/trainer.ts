@@ -257,6 +257,7 @@ export async function createTrainer(
         Partial<
           Pick<
             AppSettings,
+            | 'analytics'
             | 'language'
             | 'metadataHints'
             | 'syllableColors'
@@ -265,7 +266,7 @@ export async function createTrainer(
           >
         >,
     ) {
-      const saved = parseSettings(next);
+      const saved = parseSettings({ ...settings, ...next });
       await repository.setSetting('app', saved);
       settings = saved;
       if (!saved.flash.enabled) flash.show();

@@ -1,3 +1,4 @@
+import { doNotTrackEnabled } from '../analytics.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { countCorrectAnswers } from '../core/session.ts';
 import {
@@ -16,7 +17,11 @@ import { renderSyllables } from './syllable-colors.ts';
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
 
-export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
+export function mountSettings(
+  trainer: Trainer,
+  renderTrainer: () => void,
+  startAnalytics: () => void,
+) {
   const dialog = element<HTMLDialogElement>('settings-dialog');
   const progressChannel = new BroadcastChannel('vank-progress');
   progressChannel.addEventListener('message', () => window.location.reload());
@@ -24,6 +29,8 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     ...document.querySelectorAll<HTMLInputElement>('[name="font-mode"]'),
   ];
   const language = element<HTMLSelectElement>('language');
+  const analytics = element<HTMLInputElement>('analytics-setting');
+  const analyticsDnt = element('analytics-dnt');
   const metadataHints = element<HTMLInputElement>('metadata-hints-setting');
   const syllableColors = element<HTMLInputElement>('syllable-colors-setting');
   const syllableColorsValue = element('syllable-colors-value');
@@ -166,6 +173,10 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     const { fonts } = trainer.settings;
     const { typography } = trainer.settings;
     language.value = trainer.settings.language;
+    const dnt = doNotTrackEnabled();
+    analytics.checked = trainer.settings.analytics && !dnt;
+    analytics.disabled = dnt;
+    analyticsDnt.hidden = !dnt;
     metadataHints.checked = trainer.settings.metadataHints;
     syllableColors.value = String(
       SYLLABLE_COLOR_THRESHOLDS.indexOf(trainer.settings.syllableColors),
@@ -238,6 +249,8 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
 
   async function apply() {
     const languageChanged = language.value !== trainer.settings.language;
+    const analyticsChanged = analytics.checked !== trainer.settings.analytics;
+    const dnt = doNotTrackEnabled();
     const mode = modeInputs.find((input) => input.checked)?.value as
       | 'single'
       | 'rotate';
@@ -251,6 +264,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     ].map((input) => input.value);
     try {
       await trainer.setSettings({
+        analytics: dnt ? trainer.settings.analytics : analytics.checked,
         language: language.value as LanguagePreference,
         metadataHints: metadataHints.checked,
         syllableColors: selectedSyllableThreshold(),
@@ -273,6 +287,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
         window.location.reload();
         return;
       }
+      if (analyticsChanged && analytics.checked) startAnalytics();
       render();
       renderTrainer();
       startPreview();
@@ -347,6 +362,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   });
   for (const control of [
     language,
+    analytics,
     metadataHints,
     syllableColors,
     introSyllableColors,

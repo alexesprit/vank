@@ -29,6 +29,14 @@ describe('interface localization', () => {
     expect(parseSettings(oldSettings).language).toBe('auto');
   });
 
+  it('keeps analytics off for legacy settings and accepts an explicit opt-in', () => {
+    const { analytics: _analytics, ...legacySettings } = DEFAULT_SETTINGS;
+    expect(parseSettings(legacySettings).analytics).toBe(false);
+    expect(
+      parseSettings({ ...legacySettings, analytics: true }).analytics,
+    ).toBe(true);
+  });
+
   it('interpolates values and follows Russian plural rules', () => {
     expect(t('settings.unlockAfter', { count: 1, name: 'Handjet' })).toBe(
       'Handjet · после 1 верного ответа',
@@ -74,6 +82,7 @@ describe('interface localization', () => {
       dataset: { i18nTitle: 'progress.strongHint' },
       title: '',
     };
+    const privacy = { href: '' };
     const root = {
       documentElement: { lang: '' },
       querySelectorAll: (selector: string) =>
@@ -82,6 +91,7 @@ describe('interface localization', () => {
           '[data-i18n-aria-label]': [aria],
           '[data-i18n-placeholder]': [placeholder],
           '[data-i18n-title]': [title],
+          '[data-privacy-link]': [privacy],
         })[selector] ?? [],
     } as unknown as Document;
 
@@ -94,6 +104,7 @@ describe('interface localization', () => {
     expect(title.title).toBe(
       'Буквы со счётом не ниже 75% и хотя бы одной правильной попыткой в незнакомом слове.',
     );
+    expect(privacy.href).toBe('./privacy.html?lang=ru');
   });
 
   it('switches to the English catalog', async () => {
