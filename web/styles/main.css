@@ -809,14 +809,19 @@ dialog {
   position: relative;
   width: min(460px, calc(100% - 32px));
   max-height: calc(100% - 32px);
-  overflow: auto;
+  overflow: hidden;
   overscroll-behavior: contain;
-  padding: 24px;
+  padding: 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--panel);
   color: var(--text);
   box-shadow: var(--shadow);
+}
+
+dialog[open] {
+  display: flex;
+  flex-direction: column;
 }
 
 dialog::backdrop {
@@ -825,8 +830,21 @@ dialog::backdrop {
 
 .dialog-header {
   justify-content: space-between;
-  padding-right: 48px;
-  margin-bottom: 20px;
+  flex: none;
+  padding: 24px 48px 24px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dialog-body {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px;
+}
+
+.dialog-body > :first-child {
+  margin-top: 0;
 }
 
 .dialog-header .icon-btn {
@@ -1003,14 +1021,6 @@ dialog::backdrop {
 
 .achievements-dialog {
   width: min(680px, calc(100% - 32px));
-  padding: 0;
-  overflow: hidden;
-}
-
-.achievements-dialog .dialog-header {
-  margin: 0;
-  padding: 24px;
-  border-bottom: 1px solid var(--border);
 }
 
 .achievement-list {
@@ -1119,7 +1129,7 @@ dialog::backdrop {
 }
 
 .debug-hint {
-  margin: -12px 0 20px;
+  margin: 0 0 20px;
   color: var(--muted);
   font-size: 13px;
 }
@@ -1352,11 +1362,7 @@ legend {
   width: 100%;
 }
 
-#intro-dialog {
-  padding-bottom: 0;
-}
-
-#intro-dialog > ul {
+#intro-dialog .dialog-body > ul {
   display: grid;
   gap: 12px;
 }
@@ -1414,8 +1420,7 @@ legend {
     gap: 4px;
     margin-top: 16px;
   }
-  dialog,
-  .achievements-dialog {
+  dialog {
     width: 100%;
     max-width: none;
     height: 100dvh;
@@ -1424,14 +1429,13 @@ legend {
     border: 0;
     border-radius: 0;
   }
-  .achievements-dialog {
-    display: flex;
-    flex-direction: column;
-  }
   .achievements-dialog .achievement-list {
     flex: 1;
     min-height: 0;
     max-height: none;
+  }
+  .dialog-body {
+    flex: 1 1 auto;
   }
 }
 
