@@ -59,27 +59,39 @@ function balanceByLetterCoverage(
   const counts = new Map(
     countLetterCoverage(selected).map(({ letter, words }) => [letter, words]),
   );
+  let total = [...counts.values()].reduce((sum, count) => sum + count, 0);
+  let squares = [...counts.values()].reduce(
+    (sum, count) => sum + count * count,
+    0,
+  );
   const remaining = [...words];
   const result: BuildWord[] = [];
   // ponytail: quadratic greedy scan is plenty for a few thousand dictionary words.
   while (result.length < limit && remaining.length) {
     let best = 0;
-    let bestGain = -1;
+    let bestFairness = -1;
     for (const [index, word] of remaining.entries()) {
-      const gain = word.uniqueLetters.reduce(
-        (sum, letter) => sum + 1 / ((counts.get(letter) ?? 0) + 1),
-        0,
+      const nextSquares = word.uniqueLetters.reduce(
+        (sum, letter) => sum + 2 * (counts.get(letter) ?? 0) + 1,
+        squares,
       );
-      if (gain > bestGain) {
+      const nextTotal = total + word.uniqueLetters.length;
+      // Alphabet size is constant, so its divisor cannot change the best Jain score.
+      const fairness = (nextTotal * nextTotal) / nextSquares;
+      if (fairness > bestFairness) {
         best = index;
-        bestGain = gain;
+        bestFairness = fairness;
       }
     }
     const [word] = remaining.splice(best, 1);
     if (!word) break;
     result.push(word);
-    for (const letter of word.uniqueLetters)
-      counts.set(letter, (counts.get(letter) ?? 0) + 1);
+    for (const letter of word.uniqueLetters) {
+      const count = counts.get(letter) ?? 0;
+      squares += 2 * count + 1;
+      total++;
+      counts.set(letter, count + 1);
+    }
   }
   return result;
 }
