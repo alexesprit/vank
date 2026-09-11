@@ -483,6 +483,18 @@ it('cycles finite packs without adaptive eligibility failures', () => {
   expect(first.phase).toBe('introduction');
 });
 
+it('shuffles a finite pack before its first word', () => {
+  const words = [word('ԳԱԶ'), word('ԶԱԼ')];
+  const first = createWordSelector(words, 'finite-pack')(empty(), 0, () => 0)
+    .word.id;
+  const refreshed = createWordSelector(words, 'finite-pack')(
+    empty(),
+    0,
+    () => 0.999,
+  ).word.id;
+  expect(refreshed).not.toBe(first);
+});
+
 it('creates rich immutable attempt events and real progress metrics', () => {
   const w = word('ՏԱՔՍԻ', 0.2);
   const result = completeAttempt(

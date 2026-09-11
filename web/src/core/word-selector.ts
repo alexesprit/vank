@@ -324,16 +324,24 @@ export function createWordSelector(
         a.id.localeCompare(b.id),
     );
     let index = 0;
+    let needsShuffle = true;
+    const shuffle = (random: () => number) => {
+      for (let i = pack.length - 1; i > 0; i--) {
+        const value = random();
+        const normalized = Number.isFinite(value)
+          ? Math.min(1 - Number.EPSILON, Math.max(0, value))
+          : 0;
+        const j = Math.floor(normalized * (i + 1));
+        [pack[i], pack[j]] = [pack[j], pack[i]];
+      }
+    };
     return (state, _now, random = Math.random) => {
+      if (needsShuffle) {
+        shuffle(random);
+        needsShuffle = false;
+      }
       if (index >= pack.length) {
-        for (let i = pack.length - 1; i > 0; i--) {
-          const value = random();
-          const normalized = Number.isFinite(value)
-            ? Math.min(1 - Number.EPSILON, Math.max(0, value))
-            : 0;
-          const j = Math.floor(normalized * (i + 1));
-          [pack[i], pack[j]] = [pack[j], pack[i]];
-        }
+        shuffle(random);
         index = 0;
       }
       const word = pack[index++];
