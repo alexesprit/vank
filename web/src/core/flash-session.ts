@@ -1,6 +1,7 @@
 import { flashAvailable, flashExposureMs } from './settings.ts';
 
 export interface FlashAttempt {
+  baseExposureMs: number;
   exposureMs: number;
   visibleDurationMs?: number;
   revealed: boolean;
@@ -39,6 +40,7 @@ export function createFlashSession(options: FlashSessionOptions): FlashSession {
   let timingInvalid = false;
   let visibleSince: number | undefined;
   let elapsedMs = 0;
+  let baseExposureMs = 0;
   let plannedExposureMs = 0;
   let timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -121,8 +123,9 @@ export function createFlashSession(options: FlashSessionOptions): FlashSession {
       paused = false;
       visibilityPaused = false;
       elapsedMs = 0;
+      baseExposureMs = options.getBaseExposureMs();
       plannedExposureMs = flashExposureMs(
-        options.getBaseExposureMs(),
+        baseExposureMs,
         options.getWordLength(),
       );
       armTimer();
@@ -162,6 +165,7 @@ export function createFlashSession(options: FlashSessionOptions): FlashSession {
       )
         return undefined;
       return {
+        baseExposureMs,
         exposureMs: plannedExposureMs,
         ...(timingInvalid ? {} : { visibleDurationMs: elapsedMs }),
         revealed,
@@ -177,6 +181,7 @@ export function createFlashSession(options: FlashSessionOptions): FlashSession {
       timingInvalid = false;
       visibleSince = undefined;
       elapsedMs = 0;
+      baseExposureMs = 0;
       plannedExposureMs = 0;
     },
     dispose() {

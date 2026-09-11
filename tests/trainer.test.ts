@@ -135,6 +135,42 @@ it('shows the introduction once per browser profile', async () => {
   expect((await createTrainer(words, repo)).introShown).toBe(true);
   repo.close();
 });
+
+it('backfills achievement unlocks and returns new unlocks with a completed attempt', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const word = { ...recognizable('ԲԱՐԵՎ'), familiarity: { ru: 0.2 } };
+  const historical = completeAttempt(
+    await repo.loadState(),
+    { word, phase: 'bootstrap' },
+    word.readingLatin,
+    false,
+    'client',
+    1,
+    2,
+    'historical',
+  );
+  await repo.saveAttempt(historical.attempt, historical.state);
+
+  const backfilled = await createTrainer([word], repo);
+  expect(
+    backfilled.backfilledAchievementUnlocks.map((unlock) => unlock.id),
+  ).toEqual(['training-wheels-off', 'barev-world']);
+  expect(backfilled.achievementUnlocks).toHaveLength(2);
+
+  const freshRepo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const fresh = await createTrainer([word], freshRepo);
+  await fresh.submit(word.readingLatin);
+  expect(fresh.lastAchievementUnlocks.map((unlock) => unlock.id)).toEqual([
+    'training-wheels-off',
+    'barev-world',
+  ]);
+  expect(await freshRepo.getAchievementUnlocks()).toEqual(
+    expect.arrayContaining(fresh.lastAchievementUnlocks),
+  );
+  repo.close();
+  freshRepo.close();
+});
+
 it('keeps the same prompt and unsaved result retryable after a storage failure', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   let fail = true;

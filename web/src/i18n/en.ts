@@ -151,6 +151,88 @@ export const en = {
     flashUnrevealed: 'Unrevealed: {{count}} · {{accuracy}}',
     flashRevealed: 'Revealed: {{count}} · {{accuracy}}',
   },
+  achievements: {
+    summary: 'Achievements',
+    summaryCount: '{{unlocked}} of {{total}} unlocked',
+    title: 'Achievements',
+    locked: 'Locked',
+    hiddenTitle: 'Hidden achievement',
+    hiddenDescription: 'Keep practising to discover it.',
+    unlockedAt: 'Unlocked {{date}}',
+    unlocked: 'Achievement unlocked',
+    unlockedMany: '{{count}} achievements unlocked',
+    view: 'View',
+    items: {
+      'training-wheels-off': {
+        title: 'Training Wheels Off',
+        description:
+          'Correctly read a low-familiarity word for the first time.',
+      },
+      'alphabet-observed': {
+        title: 'Seen the Alphabet',
+        description: 'Encounter every target Armenian letter in a prompt.',
+      },
+      'first-strong-letter': {
+        title: 'Hello, Letter!',
+        description: 'Build verified evidence for your first strong letter.',
+      },
+      'ten-strong-letters': {
+        title: 'Ten Strong Letters',
+        description: 'Build verified evidence for 10 strong letters.',
+      },
+      'half-alphabet': {
+        title: 'Halfway Through the Alphabet',
+        description: 'Build verified evidence for half the Armenian alphabet.',
+      },
+      backslide: {
+        title: 'Backslide',
+        description: 'A strong letter slipped below the learning threshold.',
+      },
+      'phoenix-letter': {
+        title: 'Phoenix Letter',
+        description: 'Bring a backslid letter back to a strong score.',
+      },
+      'read-dont-guess': {
+        title: 'Read, Don’t Guess',
+        description: 'Correctly read 10 low-familiarity words.',
+      },
+      'flash-reader': {
+        title: 'Flash Fluency',
+        description: 'Read 10 short-exposure flash prompts correctly in a row.',
+      },
+      'first-flash-hit': {
+        title: 'Caught It at a Glance',
+        description: 'Correctly read an unrevealed flash prompt.',
+      },
+      'barev-world': {
+        title: 'Բարև, World!',
+        description: 'Correctly read ԲԱՐԵՎ.',
+      },
+      'no-more-freebies': {
+        title: 'No More Freebies',
+        description: 'Correctly read 15 very unfamiliar words in a row.',
+      },
+      'redemption-arc': {
+        title: 'Redemption Arc',
+        description:
+          'Read a failed or skipped word correctly on its next appearance.',
+      },
+      'no-repeats': {
+        title: 'No Repeats',
+        description: 'Correctly read 20 different words in a row.',
+      },
+      'cold-read': {
+        title: 'Cold Read',
+        description:
+          'Correctly read a low-familiarity word after encountering all of its letters.',
+      },
+      'sixth-sense': {
+        title: 'Sixth Sense',
+        description:
+          'Correctly read a word with six distinct Armenian letters.',
+      },
+    },
+  },
   intro: {
     title: 'How Vank works',
     quickSettings: 'Quick settings',
@@ -203,7 +285,8 @@ export const en = {
     statistics: 'Statistics',
     reset: 'Reset statistics',
     resetConfirmation: 'Confirm statistics reset',
-    resetWarning: 'Delete all statistics? This cannot be undone.',
+    resetWarning:
+      'Delete all progress and achievements? This cannot be undone.',
     delete: 'Delete statistics',
   },
   fonts: {

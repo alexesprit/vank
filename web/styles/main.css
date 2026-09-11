@@ -657,6 +657,58 @@ button {
   margin-top: 12px;
 }
 
+.achievement-summary {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 20px;
+  gap: 12px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--soft);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.achievement-summary-icon,
+.achievement-icon,
+.achievement-snackbar-icon {
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+}
+
+.achievement-summary-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--panel);
+}
+
+.achievement-summary-copy,
+.achievements-heading,
+.achievement-snackbar-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.achievement-summary-copy strong {
+  font-size: 14px;
+}
+
+.achievement-summary-copy span,
+.achievement-summary-chevron,
+.achievements-heading > span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.achievement-summary-chevron {
+  align-self: center;
+}
+
 .weak-list {
   display: flex;
   flex-wrap: wrap;
@@ -877,6 +929,123 @@ dialog::backdrop {
 
 .debug-dialog {
   width: min(900px, calc(100% - 32px));
+}
+
+.achievements-dialog {
+  width: min(680px, calc(100% - 32px));
+  padding: 0;
+  overflow: hidden;
+}
+
+.achievements-dialog .dialog-header {
+  margin: 0;
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.achievement-list {
+  max-height: min(640px, calc(100vh - 160px));
+  overflow-y: auto;
+}
+
+.achievement-item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.achievement-item:last-child {
+  border-bottom: 0;
+}
+
+.achievement-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.achievement-copy h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.achievement-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.achievement-time,
+.achievement-state {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.achievement-item.locked {
+  opacity: 0.64;
+}
+
+.achievement-item.locked .achievement-icon {
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.achievement-item.hidden-achievement .achievement-icon {
+  border: 1px dashed var(--border);
+  background: transparent;
+}
+
+.achievement-snackbar {
+  position: fixed;
+  z-index: 10;
+  bottom: 24px;
+  left: 50%;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  width: min(520px, calc(100% - 32px));
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--accent);
+  box-shadow: 0 16px 48px rgba(22, 26, 33, 0.3);
+  color: var(--on-accent);
+  transform: translateX(-50%);
+}
+
+.achievement-snackbar-icon {
+  width: 40px;
+  height: 40px;
+  background: color-mix(in srgb, var(--on-accent) 14%, transparent);
+}
+
+.achievement-snackbar-copy > span {
+  color: color-mix(in srgb, var(--on-accent) 72%, transparent);
+  font-size: 12px;
+}
+
+.achievement-snackbar-copy strong {
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.achievement-snackbar-view {
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .debug-hint {

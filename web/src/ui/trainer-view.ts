@@ -5,6 +5,7 @@ import { countCorrectAnswers } from '../core/session.ts';
 import { availableTypography, formatPrompt } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
+import { mountAchievements } from './achievements-view.ts';
 import { mountDebugDialog } from './debug-view.ts';
 import { mountSettings } from './settings-view.ts';
 import { mountStatsDialog, renderStats } from './stats-view.ts';
@@ -246,6 +247,7 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
     try {
       await trainer.submit(input.value, skipped);
       render();
+      achievements.show(trainer.lastAchievementUnlocks);
     } catch (error) {
       showError(error);
       input.focus();
@@ -285,6 +287,7 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   element('loading').hidden = true;
   mountIntro(trainer, render, () => trainer.startFlash());
   mountStatsDialog(mountDebugDialog(trainer, dictionary));
+  const achievements = mountAchievements(trainer);
   mountSettings(trainer, render);
   render();
   if (trainer.introShown) trainer.startFlash();

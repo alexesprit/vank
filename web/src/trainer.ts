@@ -4,6 +4,8 @@ import type {
   Word,
   WordStat,
 } from '../../shared/types.ts';
+import type { AchievementUnlock } from './core/achievements.ts';
+import { evaluateAchievements } from './core/achievements.ts';
 import { TRAINER_CONFIG } from './core/config.ts';
 import { createFlashSession } from './core/flash-session.ts';
 import { hasMetadataHints } from './core/metadata-hints.ts';
@@ -39,6 +41,19 @@ export async function createTrainer(
   options: TrainerOptions = {},
 ) {
   let state = await repository.loadState();
+  let achievementUnlocks = await repository.getAchievementUnlocks();
+  const backfilledAchievementUnlocks = evaluateAchievements(
+    [...state.recent].reverse(),
+    achievementUnlocks,
+  );
+  if (backfilledAchievementUnlocks.length) {
+    await repository.saveAchievementUnlocks(backfilledAchievementUnlocks);
+    achievementUnlocks = [
+      ...achievementUnlocks,
+      ...backfilledAchievementUnlocks,
+    ];
+  }
+  let lastAchievementUnlocks: AchievementUnlock[] = [];
   let settings = parseSettings(await repository.getSetting('app'));
   let introShown = (await repository.getSetting('introShown')) === true;
   let clientId = await repository.getSetting('clientId');
@@ -104,6 +119,15 @@ export async function createTrainer(
     get presentation() {
       return presentation;
     },
+    get achievementUnlocks() {
+      return achievementUnlocks;
+    },
+    get backfilledAchievementUnlocks() {
+      return backfilledAchievementUnlocks;
+    },
+    get lastAchievementUnlocks() {
+      return lastAchievementUnlocks;
+    },
     get metadataHintsEnabled() {
       return hintsEnabled();
     },
@@ -168,7 +192,15 @@ export async function createTrainer(
           metadataHintsShown,
           flashAttempt,
         );
-        await repository.saveAttempt(completed.attempt, completed.state);
+        const newAchievementUnlocks = evaluateAchievements(
+          [...state.recent].reverse().concat(completed.attempt),
+          achievementUnlocks,
+        );
+        await repository.saveAttempt(
+          completed.attempt,
+          completed.state,
+          newAchievementUnlocks,
+        );
         const familiarity = completed.attempt.payload.familiarity;
         lastScoreUpdate =
           flashAttempt && !flashAttempt.revealed
@@ -195,6 +227,8 @@ export async function createTrainer(
                 },
               };
         state = completed.state;
+        achievementUnlocks = [...achievementUnlocks, ...newAchievementUnlocks];
+        lastAchievementUnlocks = newAchievementUnlocks;
         result = completed.attempt.payload.evaluation;
       } finally {
         busy = false;
@@ -212,6 +246,7 @@ export async function createTrainer(
         metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
         metadataHintsCaptured = false;
         result = undefined;
+        lastAchievementUnlocks = [];
         flash.reset();
       } finally {
         busy = false;

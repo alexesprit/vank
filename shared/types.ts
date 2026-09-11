@@ -99,6 +99,7 @@ export interface AttemptEvent {
     metadataHintsShown?: boolean;
     presentation?: Presentation;
     flashMode?: boolean;
+    flashBaseExposureMs?: number;
     flashExposureMs?: number;
     flashVisibleDurationMs?: number;
     flashRevealed?: boolean;

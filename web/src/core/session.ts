@@ -31,6 +31,7 @@ export function completeAttempt(
   },
   metadataHintsShown?: boolean,
   flash?: {
+    baseExposureMs?: number;
     exposureMs: number;
     visibleDurationMs?: number;
     revealed: boolean;
@@ -60,6 +61,9 @@ export function completeAttempt(
       ...(flash
         ? {
             flashMode: true,
+            ...(flash.baseExposureMs === undefined
+              ? {}
+              : { flashBaseExposureMs: flash.baseExposureMs }),
             flashExposureMs: flash.exposureMs,
             ...(flash.visibleDurationMs === undefined
               ? {}

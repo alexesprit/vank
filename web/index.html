@@ -32,7 +32,7 @@
           <div class="stat"><strong id="strong">0</strong><span class="stat-label"><span data-i18n="progress.strong">сильных букв</span><abbr id="strong-help" class="stat-help" tabindex="0" aria-label="What are strong letters?" data-i18n-aria-label="progress.strongHint" data-tooltip=""><i data-lucide="circle-help" aria-hidden="true"></i></abbr></span></div>
           <div class="stat"><strong id="accuracy">—</strong><span data-i18n="progress.accuracy">без ошибок</span></div>
           <div class="stat"><strong id="verified">—</strong><span class="stat-label"><span data-i18n="progress.verified">без подсказки знакомого слова</span><abbr id="verified-help" class="stat-help" tabindex="0" aria-label="What does this accuracy mean?" data-i18n-aria-label="progress.verifiedHint" data-tooltip=""><i data-lucide="circle-help" aria-hidden="true"></i></abbr></span></div>
-        </div><p class="progress-line" id="rolling"></p><button id="progress-open" class="secondary-btn progress-details" type="button" data-i18n="actions.details">Подробнее</button></section>
+        </div><p class="progress-line" id="rolling"></p><button id="achievements-open" class="achievement-summary" type="button" aria-haspopup="dialog"><span class="achievement-summary-icon"><i data-lucide="trophy" aria-hidden="true"></i></span><span class="achievement-summary-copy"><strong data-i18n="achievements.summary">Достижения</strong><span id="achievements-summary-count"></span></span><i class="achievement-summary-chevron" data-lucide="chevron-right" aria-hidden="true"></i></button><button id="progress-open" class="secondary-btn progress-details" type="button" data-i18n="actions.details">Подробнее</button></section>
         <section class="panel"><h2 data-i18n="progress.needsPractice">Нужна практика</h2><div id="weak" class="weak-list"></div></section>
       </aside>
     </main>
@@ -68,6 +68,10 @@
       <section><h3 data-i18n="progress.byFlash">По мгновенному распознаванию</h3><div id="flash-stats"></div></section>
     </div>
   </dialog>
+  <dialog id="achievements-dialog" class="achievements-dialog" aria-labelledby="achievements-title">
+    <div class="dialog-header"><div class="achievements-heading"><h2 id="achievements-title" data-i18n="achievements.title">Достижения</h2><span id="achievements-dialog-count"></span></div><button id="achievements-close" class="icon-btn" type="button" aria-label="Закрыть" data-i18n-aria-label="actions.close"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <div id="achievements-list" class="achievement-list"></div>
+  </dialog>
   <dialog id="settings-dialog" aria-labelledby="settings-title">
     <div class="dialog-header"><h2 id="settings-title" data-i18n="settings.title">Настройки</h2><button id="settings-close" class="icon-btn" type="button" aria-label="Закрыть" data-i18n-aria-label="actions.close"><i data-lucide="x" aria-hidden="true"></i></button></div>
     <fieldset><legend data-i18n="settings.language">Язык интерфейса</legend><div class="select-wrap"><select id="language" aria-label="Выбранный язык интерфейса" data-i18n-aria-label="settings.languageSelected"><option value="auto" data-i18n="settings.languageAuto">Как в браузере</option><option value="ru" data-i18n="settings.languageRu">Русский</option><option value="en" data-i18n="settings.languageEn">English</option></select></div></fieldset>
@@ -92,6 +96,7 @@
     <p class="debug-hint" data-i18n="debug.hint">Открыто через Cmd/Ctrl + «Подробнее»</p>
     <div id="debug-content" class="debug-content"></div>
   </dialog>
+  <div id="achievements-snackbar" class="achievement-snackbar" role="status" aria-live="polite" hidden><span class="achievement-snackbar-icon"><i data-lucide="trophy" aria-hidden="true"></i></span><span class="achievement-snackbar-copy"><span id="achievements-snackbar-label"></span><strong id="achievements-snackbar-title"></strong></span><button id="achievements-snackbar-view" class="achievement-snackbar-view" type="button" data-i18n="achievements.view">Показать</button></div>
   <script defer src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js" integrity="sha384-hK2uiaqTSh/v1VqRxmuMQL4xmt5n0DdyBCOItx2fAs7Wv+WC8Tu0yDW1j12JooyM" crossorigin="anonymous" onload="lucide.createIcons()"></script>
   <script type="module" src="/src/app.ts"></script>
 </body>

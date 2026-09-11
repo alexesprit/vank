@@ -4,7 +4,9 @@ import type {
   LetterStat,
   WordStat,
 } from '../../../shared/types.ts';
-export const PROGRESS_SCHEMA_VERSION = 1;
+import type { AchievementUnlock } from '../core/achievements.ts';
+
+export const PROGRESS_SCHEMA_VERSION = 2;
 function request<T>(req: IDBRequest<T>): Promise<T> {
   return new Promise((resolve, reject) => {
     req.onsuccess = () => resolve(req.result);
@@ -32,6 +34,8 @@ export async function openRepository(name = 'vank') {
         'timestamp',
       );
     }
+    if (event.oldVersion < 2)
+      db.createObjectStore('achievements', { keyPath: 'id' });
   };
   const db = await new Promise<IDBDatabase>((resolve, reject) => {
     opening.onsuccess = () => resolve(opening.result);
@@ -74,11 +78,16 @@ export async function openRepository(name = 'vank') {
         cursor.result.continue();
       };
     });
+  const getAchievementUnlocks = (): Promise<AchievementUnlock[]> =>
+    request(
+      db.transaction('achievements').objectStore('achievements').getAll(),
+    );
   return {
     close: () => db.close(),
     getSetting,
     getLetterStats,
     getRecentAttempts,
+    getAchievementUnlocks,
     getWordStats: (id: string): Promise<WordStat | undefined> =>
       request(db.transaction('wordStats').objectStore('wordStats').get(id)),
     async setSetting(key: string, value: unknown) {
@@ -89,10 +98,11 @@ export async function openRepository(name = 'vank') {
     },
     async clearProgress() {
       const tx = db.transaction(
-          ['attempts', 'letterStats', 'wordStats', 'settings'],
+          ['achievements', 'attempts', 'letterStats', 'wordStats', 'settings'],
           'readwrite',
         ),
         done = committed(tx);
+      tx.objectStore('achievements').clear();
       tx.objectStore('attempts').clear();
       tx.objectStore('letterStats').clear();
       tx.objectStore('wordStats').clear();
@@ -118,9 +128,21 @@ export async function openRepository(name = 'vank') {
         reinforcement: reinforcement as LearnerState['reinforcement'],
       };
     },
-    async saveAttempt(attempt: AttemptEvent, state: LearnerState) {
+    async saveAchievementUnlocks(unlocks: readonly AchievementUnlock[]) {
+      if (!unlocks.length) return;
+      const tx = db.transaction('achievements', 'readwrite'),
+        done = committed(tx),
+        store = tx.objectStore('achievements');
+      for (const unlock of unlocks) store.add(unlock);
+      await done;
+    },
+    async saveAttempt(
+      attempt: AttemptEvent,
+      state: LearnerState,
+      unlocks: readonly AchievementUnlock[] = [],
+    ) {
       const tx = db.transaction(
-          ['attempts', 'letterStats', 'wordStats', 'settings'],
+          ['achievements', 'attempts', 'letterStats', 'wordStats', 'settings'],
           'readwrite',
         ),
         done = committed(tx);
@@ -132,6 +154,7 @@ export async function openRepository(name = 'vank') {
         attempt.payload.wordId,
       );
       tx.objectStore('settings').put(state.reinforcement, 'reinforcement');
+      for (const unlock of unlocks) tx.objectStore('achievements').add(unlock);
       await done;
     },
   };
