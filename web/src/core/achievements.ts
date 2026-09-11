@@ -9,6 +9,13 @@ import { familiarity, updateScores } from './scoring.ts';
 
 const barevWorldWord = 'ԲԱՐԵՎ';
 const yerevanWorldWord = 'ԵՐԵՎԱՆ';
+// ponytail: prompt-text matching; keep these spellings synced with builder/data/curated-countries.json.
+const armeniaNeighborWords = new Set([
+  'ԻՐԱՆ',
+  'ԹՈՒՐՔԻԱ',
+  'ՎՐԱՍՏԱՆ',
+  'ԱԴՐԲԵՋԱՆ',
+]);
 
 export const ACHIEVEMENT_REQUIRED_WORDS = [
   barevWorldWord,
@@ -35,6 +42,11 @@ export const ACHIEVEMENT_IDS = [
   'first-flash-hit',
   'barev-world',
   'yerevan',
+  'first-landmark',
+  'local-guide',
+  'passport-stamped',
+  'border-reader',
+  'armenia-neighbors',
   'no-more-freebies',
   'redemption-arc',
   'no-repeats',
@@ -147,6 +159,22 @@ const attemptLetters = (attempt: AttemptEvent) =>
       [...unit.source].filter((letter) => targetLetters.has(letter)),
     ),
   );
+const attemptWord = (attempt: AttemptEvent) =>
+  attempt.payload.evaluation.units.map((unit) => unit.source).join('');
+const correctInMode = (attempt: AttemptEvent, mode: 'toponyms' | 'countries') =>
+  attempt.payload.practiceMode === mode && attempt.payload.correct;
+const distinctCorrectInMode = (
+  attempts: readonly AttemptEvent[],
+  mode: 'toponyms' | 'countries',
+  count: number,
+) => {
+  const wordIds = new Set<string>();
+  for (const attempt of attempts) {
+    if (!correctInMode(attempt, mode)) continue;
+    wordIds.add(attempt.payload.wordId);
+    if (wordIds.size >= count) return { attempt, wordIds: [...wordIds] };
+  }
+};
 const hasObservation = (
   attempt: AttemptEvent,
   letter: string,
@@ -452,9 +480,7 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     evaluate: ({ attempts }) => {
       const attempt = first(
         attempts,
-        (item) =>
-          item.payload.evaluation.units.map((unit) => unit.source).join('') ===
-            barevWorldWord && item.payload.correct,
+        (item) => attemptWord(item) === barevWorldWord && item.payload.correct,
       );
       return attempt
         ? { attempt, evidence: { wordId: attempt.payload.wordId } }
@@ -471,12 +497,93 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
       const attempt = first(
         attempts,
         (item) =>
-          item.payload.evaluation.units.map((unit) => unit.source).join('') ===
-            yerevanWorldWord && item.payload.correct,
+          attemptWord(item) === yerevanWorldWord && item.payload.correct,
       );
       return attempt
         ? { attempt, evidence: { wordId: attempt.payload.wordId } }
         : undefined;
+    },
+  },
+  {
+    id: 'first-landmark',
+    version: 1,
+    thresholds: {},
+    hidden: false,
+    icon: 'map-pin',
+    evaluate: ({ attempts }) => {
+      const attempt = first(attempts, (item) =>
+        correctInMode(item, 'toponyms'),
+      );
+      return attempt
+        ? { attempt, evidence: { wordId: attempt.payload.wordId } }
+        : undefined;
+    },
+  },
+  {
+    id: 'local-guide',
+    version: 1,
+    thresholds: { count: 20 },
+    hidden: false,
+    icon: 'map',
+    evaluate: ({ attempts }, thresholds) => {
+      const match = distinctCorrectInMode(
+        attempts,
+        'toponyms',
+        thresholds.count,
+      );
+      return match
+        ? { attempt: match.attempt, evidence: { count: match.wordIds.length } }
+        : undefined;
+    },
+  },
+  {
+    id: 'passport-stamped',
+    version: 1,
+    thresholds: {},
+    hidden: false,
+    icon: 'stamp',
+    evaluate: ({ attempts }) => {
+      const attempt = first(attempts, (item) =>
+        correctInMode(item, 'countries'),
+      );
+      return attempt
+        ? { attempt, evidence: { wordId: attempt.payload.wordId } }
+        : undefined;
+    },
+  },
+  {
+    id: 'border-reader',
+    version: 1,
+    thresholds: { count: 20 },
+    hidden: false,
+    icon: 'route',
+    evaluate: ({ attempts }, thresholds) => {
+      const match = distinctCorrectInMode(
+        attempts,
+        'countries',
+        thresholds.count,
+      );
+      return match
+        ? { attempt: match.attempt, evidence: { count: match.wordIds.length } }
+        : undefined;
+    },
+  },
+  {
+    id: 'armenia-neighbors',
+    version: 1,
+    thresholds: { count: armeniaNeighborWords.size },
+    hidden: true,
+    icon: 'compass',
+    evaluate: ({ attempts }, thresholds) => {
+      const words = new Set<string>();
+      for (const attempt of attempts) {
+        if (!correctInMode(attempt, 'countries')) continue;
+        const word = attemptWord(attempt);
+        if (!armeniaNeighborWords.has(word)) continue;
+        words.add(word);
+        if (words.size >= thresholds.count)
+          return { attempt, evidence: { words: [...words].sort() } };
+      }
     },
   },
   {

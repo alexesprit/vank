@@ -192,6 +192,76 @@ it('backfills achievement unlocks and returns new unlocks with a completed attem
   freshRepo.close();
 });
 
+it('backfills and persists historical location achievements by practice mode', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  let state = await repo.loadState();
+  const saveHistorical = async (
+    word: ReturnType<typeof deriveWord>,
+    mode: 'toponyms' | 'countries',
+    index: number,
+  ) => {
+    const completed = completeAttempt(
+      state,
+      { word, phase: 'training' },
+      word.readingLatin,
+      false,
+      'historical',
+      index,
+      index + 1,
+      `${mode}-${index}`,
+      'default',
+      { caseMode: 'caps', italic: false },
+      undefined,
+      undefined,
+      mode,
+    );
+    state = completed.state;
+    await repo.saveAttempt(completed.attempt, state);
+  };
+  const toponyms = Array.from({ length: 20 }, (_, index) => ({
+    ...deriveWord('ՄԱ'),
+    id: `toponym-${index}`,
+  }));
+  const countries = [
+    'ԻՐԱՆ',
+    'ԹՈՒՐՔԻԱ',
+    'ՎՐԱՍՏԱՆ',
+    'ԱԴՐԲԵՋԱՆ',
+    ...Array.from({ length: 16 }, () => 'ՄԱ'),
+  ].map((word, index) => ({ ...deriveWord(word), id: `country-${index}` }));
+  for (const [index, word] of toponyms.entries())
+    await saveHistorical(word, 'toponyms', index);
+  for (const [index, word] of countries.entries())
+    await saveHistorical(word, 'countries', index);
+
+  const currentWord = deriveWord('ՄԱ');
+  const trainer = await createTrainer(
+    [currentWord],
+    repo,
+    async (font) => font,
+    {
+      mode: PRACTICE_MODES[2],
+      selector: () => ({ word: currentWord, phase: 'training' }),
+    },
+  );
+  const backfilledIds = trainer.backfilledAchievementUnlocks.map(
+    (unlock) => unlock.id,
+  );
+  expect(backfilledIds).toEqual(
+    expect.arrayContaining([
+      'first-landmark',
+      'local-guide',
+      'passport-stamped',
+      'border-reader',
+      'armenia-neighbors',
+    ]),
+  );
+  expect(await repo.getAchievementUnlocks()).toEqual(
+    expect.arrayContaining(trainer.backfilledAchievementUnlocks),
+  );
+  repo.close();
+});
+
 it('keeps the same prompt and unsaved result retryable after a storage failure', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   let fail = true;

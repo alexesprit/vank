@@ -220,6 +220,26 @@ export const en = {
         title: 'Benchmarked',
         description: 'Correctly read ԵՐԵՎԱՆ.',
       },
+      'first-landmark': {
+        title: 'First Landmark',
+        description: 'Correctly read your first Armenian place.',
+      },
+      'local-guide': {
+        title: 'Local Guide',
+        description: 'Correctly read 20 distinct Armenian places.',
+      },
+      'passport-stamped': {
+        title: 'Passport Stamped',
+        description: 'Correctly read your first country.',
+      },
+      'border-reader': {
+        title: 'Border Reader',
+        description: 'Correctly read 20 distinct countries.',
+      },
+      'armenia-neighbors': {
+        title: 'Armenia’s Neighbors',
+        description: 'Correctly read the four countries bordering Armenia.',
+      },
       'no-more-freebies': {
         title: 'No More Freebies',
         description: 'Correctly read 15 very unfamiliar words in a row.',

@@ -18,7 +18,11 @@ const known = (word: string, familiarity = 0.2): Word => ({
   ...deriveWord(word),
   familiarity: { ru: familiarity },
 });
-function completeHistory(entries: readonly { word: Word; correct: boolean }[]) {
+function completeHistory(
+  entries: readonly { word: Word; correct: boolean }[],
+  practiceMode?: 'toponyms' | 'countries',
+  idPrefix = 'attempt',
+) {
   let state = empty();
   return entries.map(({ word, correct }, index) => {
     const completed = completeAttempt(
@@ -29,7 +33,12 @@ function completeHistory(entries: readonly { word: Word; correct: boolean }[]) {
       'client',
       index,
       index + 1,
-      `attempt-${index}`,
+      `${idPrefix}-${index}`,
+      'default',
+      { caseMode: 'caps', italic: false },
+      undefined,
+      undefined,
+      practiceMode,
     );
     state = completed.state;
     return completed.attempt;
@@ -68,6 +77,11 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
     'first-flash-hit',
     'barev-world',
     'yerevan',
+    'first-landmark',
+    'local-guide',
+    'passport-stamped',
+    'border-reader',
+    'armenia-neighbors',
     'no-more-freebies',
     'redemption-arc',
     'no-repeats',
@@ -189,6 +203,87 @@ it('unlocks ԵՐԵՎԱՆ on its first correct reading after earlier failures', (
       (unlock) => unlock.id === 'yerevan',
     ),
   ).toMatchObject({ triggerAttemptId: 'attempt-1' });
+});
+
+it('unlocks location achievements from mode-specific readings', () => {
+  const toponyms = Array.from({ length: 20 }, (_, index) => ({
+    word: { ...known(index === 0 ? 'ՍԵՎԱՆ' : 'ՄԱ'), id: `toponym-${index}` },
+    correct: true,
+  }));
+  const countries = [
+    'ԻՐԱՆ',
+    'ԹՈՒՐՔԻԱ',
+    'ՎՐԱՍՏԱՆ',
+    'ԱԴՐԲԵՋԱՆ',
+    ...Array.from({ length: 16 }, () => 'ՄԱ'),
+  ].map((word, index) => ({
+    word: { ...known(word), id: `country-${index}` },
+    correct: true,
+  }));
+  const attempts = [
+    ...completeHistory(toponyms, 'toponyms'),
+    ...completeHistory(countries, 'countries', 'country'),
+  ];
+  const unlocks = evaluateAchievements(attempts, []);
+
+  expect(unlocks.map((unlock) => unlock.id)).toEqual(
+    expect.arrayContaining([
+      'first-landmark',
+      'local-guide',
+      'passport-stamped',
+      'border-reader',
+      'armenia-neighbors',
+    ]),
+  );
+  expect(unlocks.find((unlock) => unlock.id === 'local-guide')).toMatchObject({
+    triggerAttemptId: 'attempt-19',
+    evidence: { count: 20 },
+  });
+  expect(
+    unlocks.find((unlock) => unlock.id === 'armenia-neighbors'),
+  ).toMatchObject({ triggerAttemptId: 'country-3' });
+});
+
+it('requires 20 distinct successful readings in the matching location mode', () => {
+  const toponyms = Array.from({ length: 20 }, (_, index) => ({
+    word: { ...known('ՄԱ'), id: `toponym-${index}` },
+    correct: true,
+  }));
+  const nineteenToponyms = evaluateAchievements(
+    completeHistory(toponyms.slice(0, 19), 'toponyms'),
+    [],
+  ).map((unlock) => unlock.id);
+  expect(nineteenToponyms).not.toContain('local-guide');
+
+  const duplicateToponyms = evaluateAchievements(
+    completeHistory([...toponyms.slice(0, 19), toponyms[0]], 'toponyms'),
+    [],
+  ).map((unlock) => unlock.id);
+  expect(duplicateToponyms).not.toContain('local-guide');
+
+  const wrongMode = evaluateAchievements(
+    completeHistory(toponyms, 'countries'),
+    [],
+  ).map((unlock) => unlock.id);
+  expect(wrongMode).not.toEqual(
+    expect.arrayContaining(['first-landmark', 'local-guide']),
+  );
+
+  const incorrect = evaluateAchievements(
+    completeHistory(
+      [{ ...toponyms[0], correct: false }, ...toponyms.slice(1)],
+      'toponyms',
+    ),
+    [],
+  ).map((unlock) => unlock.id);
+  expect(incorrect).not.toContain('local-guide');
+
+  expect(
+    evaluateAchievements(
+      completeHistory(toponyms.slice(0, 19), 'countries'),
+      [],
+    ).map((unlock) => unlock.id),
+  ).not.toContain('border-reader');
 });
 
 it('unlocks cold-read and sixth-sense after earlier failed attempts', () => {
