@@ -45,4 +45,4 @@ jobs:
           [[ "$digest" =~ ^sha256:[a-f0-9]{64}$ ]]
           echo "DICTIONARY_URL=$url" >> "$GITHUB_ENV"
           echo "DICTIONARY_SHA256=${digest#sha256:}" >> "$GITHUB_ENV"
-      - run: npx --yes vercel@59.11.2 deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --build-env "DICTIONARY_URL=$DICTIONARY_URL" --build-env "DICTIONARY_SHA256=$DICTIONARY_SHA256" --build-env "NPM_CONFIG_IGNORE_SCRIPTS=true"
+      - run: npx --yes vercel@59.11.2 deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --build-env "DICTIONARY_URL=$DICTIONARY_URL" --build-env "DICTIONARY_SHA256=$DICTIONARY_SHA256"
