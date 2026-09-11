@@ -5,6 +5,7 @@ import {
 } from '../core/achievements.ts';
 import { t } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
+import { createSnackbar } from './snackbar.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
@@ -64,10 +65,7 @@ export function mountAchievements(trainer: Trainer) {
   const summaryCount = element('achievements-summary-count');
   const dialogCount = element('achievements-dialog-count');
   const list = element('achievements-list');
-  const snackbar = element('achievements-snackbar');
-  const snackbarLabel = element('achievements-snackbar-label');
-  const snackbarTitle = element('achievements-snackbar-title');
-  let dismissTimer: number | undefined;
+  const snackbar = createSnackbar();
 
   const render = () => {
     const unlocks = trainer.achievementUnlocks;
@@ -124,31 +122,31 @@ export function mountAchievements(trainer: Trainer) {
     refreshIcons();
   };
   const open = (revealHidden = false) => {
-    snackbar.hidden = true;
-    if (dismissTimer !== undefined) window.clearTimeout(dismissTimer);
+    snackbar.hide();
     render();
     renderList(revealHidden);
     if (!dialog.open) dialog.showModal();
   };
   const show = (
     unlocks: readonly Pick<AchievementUnlock, 'id'>[],
-    snackbarContainer: HTMLElement = document.body,
+    container?: HTMLElement,
   ) => {
     if (!unlocks.length) return;
     render();
-    snackbarContainer.append(snackbar);
     const first = definitionById.get(unlocks[0].id);
-    snackbarLabel.textContent =
-      unlocks.length === 1
-        ? t('achievements.unlocked')
-        : t('achievements.unlockedMany', { count: unlocks.length });
-    snackbarTitle.textContent =
-      unlocks.length === 1 && first ? title(first) : t('achievements.summary');
-    snackbar.hidden = false;
-    if (dismissTimer !== undefined) window.clearTimeout(dismissTimer);
-    dismissTimer = window.setTimeout(() => {
-      snackbar.hidden = true;
-    }, 6_000);
+    snackbar.show({
+      label:
+        unlocks.length === 1
+          ? t('achievements.unlocked')
+          : t('achievements.unlockedMany', { count: unlocks.length }),
+      title:
+        unlocks.length === 1 && first
+          ? title(first)
+          : t('achievements.summary'),
+      icon: 'trophy',
+      action: { label: t('achievements.view'), onClick: open },
+      container,
+    });
   };
 
   summary.addEventListener('click', (event) => {
@@ -158,8 +156,6 @@ export function mountAchievements(trainer: Trainer) {
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
-  element('achievements-snackbar-view').addEventListener('click', () => open());
-
   render();
   queueMicrotask(() => show(trainer.backfilledAchievementUnlocks));
   return { render, show };
