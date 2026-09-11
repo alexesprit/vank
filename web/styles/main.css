@@ -1424,6 +1424,15 @@ legend {
     border: 0;
     border-radius: 0;
   }
+  .achievements-dialog {
+    display: flex;
+    flex-direction: column;
+  }
+  .achievements-dialog .achievement-list {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+  }
 }
 
 [hidden] {
