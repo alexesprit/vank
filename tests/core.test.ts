@@ -226,13 +226,14 @@ describe('adaptive selection', () => {
   it('injects familiar words periodically after bootstrap', () => {
     const familiar = { ...word('ԳԱԶ', 1), id: 'familiar-1' };
     const unfamiliar = { ...word('ՆԱՄ', 0.05), id: 'unfamiliar-1' };
+    const filler = { ...word('ՏԱՔՍԻ', 0.05), id: 'filler' };
     let state = bootstrapState(config.bootstrapSuccessfulWords, 12);
     for (let i = 0; i < config.familiarInjectionInterval; i++) {
       state = completeAttempt(
         state,
-        { word: unfamiliar, phase: 'training' },
-        unfamiliar.readingLatin,
-        true,
+        { word: filler, phase: 'training' },
+        filler.readingLatin,
+        false,
         'client',
         i,
         i + 1,
@@ -241,6 +242,76 @@ describe('adaptive selection', () => {
     }
     const selected = selectWord([familiar, unfamiliar], state, 10, () => 0);
     expect(selected.word).toBe(familiar);
+  });
+  it('does not inject familiar words before the interval elapses', () => {
+    const familiar = { ...word('ԳԱԶ', 1), id: 'familiar-2' };
+    const unfamiliar = { ...word('ՆԱՄ', 0.05), id: 'unfamiliar-2' };
+    const filler = { ...word('ՏԱՔՍԻ', 0.05), id: 'filler-2' };
+    let state = bootstrapState(config.bootstrapSuccessfulWords, 12);
+    for (let i = 0; i < config.familiarInjectionInterval - 1; i++) {
+      state = completeAttempt(
+        state,
+        { word: filler, phase: 'training' },
+        filler.readingLatin,
+        false,
+        'client',
+        i,
+        i + 1,
+        `before-${i}`,
+      ).state;
+    }
+    const selected = selectWord([familiar, unfamiliar], state, 10, () => 0);
+    expect(selected.diagnostics?.candidates.afterFamiliarInjection).toBe(
+      selected.diagnostics?.candidates.afterReinforcement,
+    );
+    expect(selected.diagnostics?.candidates.afterReinforcement).toBe(2);
+  });
+  it('resets familiar-word interval after a familiar attempt', () => {
+    const familiar = { ...word('ԳԱԶ', 1), id: 'familiar-3' };
+    const unfamiliar = { ...word('ՆԱՄ', 0.05), id: 'unfamiliar-3' };
+    const filler = { ...word('ՏԱՔՍԻ', 0.05), id: 'filler-3' };
+    let state = bootstrapState(config.bootstrapSuccessfulWords, 12);
+    for (let i = 0; i < config.familiarInjectionInterval; i++) {
+      state = completeAttempt(
+        state,
+        { word: filler, phase: 'training' },
+        filler.readingLatin,
+        false,
+        'client',
+        i,
+        i + 1,
+        `reset-before-${i}`,
+      ).state;
+    }
+    const selected = selectWord([familiar, unfamiliar], state, 10, () => 0);
+    expect(selected.diagnostics?.candidates.afterFamiliarInjection).toBe(1);
+
+    state = completeAttempt(
+      state,
+      { word: familiar, phase: 'training' },
+      familiar.readingLatin,
+      false,
+      'client',
+      config.familiarInjectionInterval,
+      config.familiarInjectionInterval + 1,
+      'familiar-attempt',
+    ).state;
+    state = completeAttempt(
+      state,
+      { word: filler, phase: 'training' },
+      filler.readingLatin,
+      false,
+      'client',
+      config.familiarInjectionInterval + 1,
+      config.familiarInjectionInterval + 2,
+      'after-familiar',
+    ).state;
+
+    const reset = selectWord([familiar, unfamiliar], state, 12, () => 0);
+    expect(reset.diagnostics?.candidates.afterFamiliarInjection).toBe(
+      reset.diagnostics?.candidates.afterReinforcement,
+    );
+    expect(reset.diagnostics?.candidates.afterReinforcement).toBe(2);
   });
   it('avoids bootstrap repeats, then falls back from loanwords to unseen native words', () => {
     const loanword = word('ԳԱԶ', 1),
@@ -255,10 +326,12 @@ describe('adaptive selection', () => {
   });
   it('throws when no post-bootstrap word fits the introduction limit', () => {
     expect(() =>
-      selectWord([word('ՖՔ')], bootstrapState(config.bootstrapSuccessfulWords, 12), 0),
-    ).toThrow(
-      'Dictionary has no words within the one-new-letter limit',
-    );
+      selectWord(
+        [word('ՖՔ')],
+        bootstrapState(config.bootstrapSuccessfulWords, 12),
+        0,
+      ),
+    ).toThrow('Dictionary has no words within the one-new-letter limit');
   });
   it('falls back to regular candidates when reinforcement has no match', () => {
     const candidate = word('ՄԱՄԱ', 1),
