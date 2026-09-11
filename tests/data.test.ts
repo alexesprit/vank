@@ -40,7 +40,7 @@ it('loads the requested practice mode without caching the payload', async () => 
   expect(requests).toEqual([dictionaryUrl('words'), dictionaryUrl('words')]);
 });
 
-it('loads both specialized dictionaries through the mode registry', async () => {
+it('loads specialized dictionaries through the mode registry', async () => {
   const data = {
     version: 1,
     schemaVersion: 1,
@@ -60,6 +60,8 @@ it('loads both specialized dictionaries through the mode registry', async () => 
   expect(requests).toEqual([
     dictionaryUrl('toponyms'),
     dictionaryUrl('countries'),
+    dictionaryUrl('names'),
+    dictionaryUrl('food'),
   ]);
 });
 
@@ -70,6 +72,8 @@ it('groups modes by selection strategy for the settings UI', () => {
     { id: 'words', group: 'adaptive', strategy: 'adaptive' },
     { id: 'toponyms', group: 'packs', strategy: 'finite-pack' },
     { id: 'countries', group: 'packs', strategy: 'finite-pack' },
+    { id: 'names', group: 'packs', strategy: 'finite-pack' },
+    { id: 'food', group: 'packs', strategy: 'finite-pack' },
   ]);
 });
 

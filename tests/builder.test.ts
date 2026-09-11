@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import {
   applyOverrides,
@@ -9,7 +9,9 @@ import {
 } from '../builder/src/pipeline';
 import { curatedSource } from '../builder/src/sources/curated';
 import { wiktionaryRecord } from '../builder/src/sources/wiktionary';
-import { deriveWord } from '../shared/armenian';
+import { deriveWord, normalizeArmenian } from '../shared/armenian';
+
+const curatedFilePattern = /^curated(?:-.+)?\.json$/u;
 
 const fixture = () =>
   readFileSync('tests/fixtures/wiktionary.jsonl', 'utf8')
@@ -180,4 +182,21 @@ it('filters numeral glyphs, abbreviations, alternate lemmas and dialect-only sen
     },
   ])
     expect(wiktionaryRecord({ lang_code: 'hy', ...entry })).toBeNull();
+});
+
+it('validates every curated pack source through deterministic derivation', () => {
+  for (const file of readdirSync('builder/data').filter((name) =>
+    curatedFilePattern.test(name),
+  )) {
+    const entries = JSON.parse(
+      readFileSync(`builder/data/${file}`, 'utf8'),
+    ) as Array<{ word: string }>;
+    const words = entries.map(({ word }) => normalizeArmenian(word));
+    expect(new Set(words).size).toBe(words.length);
+    const derived = deriveMetadata(mergeSources(curatedSource(entries)).words);
+    expect(derived).toHaveLength(entries.length);
+    expect(() =>
+      validateDataset(composeDataset(derived, entries.length)),
+    ).not.toThrow();
+  }
 });

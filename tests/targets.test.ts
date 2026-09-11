@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { parseTargetManifest, selectTargets } from '../builder/src/targets.ts';
+import {
+  parseTargetManifest,
+  readTargetManifest,
+  selectTargets,
+} from '../builder/src/targets.ts';
 
 const manifest = parseTargetManifest({
   targets: {
@@ -48,5 +52,21 @@ describe('dictionary targets', () => {
         },
       }),
     ).toThrow('Invalid enrichment for target words');
+  });
+
+  it('registers every specialized curated source in the real manifest', async () => {
+    const actual = await readTargetManifest('builder/targets.json');
+    for (const id of ['toponyms', 'countries', 'names', 'food']) {
+      expect(actual.targets[id]).toMatchObject({
+        enabled: true,
+        required: true,
+        config: `builder/config-${id}.json`,
+        dataDir: `builder/data/${id}`,
+        output: `web/data/${id}.json`,
+        asset: `${id}.json`,
+        enrichment: 'none',
+        checks: [],
+      });
+    }
   });
 });
