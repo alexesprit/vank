@@ -1,20 +1,9 @@
 name: Deploy to Vercel
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - web/**
-      - shared/**
-      - builder/scripts/download-dictionary.ts
-      - builder/src/targets.ts
-      - builder/targets.json
-      - package.json
-      - package-lock.json
-      - tsconfig.json
-      - vercel.json
-      - .vercelignore
-      - .github/workflows/deploy.yml
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -30,9 +19,16 @@ concurrency:
 
 jobs:
   deploy:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/setup-node@v6
         with:
           node-version: 24
