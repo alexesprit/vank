@@ -212,10 +212,6 @@ dialog::backdrop {
   width: min(900px, calc(100% - 32px));
 }
 
-.achievements-dialog {
-  width: min(680px, calc(100% - 32px));
-}
-
 .achievement-list {
   max-height: min(640px, calc(100vh - 160px));
   overflow-y: auto;

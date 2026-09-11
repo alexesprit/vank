@@ -10,6 +10,12 @@
   }
 }
 
+@media (min-width: 561px) {
+  .achievements-dialog {
+    width: min(680px, calc(100% - 32px));
+  }
+}
+
 @media (max-width: 560px) {
   .page {
     padding: 16px 16px 32px;
