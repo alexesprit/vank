@@ -1,3 +1,5 @@
+import { inject } from '@vercel/analytics';
+
 const doNotTrackValues = new Set(['1', 'yes']);
 let injected = false;
 
@@ -9,5 +11,5 @@ export function startAnalytics(enabled: boolean) {
   if (!enabled || doNotTrackEnabled() || injected || !import.meta.env.PROD)
     return;
   injected = true;
-  void import('@vercel/analytics').then(({ inject }) => inject());
+  inject();
 }
