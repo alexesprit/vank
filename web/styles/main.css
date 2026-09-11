@@ -1318,7 +1318,8 @@ legend {
     gap: 4px;
     margin-top: 16px;
   }
-  dialog {
+  dialog,
+  .achievements-dialog {
     width: 100%;
     max-width: none;
     height: 100%;
