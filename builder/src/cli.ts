@@ -4,6 +4,7 @@ import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { normalizeArmenian } from '../../shared/armenian.ts';
 import { object, parseWord, strings } from '../../shared/schema.ts';
+import { validateAchievementDictionary } from '../../web/src/core/achievements.ts';
 import {
   composeAudience,
   countLetterCoverage,
@@ -339,6 +340,13 @@ async function main() {
         });
       }
       const dictionary = validateDataset(selected);
+      validateAchievementDictionary(dictionary.words);
+      report({
+        stage: 'achievements',
+        processed: dictionary.words.length,
+        total: dictionary.words.length,
+        detail: 'complete: achievement prerequisites verified',
+      });
       await writeJson(file('words'), dictionary);
       await writeJson(file('rejected'), rejects);
       await writeRuntimeDictionary(resolve(output), dictionary);

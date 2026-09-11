@@ -157,6 +157,24 @@ it('builds a fixture without network, retains intermediate stages, supports quie
     expect(
       await readFile(join(dir, 'web', 'ATTRIBUTION.txt'), 'utf8'),
     ).toContain('CC-BY-SA-4.0');
+    const tooSmallConfig = join(dir, 'too-small-config.json');
+    await writeFile(
+      tooSmallConfig,
+      JSON.stringify({ learnerLanguages: ['ru'], maxWords: 1, sources: [] }),
+    );
+    await expect(
+      exec(process.execPath, [
+        'builder/src/cli.ts',
+        'validate',
+        '--config',
+        tooSmallConfig,
+        '--data-dir',
+        dir,
+        '--output',
+        output,
+        '--quiet',
+      ]),
+    ).rejects.toThrow('Achievement prerequisites unavailable');
     const missingConfig = join(dir, 'missing-config.json');
     await writeFile(
       missingConfig,
@@ -178,6 +196,7 @@ it('builds a fixture without network, retains intermediate stages, supports quie
     ]);
     const verbose = await exec(process.execPath, [...args, '--verbose']);
     expect(verbose.stdout).toContain('complete');
+    expect(verbose.stdout).toContain('achievement prerequisites verified');
     const flagged = JSON.parse(
       await readFile(join(dir, 'enriched.json'), 'utf8'),
     );

@@ -1,7 +1,22 @@
 import { ALPHABET } from '../../../shared/armenian.ts';
-import type { AttemptEvent, LearnerState } from '../../../shared/types.ts';
+import type {
+  AttemptEvent,
+  LearnerState,
+  Word,
+} from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from './config.ts';
-import { updateScores } from './scoring.ts';
+import { familiarity, updateScores } from './scoring.ts';
+
+const barevWorldWord = 'ԲԱՐԵՎ';
+
+export const ACHIEVEMENT_REQUIRED_WORDS = [barevWorldWord] as const;
+export const ACHIEVEMENT_DICTIONARY_REQUIREMENTS = {
+  minWords: 20,
+  minStrongLetters: 19,
+  maxFamiliarity: TRAINER_CONFIG.verificationFamiliarityThreshold,
+  maxFreebieFamiliarity: 0.2,
+  minDistinctLettersInWord: 6,
+} as const;
 
 export const ACHIEVEMENT_IDS = [
   'training-wheels-off',
@@ -58,6 +73,66 @@ export interface AchievementDefinition {
 }
 
 const targetLetters = new Set(ALPHABET.map(({ upper }) => upper));
+
+export function validateAchievementDictionary(words: readonly Word[]): void {
+  const availableWords = new Set(words.map(({ word }) => word));
+  const allLetters = new Set(
+    words.flatMap(({ uniqueLetters }) =>
+      uniqueLetters.filter((letter) => targetLetters.has(letter)),
+    ),
+  );
+  const strongLetters = new Set(
+    words
+      .filter(
+        (word) =>
+          familiarity(word) <=
+          ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
+      )
+      .flatMap(({ uniqueLetters }) =>
+        uniqueLetters.filter((letter) => targetLetters.has(letter)),
+      ),
+  );
+  const missing = ACHIEVEMENT_REQUIRED_WORDS.filter(
+    (word) => !availableWords.has(word),
+  );
+  const failures = [
+    ...(missing.length ? [`missing words: ${missing.join(', ')}`] : []),
+    ...(allLetters.size < targetLetters.size
+      ? [`alphabet coverage: ${allLetters.size}/${targetLetters.size}`]
+      : []),
+    ...(strongLetters.size <
+    ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minStrongLetters
+      ? [
+          `strong-letter coverage: ${strongLetters.size}/${ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minStrongLetters}`,
+        ]
+      : []),
+    ...(words.some(
+      (word) =>
+        familiarity(word) <
+        ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFreebieFamiliarity,
+    )
+      ? []
+      : ['missing a word below familiarity 0.2']),
+    ...(words.length < ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minWords
+      ? [
+          `word count: ${words.length}/${ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minWords}`,
+        ]
+      : []),
+    ...(words.some(
+      ({ uniqueLetters }) =>
+        uniqueLetters.filter((letter) => targetLetters.has(letter)).length >=
+        ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minDistinctLettersInWord,
+    )
+      ? []
+      : [
+          `missing a word with ${ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minDistinctLettersInWord} distinct Armenian letters`,
+        ]),
+  ];
+  if (failures.length)
+    throw new Error(
+      `Achievement prerequisites unavailable: ${failures.join('; ')}`,
+    );
+}
 
 const isUnrevealedFlash = (attempt: AttemptEvent) =>
   attempt.payload.flashMode && !attempt.payload.flashRevealed;
@@ -156,7 +231,9 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'training-wheels-off',
     version: 1,
-    thresholds: { familiarity: 0.4 },
+    thresholds: {
+      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
+    },
     hidden: false,
     icon: 'bike',
     evaluate: ({ attempts }, thresholds) => {
@@ -221,7 +298,10 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'half-alphabet',
     version: 1,
-    thresholds: { count: 19, strongScore: 0.75 },
+    thresholds: {
+      count: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minStrongLetters,
+      strongScore: 0.75,
+    },
     hidden: false,
     icon: 'chart-no-axes-column-increasing',
     evaluate: (context, thresholds) =>
@@ -297,7 +377,10 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'read-dont-guess',
     version: 1,
-    thresholds: { count: 10, familiarity: 0.4 },
+    thresholds: {
+      count: 10,
+      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
+    },
     hidden: false,
     icon: 'book-open-check',
     evaluate: ({ attempts }, thresholds) => {
@@ -366,7 +449,7 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
         attempts,
         (item) =>
           item.payload.evaluation.units.map((unit) => unit.source).join('') ===
-            'ԲԱՐԵՎ' && item.payload.correct,
+            barevWorldWord && item.payload.correct,
       );
       return attempt
         ? { attempt, evidence: { wordId: attempt.payload.wordId } }
@@ -376,7 +459,10 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'no-more-freebies',
     version: 1,
-    thresholds: { count: 15, familiarity: 0.2 },
+    thresholds: {
+      count: 15,
+      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFreebieFamiliarity,
+    },
     hidden: false,
     icon: 'shield-check',
     evaluate: ({ attempts }, thresholds) => {
@@ -417,7 +503,7 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'no-repeats',
     version: 1,
-    thresholds: { count: 20 },
+    thresholds: { count: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minWords },
     hidden: false,
     icon: 'list-checks',
     evaluate: ({ attempts }, thresholds) => {
@@ -441,7 +527,9 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'cold-read',
     version: 1,
-    thresholds: { familiarity: 0.4 },
+    thresholds: {
+      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
+    },
     hidden: true,
     icon: 'snowflake',
     evaluate: ({ attempts }, thresholds) => {
@@ -467,7 +555,10 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'sixth-sense',
     version: 1,
-    thresholds: { distinctLetters: 6 },
+    thresholds: {
+      distinctLetters:
+        ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minDistinctLettersInWord,
+    },
     hidden: true,
     icon: 'sparkles',
     evaluate: ({ attempts }, thresholds) => {

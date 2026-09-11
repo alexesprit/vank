@@ -5,6 +5,7 @@ import {
   ACHIEVEMENT_DEFINITIONS,
   type AchievementUnlock,
   evaluateAchievements,
+  validateAchievementDictionary,
 } from '../web/src/core/achievements';
 import { completeAttempt } from '../web/src/core/session';
 import {
@@ -34,6 +35,23 @@ function completeHistory(entries: readonly { word: Word; correct: boolean }[]) {
     return completed.attempt;
   });
 }
+
+it('validates final dictionary prerequisites for achievements', () => {
+  const knownWord = (word: string, familiarity = 0.1) => ({
+    ...deriveWord(word),
+    familiarity: { ru: familiarity },
+  });
+  const dictionary = [
+    knownWord('ԲԱՐԵՎ'),
+    knownWord(ALPHABET.map(({ upper }) => upper).join('')),
+    ...ALPHABET.map(({ upper }) => knownWord(upper)),
+  ];
+
+  expect(() => validateAchievementDictionary(dictionary)).not.toThrow();
+  expect(() =>
+    validateAchievementDictionary([knownWord('ԲԱՐԵՎ', 0.2)]),
+  ).toThrow('Achievement prerequisites unavailable');
+});
 
 it('keeps every Part 1 achievement in the stable catalogue', () => {
   expect(ACHIEVEMENT_DEFINITIONS.map((definition) => definition.id)).toEqual([
