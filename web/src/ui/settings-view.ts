@@ -102,7 +102,8 @@ export function mountSettings(
       Number(flashDuration.value) * 1000,
       [...flashPreviewWord.textContent].length,
     );
-    previewRemaining = Math.ceil(exposureMs / 1000);
+    const previewExposureMs = Math.ceil(exposureMs / 1000) * 1000;
+    previewRemaining = previewExposureMs / 1000;
     setPreviewHidden(false);
     flashPreviewCountdown.textContent = `${previewRemaining} s`;
     previewInterval = setInterval(() => {
@@ -117,7 +118,7 @@ export function mountSettings(
       setPreviewHidden(true);
       flashPreviewCountdown.textContent = '';
       previewHideTimer = setTimeout(startPreview, 2000);
-    }, exposureMs);
+    }, previewExposureMs);
   }
 
   selected.replaceChildren(
