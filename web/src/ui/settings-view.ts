@@ -5,11 +5,13 @@ import {
   FONTS,
   flashAvailable,
   flashExposureMs,
+  SYLLABLE_COLOR_THRESHOLDS,
   TYPOGRAPHY_MODES,
 } from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
 import type { LanguagePreference } from '../i18n/types.ts';
 import type { Trainer } from '../trainer.ts';
+import { renderSyllables } from './syllable-colors.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
@@ -23,6 +25,9 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   ];
   const language = element<HTMLSelectElement>('language');
   const metadataHints = element<HTMLInputElement>('metadata-hints-setting');
+  const syllableColors = element<HTMLInputElement>('syllable-colors-setting');
+  const syllableColorsValue = element('syllable-colors-value');
+  const syllableColorsPreview = element('syllable-colors-preview-word');
   const metadataHintsPreview = element('metadata-hints-preview-chips');
   const introMetadataHintsPreview = element(
     'intro-metadata-hints-preview-chips',
@@ -138,11 +143,25 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       }),
     );
 
+  const selectedSyllableThreshold = () =>
+    SYLLABLE_COLOR_THRESHOLDS[Number(syllableColors.value)] ?? 0;
+
+  function renderSyllableThreshold(threshold = selectedSyllableThreshold()) {
+    const label = threshold ? `${threshold}+` : t('settings.syllableColorsOff');
+    syllableColorsValue.textContent = label;
+    syllableColors.setAttribute('aria-valuetext', label);
+  }
+
   function render() {
     const { fonts } = trainer.settings;
     const { typography } = trainer.settings;
     language.value = trainer.settings.language;
     metadataHints.checked = trainer.settings.metadataHints;
+    syllableColors.value = String(
+      SYLLABLE_COLOR_THRESHOLDS.indexOf(trainer.settings.syllableColors),
+    );
+    renderSyllableThreshold(trainer.settings.syllableColors);
+    renderSyllables(syllableColorsPreview, 'ԲՈՒՐԺՈՒԱԿԱՆ', 2);
     flashEnabled.checked = trainer.settings.flash.enabled;
     flashDurationHint.dataset.tooltip = t('settings.flashDurationHint');
     const correctAnswers = countCorrectAnswers(trainer.state.recent);
@@ -223,6 +242,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
       await trainer.setSettings({
         language: language.value as LanguagePreference,
         metadataHints: metadataHints.checked,
+        syllableColors: selectedSyllableThreshold(),
         flash: {
           enabled: flashEnabled.checked,
           exposureMs: Number(flashDuration.value) * 1000,
@@ -302,6 +322,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
     flashDurationValue.textContent = `${flashDuration.value} s`;
     if (dialog.open) startPreview();
   });
+  syllableColors.addEventListener('input', () => renderSyllableThreshold());
   flashPreviewReveal.addEventListener('click', () => {
     startPreview();
     flashDuration.focus();
@@ -309,6 +330,7 @@ export function mountSettings(trainer: Trainer, renderTrainer: () => void) {
   for (const control of [
     language,
     metadataHints,
+    syllableColors,
     ...modeInputs,
     selected,
     ...enabled.querySelectorAll('input'),

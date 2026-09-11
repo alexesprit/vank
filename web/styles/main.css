@@ -18,6 +18,8 @@
   --accent: #23262d;
   --on-accent: #ffffff;
   --focus: #557bc1;
+  --syllable-odd: #dbeafe;
+  --syllable-even: #fef3c7;
   --radius: 16px;
   --shadow: 0 12px 40px rgba(22, 26, 33, 0.08);
 }
@@ -41,6 +43,8 @@
     --accent: #e7e9ed;
     --on-accent: #17191e;
     --focus: #86aaf0;
+    --syllable-odd: #243b53;
+    --syllable-even: #4a3d1f;
     --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   }
 }
@@ -286,6 +290,47 @@ button {
 
 .metadata-hints-setting-group .metadata-hints-preview {
   margin-top: -4px;
+}
+
+.syllable-colors-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 12px;
+}
+
+.syllable-colors-row input {
+  min-width: 0;
+  width: 100%;
+}
+
+.syllable-colors-row output {
+  text-align: right;
+}
+
+.syllable-word {
+  display: flex;
+  justify-content: center;
+}
+
+.syllable {
+  border-radius: 0;
+}
+
+.syllable:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.syllable:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.syllable:nth-child(odd) {
+  background: var(--syllable-odd);
+}
+
+.syllable:nth-child(even) {
+  background: var(--syllable-even);
 }
 
 .flash-duration-row {
@@ -608,6 +653,8 @@ dialog {
   position: relative;
   width: min(460px, calc(100% - 32px));
   max-height: calc(100% - 32px);
+  overflow: auto;
+  overscroll-behavior: contain;
   padding: 24px;
   border: 1px solid var(--border);
   border-radius: var(--radius);

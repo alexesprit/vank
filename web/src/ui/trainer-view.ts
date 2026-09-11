@@ -8,6 +8,7 @@ import type { Trainer } from '../trainer.ts';
 import { mountDebugDialog } from './debug-view.ts';
 import { mountSettings } from './settings-view.ts';
 import { mountStatsDialog, renderStats } from './stats-view.ts';
+import { renderSyllables } from './syllable-colors.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
@@ -101,7 +102,11 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
   function render(resetInput = true) {
     const { word } = trainer.current,
       result = trainer.result;
-    prompt.textContent = formatPrompt(word.word, trainer.presentation.caseMode);
+    renderSyllables(
+      prompt,
+      formatPrompt(word.word, trainer.presentation.caseMode),
+      trainer.settings.syllableColors,
+    );
     const canReveal = trainer.flashHidden && !result;
     wordWrap.classList.toggle('flash-is-hidden', canReveal);
     flashReveal.ariaHidden = String(!canReveal);

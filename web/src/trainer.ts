@@ -222,7 +222,11 @@ export async function createTrainer(
         Partial<
           Pick<
             AppSettings,
-            'language' | 'metadataHints' | 'typography' | 'flash'
+            | 'language'
+            | 'metadataHints'
+            | 'syllableColors'
+            | 'typography'
+            | 'flash'
           >
         >,
     ) {

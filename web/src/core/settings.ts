@@ -9,6 +9,9 @@ const googleStylesheet = (family: string) =>
   `https://fonts.googleapis.com/css2?family=${family.replaceAll(' ', '+')}:wght@700&display=swap`;
 const canonicalArmenianPattern = /^[Ա-Ֆ]+$/u;
 
+export const SYLLABLE_COLOR_THRESHOLDS = [0, 2, 3, 4] as const;
+export type SyllableColorThreshold = (typeof SYLLABLE_COLOR_THRESHOLDS)[number];
+
 export interface FontOption {
   id: string;
   family: string;
@@ -78,6 +81,7 @@ export const FONTS: FontOption[] = [
 export interface AppSettings {
   language: LanguagePreference;
   metadataHints: boolean;
+  syllableColors: SyllableColorThreshold;
   flash: {
     enabled: boolean;
     exposureMs: number;
@@ -146,6 +150,7 @@ export const DEFAULT_PRESENTATION = {
 export const DEFAULT_SETTINGS: AppSettings = {
   language: 'auto',
   metadataHints: false,
+  syllableColors: 0,
   flash: {
     enabled: false,
     exposureMs: 3000,
@@ -169,6 +174,7 @@ export function parseSettings(value: unknown): AppSettings {
     fonts?: unknown;
     language?: unknown;
     metadataHints?: unknown;
+    syllableColors?: unknown;
     flash?: unknown;
     typography?: unknown;
   };
@@ -227,6 +233,12 @@ export function parseSettings(value: unknown): AppSettings {
       typeof saved.metadataHints === 'boolean'
         ? saved.metadataHints
         : DEFAULT_SETTINGS.metadataHints,
+    syllableColors:
+      saved.syllableColors === true
+        ? 2
+        : (SYLLABLE_COLOR_THRESHOLDS.find(
+            (threshold) => threshold === saved.syllableColors,
+          ) ?? DEFAULT_SETTINGS.syllableColors),
     flash: {
       enabled:
         typeof flash.enabled === 'boolean'
