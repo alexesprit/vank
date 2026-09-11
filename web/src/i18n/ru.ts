@@ -36,6 +36,8 @@ export const ru = {
   },
   modes: {
     words: 'Повседневные слова',
+    toponyms: 'Места Армении',
+    countries: 'Страны',
   },
   metadata: {
     label: 'Подсказки по слову',
@@ -47,6 +49,7 @@ export const ru = {
       shopping: 'Покупки',
       transport: 'Транспорт',
       signage: 'Вывески',
+      country: 'Страна',
       street: 'Улица',
       'place-name': 'Название места',
       'person-name': 'Имя человека',
@@ -82,6 +85,7 @@ export const ru = {
       city: 'Город',
       district: 'Район',
       street: 'Улица',
+      metro: 'Станция метро',
       lake: 'Озеро',
       mountain: 'Гора',
       'mountain-range': 'Горный хребет',

@@ -1,0 +1,1262 @@
+[
+  {
+    "word": "ՀԱՅԱՍՏԱՆ",
+    "meaning": {
+      "ru": "Армения"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՎՐԱՍՏԱՆ",
+    "meaning": {
+      "ru": "Грузия"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՌՈՒՍԱՍՏԱՆ",
+    "meaning": {
+      "ru": "Россия"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՐԱՆ",
+    "meaning": {
+      "ru": "Иран"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԹՈՒՐՔԻԱ",
+    "meaning": {
+      "ru": "Турция"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱԴՐԲԵՋԱՆ",
+    "meaning": {
+      "ru": "Азербайджан"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱԼԲԱՆԻԱ",
+    "meaning": {
+      "ru": "Албания"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.82,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱԼԺԻՐ",
+    "meaning": {
+      "ru": "Алжир"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱՆԳՈԼԱ",
+    "meaning": {
+      "ru": "Ангола"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱՎՍՏՐԱԼԻԱ",
+    "meaning": {
+      "ru": "Австралия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱՎՍՏՐԻԱ",
+    "meaning": {
+      "ru": "Австрия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱՐԳԵՆՏԻՆԱ",
+    "meaning": {
+      "ru": "Аргентина"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԱՖՂԱՆՍՏԱՆ",
+    "meaning": {
+      "ru": "Афганистан"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲԱՀՐԵՅՆ",
+    "meaning": {
+      "ru": "Бахрейн"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.72,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲԱՆԳԼԱԴԵՇ",
+    "meaning": {
+      "ru": "Бангладеш"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.78,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲԵԼԱՌՈՒՍ",
+    "meaning": {
+      "ru": "Беларусь"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲԵԼԳԻԱ",
+    "meaning": {
+      "ru": "Бельгия"
+    },
+    "familiarity": {
+      "ru": 0.82
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲԵՆԻՆ",
+    "meaning": {
+      "ru": "Бенин"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.65,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲՈՒԼՂԱՐԻԱ",
+    "meaning": {
+      "ru": "Болгария"
+    },
+    "familiarity": {
+      "ru": 0.72
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲՈՒՐՈՒՆԴԻ",
+    "meaning": {
+      "ru": "Бурунди"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.62,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԲՐԱԶԻԼ",
+    "meaning": {
+      "ru": "Бразилия"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԳԱԲՈՆ",
+    "meaning": {
+      "ru": "Габон"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.65,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԳԱՆԱ",
+    "meaning": {
+      "ru": "Гана"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԳԵՐՄԱՆԻԱ",
+    "meaning": {
+      "ru": "Германия"
+    },
+    "familiarity": {
+      "ru": 0.88
+    },
+    "usefulnessScore": 0.98,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԳՎԱՏԵՄԱԼԱ",
+    "meaning": {
+      "ru": "Гватемала"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԳՎԻՆԵԱ",
+    "meaning": {
+      "ru": "Гвинея"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.68,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԴԱՆԻԱ",
+    "meaning": {
+      "ru": "Дания"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԵԳԻՊՏՈՍ",
+    "meaning": {
+      "ru": "Египет"
+    },
+    "familiarity": {
+      "ru": 0.5
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԵԹՈՎՊԻԱ",
+    "meaning": {
+      "ru": "Эфиопия"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԶԱՄԲԻԱ",
+    "meaning": {
+      "ru": "Замбия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.68,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԶԻՄԲԱԲՎԵ",
+    "meaning": {
+      "ru": "Зимбабве"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.72,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԷԿՎԱԴՈՐ",
+    "meaning": {
+      "ru": "Эквадор"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.78,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԷՍՏՈՆԻԱ",
+    "meaning": {
+      "ru": "Эстония"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԹԱԻԼԱՆԴ",
+    "meaning": {
+      "ru": "Таиланд"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԹՈՒՆԻՍ",
+    "meaning": {
+      "ru": "Тунис"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.78,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԹՈՒՐՔՄԵՆՍՏԱՆ",
+    "meaning": {
+      "ru": "Туркменистан"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՆԴՈՆԵԶԻԱ",
+    "meaning": {
+      "ru": "Индонезия"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՌԼԱՆԴԻԱ",
+    "meaning": {
+      "ru": "Ирландия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՍԼԱՆԴԻԱ",
+    "meaning": {
+      "ru": "Исландия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.86,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՍՊԱՆԻԱ",
+    "meaning": {
+      "ru": "Испания"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.97,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՍՐԱՅԵԼ",
+    "meaning": {
+      "ru": "Израиль"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՏԱԼԻԱ",
+    "meaning": {
+      "ru": "Италия"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.98,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԻՐԱՔ",
+    "meaning": {
+      "ru": "Ирак"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԼԱՏՎԻԱ",
+    "meaning": {
+      "ru": "Латвия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԼԵՀԱՍՏԱՆ",
+    "meaning": {
+      "ru": "Польша"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.94,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԼԻԲԱՆԱՆ",
+    "meaning": {
+      "ru": "Ливан"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 0.86,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԼԻԲԻԱ",
+    "meaning": {
+      "ru": "Ливия"
+    },
+    "familiarity": {
+      "ru": 0.88
+    },
+    "usefulnessScore": 0.78,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԼԻՏՎԱ",
+    "meaning": {
+      "ru": "Литва"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԼՅՈՒՔՍԵՄԲՈՒՐԳ",
+    "meaning": {
+      "ru": "Люксембург"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.78,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԽՈՐՎԱԹԻԱ",
+    "meaning": {
+      "ru": "Хорватия"
+    },
+    "familiarity": {
+      "ru": 0.88
+    },
+    "usefulnessScore": 0.86,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿԱՄԲՈՋԱ",
+    "meaning": {
+      "ru": "Камбоджа"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.78,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿԱՄԵՐՈՒՆ",
+    "meaning": {
+      "ru": "Камерун"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.72,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿԱՆԱԴԱ",
+    "meaning": {
+      "ru": "Канада"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿԱՏԱՐ",
+    "meaning": {
+      "ru": "Катар"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿԻՊՐՈՍ",
+    "meaning": {
+      "ru": "Кипр"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿՈԼՈՒՄԲԻԱ",
+    "meaning": {
+      "ru": "Колумбия"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.84,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿՈՆԳՈ",
+    "meaning": {
+      "ru": "Конго"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.72,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ԿՈՒԲԱ",
+    "meaning": {
+      "ru": "Куба"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՀՆԴԿԱՍՏԱՆ",
+    "meaning": {
+      "ru": "Индия"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՀՈՐԴԱՆԱՆ",
+    "meaning": {
+      "ru": "Иордания"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.82,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՀՈՒՆԱՍՏԱՆ",
+    "meaning": {
+      "ru": "Греция"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.93,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՀՈՒՆԳԱՐԻԱ",
+    "meaning": {
+      "ru": "Венгрия"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՂԱԶԱԽՍՏԱՆ",
+    "meaning": {
+      "ru": "Казахстан"
+    },
+    "familiarity": {
+      "ru": 0.88
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՂՐՂԶՍՏԱՆ",
+    "meaning": {
+      "ru": "Кыргызстан"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՃԱՊՈՆԻԱ",
+    "meaning": {
+      "ru": "Япония"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.97,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՄԱԼԱՅԶԻԱ",
+    "meaning": {
+      "ru": "Малайзия"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.84,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՄԱԼԹԱ",
+    "meaning": {
+      "ru": "Мальта"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.82,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՄԱԼԻ",
+    "meaning": {
+      "ru": "Мали"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.68,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՄԱՎՐԻՏԱՆԻԱ",
+    "meaning": {
+      "ru": "Мавритания"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.62,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՄԱՐՈԿԿՈ",
+    "meaning": {
+      "ru": "Марокко"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.86,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՄԵՔՍԻԿԱ",
+    "meaning": {
+      "ru": "Мексика"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.94,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՄՈՆՂՈԼԻԱ",
+    "meaning": {
+      "ru": "Монголия"
+    },
+    "familiarity": {
+      "ru": 0.82
+    },
+    "usefulnessScore": 0.86,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՆԵՊԱԼ",
+    "meaning": {
+      "ru": "Непал"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՆԻԳԵՐԻԱ",
+    "meaning": {
+      "ru": "Нигерия"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՆԻԴԵՐԼԱՆԴՆԵՐ",
+    "meaning": {
+      "ru": "Нидерланды"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 0.94,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՆԻԿԱՐԱԳՈՒԱ",
+    "meaning": {
+      "ru": "Никарагуа"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.72,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՆՈՐՎԵԳԻԱ",
+    "meaning": {
+      "ru": "Норвегия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՇՎԵԴԻԱ",
+    "meaning": {
+      "ru": "Швеция"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՇՎԵՅՑԱՐԻԱ",
+    "meaning": {
+      "ru": "Швейцария"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.94,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՉԵԽԻԱ",
+    "meaning": {
+      "ru": "Чехия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՉԵՌՆՈԳՈՐԻԱ",
+    "meaning": {
+      "ru": "Черногория"
+    },
+    "familiarity": {
+      "ru": 0.88
+    },
+    "usefulnessScore": 0.84,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՉԻԼԻ",
+    "meaning": {
+      "ru": "Чили"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.84,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՉԻՆԱՍՏԱՆ",
+    "meaning": {
+      "ru": "Китай"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.98,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՊԱՆԱՄԱ",
+    "meaning": {
+      "ru": "Панама"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.78,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՊԱՐԱԳՎԱՅ",
+    "meaning": {
+      "ru": "Парагвай"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.72,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՊԵՐՈՒ",
+    "meaning": {
+      "ru": "Перу"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.82,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՊՈՐՏՈՒԳԱԼԻԱ",
+    "meaning": {
+      "ru": "Португалия"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՌՈՒԱՆԴԱ",
+    "meaning": {
+      "ru": "Руанда"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՌՈՒՄԻՆԻԱ",
+    "meaning": {
+      "ru": "Румыния"
+    },
+    "familiarity": {
+      "ru": 0.84
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՍԵՆԵԳԱԼ",
+    "meaning": {
+      "ru": "Сенегал"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.72,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՍԵՐԲԻԱ",
+    "meaning": {
+      "ru": "Сербия"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՍԼՈՎԱԿԻԱ",
+    "meaning": {
+      "ru": "Словакия"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՍԼՈՎԵՆԻԱ",
+    "meaning": {
+      "ru": "Словения"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.86,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՎԵՆԵՍՈՒԵԼԱ",
+    "meaning": {
+      "ru": "Венесуэла"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՎԻԵՏՆԱՄ",
+    "meaning": {
+      "ru": "Вьетнам"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՏԱՋԻԿՍՏԱՆ",
+    "meaning": {
+      "ru": "Таджикистан"
+    },
+    "familiarity": {
+      "ru": 0.88
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՈՒԳԱՆԴԱ",
+    "meaning": {
+      "ru": "Уганда"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՈՒԶԲԵԿՍՏԱՆ",
+    "meaning": {
+      "ru": "Узбекистан"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՈՒԿՐԱԻՆԱ",
+    "meaning": {
+      "ru": "Украина"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.98,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՈՒՐՈՒԳՎԱՅ",
+    "meaning": {
+      "ru": "Уругвай"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.74,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՔՈՒՎԵՅԹ",
+    "meaning": {
+      "ru": "Кувейт"
+    },
+    "familiarity": {
+      "ru": 0.92
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՕՄԱՆ",
+    "meaning": {
+      "ru": "Оман"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՖԻԼԻՊԻՆՆԵՐ",
+    "meaning": {
+      "ru": "Филиппины"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 0.84,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՖԻՆԼԱՆԴԻԱ",
+    "meaning": {
+      "ru": "Финляндия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.92,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  },
+  {
+    "word": "ՖՐԱՆՍԻԱ",
+    "meaning": {
+      "ru": "Франция"
+    },
+    "familiarity": {
+      "ru": 0.82
+    },
+    "usefulnessScore": 0.98,
+    "categories": ["place-name"],
+    "tags": ["country"]
+  }
+]

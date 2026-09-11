@@ -315,6 +315,36 @@ export function createWordSelector(
   if (strategy === 'adaptive')
     return (state, now, random) =>
       selectAdaptiveWord(words, state, now, random);
+  if (strategy === 'finite-pack') {
+    if (!words.length) throw new Error('Cannot train with an empty dictionary');
+    const pack = [...words].sort(
+      (a, b) =>
+        (b.usefulnessScore ?? 0.5) - (a.usefulnessScore ?? 0.5) ||
+        (b.frequencyScore ?? 0.5) - (a.frequencyScore ?? 0.5) ||
+        a.id.localeCompare(b.id),
+    );
+    let index = 0;
+    return (state, _now, random = Math.random) => {
+      if (index >= pack.length) {
+        for (let i = pack.length - 1; i > 0; i--) {
+          const value = random();
+          const normalized = Number.isFinite(value)
+            ? Math.min(1 - Number.EPSILON, Math.max(0, value))
+            : 0;
+          const j = Math.floor(normalized * (i + 1));
+          [pack[i], pack[j]] = [pack[j], pack[i]];
+        }
+        index = 0;
+      }
+      const word = pack[index++];
+      const unknown = unknownLetters(word, state);
+      return {
+        word,
+        phase: unknown.length ? 'introduction' : 'training',
+        ...(unknown.length === 1 ? { introducedLetter: unknown[0] } : {}),
+      };
+    };
+  }
   throw new Error(`Selection strategy is not implemented: ${strategy}`);
 }
 

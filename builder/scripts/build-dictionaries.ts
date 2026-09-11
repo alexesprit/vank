@@ -8,6 +8,8 @@ interface Options {
   targets?: string[];
   quiet: boolean;
   verbose: boolean;
+  curatedOnly: boolean;
+  noAi: boolean;
 }
 
 function parseOptions(): Options {
@@ -17,6 +19,8 @@ function parseOptions(): Options {
       target: { type: 'string', multiple: true },
       quiet: { type: 'boolean' },
       verbose: { type: 'boolean' },
+      'curated-only': { type: 'boolean' },
+      'no-ai': { type: 'boolean' },
     },
   });
   return {
@@ -24,6 +28,8 @@ function parseOptions(): Options {
     targets: values.target,
     quiet: Boolean(values.quiet),
     verbose: Boolean(values.verbose),
+    curatedOnly: Boolean(values['curated-only']),
+    noAi: Boolean(values['no-ai']),
   };
 }
 
@@ -31,16 +37,22 @@ function buildTarget(
   target: Awaited<ReturnType<typeof selectTargets>>[number],
   options: Options,
 ): Promise<void> {
+  const dataDir =
+    options.curatedOnly && target.id === 'words'
+      ? 'builder/data/seed'
+      : target.dataDir;
   const args = [
     resolvePath('builder/src/cli.ts'),
     'build',
     '--config',
     target.config,
     '--data-dir',
-    target.dataDir,
+    dataDir,
     '--output',
     target.output,
     ...(target.enrichment === 'none' ? ['--no-ai'] : []),
+    ...(options.curatedOnly ? ['--curated-only'] : []),
+    ...(options.noAi ? ['--no-ai'] : []),
     ...(target.checks.includes('audience') ? [] : ['--no-audience']),
     ...(target.checks.includes('achievements') ? [] : ['--no-achievements']),
     ...(options.quiet ? ['--quiet'] : []),

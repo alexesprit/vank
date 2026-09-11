@@ -26,6 +26,7 @@ export const DISPLAYABLE_TAGS = new Set([
   'city',
   'district',
   'street',
+  'metro',
   'lake',
   'mountain',
   'mountain-range',

@@ -79,9 +79,16 @@ npm run dict:download               # download all enabled targets from the late
 
 `builder/targets.json` defines each dictionary target: its builder config,
 intermediate directory, runtime output, release asset name, enrichment mode,
-and validation checks. The current manifest contains only the required `words`
-target; specialized targets can be enabled there when their curated sources
-are ready.
+and validation checks. The manifest ships `words`, `toponyms`, and `countries`;
+the latter two are finite curated packs built from
+`builder/data/curated-toponyms.json` and `builder/data/curated-countries.json`.
+To update a pack, edit its curated source, run `npm run dict:build`, inspect its
+target intermediates and generated runtime JSON, then publish all enabled
+assets with `npm run dict:publish`.
+
+Word IDs are derived from canonical Armenian forms. Identical forms therefore
+share global letter and word progress across modes; each dictionary keeps its
+own metadata and selection order.
 
 Configure sources, explicit priorities, learner languages, and the output ceiling in
 `builder/config.json`. Source paths are relative to the repository working

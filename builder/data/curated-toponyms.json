@@ -1,0 +1,1526 @@
+[
+  {
+    "word": "ԵՐԵՎԱՆ",
+    "meaning": {
+      "ru": "Ереван, столица Армении"
+    },
+    "familiarity": {
+      "ru": 0.5
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԳՅՈՒՄՐԻ",
+    "meaning": {
+      "ru": "Гюмри, город в Ширакской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՎԱՆԱՁՈՐ",
+    "meaning": {
+      "ru": "Ванадзор, город в Лорийской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՀՐԱԶԴԱՆ",
+    "meaning": {
+      "ru": "Раздан, город в Котайкской области; также река Раздан"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԴԻԼԻՋԱՆ",
+    "meaning": {
+      "ru": "Дилижан, город в Тавушской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԻՋԵՎԱՆ",
+    "meaning": {
+      "ru": "Иджеван, город в Тавушской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԳԱՎԱՌ",
+    "meaning": {
+      "ru": "Гавар, город у озера Севан"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՄԱՍԻՍ",
+    "meaning": {
+      "ru": "Масис, город в Араратской области"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԱՐՏԱՇԱՏ",
+    "meaning": {
+      "ru": "Арташат, город и административный центр Араратской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԱՐՄԱՎԻՐ",
+    "meaning": {
+      "ru": "Армавир, город и административный центр Армавирской области"
+    },
+    "familiarity": {
+      "ru": 0.5
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԱՇՏԱՐԱԿ",
+    "meaning": {
+      "ru": "Аштарак, город в Арагацотнской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԵՂՎԱՐԴ",
+    "meaning": {
+      "ru": "Егвард, город в Котайкской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՉԱՐԵՆՑԱՎԱՆ",
+    "meaning": {
+      "ru": "Чаренцаван, город в Котайкской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԿԱՊԱՆ",
+    "meaning": {
+      "ru": "Капан, город и административный центр Сюникской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԳՈՐԻՍ",
+    "meaning": {
+      "ru": "Горис, город в Сюникской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՍԻՍԻԱՆ",
+    "meaning": {
+      "ru": "Сисиан, город в Сюникской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՋԵՐՄՈՒԿ",
+    "meaning": {
+      "ru": "Джермук, курортный город в Вайоцдзорской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՎԱՂԱՐՇԱՊԱՏ",
+    "meaning": {
+      "ru": "Вагаршапат, город в Армавирской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԷՋՄԻԱԾԻՆ",
+    "meaning": {
+      "ru": "Эчмиадзин, распространённое название Вагаршапата"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԱՋԱՓՆՅԱԿ",
+    "meaning": {
+      "ru": "Ачапняк, административный район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ԱՎԱՆ",
+    "meaning": {
+      "ru": "Аван, административный район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ԱՐԱԲԿԻՐ",
+    "meaning": {
+      "ru": "Арабкир, административный район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ԴԱՎԹԱՇԵՆ",
+    "meaning": {
+      "ru": "Давташен, административный район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ԷՐԵԲՈՒՆԻ",
+    "meaning": {
+      "ru": "Эребуни, административный район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ԿԵՆՏՐՈՆ",
+    "meaning": {
+      "ru": "Кентрон, центральный административный район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ՆՈՒԲԱՐԱՇԵՆ",
+    "meaning": {
+      "ru": "Нубарашен, административный район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ՇԵՆԳԱՎԻԹ",
+    "meaning": {
+      "ru": "Шенгавит, административный район и станция метро Еревана"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["district"]
+  },
+  {
+    "word": "ՉԱՐԲԱԽ",
+    "meaning": {
+      "ru": "станция метро «Чарбах», Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["metro"]
+  },
+  {
+    "word": "ԳՈՐԾԱՐԱՆԱՅԻՆ",
+    "meaning": {
+      "ru": "станция метро «Горцаранаин», Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["metro"]
+  },
+  {
+    "word": "ԵՐԻՏԱՍԱՐԴԱԿԱՆ",
+    "meaning": {
+      "ru": "станция метро «Еритасардакан», Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["metro"]
+  },
+  {
+    "word": "ԲԱՐԵԿԱՄՈՒԹՅՈՒՆ",
+    "meaning": {
+      "ru": "станция метро «Барекамутюн», Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["metro"]
+  },
+  {
+    "word": "ԿՈՄԻՏԱՍ",
+    "meaning": {
+      "ru": "проспект Комитаса, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 1,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՄԱՇՏՈՑ",
+    "meaning": {
+      "ru": "проспект Маштоца, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 1,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԲԱՂՐԱՄՅԱՆ",
+    "meaning": {
+      "ru": "проспект Маршала Баграмяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 1,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱԲՈՎՅԱՆ",
+    "meaning": {
+      "ru": "улица Абовяна, Ереван; также Абовян — город в Котайкской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 1,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱՐՇԱԿՈՒՆՅԱՑ",
+    "meaning": {
+      "ru": "проспект Аршакуняц, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՀՅՈՒՍԻՍԱՅԻՆ",
+    "meaning": {
+      "ru": "Северный проспект, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԹՈՒՄԱՆՅԱՆ",
+    "meaning": {
+      "ru": "улица Туманяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 1,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱՄԻՐՅԱՆ",
+    "meaning": {
+      "ru": "улица Амиряна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱՐԱՄԻ",
+    "meaning": {
+      "ru": "улица Арама, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԲՈՒԶԱՆԴԻ",
+    "meaning": {
+      "ru": "улица Бюзанда, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՏԵՐՅԱՆ",
+    "meaning": {
+      "ru": "улица Теряна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՆԱԼԲԱՆԴՅԱՆ",
+    "meaning": {
+      "ru": "улица Налбандяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՄՈՍԿՈՎՅԱՆ",
+    "meaning": {
+      "ru": "улица Московян, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՍԱՐՅԱՆ",
+    "meaning": {
+      "ru": "улица Сарьяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԽՈՐԵՆԱՑԻ",
+    "meaning": {
+      "ru": "улица Хоренаци, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԽԱՆՋՅԱՆ",
+    "meaning": {
+      "ru": "улица Ханджяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԿՈՐՅՈՒՆ",
+    "meaning": {
+      "ru": "улица Корюна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՊՈՒՇԿԻՆԻ",
+    "meaning": {
+      "ru": "улица Пушкина, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՊԱՐՈՆՅԱՆ",
+    "meaning": {
+      "ru": "улица Пароняна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՉԱՐԵՆՑԻ",
+    "meaning": {
+      "ru": "улица Чаренца, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՀԱՆՐԱՊԵՏՈՒԹՅԱՆ",
+    "meaning": {
+      "ru": "улица Республики, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԻՍԱԿՈՎԻ",
+    "meaning": {
+      "ru": "проспект Адмирала Исакова, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՄՅԱՍՆԻԿՅԱՆ",
+    "meaning": {
+      "ru": "проспект Мясникяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱԶԱՏՈՒԹՅԱՆ",
+    "meaning": {
+      "ru": "проспект Азатутян, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԿԻԵՎՅԱՆ",
+    "meaning": {
+      "ru": "улица Киевян, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՎԱՂԱՐՇՅԱՆ",
+    "meaning": {
+      "ru": "улица Вагаршяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԿԱՍՅԱՆ",
+    "meaning": {
+      "ru": "улица Касяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱԴՈՆՑ",
+    "meaning": {
+      "ru": "улица Адонца, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԶԱՐՅԱՆ",
+    "meaning": {
+      "ru": "улица Заряна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԿԱՍԿԱԴ",
+    "meaning": {
+      "ru": "Каскад, архитектурный комплекс в Ереване"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՄԱՏԵՆԱԴԱՐԱՆ",
+    "meaning": {
+      "ru": "Матенадаран, музей и хранилище рукописей в Ереване"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԾԻԾԵՌՆԱԿԱԲԵՐԴ",
+    "meaning": {
+      "ru": "Цицернакаберд, мемориальный комплекс в Ереване"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՎԵՐՆԻՍԱԺ",
+    "meaning": {
+      "ru": "Вернисаж, рынок и ярмарка в центре Еревана"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԳԱՌՆԻ",
+    "meaning": {
+      "ru": "Гарни, село и храмовый комплекс в Котайкской области"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԳԵՂԱՐԴ",
+    "meaning": {
+      "ru": "Гегард, монастырский комплекс в Котайкской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՏԱԹԵՎ",
+    "meaning": {
+      "ru": "Татев, монастырь и село в Сюникской области"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՆՈՐԱՎԱՆՔ",
+    "meaning": {
+      "ru": "Нораванк, монастырский комплекс в Вайоцдзорской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԶՎԱՐԹՆՈՑ",
+    "meaning": {
+      "ru": "Звартноц, исторический комплекс и название аэропорта у Еревана"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 1,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՍԵՎԱՆ",
+    "meaning": {
+      "ru": "озеро Севан; также Севан — город на его берегу"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 1,
+    "categories": ["nature"],
+    "tags": ["lake"]
+  },
+  {
+    "word": "ԱՐԱՐԱՏ",
+    "meaning": {
+      "ru": "гора Арарат"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 1,
+    "categories": ["nature"],
+    "tags": ["mountain"]
+  },
+  {
+    "word": "ԱՐԱԳԱԾ",
+    "meaning": {
+      "ru": "гора Арагац"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["nature"],
+    "tags": ["mountain"]
+  },
+  {
+    "word": "ԱԺԴԱՀԱԿ",
+    "meaning": {
+      "ru": "гора Аждаак"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["nature"],
+    "tags": ["mountain"]
+  },
+  {
+    "word": "ԴԵԲԵԴ",
+    "meaning": {
+      "ru": "река Дебед"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ԱՐՓԱ",
+    "meaning": {
+      "ru": "река Арпа"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ԱՐԱՔՍ",
+    "meaning": {
+      "ru": "река Аракс"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ԱԶԱՏ",
+    "meaning": {
+      "ru": "река Азат"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ՔԱՍԱՂ",
+    "meaning": {
+      "ru": "река Касах"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ԱԽՈՒՐՅԱՆ",
+    "meaning": {
+      "ru": "река Ахурян"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ԱՐՓԻ",
+    "meaning": {
+      "ru": "озеро Арпи"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["nature"],
+    "tags": ["lake"]
+  },
+  {
+    "word": "ԿԱՐԻ",
+    "meaning": {
+      "ru": "озеро Кари"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["nature"],
+    "tags": ["lake"]
+  },
+  {
+    "word": "ՀԱԼԱԲՅԱՆ",
+    "meaning": {
+      "ru": "улица Алабяна, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԼԵՆԻՆԳՐԱԴՅԱՆ",
+    "meaning": {
+      "ru": "улица Ленинградян, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՄԱՄԻԿՈՆՅԱՆՑ",
+    "meaning": {
+      "ru": "улица Мамиконянц, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՌՈՒԲԻՆՅԱՆՑ",
+    "meaning": {
+      "ru": "улица Рубинянц, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՈՒԼՆԵՑՈՒ",
+    "meaning": {
+      "ru": "улица Улнеци, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՎԱՐԴԱՆԱՆՑ",
+    "meaning": {
+      "ru": "улица Вардананц, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱՐԳԻՇՏԻ",
+    "meaning": {
+      "ru": "улица Аргишти, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԱՐՑԱԽԻ",
+    "meaning": {
+      "ru": "проспект Арцаха, Ереван"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["street"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԿԱՆԱՔԵՌ",
+    "meaning": {
+      "ru": "Канакер, исторический район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՆՈՐԱԳԱՎԻԹ",
+    "meaning": {
+      "ru": "Норагавит, жилой район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՆՈՐԱԳՅՈՒՂ",
+    "meaning": {
+      "ru": "Норагюх, район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԿԻԼԻԿԻԱ",
+    "meaning": {
+      "ru": "Киликия, район и название центрального автовокзала Еревана"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ՎԱՐԴԱՇԵՆ",
+    "meaning": {
+      "ru": "Вардашен, жилой район Еревана"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["Yerevan"]
+  },
+  {
+    "word": "ԿՈՏԱՅՔ",
+    "meaning": {
+      "ru": "Котайк, область Армении"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԼՈՌԻ",
+    "meaning": {
+      "ru": "Лори, область Армении"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՇԻՐԱԿ",
+    "meaning": {
+      "ru": "Ширак, область Армении"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՍՅՈՒՆԻՔ",
+    "meaning": {
+      "ru": "Сюник, область Армении"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՏԱՎՈՒՇ",
+    "meaning": {
+      "ru": "Тавуш, область Армении"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԳԵՂԱՐՔՈՒՆԻՔ",
+    "meaning": {
+      "ru": "Гегаркуник, область Армении"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԱՐԱԳԱԾՈՏՆ",
+    "meaning": {
+      "ru": "Арагацотн, область Армении"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԵՂԵԳՆԱՁՈՐ",
+    "meaning": {
+      "ru": "Ехегнадзор, город и центр Вайоцдзорской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՎԱՅՔ",
+    "meaning": {
+      "ru": "Вайк, город в Вайоцдзорской области"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՄԵՂՐԻ",
+    "meaning": {
+      "ru": "Мегри, город в Сюникской области"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՄԱՐՏՈՒՆԻ",
+    "meaning": {
+      "ru": "Мартуни, город в Гегаркуникской области"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ՀԱՂՊԱՏ",
+    "meaning": {
+      "ru": "Ахпат, село и монастырский комплекс в Лорийской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՍԱՆԱՀԻՆ",
+    "meaning": {
+      "ru": "Санаин, монастырский комплекс в Лорийской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԱՄԲԵՐԴ",
+    "meaning": {
+      "ru": "Амберд, крепость на склоне Арагаца"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՍԵՎԱՆԱՎԱՆՔ",
+    "meaning": {
+      "ru": "Севанаванк, монастырь на полуострове Севан"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԽՆՁՈՐԵՍԿ",
+    "meaning": {
+      "ru": "Хндзореск, село и пещерный комплекс в Сюнике"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԱՐԵՆԻ",
+    "meaning": {
+      "ru": "Арени, село и винодельческий район Вайоцдзора"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԳՈՇԱՎԱՆՔ",
+    "meaning": {
+      "ru": "Гошаванк, монастырский комплекс в Тавушской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՀԱՂԱՐԾԻՆ",
+    "meaning": {
+      "ru": "Агарцин, монастырский комплекс близ Дилижана"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՕՁՈՒՆ",
+    "meaning": {
+      "ru": "Одзун, село и исторический храм в Лорийской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՍԱՂՄՈՍԱՎԱՆՔ",
+    "meaning": {
+      "ru": "Сагмосаванк, монастырский комплекс в Арагацотнской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՀՈՎՀԱՆՆԱՎԱՆՔ",
+    "meaning": {
+      "ru": "Ованаванк, монастырский комплекс в Арагацотнской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԿԵՉԱՌԻՍ",
+    "meaning": {
+      "ru": "Кечарис, монастырский комплекс в Цахкадзоре"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԵՐԵՐՈՒՅՔ",
+    "meaning": {
+      "ru": "Ереруйк, раннехристианская базилика в Ширакской области"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՆՈՐԱՏՈՒՍ",
+    "meaning": {
+      "ru": "Норатус, село и кладбище хачкаров у озера Севан"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԲՅՈՒՐԱԿԱՆ",
+    "meaning": {
+      "ru": "Бюракан, село и астрономический центр в Арагацотнской области"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ՎՈՐՈՏԱՆ",
+    "meaning": {
+      "ru": "река Воротан"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ԱՂՍՏԵՎ",
+    "meaning": {
+      "ru": "река Агстев"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ՈՂՋԻ",
+    "meaning": {
+      "ru": "река Вохчи"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.65,
+    "categories": ["nature"],
+    "tags": ["river"]
+  },
+  {
+    "word": "ԽՈՒՍՏՈՒՓ",
+    "meaning": {
+      "ru": "гора Хуступ"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["nature"],
+    "tags": ["mountain"]
+  },
+  {
+    "word": "ԱՐՄԱՂԱՆ",
+    "meaning": {
+      "ru": "гора Армаган"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["nature"],
+    "tags": ["mountain"]
+  },
+  {
+    "word": "ՇԱՔԻ",
+    "meaning": {
+      "ru": "водопад Шаки"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["nature"],
+    "tags": ["Armenia"]
+  },
+  {
+    "word": "ԹՌՉԿԱՆ",
+    "meaning": {
+      "ru": "водопад Трчкан"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["nature"],
+    "tags": ["Armenia"]
+  }
+]

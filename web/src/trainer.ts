@@ -1,6 +1,7 @@
 import type {
   Evaluation,
   LetterStat,
+  PracticeModeId,
   Word,
   WordStat,
 } from '../../shared/types.ts';
@@ -29,6 +30,7 @@ import type { Repository } from './storage/repository.ts';
 
 interface ScoreUpdateDiagnostics {
   wordId: string;
+  practiceMode: PracticeModeId;
   phase: Selection['phase'];
   evidenceWeight: number;
   letters: Record<string, { before: LetterStat | null; after: LetterStat }>;
@@ -218,6 +220,7 @@ export async function createTrainer(
             ? undefined
             : {
                 wordId: current.word.id,
+                practiceMode: mode.id,
                 phase: current.phase,
                 evidenceWeight: Math.max(
                   TRAINER_CONFIG.familiarWordEvidenceFloor,

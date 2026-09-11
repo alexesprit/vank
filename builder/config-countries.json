@@ -1,0 +1,11 @@
+{
+  "learnerLanguages": ["ru"],
+  "maxWords": 105,
+  "sources": [
+    {
+      "type": "curated",
+      "path": "builder/data/curated-countries.json",
+      "priority": 100
+    }
+  ]
+}

@@ -24,6 +24,7 @@ export function runtimeDictionary(dictionary: Dictionary): RuntimeDictionary {
       loanwordScore: word.loanwordScore,
       visualDifficulty: word.visualDifficulty,
       readingDifficulty: word.readingDifficulty,
+      usefulnessScore: word.usefulnessScore,
       categories: word.categories,
       tags: word.tags,
     })),

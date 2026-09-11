@@ -41,6 +41,8 @@ export const en = {
   },
   modes: {
     words: 'Everyday words',
+    toponyms: 'Armenian places',
+    countries: 'Countries',
   },
   metadata: {
     label: 'Word metadata hints',
@@ -52,6 +54,7 @@ export const en = {
       shopping: 'Shopping',
       transport: 'Transport',
       signage: 'Signage',
+      country: 'Country',
       street: 'Street',
       'place-name': 'Place name',
       'person-name': 'Person name',
@@ -87,6 +90,7 @@ export const en = {
       city: 'City',
       district: 'District',
       street: 'Street',
+      metro: 'Metro station',
       lake: 'Lake',
       mountain: 'Mountain',
       'mountain-range': 'Mountain range',

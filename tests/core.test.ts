@@ -470,6 +470,19 @@ describe('adaptive selection', () => {
   });
 });
 
+it('cycles finite packs without adaptive eligibility failures', () => {
+  const words = [word('ԳԱԶ'), word('ԶԱԼ')];
+  const select = createWordSelector(words, 'finite-pack');
+  const first = select(empty(), 0, () => 0);
+  const second = select(empty(), 0, () => 0);
+  const repeated = select(empty(), 0, () => 0);
+  expect(new Set([first.word.id, second.word.id])).toEqual(
+    new Set(words.map(({ id }) => id)),
+  );
+  expect(new Set(words.map(({ id }) => id))).toContain(repeated.word.id);
+  expect(first.phase).toBe('introduction');
+});
+
 it('creates rich immutable attempt events and real progress metrics', () => {
   const w = word('ՏԱՔՍԻ', 0.2);
   const result = completeAttempt(

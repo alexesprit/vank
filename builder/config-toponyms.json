@@ -1,0 +1,11 @@
+{
+  "learnerLanguages": ["ru"],
+  "maxWords": 131,
+  "sources": [
+    {
+      "type": "curated",
+      "path": "builder/data/curated-toponyms.json",
+      "priority": 100
+    }
+  ]
+}

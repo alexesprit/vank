@@ -9,6 +9,26 @@
       "asset": "words.json",
       "enrichment": "openrouter",
       "checks": ["audience", "achievements"]
+    },
+    "toponyms": {
+      "enabled": true,
+      "required": true,
+      "config": "builder/config-toponyms.json",
+      "dataDir": "builder/data/toponyms",
+      "output": "web/data/toponyms.json",
+      "asset": "toponyms.json",
+      "enrichment": "none",
+      "checks": []
+    },
+    "countries": {
+      "enabled": true,
+      "required": true,
+      "config": "builder/config-countries.json",
+      "dataDir": "builder/data/countries",
+      "output": "web/data/countries.json",
+      "asset": "countries.json",
+      "enrichment": "none",
+      "checks": []
     }
   }
 }

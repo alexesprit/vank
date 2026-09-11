@@ -4,6 +4,9 @@ web/dist/
 web/data/ATTRIBUTION.txt
 web/data/*.json
 builder/cache/
+builder/data/cache/
+builder/data/toponyms/
+builder/data/countries/
 .env
 builder/data/wiktionary.jsonl
 builder/data/raw.json

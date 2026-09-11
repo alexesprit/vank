@@ -17,7 +17,7 @@
     "lint:fix": "biome check --write --error-on-warnings .",
     "typecheck": "tsc --noEmit",
     "knip": "knip",
-    "ci": "npm run build:seed -- --output web/data/words.json && npm run lint && npm run typecheck && npm run test:run && npm run knip && npm run build",
+    "ci": "npm run build:seed && npm run lint && npm run typecheck && npm run test:run && npm run knip && npm run build",
     "prepare": "lefthook install",
     "dict:download": "node builder/scripts/download-dictionary.ts",
     "dict:publish": "node builder/scripts/publish-dictionaries.ts",
@@ -27,7 +27,7 @@
     "enrich": "node builder/src/cli.ts enrich",
     "validate": "node builder/src/cli.ts validate",
     "dict:build": "node builder/scripts/build-dictionaries.ts",
-    "build:seed": "node builder/src/cli.ts build --curated-only --no-ai --data-dir builder/data/seed"
+    "build:seed": "node builder/scripts/build-dictionaries.ts --curated-only --no-ai"
   },
   "knip": {
     "entry": [
