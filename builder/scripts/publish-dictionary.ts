@@ -42,11 +42,11 @@ export const PRODUCTION_QUALITY: PublishQuality = {
 };
 
 export const dictionaryReleaseNotes = (dictionary: Dictionary) =>
-  `${dictionary.words.length} runtime words\n\nAlphabet coverage (words containing each letter):\n\n| Letter | Words |\n| --- | ---: |\n${countLetterCoverage(
+  `${dictionary.words.length} runtime words\n\n<details>\n<summary>Alphabet coverage (words containing each letter)</summary>\n\n| Letter | Words |\n| --- | ---: |\n${countLetterCoverage(
     dictionary.words,
   )
     .map(({ letter, words }) => `| ${letter} | ${words} |`)
-    .join('\n')}`;
+    .join('\n')}\n\n</details>`;
 
 export function validatePublishableDictionary(
   dictionary: Dictionary,

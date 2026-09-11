@@ -78,7 +78,13 @@ it('publishes the minified runtime dictionary and starts deployment', async () =
     ['workflow', 'run'],
   ]);
   const notes = dictionaryReleaseNotes(parseDictionary(dictionary));
+  const [countLine, , detailsLine, summaryLine] = notes.split('\n');
+  expect(countLine).toBe('1 runtime words');
+  expect(detailsLine).toBe('<details>');
+  expect(summaryLine).toContain('Alphabet coverage');
+  expect(summaryLine).toContain('words containing each letter');
   expect(notes).toContain('| Ա | 1 |');
+  expect(notes).toContain('\n\n</details>');
   expect(commands.find((args) => args[1] === 'create')).toContain(notes);
 });
 
