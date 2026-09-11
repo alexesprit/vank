@@ -182,6 +182,28 @@ describe('adaptive selection', () => {
     expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('ՏԱՔՍԻ');
     expect(selectWord(words, empty(), 0, () => 0).phase).toBe('bootstrap');
   });
+  it('prefers bootstrap words sharing letters with the previous word', () => {
+    const previous = word('ԹԱՄ', 1);
+    const shared = word('ՄԱՐ', 0.82);
+    const independent = word('ԲՈ', 1);
+    const state = completeAttempt(
+      empty(),
+      { word: previous, phase: 'bootstrap' },
+      previous.readingLatin,
+      false,
+      'client',
+      0,
+      1,
+      'attempt',
+    ).state;
+    const selected = selectWord(
+      [previous, shared, independent],
+      state,
+      2,
+      () => 0,
+    );
+    expect(selected.word.id).toBe(shared.id);
+  });
   it('randomizes equally ranked bootstrap words', () => {
     const words = [word('ԳԱԶ', 1), word('ԶԱԼ', 1)];
     expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('ԳԱԶ');

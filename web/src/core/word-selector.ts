@@ -36,6 +36,7 @@ export interface SelectionDiagnostics {
     afterConfidenceBreak: number;
     afterReinforcement: number;
     afterFamiliarInjection: number;
+    afterPreviousLetterConstraint: number;
   };
   selected: CandidateDiagnostics;
   alternatives: CandidateDiagnostics[];
@@ -81,6 +82,10 @@ export function selectWord(
     knownLetterCount < config.bootstrapKnownLetters;
   const unseen = words.filter((w) => !state.words[w.id]);
   const bootstrapPool = unseen.length ? unseen : words;
+  const latestWord = state.recent[0]?.payload.wordId
+    ? (words.find((word) => word.id === state.recent[0]?.payload.wordId) ??
+      bootstrapPool.find((word) => word.id === state.recent[0]?.payload.wordId))
+    : undefined;
   const isFamiliarCandidate = (word: Word) =>
     familiarity(word) >= config.bootstrapFamiliarityThreshold &&
     ((word.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold ||
@@ -111,6 +116,17 @@ export function selectWord(
   const different = candidates.filter((w) => w.id !== latest);
   if (different.length) candidates = different;
   const afterRecentExclusion = candidates.length;
+  const sharesPrevious = latestWord
+    ? (word: Word) =>
+        word.uniqueLetters.some((letter) =>
+          latestWord.uniqueLetters.includes(letter),
+        )
+    : () => true;
+  if (bootstrap) {
+    const shared = candidates.filter((word) => sharesPrevious(word));
+    if (shared.length) candidates = shared;
+  }
+  const afterPreviousLetterConstraint = candidates.length;
   const needsConfidence =
     !bootstrap &&
     state.recent.length >= 2 &&
@@ -272,6 +288,7 @@ export function selectWord(
         loanwords: loanwords.length,
         eligible,
         afterRecentExclusion,
+        afterPreviousLetterConstraint,
         afterConfidenceBreak,
         afterReinforcement,
         afterFamiliarInjection,
