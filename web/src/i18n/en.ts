@@ -209,6 +209,10 @@ export const en = {
         title: 'Բարև, World!',
         description: 'Correctly read ԲԱՐԵՎ.',
       },
+      yerevan: {
+        title: 'Benchmarked',
+        description: 'Correctly read ԵՐԵՎԱՆ.',
+      },
       'no-more-freebies': {
         title: 'No More Freebies',
         description: 'Correctly read 15 very unfamiliar words in a row.',

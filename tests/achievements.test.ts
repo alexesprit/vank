@@ -43,6 +43,7 @@ it('validates final dictionary prerequisites for achievements', () => {
   });
   const dictionary = [
     knownWord('ԲԱՐԵՎ'),
+    knownWord('ԵՐԵՎԱՆ'),
     knownWord(ALPHABET.map(({ upper }) => upper).join('')),
     ...ALPHABET.map(({ upper }) => knownWord(upper)),
   ];
@@ -66,6 +67,7 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
     'flash-reader',
     'first-flash-hit',
     'barev-world',
+    'yerevan',
     'no-more-freebies',
     'redemption-arc',
     'no-repeats',
@@ -171,6 +173,20 @@ it('unlocks ԲԱՐԵՎ on its first correct reading after earlier failures', () 
   expect(
     evaluateAchievements(attempts, []).find(
       (unlock) => unlock.id === 'barev-world',
+    ),
+  ).toMatchObject({ triggerAttemptId: 'attempt-1' });
+});
+
+it('unlocks ԵՐԵՎԱՆ on its first correct reading after earlier failures', () => {
+  const word = known('ԵՐԵՎԱՆ');
+  const attempts = completeHistory([
+    { word, correct: false },
+    { word, correct: true },
+  ]);
+
+  expect(
+    evaluateAchievements(attempts, []).find(
+      (unlock) => unlock.id === 'yerevan',
     ),
   ).toMatchObject({ triggerAttemptId: 'attempt-1' });
 });

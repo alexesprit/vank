@@ -8,8 +8,12 @@ import { TRAINER_CONFIG } from './config.ts';
 import { familiarity, updateScores } from './scoring.ts';
 
 const barevWorldWord = 'ԲԱՐԵՎ';
+const yerevanWorldWord = 'ԵՐԵՎԱՆ';
 
-export const ACHIEVEMENT_REQUIRED_WORDS = [barevWorldWord] as const;
+export const ACHIEVEMENT_REQUIRED_WORDS = [
+  barevWorldWord,
+  yerevanWorldWord,
+] as const;
 export const ACHIEVEMENT_DICTIONARY_REQUIREMENTS = {
   minWords: 20,
   minStrongLetters: 19,
@@ -30,6 +34,7 @@ export const ACHIEVEMENT_IDS = [
   'flash-reader',
   'first-flash-hit',
   'barev-world',
+  'yerevan',
   'no-more-freebies',
   'redemption-arc',
   'no-repeats',
@@ -450,6 +455,24 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
         (item) =>
           item.payload.evaluation.units.map((unit) => unit.source).join('') ===
             barevWorldWord && item.payload.correct,
+      );
+      return attempt
+        ? { attempt, evidence: { wordId: attempt.payload.wordId } }
+        : undefined;
+    },
+  },
+  {
+    id: 'yerevan',
+    version: 1,
+    thresholds: {},
+    hidden: true,
+    icon: 'map-pin',
+    evaluate: ({ attempts }) => {
+      const attempt = first(
+        attempts,
+        (item) =>
+          item.payload.evaluation.units.map((unit) => unit.source).join('') ===
+            yerevanWorldWord && item.payload.correct,
       );
       return attempt
         ? { attempt, evidence: { wordId: attempt.payload.wordId } }
