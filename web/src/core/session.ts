@@ -6,6 +6,7 @@ import type {
 } from '../../../shared/types.ts';
 import { evaluate } from './answer-checker.ts';
 import { TRAINER_CONFIG as config } from './config.ts';
+import type { PracticeModeId } from './modes.ts';
 import { familiarity, updateScores } from './scoring.ts';
 import type { Selection } from './word-selector.ts';
 
@@ -36,6 +37,7 @@ export function completeAttempt(
     visibleDurationMs?: number;
     revealed: boolean;
   },
+  practiceMode?: PracticeModeId,
 ): { state: LearnerState; attempt: AttemptEvent } {
   const { word } = selection,
     evaluation = evaluate(word, answer, skipped);
@@ -56,6 +58,7 @@ export function completeAttempt(
       familiarity: familiarity(word),
       learnerLanguage: config.learnerLanguage,
       fontId,
+      ...(practiceMode ? { practiceMode } : {}),
       ...(metadataHintsShown === undefined ? {} : { metadataHintsShown }),
       presentation: { ...presentation, fontId },
       ...(flash

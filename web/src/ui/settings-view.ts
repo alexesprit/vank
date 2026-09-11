@@ -1,5 +1,6 @@
 import { doNotTrackEnabled } from '../analytics.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
+import { PRACTICE_MODES } from '../core/modes.ts';
 import { countCorrectAnswers } from '../core/session.ts';
 import {
   FLASH_UNLOCK_AFTER_CORRECT,
@@ -29,6 +30,8 @@ export function mountSettings(
     ...document.querySelectorAll<HTMLInputElement>('[name="font-mode"]'),
   ];
   const language = element<HTMLSelectElement>('language');
+  const practiceMode = element<HTMLSelectElement>('practice-mode');
+  const practiceModeFieldset = practiceMode.closest('fieldset');
   const analytics = element<HTMLInputElement>('analytics-setting');
   const analyticsDnt = element('analytics-dnt');
   const metadataHints = element<HTMLInputElement>('metadata-hints-setting');
@@ -142,6 +145,11 @@ export function mountSettings(
       return label;
     }),
   );
+  practiceMode.replaceChildren(
+    ...PRACTICE_MODES.map((mode) => new Option(t(mode.labelKey), mode.id)),
+  );
+  if (practiceModeFieldset)
+    practiceModeFieldset.hidden = PRACTICE_MODES.length < 2;
 
   const previewLabels = metadataHintLabels(
     { categories: ['transport'], tags: ['beginner'] },
@@ -173,6 +181,7 @@ export function mountSettings(
     const { fonts } = trainer.settings;
     const { typography } = trainer.settings;
     language.value = trainer.settings.language;
+    practiceMode.value = trainer.settings.practiceMode;
     const dnt = doNotTrackEnabled();
     analytics.checked = trainer.settings.analytics && !dnt;
     analytics.disabled = dnt;
@@ -249,6 +258,8 @@ export function mountSettings(
 
   async function apply() {
     const languageChanged = language.value !== trainer.settings.language;
+    const practiceModeChanged =
+      practiceMode.value !== trainer.settings.practiceMode;
     const analyticsChanged = analytics.checked !== trainer.settings.analytics;
     const dnt = doNotTrackEnabled();
     const mode = modeInputs.find((input) => input.checked)?.value as
@@ -266,6 +277,8 @@ export function mountSettings(
       await trainer.setSettings({
         analytics: dnt ? trainer.settings.analytics : analytics.checked,
         language: language.value as LanguagePreference,
+        practiceMode:
+          practiceMode.value as typeof trainer.settings.practiceMode,
         metadataHints: metadataHints.checked,
         syllableColors: selectedSyllableThreshold(),
         flash: {
@@ -283,7 +296,8 @@ export function mountSettings(
           enabled: typographyChecked.length ? typographyChecked : ['caps'],
         },
       });
-      if (languageChanged) {
+      if (languageChanged || practiceModeChanged) {
+        trainer.dispose();
         window.location.reload();
         return;
       }
@@ -362,6 +376,7 @@ export function mountSettings(
   });
   for (const control of [
     language,
+    practiceMode,
     analytics,
     metadataHints,
     syllableColors,

@@ -9,6 +9,7 @@ import { evaluateAchievements } from './core/achievements.ts';
 import { TRAINER_CONFIG } from './core/config.ts';
 import { createFlashSession } from './core/flash-session.ts';
 import { hasMetadataHints } from './core/metadata-hints.ts';
+import { getPracticeMode, type PracticeMode } from './core/modes.ts';
 import { completeAttempt, countCorrectAnswers } from './core/session.ts';
 import {
   type AppSettings,
@@ -19,8 +20,11 @@ import {
   selectFont,
   selectTypography,
 } from './core/settings.ts';
-import type { Selection } from './core/word-selector.ts';
-import { selectWord } from './core/word-selector.ts';
+import {
+  createWordSelector,
+  type Selection,
+  type WordSelector,
+} from './core/word-selector.ts';
 import type { Repository } from './storage/repository.ts';
 
 interface ScoreUpdateDiagnostics {
@@ -33,6 +37,9 @@ interface ScoreUpdateDiagnostics {
 export interface TrainerOptions {
   /** Session-level override; diagnostic sessions can explicitly hide hints. */
   metadataHints?: boolean;
+  mode?: PracticeMode;
+  settings?: AppSettings;
+  selector?: WordSelector;
 }
 export async function createTrainer(
   words: Word[],
@@ -54,7 +61,10 @@ export async function createTrainer(
     ];
   }
   let lastAchievementUnlocks: AchievementUnlock[] = [];
-  let settings = parseSettings(await repository.getSetting('app'));
+  let settings =
+    options.settings ?? parseSettings(await repository.getSetting('app'));
+  const mode = options.mode ?? getPracticeMode(settings.practiceMode);
+  const select = options.selector ?? createWordSelector(words, mode.strategy);
   let introShown = (await repository.getSetting('introShown')) === true;
   let clientId = await repository.getSetting('clientId');
   if (typeof clientId !== 'string') {
@@ -64,7 +74,7 @@ export async function createTrainer(
   const installationId = clientId as string;
   const correctAnswers = () => countCorrectAnswers(state.recent);
   let pendingFont = fontLoader(selectFont(settings, correctAnswers()));
-  let current = selectWord(words, state, Date.now()),
+  let current = select(state, Date.now()),
     font = await pendingFont,
     presentation = selectTypography(settings, correctAnswers()),
     shownAt = Date.now();
@@ -191,6 +201,7 @@ export async function createTrainer(
           presentation,
           metadataHintsShown,
           flashAttempt,
+          mode.id,
         );
         const newAchievementUnlocks = evaluateAchievements(
           [...state.recent].reverse().concat(completed.attempt),
@@ -238,7 +249,7 @@ export async function createTrainer(
       if (busy || !result) return;
       busy = true;
       try {
-        const next = selectWord(words, state, Date.now());
+        const next = select(state, Date.now());
         pendingFont = fontLoader(selectFont(settings, correctAnswers()));
         font = await latestFont(pendingFont);
         presentation = selectTypography(settings, correctAnswers());
@@ -259,6 +270,7 @@ export async function createTrainer(
             AppSettings,
             | 'analytics'
             | 'language'
+            | 'practiceMode'
             | 'metadataHints'
             | 'syllableColors'
             | 'typography'

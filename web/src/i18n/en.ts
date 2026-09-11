@@ -39,6 +39,9 @@ export const en = {
     mapping: 'Letter mapping: {{mapping}}',
     compareReading: 'Compare your answer with the reading above.',
   },
+  modes: {
+    words: 'Everyday words',
+  },
   metadata: {
     label: 'Word metadata hints',
     categories: {
@@ -263,6 +266,8 @@ export const en = {
     languageAuto: 'Use browser language',
     languageRu: 'Русский',
     languageEn: 'English',
+    practiceMode: 'Practice mode',
+    selectedPracticeMode: 'Selected practice mode',
     analytics: 'Anonymous analytics',
     analyticsEnabled: 'Send anonymous analytics',
     analyticsNotice:

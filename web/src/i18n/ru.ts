@@ -34,6 +34,9 @@ export const ru = {
     mapping: 'Соответствие букв: {{mapping}}',
     compareReading: 'Сравните ответ с чтением выше.',
   },
+  modes: {
+    words: 'Повседневные слова',
+  },
   metadata: {
     label: 'Подсказки по слову',
     categories: {
@@ -262,6 +265,8 @@ export const ru = {
     languageAuto: 'Как в браузере',
     languageRu: 'Русский',
     languageEn: 'English',
+    practiceMode: 'Режим практики',
+    selectedPracticeMode: 'Выбранный режим практики',
     analytics: 'Анонимная статистика',
     analyticsEnabled: 'Отправлять анонимную статистику',
     analyticsNotice:

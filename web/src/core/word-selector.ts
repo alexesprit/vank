@@ -41,6 +41,12 @@ export interface SelectionDiagnostics {
   selected: CandidateDiagnostics;
   alternatives: CandidateDiagnostics[];
 }
+export type SelectionStrategy = 'adaptive' | 'finite-pack';
+export type WordSelector = (
+  state: LearnerState,
+  now: number,
+  random?: () => number,
+) => Selection;
 export const unknownLetters = (word: Word, state: LearnerState): string[] =>
   word.uniqueLetters.filter((l) => !(state.letters[l]?.score > 0));
 const average = (values: number[]) =>
@@ -64,7 +70,7 @@ export function personalDifficulty(word: Word, state: LearnerState): number {
     ),
   );
 }
-export function selectWord(
+export function selectAdaptiveWord(
   words: Word[],
   state: LearnerState,
   now: number,
@@ -301,3 +307,15 @@ export function selectWord(
     },
   };
 }
+
+export function createWordSelector(
+  words: Word[],
+  strategy: SelectionStrategy = 'adaptive',
+): WordSelector {
+  if (strategy === 'adaptive')
+    return (state, now, random) =>
+      selectAdaptiveWord(words, state, now, random);
+  throw new Error(`Selection strategy is not implemented: ${strategy}`);
+}
+
+export const selectWord = selectAdaptiveWord;

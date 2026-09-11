@@ -137,6 +137,7 @@ export function mountDebugDialog(trainer: Trainer, dictionary: Dictionary) {
       runtime: {
         appVersion,
         dictionary: {
+          mode: trainer.settings.practiceMode,
           version: dictionary.version,
           schemaVersion: dictionary.schemaVersion,
           generatedAt: dictionary.generatedAt,

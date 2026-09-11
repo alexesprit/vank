@@ -6,6 +6,7 @@ import { curatedSource } from '../builder/src/sources/curated';
 import { ALPHABET, deriveWord } from '../shared/armenian';
 import { parseDictionary } from '../shared/schema';
 import type { LearnerState } from '../shared/types';
+import { PRACTICE_MODES } from '../web/src/core/modes';
 import { completeAttempt, progress } from '../web/src/core/session';
 import { DEFAULT_SETTINGS, FONTS } from '../web/src/core/settings';
 import { openRepository } from '../web/src/storage/repository';
@@ -123,6 +124,26 @@ it('submits once, saves before advancing, restores progress and retains stable c
   expect(reloaded.current.word.id).not.toBe(first.id);
   await reloaded.submit('', true);
   expect(reloaded.state.recent[0].clientId).toBe(clientId);
+  repo.close();
+});
+
+it('uses the injected selector and records the active practice mode', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const word = recognizable('ՄԱՄԱ');
+  let selections = 0;
+  const trainer = await createTrainer([word], repo, async (font) => font, {
+    mode: PRACTICE_MODES[0],
+    selector: () => {
+      selections++;
+      return { word, phase: 'training' };
+    },
+  });
+
+  expect(selections).toBe(1);
+  await trainer.submit(word.readingLatin);
+  expect(trainer.state.recent[0]?.payload.practiceMode).toBe('words');
+  await trainer.next();
+  expect(selections).toBe(2);
   repo.close();
 });
 it('shows the introduction once per browser profile', async () => {

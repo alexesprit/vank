@@ -4,6 +4,11 @@ import {
   LANGUAGE_PREFERENCES,
   type LanguagePreference,
 } from '../i18n/types.ts';
+import {
+  DEFAULT_PRACTICE_MODE,
+  getPracticeMode,
+  type PracticeModeId,
+} from './modes.ts';
 
 const googleStylesheet = (family: string) =>
   `https://fonts.googleapis.com/css2?family=${family.replaceAll(' ', '+')}:wght@700&display=swap`;
@@ -81,6 +86,7 @@ export const FONTS: FontOption[] = [
 export interface AppSettings {
   analytics: boolean;
   language: LanguagePreference;
+  practiceMode: PracticeModeId;
   metadataHints: boolean;
   syllableColors: SyllableColorThreshold;
   flash: {
@@ -152,6 +158,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   // Existing installations keep analytics off until the learner opts in.
   analytics: false,
   language: 'auto',
+  practiceMode: DEFAULT_PRACTICE_MODE,
   metadataHints: false,
   syllableColors: 0,
   flash: {
@@ -177,6 +184,7 @@ export function parseSettings(value: unknown): AppSettings {
     analytics?: unknown;
     fonts?: unknown;
     language?: unknown;
+    practiceMode?: unknown;
     metadataHints?: unknown;
     syllableColors?: unknown;
     flash?: unknown;
@@ -237,6 +245,7 @@ export function parseSettings(value: unknown): AppSettings {
     )
       ? (saved.language as LanguagePreference)
       : 'auto',
+    practiceMode: getPracticeMode(saved.practiceMode).id,
     metadataHints:
       typeof saved.metadataHints === 'boolean'
         ? saved.metadataHints

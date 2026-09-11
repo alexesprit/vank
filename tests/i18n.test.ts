@@ -27,6 +27,10 @@ describe('interface localization', () => {
     ).toBe('auto');
     const { language: _language, ...oldSettings } = DEFAULT_SETTINGS;
     expect(parseSettings(oldSettings).language).toBe('auto');
+    expect(
+      parseSettings({ ...DEFAULT_SETTINGS, practiceMode: 'missing' })
+        .practiceMode,
+    ).toBe('words');
   });
 
   it('keeps analytics off for legacy settings and accepts an explicit opt-in', () => {

@@ -2,6 +2,7 @@ import type { Dictionary, Evaluation, Word } from '../../../shared/types.ts';
 import { doNotTrackEnabled } from '../analytics.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
+import { getPracticeMode } from '../core/modes.ts';
 import { countCorrectAnswers } from '../core/session.ts';
 import { availableTypography, formatPrompt } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
@@ -226,12 +227,15 @@ export function mountTrainer(
     if (!element<HTMLDialogElement>('intro-dialog').open)
       trainer.setMetadataHintsShown(labels.length > 0);
     const presentationLabel = element<HTMLButtonElement>('presentation-label');
-    presentationLabel.textContent = t('trainer.adaptive', {
-      mode: typographyName(
-        trainer.presentation.caseMode,
-        trainer.presentation.italic,
-      ),
-    });
+    const practiceMode = getPracticeMode(trainer.settings.practiceMode);
+    const typography = typographyName(
+      trainer.presentation.caseMode,
+      trainer.presentation.italic,
+    );
+    presentationLabel.textContent =
+      practiceMode.strategy === 'adaptive'
+        ? t('trainer.adaptive', { mode: typography })
+        : `${t(practiceMode.labelKey)} · ${typography}`;
     presentationLabel.ariaLabel = t('trainer.changeTypography', {
       label: presentationLabel.textContent,
     });

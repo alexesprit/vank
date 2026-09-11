@@ -37,6 +37,7 @@ export interface Dictionary {
   generatedAt: string;
   words: Word[];
 }
+export type PracticeModeId = 'words' | 'toponyms' | 'countries';
 export interface LetterStat {
   score: number;
   attempts: number;
@@ -95,6 +96,7 @@ export interface AttemptEvent {
     evaluation: Evaluation;
     familiarity: number;
     learnerLanguage: string;
+    practiceMode?: PracticeModeId;
     fontId: string;
     metadataHintsShown?: boolean;
     presentation?: Presentation;

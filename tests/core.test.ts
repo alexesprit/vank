@@ -6,6 +6,7 @@ import { TRAINER_CONFIG as config } from '../web/src/core/config';
 import { updateScores } from '../web/src/core/scoring';
 import { completeAttempt, progress } from '../web/src/core/session';
 import {
+  createWordSelector,
   personalDifficulty,
   selectWord,
   unknownLetters,
@@ -176,6 +177,12 @@ describe('learning evidence', () => {
 });
 
 describe('adaptive selection', () => {
+  it('exposes adaptive selection through an injectable strategy', () => {
+    const words = [word('ԳԱԶ', 1), word('ԶԱԼ', 1)];
+    const selected = createWordSelector(words)(empty(), 0, () => 0.999);
+    expect(selected).toEqual(selectWord(words, empty(), 0, () => 0.999));
+  });
+
   it('bootstraps with recognizable loanwords only', () => {
     const native = { ...word('ՄԱՄԱ', 1), loanwordScore: 0 };
     const words = [native, word('ԽՈՀԱՆՈՑ', 0.05), word('ՏԱՔՍԻ', 1)];
