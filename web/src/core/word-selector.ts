@@ -35,6 +35,7 @@ export interface SelectionDiagnostics {
     afterRecentExclusion: number;
     afterConfidenceBreak: number;
     afterReinforcement: number;
+    afterFamiliarInjection: number;
   };
   selected: CandidateDiagnostics;
   alternatives: CandidateDiagnostics[];
@@ -80,12 +81,19 @@ export function selectWord(
     knownLetterCount < config.bootstrapKnownLetters;
   const unseen = words.filter((w) => !state.words[w.id]);
   const bootstrapPool = unseen.length ? unseen : words;
-  const loanwords = bootstrapPool.filter(
-    (w) =>
-      familiarity(w) >= config.bootstrapFamiliarityThreshold &&
-      ((w.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold ||
-        w.tags.includes('loanword')),
-  );
+  const isFamiliarCandidate = (word: Word) =>
+    familiarity(word) >= config.bootstrapFamiliarityThreshold &&
+    ((word.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold ||
+      word.tags.includes('loanword'));
+  const loanwords = bootstrapPool.filter(isFamiliarCandidate);
+  const attemptsSinceLastFamiliarWord = () => {
+    let count = 0;
+    for (const attempt of state.recent) {
+      if (attempt.payload.familiarity >= config.bootstrapFamiliarityThreshold) break;
+      count += 1;
+    }
+    return count;
+  };
   let candidates = bootstrap
     ? loanwords.length
       ? loanwords
@@ -116,9 +124,7 @@ export function selectWord(
   let confidenceBreak = false;
   if (needsConfidence) {
     const familiar = candidates.filter(
-      (w) =>
-        familiarity(w) >= config.bootstrapFamiliarityThreshold &&
-        !unknownLetters(w, state).length,
+      (w) => isFamiliarCandidate(w) && !unknownLetters(w, state).length,
     );
     if (familiar.length) {
       candidates = familiar;
@@ -134,6 +140,19 @@ export function selectWord(
     if (reinforcement.length) candidates = reinforcement;
   }
   const afterReinforcement = candidates.length;
+  const shouldInjectFamiliar =
+    !bootstrap &&
+    !confidenceBreak &&
+    !target?.remaining &&
+    attemptsSinceLastFamiliarWord() >= config.familiarInjectionInterval &&
+    config.familiarInjectionInterval > 0;
+  if (shouldInjectFamiliar) {
+    const familiar = candidates.filter(
+      (w) => isFamiliarCandidate(w) && !unknownLetters(w, state).length,
+    );
+    if (familiar.length) candidates = familiar;
+  }
+  const afterFamiliarInjection = candidates.length;
   const diagnose = (word: Word): CandidateDiagnostics => {
     const recentIndex = state.recent
       .slice(0, config.recentWordWindow)
@@ -254,6 +273,7 @@ export function selectWord(
         afterRecentExclusion,
         afterConfidenceBreak,
         afterReinforcement,
+        afterFamiliarInjection,
       },
       selected: chosen.diagnostic,
       alternatives: ranked

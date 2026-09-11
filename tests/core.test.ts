@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ALPHABET, deriveWord } from '../shared/armenian';
 import type { LearnerState, Word } from '../shared/types';
 import { evaluate, normalizeAnswer } from '../web/src/core/answer-checker';
+import { TRAINER_CONFIG as config } from '../web/src/core/config';
 import { updateScores } from '../web/src/core/scoring';
 import { completeAttempt, progress } from '../web/src/core/session';
 import {
@@ -35,7 +36,7 @@ const bootstrapState = (
   recent: [],
 });
 function known(words: Word[], score = 0.8): LearnerState {
-  const state = bootstrapState(20, 12);
+  const state = bootstrapState(config.bootstrapSuccessfulWords, 12);
   for (const w of words)
     for (const l of w.uniqueLetters)
       state.letters[l] = {
@@ -203,17 +204,43 @@ describe('adaptive selection', () => {
       ),
     ).toBeCloseTo(selected.diagnostics?.selected.priority ?? 0);
   });
-  it('requires 20 successful words and 12 known letters to finish bootstrap', () => {
-    const words = Array.from({ length: 21 }, (_, i) => ({
-      ...word('ԳԱԶ', 1),
-      id: `word-${i}`,
-    }));
-    const state = bootstrapState(19, 12);
+  it('requires bootstrap thresholds to finish bootstrap', () => {
+    const words = Array.from(
+      { length: config.bootstrapSuccessfulWords + 1 },
+      (_, i) => ({
+        ...word('ԳԱԶ', 1),
+        id: `word-${i}`,
+      }),
+    );
+    const state = bootstrapState(config.bootstrapSuccessfulWords - 1, 12);
     expect(selectWord(words, state, 0, () => 0).phase).toBe('bootstrap');
-    state.words['done-19'] = { attempts: 1, correct: 1, lastSeenAt: 0 };
+    state.words[`done-${config.bootstrapSuccessfulWords - 1}`] = {
+      attempts: 1,
+      correct: 1,
+      lastSeenAt: 0,
+    };
     expect(selectWord(words, state, 0, () => 0).phase).not.toBe('bootstrap');
     delete state.letters[ALPHABET[11].upper];
     expect(selectWord(words, state, 0, () => 0).phase).toBe('bootstrap');
+  });
+  it('injects familiar words periodically after bootstrap', () => {
+    const familiar = { ...word('ԳԱԶ', 1), id: 'familiar-1' };
+    const unfamiliar = { ...word('ՆԱՄ', 0.05), id: 'unfamiliar-1' };
+    let state = bootstrapState(config.bootstrapSuccessfulWords, 12);
+    for (let i = 0; i < config.familiarInjectionInterval; i++) {
+      state = completeAttempt(
+        state,
+        { word: unfamiliar, phase: 'training' },
+        unfamiliar.readingLatin,
+        true,
+        'client',
+        i,
+        i + 1,
+        `attempt-${i}`,
+      ).state;
+    }
+    const selected = selectWord([familiar, unfamiliar], state, 10, () => 0);
+    expect(selected.word).toBe(familiar);
   });
   it('avoids bootstrap repeats, then falls back from loanwords to unseen native words', () => {
     const loanword = word('ԳԱԶ', 1),
@@ -227,7 +254,9 @@ describe('adaptive selection', () => {
     ).toBeDefined();
   });
   it('throws when no post-bootstrap word fits the introduction limit', () => {
-    expect(() => selectWord([word('ՖՔ')], bootstrapState(20, 12), 0)).toThrow(
+    expect(() =>
+      selectWord([word('ՖՔ')], bootstrapState(config.bootstrapSuccessfulWords, 12), 0),
+    ).toThrow(
       'Dictionary has no words within the one-new-letter limit',
     );
   });
