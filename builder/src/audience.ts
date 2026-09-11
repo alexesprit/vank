@@ -51,21 +51,25 @@ export const countLetterCoverage = (words: Pick<Word, 'uniqueLetters'>[]) =>
     words: words.filter((word) => word.uniqueLetters.includes(letter)).length,
   }));
 
-function balanceByLetterCoverage(
+function selectByLetterCoverage(
   words: BuildWord[],
   limit: number,
   selected: BuildWord[],
 ): BuildWord[] {
+  if (words.length <= limit) return words;
+  const result = words.filter(curated).slice(0, limit);
   const counts = new Map(
-    countLetterCoverage(selected).map(({ letter, words }) => [letter, words]),
+    countLetterCoverage([...selected, ...result]).map(({ letter, words }) => [
+      letter,
+      words,
+    ]),
   );
   let total = [...counts.values()].reduce((sum, count) => sum + count, 0);
   let squares = [...counts.values()].reduce(
     (sum, count) => sum + count * count,
     0,
   );
-  const remaining = [...words];
-  const result: BuildWord[] = [];
+  const remaining = words.filter((word) => !curated(word));
   // ponytail: quadratic greedy scan is plenty for a few thousand dictionary words.
   while (result.length < limit && remaining.length) {
     let best = 0;
@@ -174,25 +178,27 @@ export function composeAudience(
         ((w.ai?.confidence ?? 0) >= 0.8 &&
           (isFamiliar(w, policy.language) || (w.usefulnessScore ?? 0) >= 0.5))),
   );
+  const familiarPool = eligible.filter((w) => isFamiliar(w, policy.language));
   const familiar = composeDataset(
-    eligible.filter((w) => isFamiliar(w, policy.language)),
-    limit,
+    familiarPool,
+    Math.max(1, familiarPool.length),
   );
   // Verification also requires explicit selection during candidate review.
+  const verificationPool = eligible.filter(
+    (w) =>
+      (curated(w) || w.audiencePurpose === 'verification') &&
+      (w.familiarity?.[policy.language] ?? 1) <= 0.4,
+  );
   const verification = composeDataset(
-    eligible.filter(
-      (w) =>
-        (curated(w) || w.audiencePurpose === 'verification') &&
-        (w.familiarity?.[policy.language] ?? 1) <= 0.4,
-    ),
-    limit,
+    verificationPool,
+    Math.max(1, verificationPool.length),
   );
   const reserved = Math.min(
     verification.length,
     limit - Math.ceil(limit * policy.minFamiliarShare),
     limit - policy.minFamiliarWords,
   );
-  const high = familiar.slice(0, limit - reserved);
+  const high = selectByLetterCoverage(familiar, limit - reserved, []);
   if (high.length < policy.minFamiliarWords)
     throw new Error(
       `Audience quality: only ${high.length} familiar ${policy.language} words; need ${policy.minFamiliarWords}. Review or expand recognition candidates; refusing to pad the dictionary.`,
@@ -205,11 +211,5 @@ export function composeAudience(
         1e-9,
     ),
   );
-  const required = verification.filter(curated).slice(0, lowCount);
-  const balanced = balanceByLetterCoverage(
-    verification.filter((word) => !curated(word)),
-    lowCount - required.length,
-    [...high, ...required],
-  );
-  return [...high, ...required, ...balanced];
+  return [...high, ...selectByLetterCoverage(verification, lowCount, high)];
 }

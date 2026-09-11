@@ -1,10 +1,15 @@
 import { expect, it } from 'vitest';
 import {
   composeAudience,
+  isFamiliar,
   parseAudience,
   shortlistAudience,
 } from '../builder/src/audience';
-import { deriveMetadata, mergeSources } from '../builder/src/pipeline';
+import {
+  composeDataset,
+  deriveMetadata,
+  mergeSources,
+} from '../builder/src/pipeline';
 import { curatedSource } from '../builder/src/sources/curated';
 
 const policy = {
@@ -197,6 +202,60 @@ it('uses verification slots to improve letter distribution', () => {
 
   expect(selected.map((word) => word.word)).toContain('ԾԱՌ');
   expect(selected.map((word) => word.word)).not.toContain('ՌՈԲՈՏ');
+});
+
+it('balances familiar words when their pool exceeds its available slots', () => {
+  const enriched = words().map((word) => {
+    if (word.word === 'ՄԵՏՐՈ') return { ...word, flags: ['fixture'] };
+    if (word.word === 'ՋՈՒՐ') return { ...word, familiarity: { ru: 1 } };
+    return word.word === 'ՌՈԲՈՏ'
+      ? {
+          ...word,
+          familiarity: { ru: 1 },
+          usefulnessScore: 0.9,
+          ai: {
+            model: 'fixture',
+            promptVersion: 2,
+            schemaVersion: 1,
+            confidence: 0.9,
+          },
+        }
+      : word;
+  });
+  const [giraffe] = deriveMetadata(
+    mergeSources(curatedSource([{ word: 'ԸՆՁՈՒՂՏ' }])).words,
+  );
+  if (!giraffe) throw new Error('Missing fixture word');
+  enriched.push({
+    ...giraffe,
+    sources: [{ type: 'wiktionary' }],
+    familiarity: { ru: 1 },
+    usefulnessScore: 0.5,
+    ai: {
+      model: 'fixture',
+      promptVersion: 2,
+      schemaVersion: 1,
+      confidence: 0.9,
+    },
+  });
+  const selected = composeAudience(enriched, 4, {
+    ...policy,
+    minFamiliarShare: 1,
+  });
+
+  expect(selected.map((word) => word.word)).toContain('ԸՆՁՈՒՂՏ');
+  expect(selected.map((word) => word.word)).not.toContain('ՌՈԲՈՏ');
+});
+
+it('keeps existing ranking when every familiar word fits', () => {
+  const familiar = words().filter((word) => isFamiliar(word, policy.language));
+
+  expect(
+    composeAudience(familiar, 1000, {
+      ...policy,
+      minFamiliarShare: 1,
+    }),
+  ).toEqual(composeDataset(familiar, 1000));
 });
 
 it('keeps curated words first and otherwise preserves reviewed candidate order', () => {
