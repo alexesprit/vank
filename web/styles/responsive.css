@@ -17,6 +17,11 @@
 }
 
 @media (max-width: 560px) {
+  .snackbar {
+    top: calc(env(safe-area-inset-top) + 24px);
+    bottom: auto;
+  }
+
   .layout {
     gap: 16px;
   }
