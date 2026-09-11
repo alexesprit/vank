@@ -7,6 +7,8 @@ builder/cache/
 builder/data/cache/
 builder/data/toponyms/
 builder/data/countries/
+builder/data/names/
+builder/data/food/
 .env
 builder/data/wiktionary.jsonl
 builder/data/raw.json

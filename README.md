@@ -79,9 +79,9 @@ npm run dict:download               # download all enabled targets from the late
 
 `builder/targets.json` defines each dictionary target: its builder config,
 intermediate directory, runtime output, release asset name, enrichment mode,
-and validation checks. The manifest ships `words`, `toponyms`, and `countries`;
-the latter two are finite curated packs built from
-`builder/data/curated-toponyms.json` and `builder/data/curated-countries.json`.
+and validation checks. The manifest ships `words`, `toponyms`, `countries`,
+`names`, and `food`; the latter four are finite curated packs built from the
+matching `builder/data/curated-*.json` sources.
 To update a pack, edit its curated source, run `npm run dict:build`, inspect its
 target intermediates and generated runtime JSON, then publish all enabled
 assets with `npm run dict:publish`.

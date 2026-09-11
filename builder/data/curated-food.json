@@ -1,0 +1,1106 @@
+[
+  {
+    "word": "ԽՆՁՈՐ",
+    "meaning": {
+      "ru": "яблоко"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՏԱՆՁ",
+    "meaning": {
+      "ru": "груша"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԾԻՐԱՆ",
+    "meaning": {
+      "ru": "абрикос"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԴԵՂՁ",
+    "meaning": {
+      "ru": "персик"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՍԱԼՈՐ",
+    "meaning": {
+      "ru": "слива"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԲԱԼ",
+    "meaning": {
+      "ru": "вишня"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԿԵՌԱՍ",
+    "meaning": {
+      "ru": "черешня"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԽԱՂՈՂ",
+    "meaning": {
+      "ru": "виноград"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՆՈՒՌ",
+    "meaning": {
+      "ru": "гранат"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԹՈՒԶ",
+    "meaning": {
+      "ru": "инжир"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՍԵՐԿԵՎԻԼ",
+    "meaning": {
+      "ru": "айва"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՁՄԵՐՈՒԿ",
+    "meaning": {
+      "ru": "арбуз"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՍԵԽ",
+    "meaning": {
+      "ru": "дыня"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԵԼԱԿ",
+    "meaning": {
+      "ru": "клубника"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԱԶՆՎԱՄՈՐԻ",
+    "meaning": {
+      "ru": "малина"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՄՈՇ",
+    "meaning": {
+      "ru": "ежевика"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՀԱՂԱՐՋ",
+    "meaning": {
+      "ru": "смородина"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՀԱՊԱԼԱՍ",
+    "meaning": {
+      "ru": "черника"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԿԻՏՐՈՆ",
+    "meaning": {
+      "ru": "лимон"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՆԱՐԻՆՋ",
+    "meaning": {
+      "ru": "апельсин"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՄԱՆԴԱՐԻՆ",
+    "meaning": {
+      "ru": "мандарин"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԳՐԵՅՊՖՐՈՒՏ",
+    "meaning": {
+      "ru": "грейпфрут"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԲԱՆԱՆ",
+    "meaning": {
+      "ru": "банан"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԿԻՎԻ",
+    "meaning": {
+      "ru": "киви"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ՄԱՆԳՈ",
+    "meaning": {
+      "ru": "манго"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԱՎՈԿԱԴՈ",
+    "meaning": {
+      "ru": "авокадо"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԿՈԿՈՍ",
+    "meaning": {
+      "ru": "кокос"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԱՐՔԱՅԱԽՆՁՈՐ",
+    "meaning": {
+      "ru": "ананас"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԽՈՒՐՄԱ",
+    "meaning": {
+      "ru": "хурма"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԹՈՒԹ",
+    "meaning": {
+      "ru": "шелковица"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["fruit"]
+  },
+  {
+    "word": "ԼՈԼԻԿ",
+    "meaning": {
+      "ru": "помидор"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՎԱՐՈՒՆԳ",
+    "meaning": {
+      "ru": "огурец"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՍՄԲՈՒԿ",
+    "meaning": {
+      "ru": "баклажан"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԿԱՐՏՈՖԻԼ",
+    "meaning": {
+      "ru": "картофель"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԳԱԶԱՐ",
+    "meaning": {
+      "ru": "морковь"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՍՈԽ",
+    "meaning": {
+      "ru": "лук"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՍԽՏՈՐ",
+    "meaning": {
+      "ru": "чеснок"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԿԱՂԱՄԲ",
+    "meaning": {
+      "ru": "капуста"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԾԱՂԿԱԿԱՂԱՄԲ",
+    "meaning": {
+      "ru": "цветная капуста"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԲՐՈԿՈԼԻ",
+    "meaning": {
+      "ru": "брокколи"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՊՂՊԵՂ",
+    "meaning": {
+      "ru": "перец"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԴԴՈՒՄ",
+    "meaning": {
+      "ru": "тыква"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԴԴՄԻԿ",
+    "meaning": {
+      "ru": "кабачок"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՃԱԿՆԴԵՂ",
+    "meaning": {
+      "ru": "свёкла"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՇԱՂԳԱՄ",
+    "meaning": {
+      "ru": "репа"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԲՈՂԿ",
+    "meaning": {
+      "ru": "редис"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՍՊԱՆԱԽ",
+    "meaning": {
+      "ru": "шпинат"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՀԱԶԱՐ",
+    "meaning": {
+      "ru": "салат"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՆԵԽՈՒՐ",
+    "meaning": {
+      "ru": "сельдерей"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԾՆԵԲԵԿ",
+    "meaning": {
+      "ru": "спаржа"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԵԳԻՊՏԱՑՈՐԵՆ",
+    "meaning": {
+      "ru": "кукуруза"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՈԼՈՌ",
+    "meaning": {
+      "ru": "горох"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԼՈԲԻ",
+    "meaning": {
+      "ru": "фасоль"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՈՍՊ",
+    "meaning": {
+      "ru": "чечевица"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՍԻՍԵՌ",
+    "meaning": {
+      "ru": "нут"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԲԱՄԻԱ",
+    "meaning": {
+      "ru": "бамия"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԱՐՏԻՃՈՒԿ",
+    "meaning": {
+      "ru": "артишок"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՊՐԱՍ",
+    "meaning": {
+      "ru": "лук-порей"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՍՈՒՆԿ",
+    "meaning": {
+      "ru": "гриб"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ՍԱՄԻԹ",
+    "meaning": {
+      "ru": "укроп"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["vegetable"]
+  },
+  {
+    "word": "ԽՈՐՈՎԱԾ",
+    "meaning": {
+      "ru": "хоровац"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՏՈԼՄԱ",
+    "meaning": {
+      "ru": "толма"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՀԱՐԻՍԱ",
+    "meaning": {
+      "ru": "ариса"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԽԱՇ",
+    "meaning": {
+      "ru": "хаш"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՂԱՓԱՄԱ",
+    "meaning": {
+      "ru": "гапама"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԽԱՇԼԱՄԱ",
+    "meaning": {
+      "ru": "хашлама"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՔՅՈՒՖԹԱ",
+    "meaning": {
+      "ru": "кюфта"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՍՊԱՍ",
+    "meaning": {
+      "ru": "спас"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԳԱԹԱ",
+    "meaning": {
+      "ru": "гата"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԼԱՎԱՇ",
+    "meaning": {
+      "ru": "лаваш"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՄԱՏՆԱՔԱՇ",
+    "meaning": {
+      "ru": "матнакаш"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԲԱՍՏՈՒՐՄԱ",
+    "meaning": {
+      "ru": "бастурма"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՍՈՒՋՈՒԽ",
+    "meaning": {
+      "ru": "суджух"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԼԱՀՄԱՋՈ",
+    "meaning": {
+      "ru": "лахмаджо"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԱՐԻՇՏԱ",
+    "meaning": {
+      "ru": "аришта"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԲՈԶԲԱՇ",
+    "meaning": {
+      "ru": "бозбаш"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՓԱԽԼԱՎԱ",
+    "meaning": {
+      "ru": "пахлава"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՊԻՑՑԱ",
+    "meaning": {
+      "ru": "пицца"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԲՈՒՐԳԵՐ",
+    "meaning": {
+      "ru": "бургер"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՍՈՒՇԻ",
+    "meaning": {
+      "ru": "суши"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՌԱՄԵՆ",
+    "meaning": {
+      "ru": "рамен"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՊԱՍՏԱ",
+    "meaning": {
+      "ru": "паста"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԼԱԶԱՆՅԱ",
+    "meaning": {
+      "ru": "лазанья"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՌԻԶՈՏՈ",
+    "meaning": {
+      "ru": "ризотто"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԳՈՒԼԱՇ",
+    "meaning": {
+      "ru": "гуляш"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՇԱՈՒՐՄԱ",
+    "meaning": {
+      "ru": "шаурма"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՖԱԼԱՖԵԼ",
+    "meaning": {
+      "ru": "фалафель"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՀՈՒՄՈՒՍ",
+    "meaning": {
+      "ru": "хумус"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՔԱԲԱԲ",
+    "meaning": {
+      "ru": "кебаб"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ԲՈՐՇՉ",
+    "meaning": {
+      "ru": "борщ"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՊԵԼՄԵՆԻ",
+    "meaning": {
+      "ru": "пельмени"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["dish"]
+  },
+  {
+    "word": "ՎԱՐԵՆԻԿԻ",
+    "meaning": {
+      "ru": "вареники"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["dish"]
+  }
+]

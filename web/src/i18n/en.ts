@@ -49,6 +49,8 @@ export const en = {
     words: 'Main dictionary',
     toponyms: 'Armenian places',
     countries: 'Countries',
+    names: 'Names',
+    food: 'Food',
   },
   metadata: {
     label: 'Word metadata hints',

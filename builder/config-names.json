@@ -1,0 +1,11 @@
+{
+  "learnerLanguages": ["ru"],
+  "maxWords": 95,
+  "sources": [
+    {
+      "type": "curated",
+      "path": "builder/data/curated-names.json",
+      "priority": 100
+    }
+  ]
+}

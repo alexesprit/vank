@@ -37,7 +37,12 @@ export interface Dictionary {
   generatedAt: string;
   words: Word[];
 }
-export type PracticeModeId = 'words' | 'toponyms' | 'countries';
+export type PracticeModeId =
+  | 'words'
+  | 'toponyms'
+  | 'countries'
+  | 'names'
+  | 'food';
 export interface LetterStat {
   score: number;
   attempts: number;

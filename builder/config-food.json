@@ -1,0 +1,11 @@
+{
+  "learnerLanguages": ["ru"],
+  "maxWords": 92,
+  "sources": [
+    {
+      "type": "curated",
+      "path": "builder/data/curated-food.json",
+      "priority": 100
+    }
+  ]
+}

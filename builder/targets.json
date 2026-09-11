@@ -29,6 +29,26 @@
       "asset": "countries.json",
       "enrichment": "none",
       "checks": []
+    },
+    "names": {
+      "enabled": true,
+      "required": true,
+      "config": "builder/config-names.json",
+      "dataDir": "builder/data/names",
+      "output": "web/data/names.json",
+      "asset": "names.json",
+      "enrichment": "none",
+      "checks": []
+    },
+    "food": {
+      "enabled": true,
+      "required": true,
+      "config": "builder/config-food.json",
+      "dataDir": "builder/data/food",
+      "output": "web/data/food.json",
+      "asset": "food.json",
+      "enrichment": "none",
+      "checks": []
     }
   }
 }

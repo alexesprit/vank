@@ -1,0 +1,1142 @@
+[
+  {
+    "word": "ՀԱՅԿ",
+    "meaning": {
+      "ru": "Айк"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՐԱՄ",
+    "meaning": {
+      "ru": "Арам"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՏԻԳՐԱՆ",
+    "meaning": {
+      "ru": "Тигран"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՎԱՀԵ",
+    "meaning": {
+      "ru": "Ваге"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԳՈՌ",
+    "meaning": {
+      "ru": "Гор"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՆԱՐԵԿ",
+    "meaning": {
+      "ru": "Нарек"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՐՄԵՆ",
+    "meaning": {
+      "ru": "Армен"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՐՏԱԿ",
+    "meaning": {
+      "ru": "Артак"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՇՈՏ",
+    "meaning": {
+      "ru": "Ашот"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՎԱՐԴԱՆ",
+    "meaning": {
+      "ru": "Вардан"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԳԱԳԻԿ",
+    "meaning": {
+      "ru": "Гагик"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՍԱՄՎԵԼ",
+    "meaning": {
+      "ru": "Самвел"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՍԱՐԳԻՍ",
+    "meaning": {
+      "ru": "Саргис"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԳՐԻԳՈՐ",
+    "meaning": {
+      "ru": "Григор"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՀՈՎՀԱՆՆԵՍ",
+    "meaning": {
+      "ru": "Ованес"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԳԵՎՈՐԳ",
+    "meaning": {
+      "ru": "Геворг"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԿԱՐԵՆ",
+    "meaning": {
+      "ru": "Карен"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՌՈՒԲԵՆ",
+    "meaning": {
+      "ru": "Рубен"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՌԱՖԱՅԵԼ",
+    "meaning": {
+      "ru": "Рафаэль"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԴԱՎԻԹ",
+    "meaning": {
+      "ru": "Давид"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՄՀԵՐ",
+    "meaning": {
+      "ru": "Мгер"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՍԵՎԱԿ",
+    "meaning": {
+      "ru": "Севак"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԼԵՎՈՆ",
+    "meaning": {
+      "ru": "Левон"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՎԻԳԵՆ",
+    "meaning": {
+      "ru": "Виген"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՎԱԶԳԵՆ",
+    "meaning": {
+      "ru": "Вазген"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՆԴՐԱՆԻԿ",
+    "meaning": {
+      "ru": "Андраник"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՆԱՀԻՏ",
+    "meaning": {
+      "ru": "Анаит"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՆԱՐԵ",
+    "meaning": {
+      "ru": "Наре"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՄԱՆԵ",
+    "meaning": {
+      "ru": "Мане"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԼԻԼԻԹ",
+    "meaning": {
+      "ru": "Лилит"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԳԱՅԱՆԵ",
+    "meaning": {
+      "ru": "Гаяне"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՀԱՍՄԻԿ",
+    "meaning": {
+      "ru": "Асмик"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՍՈՆԱ",
+    "meaning": {
+      "ru": "Сона"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՄԱՐԻԱՄ",
+    "meaning": {
+      "ru": "Мариам"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՐՓԻՆԵ",
+    "meaning": {
+      "ru": "Арпине"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՆՈՒՆԵ",
+    "meaning": {
+      "ru": "Нуне"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՇՈՒՇԱՆ",
+    "meaning": {
+      "ru": "Шушан"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՍԻՐԱՆՈՒՇ",
+    "meaning": {
+      "ru": "Сирануш"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՐՄԻՆԵ",
+    "meaning": {
+      "ru": "Армине"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԼՈՒՍԻՆԵ",
+    "meaning": {
+      "ru": "Лусине"
+    },
+    "familiarity": {
+      "ru": 0.4
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՆԻ",
+    "meaning": {
+      "ru": "Ани"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՆԱՐԻՆԵ",
+    "meaning": {
+      "ru": "Нарине"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԿԱՐԻՆԵ",
+    "meaning": {
+      "ru": "Карине"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՌՈՒԶԱՆՆԱ",
+    "meaning": {
+      "ru": "Рузанна"
+    },
+    "familiarity": {
+      "ru": 0.55
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՄԱՐԻՆԵ",
+    "meaning": {
+      "ru": "Марине"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՍԱԹԵՆԻԿ",
+    "meaning": {
+      "ru": "Сатеник"
+    },
+    "familiarity": {
+      "ru": 0.25
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՍՏՂԻԿ",
+    "meaning": {
+      "ru": "Астхик"
+    },
+    "familiarity": {
+      "ru": 0.15
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՏԱԹԵՎԻԿ",
+    "meaning": {
+      "ru": "Татевик"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՀՌԻՓՍԻՄԵ",
+    "meaning": {
+      "ru": "Рипсиме"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԳՈՀԱՐ",
+    "meaning": {
+      "ru": "Гоар"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱԼԵՔՍԱՆԴՐ",
+    "meaning": {
+      "ru": "Александр"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱԼԵՔՍԵՅ",
+    "meaning": {
+      "ru": "Алексей"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱՆԴՐԵՅ",
+    "meaning": {
+      "ru": "Андрей"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱՆՏՈՆ",
+    "meaning": {
+      "ru": "Антон"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱՐՏՅՈՄ",
+    "meaning": {
+      "ru": "Артём"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԲՈՐԻՍ",
+    "meaning": {
+      "ru": "Борис"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՎԻԿՏՈՐ",
+    "meaning": {
+      "ru": "Виктор"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՎԼԱԴԻՄԻՐ",
+    "meaning": {
+      "ru": "Владимир"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԴՄԻՏՐԻ",
+    "meaning": {
+      "ru": "Дмитрий"
+    },
+    "familiarity": {
+      "ru": 0.75
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԵՎԳԵՆԻ",
+    "meaning": {
+      "ru": "Евгений"
+    },
+    "familiarity": {
+      "ru": 0.7
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԻՎԱՆ",
+    "meaning": {
+      "ru": "Иван"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԻԳՈՐ",
+    "meaning": {
+      "ru": "Игорь"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԿԻՐԻԼ",
+    "meaning": {
+      "ru": "Кирилл"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԿՈՆՍՏԱՆՏԻՆ",
+    "meaning": {
+      "ru": "Константин"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՄԱՔՍԻՄ",
+    "meaning": {
+      "ru": "Максим"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՄԻԽԱՅԻԼ",
+    "meaning": {
+      "ru": "Михаил"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՆԻԿՈԼԱՅ",
+    "meaning": {
+      "ru": "Николай"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՕԼԵԳ",
+    "meaning": {
+      "ru": "Олег"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՊԱՎԵԼ",
+    "meaning": {
+      "ru": "Павел"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՊՅՈՏՐ",
+    "meaning": {
+      "ru": "Пётр"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՌՈՄԱՆ",
+    "meaning": {
+      "ru": "Роман"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՍԵՐԳԵՅ",
+    "meaning": {
+      "ru": "Сергей"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՍՏԱՆԻՍԼԱՎ",
+    "meaning": {
+      "ru": "Станислав"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՅՈՒՐԻ",
+    "meaning": {
+      "ru": "Юрий"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱԼԵՔՍԱՆԴՐԱ",
+    "meaning": {
+      "ru": "Александра"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱԼԻՆԱ",
+    "meaning": {
+      "ru": "Алина"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱՆԱՍՏԱՍԻԱ",
+    "meaning": {
+      "ru": "Анастасия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՎԱԼԵՐԻԱ",
+    "meaning": {
+      "ru": "Валерия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՎԻԿՏՈՐԻԱ",
+    "meaning": {
+      "ru": "Виктория"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԴԱՐՅԱ",
+    "meaning": {
+      "ru": "Дарья"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԵԿԱՏԵՐԻՆԱ",
+    "meaning": {
+      "ru": "Екатерина"
+    },
+    "familiarity": {
+      "ru": 0.8
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԵԼԵՆԱ",
+    "meaning": {
+      "ru": "Елена"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԻՐԻՆԱ",
+    "meaning": {
+      "ru": "Ирина"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՔՍԵՆԻԱ",
+    "meaning": {
+      "ru": "Ксения"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԼՅՈՒԴՄԻԼԱ",
+    "meaning": {
+      "ru": "Людмила"
+    },
+    "familiarity": {
+      "ru": 0.85
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՄԱՐԻՆԱ",
+    "meaning": {
+      "ru": "Марина"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՄԱՐԻԱ",
+    "meaning": {
+      "ru": "Мария"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՆԱՏԱԼՅԱ",
+    "meaning": {
+      "ru": "Наталья"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՕՔՍԱՆԱ",
+    "meaning": {
+      "ru": "Оксана"
+    },
+    "familiarity": {
+      "ru": 0.95
+    },
+    "usefulnessScore": 0.88,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՕԼԳԱ",
+    "meaning": {
+      "ru": "Ольга"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՊՈԼԻՆԱ",
+    "meaning": {
+      "ru": "Полина"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՍՎԵՏԼԱՆԱ",
+    "meaning": {
+      "ru": "Светлана"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՍՈՖԻԱ",
+    "meaning": {
+      "ru": "София"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՏԱՏՅԱՆԱ",
+    "meaning": {
+      "ru": "Татьяна"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ՅՈՒԼԻԱ",
+    "meaning": {
+      "ru": "Юлия"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  }
+]

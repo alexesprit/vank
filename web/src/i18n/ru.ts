@@ -44,6 +44,8 @@ export const ru = {
     words: 'Основной словарь',
     toponyms: 'Места Армении',
     countries: 'Страны',
+    names: 'Имена',
+    food: 'Еда',
   },
   metadata: {
     label: 'Подсказки по слову',
