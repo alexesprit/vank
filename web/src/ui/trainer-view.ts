@@ -97,6 +97,7 @@ function mountIntro(
 ) {
   const dialog = element<HTMLDialogElement>('intro-dialog');
   const quickSettings = element('intro-quick-settings');
+  const introAnalytics = element('intro-analytics');
   const quickMetadataHints = element<HTMLInputElement>(
     'intro-metadata-hints-setting',
   );
@@ -116,11 +117,12 @@ function mountIntro(
   element('help-open').addEventListener('click', (event) => {
     trainer.pauseFlash();
     quickSettings.hidden = !(event.metaKey || event.ctrlKey);
+    introAnalytics.hidden = true;
     dialog.showModal();
   });
   element('intro-close').addEventListener('click', close);
   element('intro-start').addEventListener('click', () => {
-    if (!firstRun) {
+    if (!firstRun || introAnalytics.hidden) {
       close();
       return;
     }
@@ -142,6 +144,7 @@ function mountIntro(
   });
   if (firstRun) {
     quickSettings.hidden = false;
+    introAnalytics.hidden = false;
     quickMetadataHints.checked = trainer.settings.metadataHints;
     quickAnalytics.checked = !doNotTrackEnabled();
     quickAnalytics.disabled = doNotTrackEnabled();

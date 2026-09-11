@@ -236,7 +236,7 @@ export const en = {
   },
   intro: {
     title: 'How Vank works',
-    quickSettings: 'Quick settings',
+    quickSettings: 'Practice options',
     lead: 'Read the Armenian word and enter its pronunciation.',
     prerequisite:
       'Vank is for reading practice, not learning the alphabet. Start when you already know at least some Armenian letters.',

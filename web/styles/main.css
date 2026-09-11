@@ -968,7 +968,7 @@ dialog::backdrop {
   grid-template-columns: 48px minmax(0, 1fr);
   gap: 16px;
   align-items: start;
-  padding: 16px 24px;
+  padding: 16px 24px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -1185,7 +1185,6 @@ fieldset + fieldset {
 .reset-section {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 1px solid var(--border);
 }
 
 .reset-section h3,
@@ -1262,22 +1261,44 @@ legend {
 }
 
 .intro-quick-settings {
-  display: grid;
-  gap: 24px;
   margin-top: 24px;
-  padding-top: 24px;
-  padding-bottom: 32px;
-  border-top: 1px solid var(--border);
 }
 
-.intro-quick-settings h3 {
-  margin: 0;
+.intro-quick-settings summary {
+  cursor: pointer;
   font-size: 18px;
+  font-weight: 700;
+}
+
+.quick-settings-content {
+  display: grid;
+  gap: 24px;
+  padding-top: 24px;
 }
 
 .quick-setting {
   display: grid;
   gap: 4px;
+}
+
+.intro-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  margin: 24px -24px 0;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.intro-actions .primary-btn {
+  width: 100%;
+}
+
+#intro-dialog {
+  padding-bottom: 0;
 }
 
 #intro-dialog > ul {
