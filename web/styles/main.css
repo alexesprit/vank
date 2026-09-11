@@ -487,6 +487,40 @@ button {
 .mistake-line {
   margin-top: 8px;
   font-size: 14px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mapping-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mapping-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--soft);
+  white-space: nowrap;
+}
+
+.mapping-source {
+  font-weight: 700;
+}
+
+.mapping-arrow {
+  color: var(--muted);
+}
+
+.mapping-reading {
+  color: var(--muted);
 }
 
 .trainer-footer {

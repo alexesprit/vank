@@ -1,4 +1,4 @@
-import type { Dictionary, Evaluation } from '../../../shared/types.ts';
+import type { Dictionary, Evaluation, Word } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { countCorrectAnswers } from '../core/session.ts';
@@ -12,14 +12,74 @@ import { renderSyllables } from './syllable-colors.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
+function mistakeMappings(units: Evaluation['units']) {
+  const seen = new Set<string>();
+  return units.flatMap((unit) => {
+    if (unit.observation !== 0) return [];
+    const key = `${unit.source}\u0000${unit.expected}`;
+    if (seen.has(key)) return [];
+    seen.add(key);
+    return [{ source: unit.source, expected: unit.expected }];
+  });
+}
+export function displayMappingUnits(
+  word: Pick<Word, 'units'>,
+  result: Evaluation,
+  locale: string,
+) {
+  if (
+    result.status !== 'unknown' ||
+    result.normalizedAnswer ||
+    locale !== 'ru' ||
+    !word.units
+  )
+    return result.units;
+  return result.units.map((unit, index) => ({
+    ...unit,
+    expected: word.units?.[index]?.cyrillic ?? unit.expected,
+  }));
+}
 export function formatMistakes(units: Evaluation['units']) {
-  return [
-    ...new Set(
-      units
-        .filter((unit) => unit.observation === 0)
-        .map((unit) => `${unit.source} → ${unit.expected}`),
-    ),
-  ].join(' · ');
+  return mistakeMappings(units)
+    .map((mapping) => `${mapping.source} → ${mapping.expected}`)
+    .join(' · ');
+}
+function renderMistakeMappings(
+  container: HTMLElement,
+  units: Evaluation['units'],
+  labelKey: 'trainer.mapping' | 'trainer.mistakes',
+) {
+  const mappings = mistakeMappings(units);
+  if (!mappings.length) {
+    container.textContent = '';
+    return false;
+  }
+  const label = document.createElement('span');
+  label.className = 'mapping-label';
+  label.textContent = t(labelKey, { mapping: '', mistakes: '' }).trim();
+  const list = document.createElement('span');
+  list.className = 'mapping-list';
+  list.append(
+    ...mappings.map(({ source, expected }) => {
+      const chip = document.createElement('span');
+      chip.className = 'mapping-chip';
+      const sourceElement = document.createElement('span');
+      sourceElement.className = 'mapping-source armenian-font';
+      sourceElement.lang = 'hy';
+      sourceElement.textContent = source;
+      const arrow = document.createElement('span');
+      arrow.className = 'mapping-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '→';
+      const reading = document.createElement('span');
+      reading.className = 'mapping-reading';
+      reading.textContent = expected;
+      chip.append(sourceElement, arrow, reading);
+      return chip;
+    }),
+  );
+  container.replaceChildren(label, list);
+  return true;
 }
 export function showError(error: unknown) {
   const message = element('error');
@@ -160,17 +220,16 @@ export function mountTrainer(trainer: Trainer, dictionary: Dictionary) {
         `${word.acceptedCyrillic[0]} · ${word.readingLatin}`;
       element('meaning').textContent =
         word.meaning?.[TRAINER_CONFIG.learnerLanguage] ?? '';
-      const mistakes = formatMistakes(result.units);
-      element('mistakes').textContent = mistakes
-        ? t(
-            result.status === 'unknown'
-              ? 'trainer.mapping'
-              : 'trainer.mistakes',
-            { mapping: mistakes, mistakes },
-          )
-        : result.status === 'ambiguous'
-          ? t('trainer.compareReading')
-          : '';
+      const mistakes = element('mistakes');
+      if (
+        !renderMistakeMappings(
+          mistakes,
+          displayMappingUnits(word, result, document.documentElement.lang),
+          result.status === 'unknown' ? 'trainer.mapping' : 'trainer.mistakes',
+        ) &&
+        result.status === 'ambiguous'
+      )
+        mistakes.textContent = t('trainer.compareReading');
       next.focus();
     } else {
       if (resetInput) {
