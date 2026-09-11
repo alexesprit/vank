@@ -88,6 +88,10 @@ export function mountAchievements(trainer: Trainer) {
           const itemIcon = document.createElement('div');
           itemIcon.className = 'achievement-icon';
           itemIcon.append(icon(concealed ? 'circle-help' : definition.icon));
+          itemIcon.addEventListener('click', (event) => {
+            if (!revealHiddenAchievements(event)) return;
+            show([definition], dialog);
+          });
           const copy = document.createElement('div');
           copy.className = 'achievement-copy';
           const heading = document.createElement('h3');
@@ -124,11 +128,15 @@ export function mountAchievements(trainer: Trainer) {
     if (dismissTimer !== undefined) window.clearTimeout(dismissTimer);
     render();
     renderList(revealHidden);
-    dialog.showModal();
+    if (!dialog.open) dialog.showModal();
   };
-  const show = (unlocks: readonly AchievementUnlock[]) => {
+  const show = (
+    unlocks: readonly Pick<AchievementUnlock, 'id'>[],
+    snackbarContainer: HTMLElement = document.body,
+  ) => {
     if (!unlocks.length) return;
     render();
+    snackbarContainer.append(snackbar);
     const first = definitionById.get(unlocks[0].id);
     snackbarLabel.textContent =
       unlocks.length === 1
