@@ -6,8 +6,11 @@ import type { SelectionStrategy } from './word-selector.ts';
 
 export type { PracticeModeId } from '../../../shared/types.ts';
 
+export type PracticeModeGroup = 'adaptive' | 'packs';
+
 export interface PracticeModeDescriptor {
   id: PracticeModeId;
+  group: PracticeModeGroup;
   url: string;
   strategy: SelectionStrategy;
   labelKey: string;
@@ -16,18 +19,21 @@ export interface PracticeModeDescriptor {
 export const PRACTICE_MODES = [
   {
     id: 'words',
+    group: 'adaptive',
     url: wordsUrl,
     strategy: 'adaptive',
     labelKey: 'modes.words',
   },
   {
     id: 'toponyms',
+    group: 'packs',
     url: toponymsUrl,
     strategy: 'finite-pack',
     labelKey: 'modes.toponyms',
   },
   {
     id: 'countries',
+    group: 'packs',
     url: countriesUrl,
     strategy: 'finite-pack',
     labelKey: 'modes.countries',

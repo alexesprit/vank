@@ -40,7 +40,13 @@ export const en = {
     compareReading: 'Compare your answer with the reading above.',
   },
   modes: {
-    words: 'Everyday words',
+    adaptive: 'Adaptive',
+    adaptiveHint:
+      'Chooses the next word from the main dictionary based on your letter progress and recent answers.',
+    packs: 'Packs',
+    packsHint:
+      'Shows a curated set in shuffled order so you can recognize the whole pack.',
+    words: 'Main dictionary',
     toponyms: 'Armenian places',
     countries: 'Countries',
   },

@@ -1,6 +1,6 @@
 import { doNotTrackEnabled } from '../analytics.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
-import { PRACTICE_MODES } from '../core/modes.ts';
+import { PRACTICE_MODES, type PracticeModeGroup } from '../core/modes.ts';
 import { countCorrectAnswers } from '../core/session.ts';
 import {
   FLASH_UNLOCK_AFTER_CORRECT,
@@ -145,9 +145,54 @@ export function mountSettings(
       return label;
     }),
   );
-  practiceMode.replaceChildren(
-    ...PRACTICE_MODES.map((mode) => new Option(t(mode.labelKey), mode.id)),
-  );
+  const modeGroups = new Map<PracticeModeGroup, HTMLOptGroupElement>();
+  for (const mode of PRACTICE_MODES) {
+    let group = modeGroups.get(mode.group);
+    if (!group) {
+      group = document.createElement('optgroup');
+      group.label = t(`modes.${mode.group}`);
+      modeGroups.set(mode.group, group);
+    }
+    group.append(new Option(t(mode.labelKey), mode.id));
+  }
+  practiceMode.replaceChildren(...modeGroups.values());
+  const modeTooltip = element<HTMLElement>('mode-tooltip');
+  for (const [id, key] of [
+    ['adaptive-mode-help', 'modes.adaptiveHint'],
+    ['packs-mode-help', 'modes.packsHint'],
+  ] as const) {
+    const help = element<HTMLElement>(id);
+    const positionTooltip = () => {
+      const { bottom, left, width } = help.getBoundingClientRect();
+      const container = help.closest('.practice-mode-help');
+      const bounds = container?.getBoundingClientRect();
+      const availableWidth = bounds?.width ?? window.innerWidth;
+      const tooltipWidth = Math.min(220, Math.max(0, availableWidth - 32));
+      const minLeft = Math.min(16, availableWidth - tooltipWidth);
+      const maxLeft = Math.max(minLeft, availableWidth - 16 - tooltipWidth);
+      const centeredLeft =
+        left + width / 2 - (bounds?.left ?? 0) - tooltipWidth / 2;
+      modeTooltip.style.left = `${Math.min(
+        maxLeft,
+        Math.max(minLeft, centeredLeft),
+      )}px`;
+      modeTooltip.style.top = `${bottom - (bounds?.top ?? 0) + 8}px`;
+      modeTooltip.style.width = `${tooltipWidth}px`;
+      modeTooltip.textContent = t(key);
+      modeTooltip.hidden = false;
+    };
+    const hideTooltip = () => {
+      modeTooltip.hidden = true;
+    };
+    help.addEventListener('mouseenter', positionTooltip);
+    help.addEventListener('focus', positionTooltip);
+    help.addEventListener('mouseleave', () => {
+      if (document.activeElement !== help) hideTooltip();
+    });
+    help.addEventListener('blur', () => {
+      if (!help.matches(':hover')) hideTooltip();
+    });
+  }
   if (practiceModeFieldset)
     practiceModeFieldset.hidden = PRACTICE_MODES.length < 2;
 

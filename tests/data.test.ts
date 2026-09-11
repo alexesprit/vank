@@ -63,6 +63,16 @@ it('loads both specialized dictionaries through the mode registry', async () => 
   ]);
 });
 
+it('groups modes by selection strategy for the settings UI', () => {
+  expect(
+    PRACTICE_MODES.map(({ id, group, strategy }) => ({ id, group, strategy })),
+  ).toEqual([
+    { id: 'words', group: 'adaptive', strategy: 'adaptive' },
+    { id: 'toponyms', group: 'packs', strategy: 'finite-pack' },
+    { id: 'countries', group: 'packs', strategy: 'finite-pack' },
+  ]);
+});
+
 it('forwards an abort signal to dictionary requests', async () => {
   const data = {
     version: 1,

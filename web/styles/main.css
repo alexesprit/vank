@@ -649,6 +649,61 @@ button {
   height: 14px;
 }
 
+.practice-mode-help {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.practice-mode-help > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.practice-mode-help .stat-help {
+  position: static;
+  top: auto;
+  right: auto;
+}
+
+.practice-mode-help .stat-help::after {
+  display: none;
+}
+
+.mode-tooltip {
+  position: absolute;
+  display: block;
+  z-index: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.mode-tooltip[hidden] {
+  display: none;
+}
+
+.mode-tooltip:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .flash-duration-label .stat-help {
   position: relative;
   top: auto;
