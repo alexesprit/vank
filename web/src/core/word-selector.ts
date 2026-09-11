@@ -69,15 +69,15 @@ export function selectWord(
   random = Math.random,
 ): Selection {
   if (!words.length) throw new Error('Cannot train with an empty dictionary');
-  const knownCount = Object.values(state.letters).filter(
+  const knownLetterCount = Object.values(state.letters).filter(
     (l) => l.score > 0,
   ).length;
-  const successfulWords = Object.values(state.words).filter(
+  const successfulWordCount = Object.values(state.words).filter(
     (w) => w.correct > 0,
   ).length;
   const bootstrap =
-    successfulWords < config.bootstrapSuccessfulWords ||
-    knownCount < config.bootstrapKnownLetters;
+    successfulWordCount < config.bootstrapSuccessfulWords ||
+    knownLetterCount < config.bootstrapKnownLetters;
   const unseen = words.filter((w) => !state.words[w.id]);
   const bootstrapPool = unseen.length ? unseen : words;
   const loanwords = bootstrapPool.filter(
@@ -239,8 +239,8 @@ export function selectWord(
       : {}),
     diagnostics: {
       bootstrap,
-      knownLetters: knownCount,
-      successfulWords,
+      knownLetters: knownLetterCount,
+      successfulWords: successfulWordCount,
       unknownLetters: unknown,
       needsConfidence,
       confidenceBreak,
