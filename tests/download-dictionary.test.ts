@@ -41,7 +41,7 @@ it('downloads, validates, verifies, and caches the runtime dictionary', async ()
   expect(fetch).toHaveBeenCalledOnce();
 });
 
-it('uses target-specific release environment variables', async () => {
+it('resolves the latest release and downloads its target asset', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'vank-dictionaries-'));
   directories.push(directory);
   const output = join(directory, 'words.json');
@@ -69,15 +69,31 @@ it('uses target-specific release environment variables', async () => {
       },
     }),
   );
-  vi.stubGlobal(
-    'fetch',
-    vi.fn(async () => new Response(data)),
-  );
-
-  await downloadDictionaries(manifest, {
-    DICTIONARY_URL_WORDS: 'https://example.test/words.json',
-    DICTIONARY_SHA256_WORDS: checksum,
+  const fetcher: typeof globalThis.fetch = vi.fn(async (input) => {
+    if (
+      String(input) ===
+      'https://api.github.com/repos/example/vank/releases/latest'
+    )
+      return new Response(
+        JSON.stringify({
+          assets: [
+            {
+              name: 'words.json',
+              browser_download_url: 'https://example.test/words.json',
+              digest: `sha256:${checksum}`,
+            },
+          ],
+        }),
+      );
+    return new Response(data);
   });
 
+  await downloadDictionaries(
+    manifest,
+    { GITHUB_REPOSITORY: 'example/vank' },
+    fetcher,
+  );
+
   expect(await readFile(output, 'utf8')).toBe(data);
+  expect(fetcher).toHaveBeenCalledTimes(2);
 });

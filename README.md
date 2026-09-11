@@ -25,23 +25,21 @@ npm run preview
 `web/data/*.json` are minified build artifacts and are not stored in Git.
 Run `npm run build:seed` first after cloning (or after removing the artifact),
 then local development and tests use that deterministic 79-word dictionary.
-`DICTIONARY_URL` and
-`DICTIONARY_SHA256` remain available in `.env` when an external artifact is
-needed explicitly.
 
-The online deployment resolves the latest GitHub Release `words.json` asset and
-its SHA-256 during the GitHub Actions build; no dictionary variables are needed
-in Vercel. Publish and redeploy a locally built dictionary with:
+The downloader resolves enabled assets from the latest GitHub Release and
+verifies each asset against GitHub's SHA-256 digest. The deploy workflow passes
+the repository slug to the Vercel build; no per-dictionary URL variables are
+needed. Publish and redeploy a locally built dictionary with:
 
 ```sh
-npm run build:dictionary
-npm run dictionary:publish
+npm run dict:build
+npm run dict:publish
 ```
 
-`dictionary:publish` reruns the production quality gate from
+`dict:publish` reruns the production quality gate from
 `builder/config.json` before calling GitHub.
 
-The release contains only the runtime file. Rich provenance and enrichment data
+The release contains only the runtime files. Rich provenance and enrichment data
 remain in the builder intermediates, including `builder/data/words.json`.
 Deterministic letter decomposition is also omitted and reconstructed when the
 app validates the downloaded dictionary.
@@ -74,12 +72,12 @@ npm run normalize                 # re-read raw.json; normalize and merge fields
 npm run derive                    # read normalized.json; derive technical metadata
 npm run enrich                    # read deterministic.json; cached OpenRouter batches
 npm run validate                  # apply overrides, compose, validate, emit words.json
-npm run build:dictionary           # all stages; reuse source files and AI item caches
-npm run build:dictionaries         # run all required targets from builder/targets.json
-npm run dictionary:publish-all     # publish target assets in one GitHub release
+npm run dict:build                 # build all enabled targets from builder/targets.json
+npm run dict:publish               # publish target assets in one GitHub release
+npm run dict:download               # download all enabled targets from the latest release
 ```
 
-`builder/targets.json` defines each dictionary entrypoint: its builder config,
+`builder/targets.json` defines each dictionary target: its builder config,
 intermediate directory, runtime output, release asset name, enrichment mode,
 and validation checks. The current manifest contains only the required `words`
 target; specialized targets can be enabled there when their curated sources
@@ -134,7 +132,7 @@ adding them to the candidate list; discovery never promotes them automatically.
 The curated `ԿՈՄԲՈ` entry is attested at https://artlunch.am/menu.
 
 ```sh
-npm run build:dictionary -- --curated-only --no-ai --output /tmp/vank-review/words.json
+node builder/src/cli.ts build --curated-only --no-ai --output /tmp/vank-review/words.json
 npm run enrich -- --verbose
 npm run validate -- --quiet
 ```

@@ -37,19 +37,7 @@ jobs:
         with:
           node-version: 24
       - run: npx --yes vercel@59.11.2 pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Resolve and deploy latest dictionary release
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Deploy with latest dictionary release
         run: |
-          release="$(gh api repos/${{ github.repository }}/releases/latest)"
-          build_env_args=()
-          while IFS=$'\t' read -r target asset; do
-            key="$(printf '%s' "$target" | tr '[:lower:]-' '[:upper:]_')"
-            asset_data="$(printf '%s' "$release" | jq -r --arg asset "$asset" '[.assets[] | select(.name == $asset)] | if length == 1 then [.[0].browser_download_url, .[0].digest] | @tsv else error("Expected one \($asset) asset") end')"
-            IFS=$'\t' read -r url digest <<< "$asset_data"
-            [[ "$url" =~ ^https://github\.com/[^[:space:]]+$ ]]
-            [[ "$digest" =~ ^sha256:[a-f0-9]{64}$ ]]
-            build_env_args+=(--build-env "DICTIONARY_URL_${key}=$url")
-            build_env_args+=(--build-env "DICTIONARY_SHA256_${key}=${digest#sha256:}")
-          done < <(jq -r '.targets | to_entries[] | select(.value.enabled != false) | [.key, .value.asset] | @tsv' builder/targets.json)
-          npx --yes vercel@59.11.2 deploy --prod --token=${{ secrets.VERCEL_TOKEN }} "${build_env_args[@]}"
+          npx --yes vercel@59.11.2 deploy --prod --token=${{ secrets.VERCEL_TOKEN }} \
+            --build-env "DICTIONARY_REPOSITORY=${{ github.repository }}"
