@@ -89,7 +89,8 @@ export function selectWord(
   const attemptsSinceLastFamiliarWord = () => {
     let count = 0;
     for (const attempt of state.recent) {
-      if (attempt.payload.familiarity >= config.bootstrapFamiliarityThreshold) break;
+      if (attempt.payload.familiarity >= config.bootstrapFamiliarityThreshold)
+        break;
       count += 1;
     }
     return count;

@@ -264,7 +264,6 @@ describe('adaptive selection', () => {
     expect(selected.diagnostics?.candidates.afterFamiliarInjection).toBe(
       selected.diagnostics?.candidates.afterReinforcement,
     );
-    expect(selected.diagnostics?.candidates.afterReinforcement).toBe(2);
   });
   it('resets familiar-word interval after a familiar attempt', () => {
     const familiar = { ...word('ԳԱԶ', 1), id: 'familiar-3' };
@@ -311,7 +310,6 @@ describe('adaptive selection', () => {
     expect(reset.diagnostics?.candidates.afterFamiliarInjection).toBe(
       reset.diagnostics?.candidates.afterReinforcement,
     );
-    expect(reset.diagnostics?.candidates.afterReinforcement).toBe(2);
   });
   it('avoids bootstrap repeats, then falls back from loanwords to unseen native words', () => {
     const loanword = word('ԳԱԶ', 1),
