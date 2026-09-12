@@ -361,6 +361,7 @@ export const en = {
     copied: 'Copied',
     failed: 'Failed',
     showJson: 'Show JSON',
+    fontComparison: 'Font comparison',
     selection: 'Word selection',
     currentWord: 'Current word',
     lastEvaluation: 'Last evaluation',

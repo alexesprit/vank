@@ -360,6 +360,7 @@ export const ru = {
     copied: 'Скопировано',
     failed: 'Не удалось',
     showJson: 'Показать JSON',
+    fontComparison: 'Сравнение шрифтов',
     selection: 'Выбор слова',
     currentWord: 'Текущее слово',
     lastEvaluation: 'Последняя проверка',

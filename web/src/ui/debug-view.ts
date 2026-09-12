@@ -1,8 +1,10 @@
 import { version as appVersion } from '../../../package.json';
+import { ALPHABET } from '../../../shared/armenian.ts';
 import type { Dictionary } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { progress } from '../core/session.ts';
-import { t } from '../i18n/index.ts';
+import { FONTS, loadFont } from '../core/settings.ts';
+import { fontName, t } from '../i18n/index.ts';
 import { PROGRESS_SCHEMA_VERSION } from '../storage/repository.ts';
 import type { Trainer } from '../trainer.ts';
 
@@ -71,6 +73,47 @@ function section(title: string, value: unknown, collapsed = false) {
     details.append(summary, code);
     container.append(heading, details);
   } else container.append(heading, code);
+  return container;
+}
+
+function fontPreviews(word: string) {
+  const previews = document.createElement('div');
+  previews.className = 'debug-font-previews';
+  const alphabet = ALPHABET.map(({ upper }) => upper).join('');
+  const lowercase = ALPHABET.map(({ lower }) => lower).join('');
+
+  for (const font of FONTS) {
+    const card = document.createElement('section');
+    card.className = 'debug-font-preview';
+    card.style.fontFamily = font.family;
+    const heading = document.createElement('h4');
+    heading.textContent = fontName(font.id);
+    const sample = document.createElement('p');
+    sample.className = 'debug-font-word';
+    sample.textContent = word;
+    const upper = document.createElement('p');
+    upper.className = 'debug-font-alphabet';
+    upper.textContent = alphabet;
+    const lower = document.createElement('p');
+    lower.className = 'debug-font-alphabet';
+    lower.textContent = `${lowercase} և`;
+    card.append(heading, sample, upper, lower);
+    previews.append(card);
+    void loadFont(font).catch(() => {});
+  }
+
+  return previews;
+}
+
+function fontComparison(word: string) {
+  const container = document.createElement('section');
+  container.className = 'debug-section';
+  const heading = document.createElement('div');
+  heading.className = 'debug-section-heading';
+  const title = document.createElement('h3');
+  title.textContent = t('debug.fontComparison');
+  heading.append(title);
+  container.append(heading, fontPreviews(word));
   return container;
 }
 
@@ -158,6 +201,7 @@ export function mountDebugDialog(
       },
     };
     content.replaceChildren(
+      fontComparison(trainer.current.word.word),
       section(t('debug.selection'), snapshot.selection),
       section(t('debug.currentWord'), snapshot.currentWord),
       section(t('debug.lastEvaluation'), snapshot.lastEvaluation),

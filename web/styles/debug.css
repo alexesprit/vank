@@ -9,6 +9,38 @@
   gap: 20px;
 }
 
+.debug-font-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.debug-font-preview {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.debug-font-preview h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.debug-font-word {
+  margin: 0 0 8px;
+  font-size: 28px;
+  overflow-wrap: anywhere;
+}
+
+.debug-font-alphabet {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
 .debug-section-heading {
   margin-bottom: 8px;
 }
