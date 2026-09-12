@@ -1,4 +1,9 @@
-import type { Dictionary, Evaluation, Word } from '../../../shared/types.ts';
+import type {
+  CaseMode,
+  Dictionary,
+  Evaluation,
+  Word,
+} from '../../../shared/types.ts';
 import { doNotTrackEnabled } from '../analytics.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
@@ -22,8 +27,19 @@ function mistakeMappings(units: Evaluation['units']) {
     const key = `${unit.source}\u0000${unit.expected}`;
     if (seen.has(key)) return [];
     seen.add(key);
-    return [{ source: unit.source, expected: unit.expected }];
+    return [
+      { source: unit.source, expected: unit.expected, position: unit.position },
+    ];
   });
+}
+export function formatMappingSource(
+  source: string,
+  position: number,
+  caseMode: CaseMode,
+) {
+  return caseMode === 'caps' || (caseMode === 'normal' && position === 0)
+    ? source
+    : source.toLocaleLowerCase('hy');
 }
 export function displayMappingUnits(
   word: Pick<Word, 'units'>,
@@ -51,6 +67,8 @@ function renderMistakeMappings(
   container: HTMLElement,
   units: Evaluation['units'],
   labelKey: 'trainer.mapping' | 'trainer.mistakes',
+  fontFamily: string,
+  presentation: Trainer['presentation'],
 ) {
   const mappings = mistakeMappings(units);
   if (!mappings.length) {
@@ -63,13 +81,19 @@ function renderMistakeMappings(
   const list = document.createElement('span');
   list.className = 'mapping-list';
   list.append(
-    ...mappings.map(({ source, expected }) => {
+    ...mappings.map(({ source, expected, position }) => {
       const chip = document.createElement('span');
       chip.className = 'mapping-chip';
       const sourceElement = document.createElement('span');
       sourceElement.className = 'mapping-source';
       sourceElement.lang = 'hy';
-      sourceElement.textContent = source;
+      sourceElement.textContent = formatMappingSource(
+        source,
+        position,
+        presentation.caseMode,
+      );
+      sourceElement.style.fontFamily = fontFamily;
+      sourceElement.style.fontStyle = presentation.italic ? 'italic' : 'normal';
       const arrow = document.createElement('span');
       arrow.className = 'mapping-arrow';
       arrow.setAttribute('aria-hidden', 'true');
@@ -264,6 +288,8 @@ export function mountTrainer(
           mistakes,
           displayMappingUnits(word, result, document.documentElement.lang),
           result.status === 'unknown' ? 'trainer.mapping' : 'trainer.mistakes',
+          trainer.font.family,
+          trainer.presentation,
         ) &&
         result.status === 'ambiguous'
       )

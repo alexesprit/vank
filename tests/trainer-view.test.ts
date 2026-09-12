@@ -3,8 +3,18 @@ import { deriveWord } from '../shared/armenian';
 import { evaluate } from '../web/src/core/answer-checker';
 import {
   displayMappingUnits,
+  formatMappingSource,
   formatMistakes,
 } from '../web/src/ui/trainer-view';
+
+describe('mapping typography', () => {
+  it('formats letters using their prompt case and position', () => {
+    expect(formatMappingSource('Ե', 0, 'normal')).toBe('Ե');
+    expect(formatMappingSource('Ր', 1, 'normal')).toBe('ր');
+    expect(formatMappingSource('Մ', 0, 'lower')).toBe('մ');
+    expect(formatMappingSource('Մ', 0, 'caps')).toBe('Մ');
+  });
+});
 
 describe('mistake summaries', () => {
   it('deduplicates repeated letter mappings while preserving order', () => {
