@@ -1,6 +1,10 @@
 import type { LearnerState } from '../../../shared/types.ts';
 import { progress } from '../core/session.ts';
+import { FONTS } from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
+import { applyArmenianFontFamily } from './armenian-font.ts';
+
+const fontFamilyById = new Map(FONTS.map(({ id, family }) => [id, family]));
 
 const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
@@ -9,7 +13,11 @@ const element = (id: string) => {
   if (!found) throw new Error(`Missing element: ${id}`);
   return found;
 };
-export function renderStats(state: LearnerState, sessionStart: number) {
+export function renderStats(
+  state: LearnerState,
+  sessionStart: number,
+  fontFamily: string,
+) {
   const stats = progress(state);
   const emptyStats = () => {
     const row = document.createElement('p');
@@ -65,6 +73,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
         : 'alphabet-placeholder';
       letter.lang = 'hy';
       letter.textContent = stat.introduced ? stat.letter : '·';
+      if (stat.introduced) applyArmenianFontFamily(letter, fontFamily);
       cell.append(letter);
       if (stat.introduced) {
         const score = document.createElement('span');
@@ -95,6 +104,7 @@ export function renderStats(state: LearnerState, sessionStart: number) {
       chip.className = 'letter-chip';
       chip.lang = 'hy';
       chip.textContent = letter;
+      applyArmenianFontFamily(chip, fontFamily);
       return chip;
     }),
   );
@@ -110,12 +120,21 @@ export function renderStats(state: LearnerState, sessionStart: number) {
         ? 'font-stat weak-font'
         : 'font-stat';
       const summary = `${fontName(stat.fontId)}: ${percentage(stat.accuracy)}`;
-      row.textContent = stat.weakLetters.length
-        ? t('progress.weaker', {
-            letters: stat.weakLetters.join(' '),
-            summary,
-          })
-        : summary;
+      if (stat.weakLetters.length) {
+        const weakLetters = document.createElement('span');
+        weakLetters.lang = 'hy';
+        weakLetters.textContent = stat.weakLetters.join(' ');
+        applyArmenianFontFamily(
+          weakLetters,
+          fontFamilyById.get(stat.fontId) ?? fontFamily,
+        );
+        row.append(
+          document.createTextNode(
+            t('progress.weaker', { letters: '', summary }),
+          ),
+          weakLetters,
+        );
+      } else row.textContent = summary;
       return row;
     }),
   );

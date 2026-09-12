@@ -13,6 +13,7 @@ import { availableTypography, formatPrompt } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
 import { mountAchievements } from './achievements-view.ts';
+import { applyArmenianFontFamily } from './armenian-font.ts';
 import { mountDebugDialog } from './debug-view.ts';
 import { mountSettings } from './settings-view.ts';
 import { mountStatsDialog, renderStats } from './stats-view.ts';
@@ -92,7 +93,7 @@ function renderMistakeMappings(
         position,
         presentation.caseMode,
       );
-      sourceElement.style.fontFamily = fontFamily;
+      applyArmenianFontFamily(sourceElement, fontFamily);
       sourceElement.style.fontStyle = presentation.italic ? 'italic' : 'normal';
       const arrow = document.createElement('span');
       arrow.className = 'mapping-arrow';
@@ -301,7 +302,7 @@ export function mountTrainer(
         input.focus();
       }
     }
-    renderStats(trainer.state, sessionStart);
+    renderStats(trainer.state, sessionStart, trainer.font.family);
   }
   async function submit(skipped = false) {
     check.disabled = skip.disabled = true;
