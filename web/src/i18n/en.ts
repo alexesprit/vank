@@ -351,7 +351,7 @@ export const en = {
   typography: {
     caps: 'CAPS',
     normal: 'Title case',
-    lower: 'Lowercase',
+    lower: 'lowercase',
     italic: '{{mode}} · italic',
   },
   debug: {

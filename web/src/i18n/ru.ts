@@ -350,7 +350,7 @@ export const ru = {
   typography: {
     caps: 'ПРОПИСНЫЕ',
     normal: 'Обычный регистр',
-    lower: 'Строчные',
+    lower: 'строчные',
     italic: '{{mode}} · курсив',
   },
   debug: {

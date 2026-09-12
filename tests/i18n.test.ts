@@ -42,6 +42,7 @@ describe('interface localization', () => {
   });
 
   it('interpolates values and follows Russian plural rules', () => {
+    expect(t('typography.lower')).toBe('строчные');
     expect(t('settings.unlockAfter', { count: 1, name: 'Шрифт' })).toBe(
       'Шрифт · после 1 верного ответа',
     );
@@ -113,6 +114,7 @@ describe('interface localization', () => {
 
   it('switches to the English catalog', async () => {
     await initializeI18n('en', []);
+    expect(t('typography.lower')).toBe('lowercase');
     expect(t('trainer.mistakes', { mistakes: 'Մ → մ' })).toBe(
       'Pay attention to: Մ → մ',
     );
