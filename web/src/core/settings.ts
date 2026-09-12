@@ -29,29 +29,12 @@ export interface FontOption {
 
 export const FONTS: FontOption[] = [
   {
-    id: 'default',
-    family: 'ui-sans-serif, system-ui, sans-serif',
-    readability: 0,
-    unlockAfterCorrect: 0,
-    source: 'Шрифт устройства',
-    license: 'Зависит от устройства',
-  },
-  {
     id: 'noto-sans-armenian',
     family: '"Noto Sans Armenian", sans-serif',
     readability: 1,
-    unlockAfterCorrect: 10,
+    unlockAfterCorrect: 0,
     stylesheet: googleStylesheet('Noto Sans Armenian'),
     source: 'https://fonts.google.com/noto/specimen/Noto+Sans+Armenian',
-    license: 'https://openfontlicense.org/open-font-license-official-text/',
-  },
-  {
-    id: 'google-sans',
-    family: '"Google Sans", sans-serif',
-    readability: 1,
-    unlockAfterCorrect: 20,
-    stylesheet: googleStylesheet('Google Sans'),
-    source: 'https://fonts.google.com/specimen/Google+Sans',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
   },
   {
@@ -70,15 +53,6 @@ export const FONTS: FontOption[] = [
     unlockAfterCorrect: 60,
     stylesheet: googleStylesheet('Iosevka Charon'),
     source: 'https://fonts.google.com/specimen/Iosevka+Charon',
-    license: 'https://openfontlicense.org/open-font-license-official-text/',
-  },
-  {
-    id: 'handjet',
-    family: 'Handjet, sans-serif',
-    readability: 4,
-    unlockAfterCorrect: 80,
-    stylesheet: googleStylesheet('Handjet'),
-    source: 'https://fonts.google.com/specimen/Handjet',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
   },
 ];
@@ -167,7 +141,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   },
   fonts: {
     mode: 'single',
-    selected: 'default',
+    selected: 'noto-sans-armenian',
     enabled: FONTS.map((font) => font.id),
   },
   typography: {
@@ -195,13 +169,24 @@ export function parseSettings(value: unknown): AppSettings {
     return structuredClone(DEFAULT_SETTINGS);
   const candidate = fonts as Partial<AppSettings['fonts']>;
   const ids = new Set(FONTS.map((font) => font.id));
+  const retiredIds = new Set(['default', 'google-sans', 'handjet']);
+  const selectedCandidate: unknown = candidate.selected;
+  const enabledCandidates: unknown = candidate.enabled;
+  const isKnownFontId = (id: unknown): id is string =>
+    typeof id === 'string' && (ids.has(id) || retiredIds.has(id));
   if (
     !['single', 'rotate'].includes(candidate.mode ?? '') ||
-    !ids.has(candidate.selected ?? '') ||
-    !Array.isArray(candidate.enabled) ||
-    !candidate.enabled.every((id) => typeof id === 'string' && ids.has(id))
+    !isKnownFontId(selectedCandidate) ||
+    !Array.isArray(enabledCandidates) ||
+    !enabledCandidates.every(isKnownFontId)
   )
     return structuredClone(DEFAULT_SETTINGS);
+  const selectedFont = ids.has(selectedCandidate)
+    ? selectedCandidate
+    : FONTS[0].id;
+  const enabledFonts = [
+    ...new Set(enabledCandidates.map((id) => (ids.has(id) ? id : FONTS[0].id))),
+  ];
   const typography = saved.typography;
   const parsedTypography = (() => {
     if (!typography || typeof typography !== 'object')
@@ -265,8 +250,8 @@ export function parseSettings(value: unknown): AppSettings {
     },
     fonts: {
       mode: candidate.mode as AppSettings['fonts']['mode'],
-      selected: candidate.selected as string,
-      enabled: [...new Set(candidate.enabled)],
+      selected: selectedFont,
+      enabled: enabledFonts,
     },
     typography: parsedTypography,
   };

@@ -10,13 +10,22 @@ import { PRACTICE_MODES } from '../web/src/core/modes';
 import { completeAttempt, progress } from '../web/src/core/session';
 import { DEFAULT_SETTINGS, FONTS } from '../web/src/core/settings';
 import { openRepository } from '../web/src/storage/repository';
-import { createTrainer } from '../web/src/trainer';
+import { createTrainer as createTrainerWithFontLoader } from '../web/src/trainer';
 
 const recognizable = (word: string) => ({
   ...deriveWord(word),
   familiarity: { ru: 1 },
   loanwordScore: 1,
 });
+
+const createTrainer = (
+  words: Parameters<typeof createTrainerWithFontLoader>[0],
+  repository: Parameters<typeof createTrainerWithFontLoader>[1],
+  fontLoader: Parameters<typeof createTrainerWithFontLoader>[2] = async (
+    font,
+  ) => font,
+  options?: Parameters<typeof createTrainerWithFontLoader>[3],
+) => createTrainerWithFontLoader(words, repository, fontLoader, options);
 
 function practicedState(attempts: number, mistakes = 0): LearnerState {
   const word = recognizable('ՄԱՄԱ');
@@ -37,7 +46,6 @@ function practicedState(attempts: number, mistakes = 0): LearnerState {
 
 it('unlocks fonts and italic modes only after the required correct answers', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
-  const serif = FONTS[3];
   const trainer = await createTrainer(
     ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable),
     { ...repo, loadState: async () => practicedState(40, 1) },
@@ -46,8 +54,8 @@ it('unlocks fonts and italic modes only after the required correct answers', asy
   await trainer.setSettings({
     fonts: {
       mode: 'single',
-      selected: serif.id,
-      enabled: [serif.id],
+      selected: 'noto-serif-armenian',
+      enabled: ['noto-serif-armenian'],
     },
     typography: {
       mode: 'single',
@@ -55,11 +63,11 @@ it('unlocks fonts and italic modes only after the required correct answers', asy
       enabled: ['normal-italic'],
     },
   });
-  expect(trainer.font.id).toBe('default');
+  expect(trainer.font.id).toBe('noto-sans-armenian');
   expect(trainer.presentation.italic).toBe(false);
   await trainer.submit(trainer.current.word.readingLatin);
   await trainer.next();
-  expect(trainer.font.id).toBe(serif.id);
+  expect(trainer.font.id).toBe('noto-serif-armenian');
   expect(trainer.presentation).toEqual({ caseMode: 'normal', italic: true });
   repo.close();
 });
@@ -402,9 +410,9 @@ it('applies font settings immediately and records the font that loaded', async (
     ...trainer.settings,
     fonts: { ...trainer.settings.fonts, selected: 'noto-serif-armenian' },
   });
-  expect(trainer.font.id).toBe('default');
+  expect(trainer.font.id).toBe('noto-sans-armenian');
   await trainer.submit('', true);
-  expect(trainer.state.recent[0].payload.fontId).toBe('default');
+  expect(trainer.state.recent[0].payload.fontId).toBe('noto-sans-armenian');
   repo.close();
 });
 
@@ -442,8 +450,8 @@ it('keeps runtime settings unchanged when persistence fails', async () => {
       },
     }),
   ).rejects.toThrow('disk full');
-  expect(trainer.settings.fonts.selected).toBe('default');
-  expect(trainer.font.id).toBe('default');
+  expect(trainer.settings.fonts.selected).toBe('noto-sans-armenian');
+  expect(trainer.font.id).toBe('noto-sans-armenian');
   repo.close();
 });
 
@@ -460,7 +468,7 @@ it('does not let a pending next prompt overwrite newer font settings', async () 
       setSetting: async () => {},
     },
     (font) => {
-      if (font.id === 'default' && defaultLoads++ > 0)
+      if (font.id === 'noto-sans-armenian' && defaultLoads++ > 0)
         return new Promise((resolve) => {
           laterDefault = resolve;
         });

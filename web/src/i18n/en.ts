@@ -344,12 +344,9 @@ export const en = {
     delete: 'Delete statistics',
   },
   fonts: {
-    default: 'System',
     'noto-sans-armenian': 'Noto Sans Armenian',
-    'google-sans': 'Google Sans',
     'noto-serif-armenian': 'Noto Serif Armenian',
     'iosevka-charon': 'Iosevka Charon',
-    handjet: 'Handjet',
   },
   typography: {
     caps: 'CAPS',

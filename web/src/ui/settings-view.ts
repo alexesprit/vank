@@ -350,7 +350,7 @@ export function mountSettings(
           fonts: {
             mode,
             selected: selected.value,
-            enabled: checked.length ? checked : ['default'],
+            enabled: checked.length ? checked : ['noto-sans-armenian'],
           },
           typography: {
             mode: typographyMode,

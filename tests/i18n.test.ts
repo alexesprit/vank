@@ -42,14 +42,14 @@ describe('interface localization', () => {
   });
 
   it('interpolates values and follows Russian plural rules', () => {
-    expect(t('settings.unlockAfter', { count: 1, name: 'Handjet' })).toBe(
-      'Handjet · после 1 верного ответа',
+    expect(t('settings.unlockAfter', { count: 1, name: 'Шрифт' })).toBe(
+      'Шрифт · после 1 верного ответа',
     );
-    expect(t('settings.unlockAfter', { count: 2, name: 'Handjet' })).toBe(
-      'Handjet · после 2 верных ответов',
+    expect(t('settings.unlockAfter', { count: 2, name: 'Шрифт' })).toBe(
+      'Шрифт · после 2 верных ответов',
     );
-    expect(t('settings.unlockAfter', { count: 5, name: 'Handjet' })).toBe(
-      'Handjet · после 5 верных ответов',
+    expect(t('settings.unlockAfter', { count: 5, name: 'Шрифт' })).toBe(
+      'Шрифт · после 5 верных ответов',
     );
   });
 

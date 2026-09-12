@@ -8,6 +8,7 @@ import { evaluate } from './answer-checker.ts';
 import { TRAINER_CONFIG as config } from './config.ts';
 import type { PracticeModeId } from './modes.ts';
 import { familiarity, updateScores } from './scoring.ts';
+import { FONTS } from './settings.ts';
 import type { Selection } from './word-selector.ts';
 
 const countsAsCorrect = (attempt: AttemptEvent) =>
@@ -117,6 +118,7 @@ export function progress(state: LearnerState) {
   const revealedFlashAttempts = flashAttempts.filter(
     (attempt) => attempt.payload.flashRevealed,
   );
+  const visibleFontIds = new Set(FONTS.map((font) => font.id));
   const accuracy = (items: AttemptEvent[]) =>
     items.length
       ? items.filter((a) => a.payload.correct).length / items.length
@@ -125,6 +127,7 @@ export function progress(state: LearnerState) {
     ordinaryAttempts.reduce<Record<string, AttemptEvent[]>>(
       (byFont, attempt) => {
         const fontId = attempt.payload.fontId ?? 'default';
+        if (!visibleFontIds.has(fontId)) return byFont;
         byFont[fontId] ??= [];
         byFont[fontId].push(attempt);
         return byFont;

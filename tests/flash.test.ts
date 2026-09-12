@@ -108,6 +108,7 @@ it('excludes unrevealed flash attempts from ordinary result statistics', () => {
     1,
     2,
     'ordinary',
+    'noto-sans-armenian',
   );
   const withFlash = completeAttempt(
     ordinary.state,
