@@ -55,6 +55,14 @@ export const FONTS: FontOption[] = [
     source: 'https://fonts.google.com/specimen/Iosevka+Charon',
     license: 'https://openfontlicense.org/open-font-license-official-text/',
   },
+  {
+    id: 'mandys-sketch-extended',
+    family: '"Mandy\'s Sketch Extended", sans-serif',
+    readability: 4,
+    unlockAfterCorrect: 80,
+    source: 'https://www.fontspace.com/mandys-sketch-font-f41128',
+    license: 'Freeware (FontSpace listing)',
+  },
 ];
 
 export interface AppSettings {

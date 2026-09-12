@@ -46,10 +46,16 @@ it('validates persisted settings and progressively unlocks configured fonts', ()
     'noto-sans-armenian',
     'noto-serif-armenian',
   ]);
+  expect(availableFonts(79).map((font) => font.id)).toEqual([
+    'noto-sans-armenian',
+    'noto-serif-armenian',
+    'iosevka-charon',
+  ]);
   expect(availableFonts(80).map((font) => font.id)).toEqual([
     'noto-sans-armenian',
     'noto-serif-armenian',
     'iosevka-charon',
+    'mandys-sketch-extended',
   ]);
 });
 

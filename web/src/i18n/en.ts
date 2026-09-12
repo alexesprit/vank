@@ -347,6 +347,7 @@ export const en = {
     'noto-sans-armenian': 'Noto Sans Armenian',
     'noto-serif-armenian': 'Noto Serif Armenian',
     'iosevka-charon': 'Iosevka Charon',
+    'mandys-sketch-extended': "Mandy's Sketch Extended",
   },
   typography: {
     caps: 'CAPS',
