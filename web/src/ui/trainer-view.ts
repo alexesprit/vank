@@ -172,9 +172,10 @@ function mountIntro(
     quickSettings.hidden = false;
     introAnalytics.hidden = false;
     quickMetadataHints.checked = trainer.settings.metadataHints;
-    quickAnalytics.checked = !doNotTrackEnabled();
-    quickAnalytics.disabled = doNotTrackEnabled();
-    quickAnalyticsDnt.hidden = !doNotTrackEnabled();
+    const dnt = doNotTrackEnabled();
+    quickAnalytics.checked = trainer.settings.analytics && !dnt;
+    quickAnalytics.disabled = dnt;
+    quickAnalyticsDnt.hidden = !dnt;
     quickMetadataHints.addEventListener('change', async () => {
       try {
         await trainer.setSettings({
@@ -309,6 +310,7 @@ export function mountTrainer(
     element('error').hidden = true;
     try {
       await trainer.submit(input.value, skipped);
+      startAnalytics();
       render();
       achievements.show(trainer.lastAchievementUnlocks);
     } catch (error) {

@@ -366,7 +366,7 @@ export function mountSettings(
         window.location.reload();
         return;
       }
-      if (analyticsChanged && analytics.checked) startAnalytics();
+      if (analyticsChanged) startAnalytics();
       render();
       renderTrainer();
       startPreview();

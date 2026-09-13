@@ -1,5 +1,5 @@
 import '../styles/main.css';
-import { startAnalytics } from './analytics.ts';
+import { startAnalytics, submittedAnswerCount } from './analytics.ts';
 import {
   DEFAULT_PRACTICE_MODE,
   getPracticeMode,
@@ -62,10 +62,17 @@ async function start() {
       trainer.dispose();
       return;
     }
-    mountTrainer(trainer, dictionary, () =>
-      startAnalytics(trainer.settings.analytics),
-    );
-    if (trainer.introShown) startAnalytics(trainer.settings.analytics);
+    const hadPracticeBeforeVisit =
+      submittedAnswerCount(trainer.state.recent) > 0;
+    const updateAnalytics = () =>
+      startAnalytics(
+        trainer.settings.analytics,
+        submittedAnswerCount(trainer.state.recent),
+        hadPracticeBeforeVisit,
+        repository,
+      );
+    mountTrainer(trainer, dictionary, updateAnalytics);
+    if (trainer.introShown) updateAnalytics();
   } finally {
     window.removeEventListener('pagehide', abortStartup);
   }

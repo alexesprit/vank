@@ -47,10 +47,11 @@ app validates the downloaded dictionary.
 Deploy `web/dist/` to any static host. Asset URLs are relative, including the
 versioned dictionary, so deployment under a GitHub Pages repository path works.
 No backend, account, or runtime AI. Progress and learner answers never leave
-the browser. Optional, cookie-free Vercel Web Analytics is enabled only after a
-new learner starts practice with the visible setting on; it is off by default
-for existing learners and when Do Not Track is enabled. Optional Armenian fonts
-are fetched lazily from Google Fonts only when selected for training.
+the browser. Optional, cookie-free Umami analytics sends page views and limited
+practice milestone/return events in production; development logs the same events
+to the console. Both modes require opt-in and are blocked by Do Not Track.
+Optional Armenian fonts are fetched lazily from Google Fonts only when selected
+for training.
 The small `i18next` runtime dependency is intentional: it provides locale
 fallbacks and pluralization without maintaining a second interpolation system.
 Interface icons use the pinned, SRI-verified Lucide asset loaded from unpkg.

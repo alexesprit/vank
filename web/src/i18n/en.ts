@@ -293,7 +293,7 @@ export const en = {
     storage:
       'Progress is stored on this device and is removed when browser data is cleared.',
     analyticsNotice:
-      'Vank sends only anonymous visit statistics — never answers, words, or progress.',
+      'Helps us see whether visits lead to practice, how many reach 1, 10, 25, and 50 answered prompts, and whether visits return after earlier practice. It never sends answers, words, correctness, or your exact total.',
     start: 'Start practising',
   },
   settings: {
@@ -308,7 +308,7 @@ export const en = {
     analytics: 'Anonymous analytics',
     analyticsEnabled: 'Send anonymous analytics',
     analyticsNotice:
-      'Helps understand where visitors come from and whether they start practising. It never sends answers, words, progress, or personal data.',
+      'Shows whether visits lead to practice, how many reach 1, 10, 25, and 50 answered prompts, and visits after earlier practice. It never sends answers, words, correctness, or your exact total.',
     analyticsDnt: 'Disabled because your browser sends Do Not Track.',
     font: 'Armenian word font',
     oneFont: 'One font',

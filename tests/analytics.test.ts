@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { doNotTrackEnabled } from '../web/src/analytics.ts';
+import type { AttemptEvent } from '../shared/types.ts';
+import {
+  analyticsMode,
+  doNotTrackEnabled,
+  submittedAnswerCount,
+  unsentMilestones,
+} from '../web/src/analytics.ts';
+
+const attempt = (status: string) =>
+  ({ payload: { evaluation: { status } } }) as AttemptEvent;
 
 describe('Do Not Track', () => {
   it('blocks the common browser signals', () => {
@@ -7,5 +16,32 @@ describe('Do Not Track', () => {
     expect(doNotTrackEnabled('yes')).toBe(true);
     expect(doNotTrackEnabled('0')).toBe(false);
     expect(doNotTrackEnabled(null)).toBe(false);
+  });
+});
+
+describe('analytics consent', () => {
+  it('uses the console locally and Umami in production only after opt-in', () => {
+    expect(analyticsMode(true, false, '0')).toBe('console');
+    expect(analyticsMode(true, true, '0')).toBe('umami');
+    expect(analyticsMode(false, false, '0')).toBe('off');
+    expect(analyticsMode(true, false, '1')).toBe('off');
+  });
+});
+
+describe('practice milestone analytics', () => {
+  it('counts submitted answers but excludes skips', () => {
+    expect(
+      submittedAnswerCount([
+        attempt('correct'),
+        attempt('incorrect'),
+        attempt('unknown'),
+      ]),
+    ).toBe(2);
+  });
+
+  it('returns each reached milestone that has not been sent', () => {
+    expect(unsentMilestones(50, [])).toEqual([1, 10, 25, 50]);
+    expect(unsentMilestones(24, [10])).toEqual([1]);
+    expect(unsentMilestones(50, [1, 10, 25])).toEqual([50]);
   });
 });
