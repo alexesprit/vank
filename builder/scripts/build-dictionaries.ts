@@ -1,7 +1,16 @@
 import { spawn } from 'node:child_process';
+import { existsSync } from 'node:fs';
+import { readFile, rename, writeFile } from 'node:fs/promises';
 import { resolve as resolvePath } from 'node:path';
 import { parseArgs } from 'node:util';
-import { readTargetManifest, selectTargets } from '../src/targets.ts';
+import { parseDictionary } from '../../shared/schema.ts';
+import { runtimeDictionary } from '../src/runtime.ts';
+import {
+  type DictionaryTarget,
+  readTargetManifest,
+  selectTargets,
+  type TargetManifest,
+} from '../src/targets.ts';
 
 interface Options {
   manifest: string;
@@ -10,6 +19,7 @@ interface Options {
   verbose: boolean;
   curatedOnly: boolean;
   noAi: boolean;
+  pack: boolean;
 }
 
 function parseOptions(): Options {
@@ -21,8 +31,11 @@ function parseOptions(): Options {
       verbose: { type: 'boolean' },
       'curated-only': { type: 'boolean' },
       'no-ai': { type: 'boolean' },
+      pack: { type: 'boolean' },
     },
   });
+  if (values.pack && values.target?.length)
+    throw new Error('--pack cannot be combined with --target');
   return {
     manifest: values.manifest ?? 'builder/targets.json',
     targets: values.target,
@@ -30,13 +43,57 @@ function parseOptions(): Options {
     verbose: Boolean(values.verbose),
     curatedOnly: Boolean(values['curated-only']),
     noAi: Boolean(values['no-ai']),
+    pack: Boolean(values.pack),
   };
 }
 
-function buildTarget(
+function runtimeContent(data: Buffer): string {
+  const dictionary = runtimeDictionary(
+    parseDictionary(JSON.parse(data.toString('utf8'))),
+  );
+  return JSON.stringify({
+    version: dictionary.version,
+    schemaVersion: dictionary.schemaVersion,
+    words: dictionary.words,
+  });
+}
+
+function previousRuntimeContent(data: Buffer): string | undefined {
+  try {
+    return runtimeContent(data);
+  } catch {
+    return undefined;
+  }
+}
+
+function buildTargets(
+  manifest: TargetManifest,
+  options: Options,
+): DictionaryTarget[] {
+  if (!options.pack && !options.targets) return selectTargets(manifest);
+  const targets = options.pack
+    ? Object.values(manifest.targets).filter(
+        (target) => target.enabled && target.pack,
+      )
+    : (options.targets ?? []).map((id) => {
+        const target = manifest.targets[id];
+        if (!target) throw new Error(`Unknown dictionary target: ${id}`);
+        if (!target.enabled)
+          throw new Error(`Dictionary target is disabled: ${id}`);
+        return target;
+      });
+  if (!targets.length)
+    throw new Error('At least one dictionary target is required');
+  return targets;
+}
+
+async function buildTarget(
   target: Awaited<ReturnType<typeof selectTargets>>[number],
   options: Options,
 ): Promise<void> {
+  const previous = existsSync(target.output)
+    ? await readFile(target.output)
+    : undefined;
   const dataDir =
     options.curatedOnly && target.id === 'words'
       ? 'builder/data/seed'
@@ -58,7 +115,7 @@ function buildTarget(
     ...(options.quiet ? ['--quiet'] : []),
     ...(options.verbose ? ['--verbose'] : []),
   ];
-  return new Promise((resolve, reject) => {
+  await new Promise<void>((resolve, reject) => {
     const child = spawn(process.execPath, args, { stdio: 'inherit' });
     child.once('error', reject);
     child.once('exit', (code, signal) => {
@@ -71,11 +128,23 @@ function buildTarget(
         );
     });
   });
+  const previousContent = previous
+    ? previousRuntimeContent(previous)
+    : undefined;
+  if (
+    previous &&
+    previousContent !== undefined &&
+    previousContent === runtimeContent(await readFile(target.output))
+  ) {
+    const temp = `${target.output}.${process.pid}.tmp`;
+    await writeFile(temp, previous);
+    await rename(temp, target.output);
+  }
 }
 
 const options = parseOptions();
 const manifest = await readTargetManifest(options.manifest);
-for (const target of selectTargets(manifest, options.targets)) {
+for (const target of buildTargets(manifest, options)) {
   console.log(`Building dictionary target: ${target.id}`);
   await buildTarget(target, options);
 }

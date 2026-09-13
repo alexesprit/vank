@@ -27,17 +27,33 @@ Run `npm run build:seed` first after cloning (or after removing the artifact),
 then local development and tests use that deterministic 79-word dictionary.
 
 The downloader resolves enabled assets from the latest GitHub Release and
-verifies each asset against GitHub's SHA-256 digest. The deploy workflow passes
-the repository slug to the Vercel build; no per-dictionary URL variables are
-needed. Publish and redeploy a locally built dictionary with:
+verifies each asset against GitHub's SHA-256 digest. Production deployment is
+owned by `.github/workflows/deploy.yml`: after successful CI on `main`, it
+rebuilds curated packs without AI, publishes them alongside the current main
+dictionary, then deploys with the Vercel CLI. Release publishing is
+content-addressed, so unchanged assets do not create another release. Vercel's
+Git-triggered deployments are disabled for all branches; GitHub Actions handles
+production deployment with the Vercel CLI.
+
+Add these repository Actions secrets for production deployment:
+`VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`.
+
+The AI-enriched `words` target stays a manual build and publish. The CI deploy
+downloads the latest release, carries its `words` asset forward unchanged, and
+updates only curated packs. After changing the main dictionary locally, build
+and publish the complete release; publishing dispatches a deploy-only run:
 
 ```sh
-npm run dict:build
+npm run dict:download -- --force
+npm run dict:build -- --target words
 npm run dict:publish
 ```
 
 `dict:publish` reruns the production quality gate from
-`builder/config.json` before calling GitHub.
+`builder/config.json` before publishing and dispatching the deployment workflow.
+That dispatch deploys the release as published without rebuilding packs. The
+CI-gated workflow publishes packs first and uses `--no-deploy` to avoid
+dispatching itself a second time.
 
 The release contains only the runtime files. Rich provenance and enrichment data
 remain in the builder intermediates, including `builder/data/words.json`.
@@ -74,8 +90,10 @@ npm run derive                    # read normalized.json; derive technical metad
 npm run enrich                    # read deterministic.json; cached OpenRouter batches
 npm run validate                  # apply overrides, compose, validate, emit words.json
 npm run dict:build                 # build all enabled targets from builder/targets.json
+npm run dict:build -- --pack       # build only targets marked pack in builder/targets.json
 npm run dict:publish               # publish target assets in one GitHub release
-npm run dict:download               # download all enabled targets from the latest release
+npm run dict:download               # use existing outputs, or download missing targets
+npm run dict:download -- --force    # refresh all enabled targets from the latest release
 ```
 
 `builder/targets.json` defines each dictionary target: its builder config,
@@ -83,9 +101,11 @@ intermediate directory, runtime output, release asset name, enrichment mode,
 and validation checks. The manifest ships `words`, `toponyms`, `countries`,
 `names`, and `food`; the latter four are finite curated packs built from the
 matching `builder/data/curated-*.json` sources.
-To update a pack, edit its curated source, run `npm run dict:build`, inspect its
-target intermediates and generated runtime JSON, then publish all enabled
-assets with `npm run dict:publish`.
+To update a pack manually, run `npm run dict:download -- --force`, build with
+`npm run dict:build -- --pack`, inspect the target intermediates and generated
+runtime JSON, then publish all enabled assets with `npm run dict:publish`.
+Changes pushed to `main` are built and deployed by the CI-gated deployment
+workflow.
 
 Word IDs are derived from canonical Armenian forms. Identical forms therefore
 share global letter and word progress across modes; each dictionary keeps its

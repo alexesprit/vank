@@ -17,6 +17,7 @@ const manifest = parseTargetManifest({
       checks: ['audience', 'achievements'],
     },
     countries: {
+      pack: true,
       config: 'builder/config-countries.json',
       dataDir: 'builder/data/countries',
       output: 'web/data/countries.json',
@@ -52,21 +53,26 @@ describe('dictionary targets', () => {
         },
       }),
     ).toThrow('Invalid enrichment for target words');
+    expect(() =>
+      parseTargetManifest({
+        targets: {
+          words: {
+            config: 'builder/config.json',
+            dataDir: 'builder/data',
+            output: 'web/data/words.json',
+            asset: 'words.json',
+            pack: 'yes',
+          },
+        },
+      }),
+    ).toThrow('Invalid pack setting for target words');
   });
 
-  it('registers every specialized curated source in the real manifest', async () => {
+  it('marks pack targets in the real manifest and excludes the AI dictionary', async () => {
     const actual = await readTargetManifest('builder/targets.json');
-    for (const id of ['toponyms', 'countries', 'names', 'food']) {
-      expect(actual.targets[id]).toMatchObject({
-        enabled: true,
-        required: true,
-        config: `builder/config-${id}.json`,
-        dataDir: `builder/data/${id}`,
-        output: `web/data/${id}.json`,
-        asset: `${id}.json`,
-        enrichment: 'none',
-        checks: [],
-      });
-    }
+    const packs = Object.values(actual.targets).filter(({ pack }) => pack);
+    expect(actual.targets.words.pack).toBe(false);
+    expect(packs.length).toBeGreaterThan(0);
+    expect(packs.every(({ enabled }) => enabled)).toBe(true);
   });
 });

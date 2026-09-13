@@ -41,7 +41,7 @@ it('downloads, validates, verifies, and caches the runtime dictionary', async ()
   expect(fetch).toHaveBeenCalledOnce();
 });
 
-it('resolves the latest release and downloads its target asset', async () => {
+it('resolves the latest release and can refresh an existing target asset', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'vank-dictionaries-'));
   directories.push(directory);
   const output = join(directory, 'words.json');
@@ -96,4 +96,23 @@ it('resolves the latest release and downloads its target asset', async () => {
 
   expect(await readFile(output, 'utf8')).toBe(data);
   expect(fetcher).toHaveBeenCalledTimes(2);
+
+  await writeFile(
+    output,
+    JSON.stringify({
+      version: 1,
+      schemaVersion: 1,
+      generatedAt: '2026-09-08',
+      words: [deriveWord('ՏՈՒՆ')],
+    }),
+  );
+  await downloadDictionaries(
+    manifest,
+    { GITHUB_REPOSITORY: 'example/vank' },
+    fetcher,
+    true,
+  );
+
+  expect(await readFile(output, 'utf8')).toBe(data);
+  expect(fetcher).toHaveBeenCalledTimes(4);
 });

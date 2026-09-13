@@ -39,7 +39,7 @@ it('uses the builder config as the production quality gate', () => {
   });
 });
 
-it('publishes the minified runtime dictionary and starts deployment', async () => {
+it('publishes the minified runtime dictionary and dispatches deployment', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'vank-publish-'));
   directories.push(directory);
   const path = join(directory, 'words.json');
@@ -86,6 +86,48 @@ it('publishes the minified runtime dictionary and starts deployment', async () =
   expect(notes).toContain('| Ա | 1 |');
   expect(notes).toContain('\n\n</details>');
   expect(commands.find((args) => args[1] === 'create')).toContain(notes);
+});
+
+it('reuses an existing release when every asset digest is unchanged', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'vank-publish-'));
+  directories.push(directory);
+  const path = join(directory, 'words.json');
+  const dictionary = runtimeDictionary(
+    parseDictionary({
+      version: 1,
+      schemaVersion: 1,
+      generatedAt: '2026-09-10T00:00:00Z',
+      words: [deriveWord('ՄԱՄԱ')],
+    }),
+  );
+  const data = JSON.stringify(dictionary);
+  const digest = createHash('sha256').update(data).digest('hex');
+  await writeFile(path, data);
+  const commands: string[][] = [];
+  await publishDictionary(
+    path,
+    (args) => {
+      commands.push(args);
+      return args[0] === 'api'
+        ? { status: 0, stdout: `false\tsha256:${digest}\n` }
+        : { status: 0, stdout: '' };
+    },
+    testQuality,
+  );
+
+  expect(
+    commands.some((args) => args[0] === 'release' && args[1] === 'create'),
+  ).toBe(false);
+  expect(
+    commands.some((args) => args[0] === 'release' && args[1] === 'edit'),
+  ).toBe(true);
+  expect(commands.at(-1)).toEqual([
+    'workflow',
+    'run',
+    'deploy.yml',
+    '--field',
+    'dictionaries_published=true',
+  ]);
 });
 
 it('repairs an incomplete draft before deployment', async () => {
@@ -174,6 +216,37 @@ it('publishes multiple dictionary assets in one release', async () => {
   expect(commands.find((args) => args[1] === 'create')).toEqual(
     expect.arrayContaining([wordsPath, toponymsPath]),
   );
+});
+
+it('can publish without dispatching deployment from inside CI', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'vank-publish-'));
+  directories.push(directory);
+  const path = join(directory, 'words.json');
+  const data = JSON.stringify(
+    runtimeDictionary(
+      parseDictionary({
+        version: 1,
+        schemaVersion: 1,
+        generatedAt: '2026-09-10T00:00:00Z',
+        words: [deriveWord('ՄԱՄԱ')],
+      }),
+    ),
+  );
+  const digest = createHash('sha256').update(data).digest('hex');
+  await writeFile(path, data);
+  const commands: string[][] = [];
+  await publishDictionaries(
+    [{ path, name: 'words.json', quality: testQuality }],
+    (args) => {
+      commands.push(args);
+      return args[0] === 'api'
+        ? { status: 0, stdout: `false\tsha256:${digest}\n` }
+        : { status: 0, stdout: '' };
+    },
+    false,
+  );
+
+  expect(commands.some((args) => args[0] === 'workflow')).toBe(false);
 });
 
 it('does not deploy a release with a mismatched asset', async () => {

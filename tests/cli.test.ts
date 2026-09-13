@@ -258,6 +258,97 @@ it('builds a fixture without network, retains intermediate stages, supports quie
   }
 });
 
+it('builds selected targets and preserves timestamps when content is unchanged', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'vank-packs-'));
+  try {
+    const source = join(dir, 'curated.json');
+    const config = join(dir, 'pack-config.json');
+    const manifest = join(dir, 'targets.json');
+    const packOutput = join(dir, 'web', 'countries.json');
+    const mainOutput = join(dir, 'web', 'words.json');
+    await Promise.all([
+      writeFile(source, JSON.stringify([{ word: 'ՄԱՄԱ' }])),
+      writeFile(
+        config,
+        JSON.stringify({
+          learnerLanguages: ['ru'],
+          sources: [{ type: 'curated', path: source, priority: 100 }],
+        }),
+      ),
+      writeFile(
+        manifest,
+        JSON.stringify({
+          targets: {
+            words: {
+              required: true,
+              config,
+              dataDir: join(dir, 'data', 'words'),
+              output: mainOutput,
+              asset: 'words.json',
+              enrichment: 'none',
+            },
+            countries: {
+              pack: true,
+              config,
+              dataDir: join(dir, 'data', 'countries'),
+              output: packOutput,
+              asset: 'countries.json',
+              enrichment: 'none',
+            },
+          },
+        }),
+      ),
+    ]);
+
+    const command = [
+      process.execPath,
+      'builder/scripts/build-dictionaries.ts',
+      '--manifest',
+      manifest,
+      '--pack',
+    ];
+    await exec(command[0], command.slice(1));
+    const generated = JSON.parse(await readFile(packOutput, 'utf8'));
+    generated.generatedAt = '2020-01-01T00:00:00.000Z';
+    const previous = JSON.stringify(generated);
+    await writeFile(packOutput, previous);
+
+    await exec(command[0], command.slice(1));
+
+    expect(await readFile(packOutput, 'utf8')).toBe(previous);
+    await expect(readFile(mainOutput)).rejects.toThrow();
+    await exec(process.execPath, [
+      'builder/scripts/build-dictionaries.ts',
+      '--manifest',
+      manifest,
+      '--target',
+      'words',
+    ]);
+    expect(JSON.parse(await readFile(mainOutput, 'utf8')).words).toHaveLength(
+      1,
+    );
+    const generatedMain = JSON.parse(await readFile(mainOutput, 'utf8'));
+    generatedMain.generatedAt = '2020-01-01T00:00:00.000Z';
+    const previousMain = JSON.stringify(generatedMain);
+    await writeFile(mainOutput, previousMain);
+    await exec(process.execPath, [
+      'builder/scripts/build-dictionaries.ts',
+      '--manifest',
+      manifest,
+      '--target',
+      'words',
+    ]);
+    expect(await readFile(mainOutput, 'utf8')).toBe(previousMain);
+    await writeFile(packOutput, 'invalid prior output');
+    await exec(command[0], command.slice(1));
+    expect(JSON.parse(await readFile(packOutput, 'utf8')).words).toHaveLength(
+      1,
+    );
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
 it('keeps every word in a curated build when maxWords is omitted', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'vank-unlimited-curated-'));
   try {

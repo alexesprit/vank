@@ -11,6 +11,7 @@ export interface DictionaryTarget {
   dataDir: string;
   output: string;
   asset: string;
+  pack: boolean;
   enrichment: EnrichmentMode;
   checks: TargetCheck[];
 }
@@ -51,6 +52,8 @@ export function parseTargetManifest(value: unknown): TargetManifest {
     const enrichment = target.enrichment ?? 'none';
     if (enrichment !== 'none' && enrichment !== 'openrouter')
       throw new Error(`Invalid enrichment for target ${id}`);
+    if (target.pack !== undefined && typeof target.pack !== 'boolean')
+      throw new Error(`Invalid pack setting for target ${id}`);
     const asset = nonEmptyString(target.asset, 'asset');
     const output = nonEmptyString(target.output, 'output');
     if (assets.has(asset)) throw new Error(`Duplicate target asset: ${asset}`);
@@ -66,6 +69,7 @@ export function parseTargetManifest(value: unknown): TargetManifest {
       dataDir: nonEmptyString(target.dataDir, 'dataDir'),
       output,
       asset,
+      pack: target.pack === true,
       enrichment,
       checks: [...checks] as TargetCheck[],
     };

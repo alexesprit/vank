@@ -90,6 +90,7 @@ const runGh: Run = (args, quiet = false) => {
 export async function publishDictionaries(
   assets: PublishAsset[],
   run: Run = runGh,
+  triggerDeployment = true,
 ) {
   if (!assets.length)
     throw new Error('At least one dictionary asset is required');
@@ -213,7 +214,16 @@ export async function publishDictionaries(
   )
     throw new Error('Dictionary release verification failed');
 
-  if (run(['workflow', 'run', 'deploy.yml']).status)
+  if (
+    triggerDeployment &&
+    run([
+      'workflow',
+      'run',
+      'deploy.yml',
+      '--field',
+      'dictionaries_published=true',
+    ]).status
+  )
     throw new Error('Could not start the Vercel deployment');
   return tag;
 }

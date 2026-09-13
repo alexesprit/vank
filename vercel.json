@@ -1,4 +1,7 @@
 {
   "installCommand": "npm install --ignore-scripts",
-  "outputDirectory": "web/dist"
+  "outputDirectory": "web/dist",
+  "git": {
+    "deploymentEnabled": false
+  }
 }

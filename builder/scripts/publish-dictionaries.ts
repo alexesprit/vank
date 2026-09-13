@@ -13,6 +13,7 @@ const { values } = parseArgs({
   options: {
     manifest: { type: 'string', default: 'builder/targets.json' },
     target: { type: 'string', multiple: true },
+    'no-deploy': { type: 'boolean' },
   },
 });
 
@@ -61,4 +62,4 @@ const assets: PublishAsset[] = await Promise.all(
 console.log(
   `Publishing dictionary assets: ${assets.map(({ name }) => name).join(', ')}`,
 );
-console.log(await publishDictionaries(assets));
+console.log(await publishDictionaries(assets, undefined, !values['no-deploy']));

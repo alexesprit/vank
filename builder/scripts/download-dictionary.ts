@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { parseArgs } from 'node:util';
 import { parseDictionary } from '../../shared/schema.ts';
 import { readTargetManifest, selectTargets } from '../src/targets.ts';
 
@@ -130,10 +131,11 @@ export async function downloadDictionaries(
   manifestPath = 'builder/targets.json',
   environment: NodeJS.ProcessEnv = process.env,
   fetcher: typeof fetch = fetch,
+  force = false,
 ) {
   const manifest = await readTargetManifest(manifestPath);
   const targets = selectTargets(manifest);
-  if (targets.every(({ output }) => existsSync(output))) {
+  if (!force && targets.every(({ output }) => existsSync(output))) {
     for (const target of targets) {
       const result = await ensureDictionary(
         target.output,
@@ -179,5 +181,11 @@ if (
   import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
   if (existsSync('.env')) process.loadEnvFile('.env');
-  await downloadDictionaries();
+  const { values } = parseArgs({ options: { force: { type: 'boolean' } } });
+  await downloadDictionaries(
+    'builder/targets.json',
+    process.env,
+    fetch,
+    Boolean(values.force),
+  );
 }

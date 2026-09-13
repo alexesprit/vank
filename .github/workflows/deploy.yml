@@ -1,0 +1,61 @@
+name: Deploy to Vercel
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      dictionaries_published:
+        description: Dictionary release is already published; deploy it as-is
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm ci
+        if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
+      - name: Download the current complete release
+        if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run dict:download
+      - name: Build configured packs only
+        if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
+        run: npm run dict:build -- --pack --no-ai
+      - name: Publish packs with the current main dictionary
+        if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run dict:publish -- --no-deploy
+      - run: npx --yes vercel@59.11.2 pull --yes --environment=production --token="$VERCEL_TOKEN"
+      - name: Deploy to Vercel with the latest dictionary release
+        run: |
+          npx --yes vercel@59.11.2 deploy --prod --token="$VERCEL_TOKEN" \
+            --build-env "DICTIONARY_REPOSITORY=${{ github.repository }}"

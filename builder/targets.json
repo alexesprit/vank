@@ -13,6 +13,7 @@
     "toponyms": {
       "enabled": true,
       "required": true,
+      "pack": true,
       "config": "builder/config-toponyms.json",
       "dataDir": "builder/data/toponyms",
       "output": "web/data/toponyms.json",
@@ -23,6 +24,7 @@
     "countries": {
       "enabled": true,
       "required": true,
+      "pack": true,
       "config": "builder/config-countries.json",
       "dataDir": "builder/data/countries",
       "output": "web/data/countries.json",
@@ -33,6 +35,7 @@
     "names": {
       "enabled": true,
       "required": true,
+      "pack": true,
       "config": "builder/config-names.json",
       "dataDir": "builder/data/names",
       "output": "web/data/names.json",
@@ -43,6 +46,7 @@
     "food": {
       "enabled": true,
       "required": true,
+      "pack": true,
       "config": "builder/config-food.json",
       "dataDir": "builder/data/food",
       "output": "web/data/food.json",
