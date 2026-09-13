@@ -48,8 +48,8 @@ Deploy `web/dist/` to any static host. Asset URLs are relative, including the
 versioned dictionary, so deployment under a GitHub Pages repository path works.
 No backend, account, or runtime AI. Progress and learner answers never leave
 the browser. Optional, cookie-free Umami analytics sends page views and limited
-practice milestone/return events in production; development logs the same events
-to the console. Both modes require opt-in and are blocked by Do Not Track.
+per-visit practice milestone/return events in production; development logs the
+same events to the console. Both modes require opt-in and are blocked by Do Not Track.
 Optional Armenian fonts are fetched lazily from Google Fonts only when selected
 for training.
 The small `i18next` runtime dependency is intentional: it provides locale

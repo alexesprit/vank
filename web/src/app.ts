@@ -69,7 +69,6 @@ async function start() {
         trainer.settings.analytics,
         submittedAnswerCount(trainer.state.recent),
         hadPracticeBeforeVisit,
-        repository,
       );
     mountTrainer(trainer, dictionary, updateAnalytics);
     if (trainer.introShown) updateAnalytics();

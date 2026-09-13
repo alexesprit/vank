@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { AttemptEvent } from '../shared/types.ts';
 import {
   analyticsMode,
+  answersSince,
   doNotTrackEnabled,
   submittedAnswerCount,
   unsentMilestones,
@@ -40,8 +41,15 @@ describe('practice milestone analytics', () => {
   });
 
   it('returns each reached milestone that has not been sent', () => {
-    expect(unsentMilestones(50, [])).toEqual([1, 10, 25, 50]);
-    expect(unsentMilestones(24, [10])).toEqual([1]);
-    expect(unsentMilestones(50, [1, 10, 25])).toEqual([50]);
+    expect(unsentMilestones(0, [])).toEqual([]);
+    expect(unsentMilestones(5, [])).toEqual([1, 5]);
+    expect(unsentMilestones(50, [])).toEqual([1, 5, 10, 25, 50]);
+    expect(unsentMilestones(24, [10])).toEqual([1, 5]);
+    expect(unsentMilestones(50, [1, 10, 25])).toEqual([5, 50]);
+  });
+
+  it('counts only answers since analytics started', () => {
+    expect(answersSince(50, 50)).toBe(0);
+    expect(answersSince(50, 55)).toBe(5);
   });
 });

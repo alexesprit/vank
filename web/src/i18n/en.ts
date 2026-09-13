@@ -293,7 +293,7 @@ export const en = {
     storage:
       'Progress is stored on this device and is removed when browser data is cleared.',
     analyticsNotice:
-      'Helps us see whether visits lead to practice, how many reach 1, 10, 25, and 50 answered prompts, and whether visits return after earlier practice. It never sends answers, words, correctness, or your exact total.',
+      'Helps us see whether visits lead to practice, how many reach 1, 5, 10, 25, and 50 answered prompts in a visit, and whether visits return after earlier practice. It never sends answers, words, correctness, or your exact total.',
     start: 'Start practising',
   },
   settings: {
@@ -308,7 +308,7 @@ export const en = {
     analytics: 'Anonymous analytics',
     analyticsEnabled: 'Send anonymous analytics',
     analyticsNotice:
-      'Shows whether visits lead to practice, how many reach 1, 10, 25, and 50 answered prompts, and visits after earlier practice. It never sends answers, words, correctness, or your exact total.',
+      'Shows whether visits lead to practice, how many reach 1, 5, 10, 25, and 50 answered prompts in a visit, and visits after earlier practice. It never sends answers, words, correctness, or your exact total.',
     analyticsDnt: 'Disabled because your browser sends Do Not Track.',
     font: 'Armenian word font',
     oneFont: 'One font',

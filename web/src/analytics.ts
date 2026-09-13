@@ -1,8 +1,7 @@
 import type { AttemptEvent } from '../../shared/types.ts';
-import type { Repository } from './storage/repository.ts';
 
 const doNotTrackValues = new Set(['1', 'yes']);
-const milestones = [1, 10, 25, 50] as const;
+const milestones = [1, 5, 10, 25, 50] as const;
 type PracticeMilestone = (typeof milestones)[number];
 type AnalyticsMode = 'off' | 'console' | 'umami';
 type UmamiTracker = {
@@ -19,9 +18,10 @@ let umamiScript: Promise<void> | undefined;
 let analyticsEnabled = false;
 let pageviewSent = false;
 let submittedCount = 0;
+let analyticsStartCount: number | undefined;
 let hadPracticeBeforeVisit = false;
 let returnedSent = false;
-let sentMilestones: Set<PracticeMilestone> | undefined;
+const sentMilestones = new Set<PracticeMilestone>();
 let analyticsWork = Promise.resolve();
 
 export function doNotTrackEnabled(
@@ -49,6 +49,10 @@ export function submittedAnswerCount(attempts: readonly AttemptEvent[]) {
   return attempts.filter(
     (attempt) => attempt.payload.evaluation.status !== 'unknown',
   ).length;
+}
+
+export function answersSince(startCount: number, count: number) {
+  return Math.max(0, count - startCount);
 }
 
 export function unsentMilestones(count: number, sent: readonly number[]) {
@@ -98,13 +102,16 @@ export function startAnalytics(
   enabled: boolean,
   count: number,
   hadPriorPractice: boolean,
-  repository: Repository,
 ) {
   const mode = analyticsMode(enabled, import.meta.env.PROD);
-  analyticsEnabled = mode !== 'off';
-  submittedCount = count;
+  if (mode === 'off') {
+    analyticsEnabled = false;
+    return;
+  }
+  if (!analyticsEnabled) analyticsStartCount = count;
+  analyticsEnabled = true;
+  submittedCount = answersSince(analyticsStartCount ?? count, count);
   hadPracticeBeforeVisit ||= hadPriorPractice;
-  if (mode === 'off') return;
 
   const websiteId: unknown = import.meta.env.VITE_UMAMI_WEBSITE_ID;
   if (
@@ -134,23 +141,12 @@ export function startAnalytics(
         returnedSent = true;
       }
 
-      if (!sentMilestones) {
-        const saved = await repository.getSetting('analyticsMilestones');
-        sentMilestones = new Set(
-          Array.isArray(saved)
-            ? saved.filter((value): value is PracticeMilestone =>
-                milestones.includes(value as PracticeMilestone),
-              )
-            : [],
-        );
-      }
       for (const milestone of unsentMilestones(submittedCount, [
         ...sentMilestones,
       ])) {
         if (!analyticsEnabled || doNotTrackEnabled()) return;
-        tracker.track('practice_milestone', { milestone });
+        tracker.track('practice_session_milestone', { milestone });
         sentMilestones.add(milestone);
-        await repository.setSetting('analyticsMilestones', [...sentMilestones]);
       }
     })
     .catch(() => {});
