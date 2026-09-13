@@ -119,7 +119,7 @@ export async function publishDictionaries(
     .update(ordered.map(({ name, digest }) => `${name}\0${digest}`).join('\0'))
     .digest('hex');
   const tag = `dictionary-${releaseDigest.slice(0, 12)}`;
-  const title = `Dictionaries ${ordered[0].dictionary.generatedAt.slice(0, 10)}`;
+  const title = `Dictionaries ${new Date().toISOString().slice(0, 10)}`;
   const notes =
     ordered.length === 1
       ? dictionaryReleaseNotes(ordered[0].dictionary)
@@ -169,6 +169,8 @@ export async function publishDictionaries(
           'release',
           'edit',
           tag,
+          '--title',
+          title,
           '--draft=false',
           '--latest',
           '--notes',

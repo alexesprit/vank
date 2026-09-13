@@ -53,6 +53,7 @@ it('publishes the minified runtime dictionary and dispatches deployment', async 
   );
   const data = JSON.stringify(dictionary);
   const digest = createHash('sha256').update(data).digest('hex');
+  const today = new Date().toISOString().slice(0, 10);
   await writeFile(path, data);
   const commands: string[][] = [];
   let inspections = 0;
@@ -85,7 +86,9 @@ it('publishes the minified runtime dictionary and dispatches deployment', async 
   expect(summaryLine).toContain('words containing each letter');
   expect(notes).toContain('| Ա | 1 |');
   expect(notes).toContain('\n\n</details>');
-  expect(commands.find((args) => args[1] === 'create')).toContain(notes);
+  expect(commands.find((args) => args[1] === 'create')).toEqual(
+    expect.arrayContaining(['--title', `Dictionaries ${today}`, notes]),
+  );
 });
 
 it('reuses an existing release when every asset digest is unchanged', async () => {
@@ -145,6 +148,7 @@ it('repairs an incomplete draft before deployment', async () => {
     ),
   );
   const digest = createHash('sha256').update(data).digest('hex');
+  const today = new Date().toISOString().slice(0, 10);
   await writeFile(path, data);
   const commands: string[][] = [];
   let inspections = 0;
@@ -169,6 +173,9 @@ it('repairs an incomplete draft before deployment', async () => {
     ['api', expect.any(String)],
     ['workflow', 'run'],
   ]);
+  expect(commands.find((args) => args[1] === 'edit')).toContain(
+    `Dictionaries ${today}`,
+  );
 });
 
 it('publishes multiple dictionary assets in one release', async () => {
