@@ -8,7 +8,7 @@ import {
 } from '../web/src/core/metadata-hints';
 import { completeAttempt } from '../web/src/core/session';
 import { DEFAULT_SETTINGS, parseSettings } from '../web/src/core/settings';
-import { initializeI18n } from '../web/src/i18n';
+import { initializeI18n, t } from '../web/src/i18n';
 
 const empty = (): LearnerState => ({ letters: {}, words: {}, recent: [] });
 
@@ -43,6 +43,31 @@ it('normalizes and deduplicates category and tag hints in source order', () => {
   ).toEqual(['Food', 'Restaurant', 'Proper name']);
   expect(hasMetadataHints(word)).toBe(true);
   expect(hasMetadataHints({ categories: [], tags: [] })).toBe(false);
+});
+
+it('whitelists and translates food tags', async () => {
+  const word = {
+    categories: [],
+    tags: ['bakery', 'dairy', 'drink', 'grain'],
+  };
+  expect(metadataHints(word)).toEqual([
+    { key: 'metadata.tags.bakery', fallback: 'Bakery' },
+    { key: 'metadata.tags.dairy', fallback: 'Dairy' },
+    { key: 'metadata.tags.drink', fallback: 'Drink' },
+    { key: 'metadata.tags.grain', fallback: 'Grain' },
+  ]);
+  expect(
+    metadataHintLabels(word, (key, fallback) =>
+      t(key, { defaultValue: fallback }),
+    ),
+  ).toEqual(['Bakery', 'Dairy', 'Drink', 'Grain']);
+  await initializeI18n('ru', []);
+  expect(
+    metadataHintLabels(word, (key, fallback) =>
+      t(key, { defaultValue: fallback }),
+    ),
+  ).toEqual(['Выпечка', 'Молочные продукты', 'Напиток', 'Зерновые']);
+  await initializeI18n('en', []);
 });
 
 it('persists the opt-in setting and records rendered visibility only when supplied', () => {

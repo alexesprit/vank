@@ -825,7 +825,7 @@
     },
     "usefulnessScore": 1,
     "categories": ["food"],
-    "tags": ["dish"]
+    "tags": ["dish", "bakery"]
   },
   {
     "word": "ԼԱՎԱՇ",
@@ -837,7 +837,7 @@
     },
     "usefulnessScore": 1,
     "categories": ["food"],
-    "tags": ["dish"]
+    "tags": ["dish", "bakery"]
   },
   {
     "word": "ՄԱՏՆԱՔԱՇ",
@@ -849,7 +849,7 @@
     },
     "usefulnessScore": 0.95,
     "categories": ["food"],
-    "tags": ["dish"]
+    "tags": ["dish", "bakery"]
   },
   {
     "word": "ԲԱՍՏՈՒՐՄԱ",
@@ -921,7 +921,7 @@
     },
     "usefulnessScore": 0.95,
     "categories": ["food"],
-    "tags": ["dish"]
+    "tags": ["dish", "bakery"]
   },
   {
     "word": "ՊԻՑՑԱ",
@@ -1102,5 +1102,197 @@
     "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["dish"]
+  },
+  {
+    "word": "ՀԱՑ",
+    "meaning": {
+      "ru": "хлеб"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["bakery"]
+  },
+  {
+    "word": "ՊԱՆԻՐ",
+    "meaning": {
+      "ru": "сыр"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dairy"]
+  },
+  {
+    "word": "ՄԱԾՈՒՆ",
+    "meaning": {
+      "ru": "мацун"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["dairy"]
+  },
+  {
+    "word": "ԿԱԹ",
+    "meaning": {
+      "ru": "молоко"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
+    "categories": ["food"],
+    "tags": ["dairy"]
+  },
+  {
+    "word": "ԹԱՆ",
+    "meaning": {
+      "ru": "тан"
+    },
+    "familiarity": {
+      "ru": 0.35
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["dairy", "drink"]
+  },
+  {
+    "word": "ԲՐԻՆՁ",
+    "meaning": {
+      "ru": "рис"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["grain"]
+  },
+  {
+    "word": "ՍՈՒՐՃ",
+    "meaning": {
+      "ru": "кофе"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["drink"]
+  },
+  {
+    "word": "ԹԵՅ",
+    "meaning": {
+      "ru": "чай"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["food"],
+    "tags": ["drink"]
+  },
+  {
+    "word": "ԲՈՒԼԿԻ",
+    "meaning": {
+      "ru": "булочка"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["bakery"]
+  },
+  {
+    "word": "ԿՐՈՒԱՍԱՆ",
+    "meaning": {
+      "ru": "круассан"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["bakery"]
+  },
+  {
+    "word": "ԿԱՐԿԱՆԴԱԿ",
+    "meaning": {
+      "ru": "пирог"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["bakery"]
+  },
+  {
+    "word": "ԹԽՎԱԾՔ",
+    "meaning": {
+      "ru": "выпечка"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["bakery"]
+  },
+  {
+    "word": "ՑՈՐԵՆ",
+    "meaning": {
+      "ru": "пшеница"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["grain"]
+  },
+  {
+    "word": "ԳԱՐԻ",
+    "meaning": {
+      "ru": "ячмень"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["food"],
+    "tags": ["grain"]
+  },
+  {
+    "word": "ՎԱՐՍԱԿ",
+    "meaning": {
+      "ru": "овёс"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.85,
+    "categories": ["food"],
+    "tags": ["grain"]
+  },
+  {
+    "word": "ՀՆԴԿԱՁԱՎԱՐ",
+    "meaning": {
+      "ru": "гречка"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["food"],
+    "tags": ["grain"]
   }
 ]

@@ -8,6 +8,7 @@ export interface MetadataHint {
 // ponytail: explicit whitelist keeps prompts readable; add reviewed tags with
 // translations here as metadata grows.
 export const DISPLAYABLE_TAGS = new Set([
+  'bakery',
   'beginner',
   'common',
   'basic',
@@ -17,8 +18,11 @@ export const DISPLAYABLE_TAGS = new Set([
   'loan-from-russian',
   'geography',
   'country',
+  'dairy',
   'dish',
+  'drink',
   'fruit',
+  'grain',
   'place-name',
   'given-name',
   'person-name',
