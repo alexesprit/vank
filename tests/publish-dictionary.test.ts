@@ -228,4 +228,12 @@ it('enforces only the maximum size when audience quality passes', () => {
       maxWords: 0,
     }),
   ).toThrow('maximum');
+  expect(() =>
+    validatePublishableDictionary(dictionary, {
+      language: 'ru',
+      minFamiliarWords: 0,
+      minFamiliarShare: 0,
+      minLetterCoverage: 0,
+    }),
+  ).not.toThrow();
 });

@@ -21,7 +21,7 @@ export interface PublishAsset {
 }
 export interface PublishQuality {
   language: string;
-  maxWords: number;
+  maxWords?: number;
   minFamiliarWords: number;
   minFamiliarShare: number;
   minLetterCoverage: number;
@@ -53,7 +53,7 @@ export function validatePublishableDictionary(
   quality: PublishQuality = PRODUCTION_QUALITY,
 ): void {
   const { words } = dictionary;
-  if (words.length > quality.maxWords)
+  if (quality.maxWords !== undefined && words.length > quality.maxWords)
     throw new Error(
       `Dictionary quality: ${words.length} words; maximum is ${quality.maxWords}`,
     );

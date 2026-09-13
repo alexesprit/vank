@@ -21,12 +21,15 @@ const qualityForConfig = async (path: string): Promise<PublishQuality> => {
   const languages = strings(config.learnerLanguages ?? ['ru']);
   const maxWords = config.maxWords;
   if (
-    typeof maxWords !== 'number' ||
-    !Number.isInteger(maxWords) ||
-    maxWords < 1
+    maxWords !== undefined &&
+    (typeof maxWords !== 'number' ||
+      !Number.isInteger(maxWords) ||
+      maxWords < 1)
   )
     throw new Error(`Invalid dictionary size in ${path}`);
   if (config.audience !== undefined) {
+    if (maxWords === undefined)
+      throw new Error(`maxWords is required for audience config in ${path}`);
     const audience = parseAudience(config.audience, languages, maxWords);
     return {
       language: audience.language,
@@ -38,7 +41,7 @@ const qualityForConfig = async (path: string): Promise<PublishQuality> => {
   }
   return {
     language: languages[0],
-    maxWords,
+    ...(maxWords === undefined ? {} : { maxWords }),
     minFamiliarWords: 0,
     minFamiliarShare: 0,
     minLetterCoverage: 0,

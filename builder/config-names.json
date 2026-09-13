@@ -1,6 +1,5 @@
 {
   "learnerLanguages": ["ru"],
-  "maxWords": 95,
   "sources": [
     {
       "type": "curated",

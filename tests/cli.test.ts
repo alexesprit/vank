@@ -8,6 +8,7 @@ import { downloadSource } from '../builder/src/io';
 import { mergeSources } from '../builder/src/pipeline';
 import { createReporter, formatProgress } from '../builder/src/progress';
 import { curatedSource } from '../builder/src/sources/curated';
+import { ALPHABET } from '../shared/armenian';
 
 const exec = promisify(execFile);
 it('reports rejected records separately from execution failures', () => {
@@ -100,7 +101,6 @@ it('builds a fixture without network, retains intermediate stages, supports quie
       config,
       JSON.stringify({
         learnerLanguages: ['ru'],
-        maxWords: 1000,
         sources: [
           {
             type: 'curated',
@@ -194,6 +194,24 @@ it('builds a fixture without network, retains intermediate stages, supports quie
       dir,
       '--quiet',
     ]);
+    const audienceWithoutLimit = join(dir, 'audience-without-limit.json');
+    await writeFile(
+      audienceWithoutLimit,
+      JSON.stringify({ learnerLanguages: ['ru'], audience: {}, sources: [] }),
+    );
+    await expect(
+      exec(process.execPath, [
+        'builder/src/cli.ts',
+        'normalize',
+        '--config',
+        audienceWithoutLimit,
+        '--data-dir',
+        dir,
+        '--quiet',
+      ]),
+    ).rejects.toThrow(
+      'maxWords is required when audience selection is enabled',
+    );
     const verbose = await exec(process.execPath, [...args, '--verbose']);
     expect(verbose.stdout).toContain('complete');
     expect(verbose.stdout).toContain('achievement prerequisites verified');
@@ -235,6 +253,49 @@ it('builds a fixture without network, retains intermediate stages, supports quie
         '--quiet',
       ]),
     ).rejects.toThrow();
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+it('keeps every word in a curated build when maxWords is omitted', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'vank-unlimited-curated-'));
+  try {
+    const letters = ALPHABET.map(({ upper }) => upper).filter(
+      (letter) => letter !== 'Ե' && letter !== 'Ւ',
+    );
+    const words = Array.from({ length: 1001 }, (_, index) => ({
+      word: `${letters[Math.floor(index / letters.length ** 2)]}${letters[Math.floor(index / letters.length) % letters.length]}${letters[index % letters.length]}`,
+    }));
+    const source = join(dir, 'curated.json');
+    const config = join(dir, 'config.json');
+    const output = join(dir, 'words.json');
+    await Promise.all([
+      writeFile(source, JSON.stringify(words)),
+      writeFile(
+        config,
+        JSON.stringify({
+          learnerLanguages: ['ru'],
+          sources: [{ type: 'curated', path: source, priority: 100 }],
+        }),
+      ),
+    ]);
+    await exec(process.execPath, [
+      'builder/src/cli.ts',
+      'build',
+      '--config',
+      config,
+      '--data-dir',
+      dir,
+      '--output',
+      output,
+      '--no-ai',
+      '--no-achievements',
+      '--quiet',
+    ]);
+    expect(JSON.parse(await readFile(output, 'utf8')).words).toHaveLength(
+      words.length,
+    );
   } finally {
     await rm(dir, { recursive: true, force: true });
   }

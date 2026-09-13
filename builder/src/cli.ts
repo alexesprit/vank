@@ -6,6 +6,7 @@ import { normalizeArmenian } from '../../shared/armenian.ts';
 import { object, parseWord, strings } from '../../shared/schema.ts';
 import { validateAchievementDictionary } from '../../web/src/core/achievements.ts';
 import {
+  type AudiencePolicy,
   composeAudience,
   countLetterCoverage,
   isFamiliar,
@@ -71,19 +72,27 @@ async function main() {
   if (!languages.length)
     throw new Error('At least one learner language is required');
   for (const language of languages) Intl.getCanonicalLocales(language);
-  const maxWords = config.maxWords ?? 1000;
+  const maxWords = config.maxWords;
   if (
-    typeof maxWords !== 'number' ||
-    !Number.isInteger(maxWords) ||
-    maxWords < 1
+    maxWords !== undefined &&
+    (typeof maxWords !== 'number' ||
+      !Number.isInteger(maxWords) ||
+      maxWords < 1)
   )
     throw new Error('Invalid dictionary size');
-  const audience =
-    config.audience === undefined ||
-    values['curated-only'] ||
-    values['no-audience']
-      ? undefined
-      : parseAudience(config.audience, languages, maxWords);
+  let audience: AudiencePolicy | undefined;
+  if (
+    config.audience !== undefined &&
+    !values['curated-only'] &&
+    !values['no-audience']
+  ) {
+    if (maxWords === undefined)
+      throw new Error(
+        'maxWords is required when audience selection is enabled',
+      );
+    audience = parseAudience(config.audience, languages, maxWords);
+  }
+  const audienceLimit = maxWords ?? 0;
   if (!Array.isArray(config.sources))
     throw new Error('Expected source configuration');
   const sources = config.sources
@@ -245,7 +254,7 @@ async function main() {
           report,
           stopWhen: audience
             ? (words) => {
-                if (words.length < maxWords) return false;
+                if (words.length < audienceLimit) return false;
                 const ids = new Set(words.map((word) => word.id));
                 if (overrideIds.some((id) => !ids.has(id))) return false;
                 const overridden = applyOverrides(words, overrides);
@@ -255,17 +264,17 @@ async function main() {
                   ).length <
                   Math.max(
                     audience.minFamiliarWords,
-                    Math.ceil(maxWords * audience.minFamiliarShare),
+                    Math.ceil(audienceLimit * audience.minFamiliarShare),
                   )
                 )
                   return false;
                 const selected = composeAudience(
                   overridden,
-                  maxWords,
+                  audienceLimit,
                   audience,
                 );
                 return (
-                  selected.length === maxWords &&
+                  selected.length === audienceLimit &&
                   countLetterCoverage(selected).every(
                     ({ words }) => words >= audience.minLetterCoverage,
                   )
@@ -290,8 +299,11 @@ async function main() {
           .map((w) => ({ id: w.id, word: w.word, reason: w.flags })),
       );
       const selected = audience
-        ? composeAudience(overridden, maxWords, audience)
-        : composeDataset(overridden, maxWords);
+        ? composeAudience(overridden, audienceLimit, audience)
+        : composeDataset(
+            overridden,
+            maxWords ?? Math.max(1, overridden.length),
+          );
       if (audience) {
         const familiar = selected.filter((w) =>
           isFamiliar(w, audience.language),
@@ -320,7 +332,7 @@ async function main() {
         const quality = {
           language: audience.language,
           total: selected.length,
-          maxWords,
+          maxWords: audienceLimit,
           familiar: familiar.length,
           familiarShare: familiar.length / selected.length,
           coverage,
