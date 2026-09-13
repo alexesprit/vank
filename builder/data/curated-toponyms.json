@@ -1522,5 +1522,53 @@
     "usefulnessScore": 0.75,
     "categories": ["nature"],
     "tags": ["Armenia"]
+  },
+  {
+    "word": "ՍՊԻՏԱԿ",
+    "meaning": {
+      "ru": "Спитак, город в Лорийской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԱԼԱՎԵՐԴԻ",
+    "meaning": {
+      "ru": "Алаверди, город в Лорийской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.8,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԱՐՏԻԿ",
+    "meaning": {
+      "ru": "Артик, город в Ширакской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["city"]
+  },
+  {
+    "word": "ԱՊԱՐԱՆ",
+    "meaning": {
+      "ru": "Апаран, город в Арагацотнской области"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "usefulnessScore": 0.75,
+    "categories": ["place-name"],
+    "tags": ["city"]
   }
 ]

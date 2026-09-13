@@ -72,6 +72,42 @@
     "tags": ["Armenian"]
   },
   {
+    "word": "ԱՐՄԱՆ",
+    "meaning": {
+      "ru": "Арман"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՐՍԵՆ",
+    "meaning": {
+      "ru": "Арсен"
+    },
+    "familiarity": {
+      "ru": 0.65
+    },
+    "usefulnessScore": 1,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ԱՐԵԳ",
+    "meaning": {
+      "ru": "Арег"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
     "word": "ԱՐՄԵՆ",
     "meaning": {
       "ru": "Армен"
@@ -600,6 +636,30 @@
     "tags": ["Armenian"]
   },
   {
+    "word": "ԷԼԵՆ",
+    "meaning": {
+      "ru": "Элен"
+    },
+    "familiarity": {
+      "ru": 0.45
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
+    "word": "ՄԵԼԻՆԵ",
+    "meaning": {
+      "ru": "Мелине"
+    },
+    "familiarity": {
+      "ru": 0.2
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["person-name"],
+    "tags": ["Armenian"]
+  },
+  {
     "word": "ԱԼԵՔՍԱՆԴՐ",
     "meaning": {
       "ru": "Александр"
@@ -908,6 +968,18 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.9,
+    "categories": ["person-name"],
+    "tags": ["Russian"]
+  },
+  {
+    "word": "ԱՆՆԱ",
+    "meaning": {
+      "ru": "Анна"
+    },
+    "familiarity": {
+      "ru": 0.98
+    },
+    "usefulnessScore": 1,
     "categories": ["person-name"],
     "tags": ["Russian"]
   },
