@@ -249,3 +249,82 @@
 .font-stat.weak-font {
   color: var(--danger);
 }
+
+.confusion-list {
+  display: grid;
+  gap: 12px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.confusion-item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.confusion-details {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.confusion-label {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.confusion-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.confusion-bar {
+  appearance: none;
+  width: 72px;
+  height: 4px;
+  flex: none;
+  margin: 0;
+  border: 0;
+  border-radius: 99px;
+  background: var(--soft);
+}
+
+.confusion-bar::-webkit-progress-bar {
+  border-radius: 99px;
+  background: var(--soft);
+}
+
+.confusion-bar::-webkit-progress-value {
+  border-radius: 99px;
+  background: var(--danger);
+}
+
+.confusion-bar::-moz-progress-bar {
+  border-radius: 99px;
+  background: var(--danger);
+}
+
+.confusion-count {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .confusion-meta {
+    gap: 4px;
+  }
+
+  .confusion-bar {
+    width: 48px;
+  }
+
+  .confusion-count {
+    font-size: 11px;
+  }
+}

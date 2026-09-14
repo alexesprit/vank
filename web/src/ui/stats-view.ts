@@ -1,5 +1,5 @@
 import { ALPHABET } from '../../../shared/armenian.ts';
-import type { LearnerState } from '../../../shared/types.ts';
+import type { AttemptEvent, LearnerState } from '../../../shared/types.ts';
 import { progress } from '../core/session.ts';
 import { FONTS } from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
@@ -12,6 +12,66 @@ const alphabetByUpper = new Map(
 
 const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
+const readingCharacter = /^[\p{Script=Latin}\p{Script=Cyrillic}]$/u;
+const minimumMixupObservations = 3;
+
+export function commonMixups(attempts: readonly AttemptEvent[]) {
+  const totals = new Map<string, number>();
+  const pairs = new Map<
+    string,
+    { source: string; expected: string; actual: string; count: number }
+  >();
+  for (const attempt of attempts) {
+    const { evaluation } = attempt.payload;
+    if (evaluation.status === 'unknown' || evaluation.status === 'ambiguous')
+      continue;
+    for (const unit of evaluation.units) {
+      const expected = [...unit.expected];
+      if (
+        unit.observation === null ||
+        !alphabetByUpper.has(unit.source) ||
+        [...unit.source].length !== 1 ||
+        expected.length !== 1 ||
+        !readingCharacter.test(expected[0])
+      )
+        continue;
+      const key = `${unit.source}\0${expected[0]}`;
+      totals.set(key, (totals.get(key) ?? 0) + 1);
+      const actual = [...unit.actual];
+      if (
+        unit.observation !== 0 ||
+        actual.length !== 1 ||
+        actual[0] === expected[0] ||
+        !readingCharacter.test(actual[0])
+      )
+        continue;
+      const pairKey = `${key}\0${actual[0]}`;
+      const pair = pairs.get(pairKey);
+      if (pair) pair.count++;
+      else
+        pairs.set(pairKey, {
+          source: unit.source,
+          expected: expected[0],
+          actual: actual[0],
+          count: 1,
+        });
+    }
+  }
+  return [...pairs.values()]
+    .map((pair) => ({
+      ...pair,
+      total: totals.get(`${pair.source}\0${pair.expected}`) ?? pair.count,
+    }))
+    .filter((pair) => pair.total >= minimumMixupObservations)
+    .sort(
+      (a, b) =>
+        b.count - a.count ||
+        b.count / b.total - a.count / a.total ||
+        a.source.localeCompare(b.source),
+    )
+    .slice(0, 5);
+}
+
 const element = (id: string) => {
   const found = document.getElementById(id);
   if (!found) throw new Error(`Missing element: ${id}`);
@@ -125,6 +185,66 @@ export function renderStats(
     weak.textContent = stats.introduced
       ? t('progress.keepGoing')
       : t('progress.start');
+  const mixups = element('confusion-stats');
+  const commonMixupsList = commonMixups(state.recent);
+  if (commonMixupsList.length) {
+    const list = document.createElement('ol');
+    list.className = 'confusion-list';
+    list.replaceChildren(
+      ...commonMixupsList.map((mixup) => {
+        const rate = Math.round((mixup.count / mixup.total) * 100);
+        const row = document.createElement('li');
+        row.className = 'confusion-item';
+        const source = document.createElement('span');
+        source.className = 'letter-chip confusion-letter';
+        source.lang = 'hy';
+        source.textContent = `${mixup.source}${mixup.source.toLocaleLowerCase('hy')}`;
+        applyArmenianFontFamily(source, fontFamily);
+        const details = document.createElement('div');
+        details.className = 'confusion-details';
+        const label = document.createElement('span');
+        label.className = 'confusion-label';
+        label.textContent = t('progress.mixupLabel', {
+          expected: mixup.expected,
+          actual: mixup.actual,
+        });
+        const meta = document.createElement('div');
+        meta.className = 'confusion-meta';
+        const bar = document.createElement('progress');
+        bar.className = 'confusion-bar';
+        bar.max = 100;
+        bar.value = rate;
+        bar.setAttribute(
+          'aria-label',
+          t('progress.mixupAria', {
+            letter: mixup.source,
+            expected: mixup.expected,
+            actual: mixup.actual,
+            count: mixup.count,
+            total: mixup.total,
+            rate,
+          }),
+        );
+        const count = document.createElement('span');
+        count.className = 'confusion-count';
+        count.textContent = t('progress.mixupCount', {
+          count: mixup.count,
+          total: mixup.total,
+          rate,
+        });
+        meta.append(count, bar);
+        details.append(label, meta);
+        row.append(source, details);
+        return row;
+      }),
+    );
+    mixups.replaceChildren(list);
+  } else {
+    const emptyMixups = document.createElement('p');
+    emptyMixups.className = 'font-stat';
+    emptyMixups.textContent = t('progress.noMixups');
+    mixups.replaceChildren(emptyMixups);
+  }
   const fontStats = element('font-stats');
   fontStats.replaceChildren(
     ...stats.fontStats.map((stat) => {

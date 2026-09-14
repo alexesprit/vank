@@ -165,6 +165,13 @@ export const ru = {
       learning: 'В процессе',
       strong: 'Сильная',
     },
+    mixups: 'Что я путаю',
+    noMixups:
+      'Для показа пары нужно 3 однозначных наблюдения по этой букве и чтению.',
+    mixupCount: '{{count}} из {{total}} · {{rate}}%',
+    mixupLabel: 'Вместо «{{expected}}» пишу «{{actual}}»',
+    mixupAria:
+      '{{letter}}: вместо «{{expected}}» пишу «{{actual}}»; {{count}} из {{total}} однозначных случаев, {{rate}}%',
     byFont: 'По шрифтам',
     byTypography: 'По начертанию',
     byFlash: 'По мгновенному распознаванию',

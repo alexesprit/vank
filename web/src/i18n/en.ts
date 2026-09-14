@@ -170,6 +170,14 @@ export const en = {
       learning: 'Learning',
       strong: 'Strong',
     },
+    mixups: 'What I mix up',
+    noMixups:
+      'A pair is shown after 3 clear observations for that letter and reading.',
+    mixupCount: '{{count}} of {{total}} · {{rate}}%',
+    // biome-ignore lint/security/noSecrets: Interpolated UI copy, not a credential.
+    mixupLabel: 'I typed “{{actual}}” in place of “{{expected}}”',
+    mixupAria:
+      '{{letter}}: I typed “{{actual}}” in place of “{{expected}}”; {{count}} of {{total}} clear instances, {{rate}}%',
     byFont: 'By font',
     byTypography: 'By typography',
     byFlash: 'By flash recognition',
