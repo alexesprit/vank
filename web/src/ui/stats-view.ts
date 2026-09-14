@@ -1,3 +1,4 @@
+import { ALPHABET } from '../../../shared/armenian.ts';
 import type { LearnerState } from '../../../shared/types.ts';
 import { progress } from '../core/session.ts';
 import { FONTS } from '../core/settings.ts';
@@ -5,6 +6,9 @@ import { fontName, t, typographyName } from '../i18n/index.ts';
 import { applyArmenianFontFamily } from './armenian-font.ts';
 
 const fontFamilyById = new Map(FONTS.map(({ id, family }) => [id, family]));
+const alphabetByUpper = new Map(
+  ALPHABET.map((letter) => [letter.upper, letter]),
+);
 
 const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
@@ -55,15 +59,24 @@ export function renderStats(
   alphabetGrid.replaceChildren(
     ...stats.alphabetStats.map((stat) => {
       const cell = document.createElement('div');
+      const alphabetLetter = alphabetByUpper.get(stat.letter);
+      if (!alphabetLetter)
+        throw new Error(`Unknown alphabet letter: ${stat.letter}`);
+      const mapping = `${stat.letter} → ${alphabetLetter.readingLatin[0]} · ${alphabetLetter.readingCyrillic[0]}`;
       cell.className = `alphabet-cell ${stat.introduced ? stat.state : 'placeholder'}`;
+      cell.setAttribute('role', 'group');
+      cell.tabIndex = 0;
+      cell.dataset.tooltip = mapping;
       cell.setAttribute(
         'aria-label',
-        stat.introduced
-          ? t('progress.alphabetScore', {
-              letter: stat.letter,
-              score: percentage(stat.score),
-            })
-          : t('progress.alphabetNotIntroduced', { letter: stat.letter }),
+        `${
+          stat.introduced
+            ? t('progress.alphabetScore', {
+                letter: stat.letter,
+                score: percentage(stat.score),
+              })
+            : t('progress.alphabetNotIntroduced', { letter: stat.letter })
+        }. ${mapping}`,
       );
       if (stat.introduced)
         cell.style.setProperty('--score', percentage(stat.score));
@@ -72,8 +85,8 @@ export function renderStats(
         ? 'alphabet-letter'
         : 'alphabet-placeholder';
       letter.lang = 'hy';
-      letter.textContent = stat.introduced ? stat.letter : '·';
-      if (stat.introduced) applyArmenianFontFamily(letter, fontFamily);
+      letter.textContent = `${stat.letter}${alphabetLetter.lower}`;
+      applyArmenianFontFamily(letter, fontFamily);
       cell.append(letter);
       if (stat.introduced) {
         const score = document.createElement('span');
@@ -103,7 +116,7 @@ export function renderStats(
       const chip = document.createElement('span');
       chip.className = 'letter-chip';
       chip.lang = 'hy';
-      chip.textContent = letter;
+      chip.textContent = `${letter}${letter.toLocaleLowerCase('hy')}`;
       applyArmenianFontFamily(chip, fontFamily);
       return chip;
     }),

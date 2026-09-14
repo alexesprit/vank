@@ -60,6 +60,7 @@
 }
 
 .stat-help::after,
+.alphabet-cell::before,
 .mode-tooltip {
   position: absolute;
   z-index: 1;
@@ -88,10 +89,25 @@
   content: attr(data-tooltip);
 }
 
+.alphabet-cell::before {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  width: max-content;
+  max-width: min(220px, calc(100vw - 32px));
+  content: attr(data-tooltip);
+  transform: translate(-50%, 4px);
+}
+
 .stat-help:hover::after,
 .stat-help:focus-visible::after {
   opacity: 1;
   transform: translateY(0);
+}
+
+.alphabet-cell:hover::before,
+.alphabet-cell:focus::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .stat-help svg {
