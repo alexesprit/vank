@@ -126,7 +126,7 @@ export function renderStats(
       cell.className = `alphabet-cell ${stat.introduced ? stat.state : 'placeholder'}`;
       cell.setAttribute('role', 'group');
       cell.tabIndex = 0;
-      cell.dataset.tooltip = mapping;
+      if (stat.introduced) cell.dataset.tooltip = mapping;
       cell.setAttribute(
         'aria-label',
         `${
@@ -136,7 +136,7 @@ export function renderStats(
                 score: percentage(stat.score),
               })
             : t('progress.alphabetNotIntroduced', { letter: stat.letter })
-        }. ${mapping}`,
+        }${stat.introduced ? `. ${mapping}` : ''}`,
       );
       if (stat.introduced)
         cell.style.setProperty('--score', percentage(stat.score));
@@ -145,7 +145,9 @@ export function renderStats(
         ? 'alphabet-letter'
         : 'alphabet-placeholder';
       letter.lang = 'hy';
-      letter.textContent = `${stat.letter}${alphabetLetter.lower}`;
+      letter.textContent = stat.introduced
+        ? `${stat.letter}${alphabetLetter.lower}`
+        : '·';
       applyArmenianFontFamily(letter, fontFamily);
       cell.append(letter);
       if (stat.introduced) {

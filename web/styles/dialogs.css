@@ -153,6 +153,7 @@ dialog::backdrop {
 .alphabet-cell.placeholder {
   border-style: dashed;
   background: var(--soft);
+  cursor: default;
 }
 .alphabet-cell.placeholder::after {
   display: none;

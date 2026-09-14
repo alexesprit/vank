@@ -98,6 +98,10 @@
   transform: translate(-50%, 4px);
 }
 
+.alphabet-cell:not([data-tooltip])::before {
+  display: none;
+}
+
 .stat-help:hover::after,
 .stat-help:focus-visible::after {
   opacity: 1;
