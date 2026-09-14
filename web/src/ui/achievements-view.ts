@@ -74,7 +74,10 @@ export function mountAchievements(trainer: Trainer) {
       total: ACHIEVEMENT_DEFINITIONS.length,
     });
     summaryCount.textContent = count;
-    dialogCount.textContent = count;
+    dialogCount.textContent = t('achievements.dialogCount', {
+      unlocked: unlocks.length,
+      total: ACHIEVEMENT_DEFINITIONS.length,
+    });
   };
   const renderList = (revealHidden: boolean) => {
     list.replaceChildren(

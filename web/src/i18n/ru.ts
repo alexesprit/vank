@@ -183,6 +183,7 @@ export const ru = {
   achievements: {
     summary: 'Достижения',
     summaryCount: 'Получено: {{unlocked}} из {{total}}',
+    dialogCount: '{{unlocked}} из {{total}}',
     title: 'Достижения',
     locked: 'Не получено',
     hiddenTitle: 'Скрытое достижение',

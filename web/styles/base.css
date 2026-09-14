@@ -29,6 +29,7 @@
   --syllable-odd: #dbeafe;
   --syllable-even: #fef3c7;
   --radius: 16px;
+  --header-height: 72px;
   --shadow: 0 12px 40px rgba(22, 26, 33, 0.08);
 }
 
@@ -86,7 +87,7 @@ body {
   top: 0;
   z-index: 1;
   flex: none;
-  height: 72px;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,6 +112,11 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.topbar,
+.dialog-header {
+  box-shadow: 0 2px 4px rgba(22, 26, 33, 0.08);
 }
 
 .icon-btn {

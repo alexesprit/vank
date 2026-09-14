@@ -206,10 +206,16 @@
 }
 
 .achievement-summary-copy,
-.achievements-heading,
 .snackbar-copy {
   display: grid;
   gap: 4px;
+  min-width: 0;
+}
+
+.achievements-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   min-width: 0;
 }
 
@@ -218,10 +224,19 @@
 }
 
 .achievement-summary-copy span,
-.achievement-summary-chevron,
-.achievements-heading > span {
+.achievement-summary-chevron {
   color: var(--muted);
   font-size: 12px;
+}
+
+.achievements-heading h2,
+.achievements-heading > span {
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.achievements-heading > span {
+  color: var(--muted);
 }
 
 .achievement-summary-chevron {

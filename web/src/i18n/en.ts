@@ -190,6 +190,7 @@ export const en = {
   achievements: {
     summary: 'Achievements',
     summaryCount: '{{unlocked}} of {{total}} unlocked',
+    dialogCount: '{{unlocked}} of {{total}}',
     title: 'Achievements',
     locked: 'Locked',
     hiddenTitle: 'Hidden achievement',
