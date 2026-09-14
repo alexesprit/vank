@@ -1,4 +1,4 @@
-import { ALPHABET } from '../../../shared/armenian.ts';
+import { ALPHABET, promptLetters } from '../../../shared/armenian.ts';
 import type {
   AttemptEvent,
   LearnerState,
@@ -80,15 +80,19 @@ export function completeAttempt(
   const next =
     flash && !flash.revealed
       ? { ...state, recent: [...state.recent] }
-      : updateScores(state, word, evaluation, now);
+      : updateScores(state, word, evaluation, now, presentation.caseMode);
   next.recent = [attempt, ...state.recent];
+  const introducedLetter = promptLetters(
+    word.uniqueLetters,
+    presentation.caseMode,
+  ).find((letter) => !(state.letters[letter]?.score > 0));
   if (
     !(flash && !flash.revealed) &&
     selection.phase === 'introduction' &&
-    selection.introducedLetter
+    introducedLetter !== undefined
   )
     next.reinforcement = {
-      letter: selection.introducedLetter,
+      letter: introducedLetter,
       remaining: config.reinforcementWords,
     };
   else if (
@@ -142,7 +146,10 @@ export function progress(state: LearnerState) {
       .filter(([letter, global]) => {
         const observations = fontAttempts.flatMap((attempt) =>
           attempt.payload.evaluation.units.flatMap((unit) =>
-            unit.source.includes(letter) && unit.observation !== null
+            promptLetters(
+              [...unit.source],
+              attempt.payload.presentation?.caseMode ?? 'caps',
+            ).includes(letter) && unit.observation !== null
               ? [unit.observation]
               : [],
           ),

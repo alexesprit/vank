@@ -1,4 +1,9 @@
-import { ALPHABET, normalizeArmenian } from './armenian.ts';
+import {
+  ALPHABET,
+  displayCaps,
+  normalizeArmenian,
+  wordTokens,
+} from './armenian.ts';
 import type { Dictionary, Word } from './types.ts';
 export const DICTIONARY_SCHEMA_VERSION = 1;
 const armenianPattern = /^[Ա-Ֆ]+$/u;
@@ -97,7 +102,22 @@ export function parseWord(value: unknown): Word {
   const letters = strings(w.letters),
     unique = strings(w.uniqueLetters);
   if (
-    letters.join('') !== w.word ||
+    w.ligaturePositions !== undefined &&
+    (!Array.isArray(w.ligaturePositions) ||
+      w.ligaturePositions.some(
+        (position) => !Number.isInteger(position) || Number(position) < 0,
+      ))
+  )
+    throw new Error('Invalid ligature positions');
+  const logicalLetters = wordTokens({
+    word: w.word,
+    ...(w.ligaturePositions === undefined
+      ? {}
+      : { ligaturePositions: w.ligaturePositions as number[] }),
+  });
+  if (
+    JSON.stringify(letters) !== JSON.stringify(logicalLetters) ||
+    displayCaps(letters) !== w.word ||
     letters.some((l) => !ALPHABET.some((a) => a.upper === l)) ||
     w.length !== letters.length ||
     JSON.stringify(unique) !== JSON.stringify([...new Set(letters)])
@@ -125,7 +145,6 @@ export function parseWord(value: unknown): Word {
       throw new Error('Invalid units');
     const units = w.units.map(object);
     if (
-      units.map((u) => u.source).join('') !== w.word ||
       units.some(
         (u) =>
           typeof u.source !== 'string' ||
@@ -135,6 +154,14 @@ export function parseWord(value: unknown): Word {
           typeof u.cyrillic !== 'string' ||
           !cyrillicUnitPattern.test(u.cyrillic),
       )
+    )
+      throw new Error('Invalid pronunciation units');
+    if (
+      JSON.stringify(
+        units.flatMap((unit) =>
+          unit.source === 'ՈՒ' ? ['Ո', 'Ւ'] : [unit.source as string],
+        ),
+      ) !== JSON.stringify(logicalLetters)
     )
       throw new Error('Invalid pronunciation units');
     if (
@@ -169,17 +196,33 @@ export function parseDictionary(value: unknown): Dictionary {
   const words = d.words.map((value) => {
     const word = object(value);
     if (typeof word.word !== 'string') return parseWord(word);
-    const letters = [...word.word];
+    const rawPositions = word.ligaturePositions;
+    const validPositions = Array.isArray(rawPositions)
+      ? rawPositions.filter(
+          (position): position is number => typeof position === 'number',
+        )
+      : undefined;
+    const letters =
+      word.letters === undefined
+        ? Array.isArray(rawPositions) &&
+          validPositions?.length === rawPositions.length
+          ? wordTokens({ word: word.word, ligaturePositions: validPositions })
+          : [...word.word]
+        : strings(word.letters);
     return parseWord({
       ...word,
-      letters: word.letters ?? letters,
-      uniqueLetters: word.uniqueLetters ?? [...new Set(letters)],
-      length: word.length ?? letters.length,
+      letters,
+      uniqueLetters:
+        word.uniqueLetters === undefined
+          ? [...new Set(letters)]
+          : strings(word.uniqueLetters),
+      length: word.length === undefined ? letters.length : word.length,
     });
   });
   if (
     new Set(words.map((w) => w.id)).size !== words.length ||
-    new Set(words.map((w) => w.word)).size !== words.length
+    new Set(words.map((word) => JSON.stringify(wordTokens(word)))).size !==
+      words.length
   )
     throw new Error('Duplicate word or ID');
   return {

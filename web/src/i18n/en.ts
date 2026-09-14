@@ -164,8 +164,6 @@ export const en = {
     dialogTitle: 'Detailed statistics',
     alphabetTitle: 'Alphabet mastery',
     alphabetSummary: 'introduced · mastery score {{score}}',
-    alphabetInfo:
-      'The 39th Armenian letter, և, is a lowercase ligature. In CAPS it appears as ԵՎ and is counted under Ե and Վ here.',
     alphabetGridLabel: 'Alphabet mastery scores',
     alphabetNotIntroduced: '{{letter}}, not introduced',
     alphabetScore: '{{letter}}, {{score}}',

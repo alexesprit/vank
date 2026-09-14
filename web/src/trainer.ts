@@ -1,3 +1,4 @@
+import { promptLetters } from '../../shared/armenian.ts';
 import type {
   Dictionary,
   Evaluation,
@@ -25,6 +26,7 @@ import {
 import {
   createWordSelector,
   type Selection,
+  unknownLetters,
   type WordSelector,
 } from './core/word-selector.ts';
 import type { Repository } from './storage/repository.ts';
@@ -81,9 +83,15 @@ export async function createTrainer(
   const installationId = clientId as string;
   const correctAnswers = () => countCorrectAnswers(state.recent);
   let pendingFont = fontLoader(selectFont(settings, correctAnswers()));
-  let current = select(state, Date.now()),
+  let presentation = selectTypography(settings, correctAnswers());
+  let current = select(
+      state,
+      Date.now(),
+      undefined,
+      undefined,
+      presentation.caseMode,
+    ),
     font = await pendingFont,
-    presentation = selectTypography(settings, correctAnswers()),
     shownAt = Date.now();
   let flashChange: (() => void) | undefined;
   const hintsEnabled = () => options.metadataHints ?? settings.metadataHints;
@@ -122,10 +130,13 @@ export async function createTrainer(
     }
     return loaded;
   };
-  const replacePrompt = async (next: Selection) => {
+  const replacePrompt = async (
+    next: Selection,
+    nextPresentation: ReturnType<typeof selectTypography>,
+  ) => {
     pendingFont = fontLoader(selectFont(settings, correctAnswers()));
     font = await latestFont(pendingFont);
-    presentation = selectTypography(settings, correctAnswers());
+    presentation = nextPresentation;
     current = next;
     metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
     metadataHintsCaptured = false;
@@ -197,12 +208,36 @@ export async function createTrainer(
     cycleTypography() {
       const available = availableTypography(correctAnswers());
       if (available.length < 2) return false;
-      const current = available.findIndex(
+      const currentIndex = available.findIndex(
         (mode) =>
           mode.caseMode === presentation.caseMode &&
           mode.italic === presentation.italic,
       );
-      const next = available[(current + 1) % available.length];
+      const next = available[(currentIndex + 1) % available.length];
+      if (
+        next.caseMode !== presentation.caseMode &&
+        current.phase !== 'bootstrap'
+      ) {
+        const visibleLetters = promptLetters(
+          current.word.uniqueLetters,
+          next.caseMode,
+        );
+        if (
+          current.phase === 'reinforcement' &&
+          state.reinforcement?.remaining &&
+          !visibleLetters.includes(state.reinforcement.letter)
+        )
+          return false;
+        const unknown = unknownLetters(current.word, state, next.caseMode);
+        if (unknown.length > TRAINER_CONFIG.maxUnknownLettersIntroduction)
+          return false;
+        if (unknown.length === 1 && current.phase !== 'reinforcement')
+          current = {
+            ...current,
+            phase: 'introduction',
+            introducedLetter: unknown[0],
+          };
+      }
       presentation = { caseMode: next.caseMode, italic: next.italic };
       return true;
     },
@@ -250,7 +285,10 @@ export async function createTrainer(
                   1 - familiarity * TRAINER_CONFIG.familiarityDiscount,
                 ),
                 letters: Object.fromEntries(
-                  current.word.uniqueLetters.map((letter) => [
+                  promptLetters(
+                    current.word.uniqueLetters,
+                    presentation.caseMode,
+                  ).map((letter) => [
                     letter,
                     {
                       before: state.letters[letter] ?? null,
@@ -271,10 +309,21 @@ export async function createTrainer(
     },
     async practiceLetter(letter: string) {
       return serialize(async () => {
-        if (!activeWords.some((word) => word.uniqueLetters.includes(letter)))
+        const nextPresentation = selectTypography(settings, correctAnswers());
+        if (
+          !activeWords.some((word) =>
+            promptLetters(
+              word.uniqueLetters,
+              nextPresentation.caseMode,
+            ).includes(letter),
+          )
+        )
           return 'missing' as const;
         const recent = recentLetterWords.get(letter) ?? [];
-        const currentMatches = current.word.uniqueLetters.includes(letter);
+        const currentMatches = promptLetters(
+          current.word.uniqueLetters,
+          nextPresentation.caseMode,
+        ).includes(letter);
         const excludedWordIds = currentMatches
           ? [
               ...recent.filter((wordId) => wordId !== current.word.id),
@@ -282,14 +331,24 @@ export async function createTrainer(
             ].slice(-LETTER_WORD_HISTORY_LIMIT)
           : recent;
         if (currentMatches) recentLetterWords.set(letter, excludedWordIds);
-        const next = select(state, Date.now(), Math.random, {
+        const request = {
           targetLetter: letter,
           excludeWordId: current.word.id,
           excludeWordIds: excludedWordIds,
-        });
+        };
+        const next = select(
+          state,
+          Date.now(),
+          Math.random,
+          request,
+          nextPresentation.caseMode,
+        );
         if (
           next.word.id === current.word.id ||
-          !next.word.uniqueLetters.includes(letter)
+          !promptLetters(
+            next.word.uniqueLetters,
+            nextPresentation.caseMode,
+          ).includes(letter)
         )
           return 'unavailable' as const;
         recentLetterWords.set(
@@ -299,15 +358,22 @@ export async function createTrainer(
             next.word.id,
           ].slice(-LETTER_WORD_HISTORY_LIMIT),
         );
-        await replacePrompt(next);
+        await replacePrompt(next, nextPresentation);
         return 'target' as const;
       });
     },
     async next() {
       return serialize(async () => {
         if (!result) return;
-        const next = select(state, Date.now());
-        await replacePrompt(next);
+        const nextPresentation = selectTypography(settings, correctAnswers());
+        const next = select(
+          state,
+          Date.now(),
+          undefined,
+          undefined,
+          nextPresentation.caseMode,
+        );
+        await replacePrompt(next, nextPresentation);
       });
     },
     async setSettings(
@@ -331,6 +397,7 @@ export async function createTrainer(
         settings.practiceMode;
       const applySettings = async () => {
         const saved = parseSettings({ ...settings, ...next });
+        const nextPresentation = selectTypography(saved, correctAnswers());
         const modeChanged = saved.practiceMode !== settings.practiceMode;
         let nextMode = mode;
         let nextSelect = select;
@@ -342,7 +409,13 @@ export async function createTrainer(
           nextMode = getPracticeMode(saved.practiceMode);
           nextSelect = createWordSelector(dictionary.words, nextMode.strategy);
           nextWords = dictionary.words;
-          nextCurrent = nextSelect(state, Date.now());
+          nextCurrent = nextSelect(
+            state,
+            Date.now(),
+            undefined,
+            undefined,
+            nextPresentation.caseMode,
+          );
         }
         await repository.setSetting('app', saved);
         settings = saved;
@@ -368,7 +441,7 @@ export async function createTrainer(
         if (!saved.flash.enabled) flash.show();
         pendingFont = fontLoader(selectFont(saved, correctAnswers()));
         font = await latestFont(pendingFont);
-        presentation = selectTypography(saved, correctAnswers());
+        presentation = nextPresentation;
         if (flash.started && !result && !flash.hidden && !flash.revealed) {
           const wasPaused = flash.paused;
           startFlash();

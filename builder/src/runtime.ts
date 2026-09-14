@@ -14,6 +14,9 @@ export function runtimeDictionary(dictionary: Dictionary): RuntimeDictionary {
     words: dictionary.words.map((word) => ({
       id: word.id,
       word: word.word,
+      ...(word.ligaturePositions === undefined
+        ? {}
+        : { ligaturePositions: word.ligaturePositions }),
       readingLatin: word.readingLatin,
       acceptedLatin: word.acceptedLatin,
       acceptedCyrillic: word.acceptedCyrillic,

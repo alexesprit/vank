@@ -11,16 +11,42 @@ import {
   selectTypography,
   TYPOGRAPHY_MODES,
 } from '../web/src/core/settings';
+import { fontAlphabetSamples } from '../web/src/ui/debug-view';
 
 const empty = (): LearnerState => ({ letters: {}, words: {}, recent: [] });
 
 it('formats supported Armenian case modes without changing the canonical word', () => {
   const word = deriveWord('ԵՐԵՎԱՆ');
-  expect(formatPrompt(word.word, 'caps')).toBe('ԵՐԵՎԱՆ');
-  expect(formatPrompt(word.word, 'normal')).toBe('Երևան');
-  expect(formatPrompt(word.word, 'lower')).toBe('երևան');
+  expect(formatPrompt(word, 'caps')).toBe('ԵՐԵՎԱՆ');
+  expect(formatPrompt(word, 'normal')).toBe('Երեվան');
+  expect(formatPrompt(word, 'lower')).toBe('երեվան');
+  expect(formatPrompt(word.word, 'lower')).toBe('երեվան');
   expect(word.word).toBe('ԵՐԵՎԱՆ');
   expect(formatPrompt('123', 'lower')).toBe('123');
+});
+
+it('formats explicit և differently from separate ե + վ in all case modes', () => {
+  const ligature = deriveWord('բարև'),
+    separate = deriveWord('բարեվ'),
+    initialLigature = deriveWord('ևրան');
+
+  expect(formatPrompt(ligature, 'lower')).toBe('բարև');
+  expect(formatPrompt(ligature, 'normal')).toBe('Բարև');
+  expect(formatPrompt(ligature, 'caps')).toBe('ԲԱՐԵՎ');
+  expect(formatPrompt(separate, 'lower')).toBe('բարեվ');
+  expect(formatPrompt(separate, 'normal')).toBe('Բարեվ');
+  expect(formatPrompt(separate, 'caps')).toBe('ԲԱՐԵՎ');
+  expect(formatPrompt(initialLigature, 'lower')).toBe('ևրան');
+  expect(formatPrompt(initialLigature, 'normal')).toBe('Եվրան');
+  expect(formatPrompt(initialLigature, 'caps')).toBe('ԵՎՐԱՆ');
+});
+
+it('shows ԵՎ only in the CAPS font sample and one և in lowercase', () => {
+  const [caps, lowercase] = fontAlphabetSamples();
+
+  expect(caps.endsWith('ԵՎ')).toBe(true);
+  expect(caps).not.toContain('և');
+  expect([...lowercase].filter((letter) => letter === 'և')).toHaveLength(1);
 });
 
 it('defaults to CAPS upright and selects or rotates enabled typography modes', () => {

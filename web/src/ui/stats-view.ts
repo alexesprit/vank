@@ -12,6 +12,8 @@ const alphabetByUpper = new Map(
 
 const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
+export const alphabetLetterText = (upper: string, lower: string) =>
+  upper === 'և' ? lower : `${upper}${lower}`;
 const readingCharacter = /^[\p{Script=Latin}\p{Script=Cyrillic}]$/u;
 const minimumMixupObservations = 3;
 const mixupAttemptWindow = 50;
@@ -112,9 +114,6 @@ export function renderStats(
     'progress.alphabetSummary',
     { score: percentage(stats.averageScore) },
   )}`;
-  const alphabetInfo = element('alphabet-info');
-  alphabetInfo.dataset.tooltip = t('progress.alphabetInfo');
-  alphabetInfo.setAttribute('aria-label', t('progress.alphabetInfo'));
   const alphabetGrid = element('alphabet-grid');
   alphabetGrid.setAttribute('aria-label', t('progress.alphabetGridLabel'));
   alphabetGrid.replaceChildren(
@@ -147,7 +146,7 @@ export function renderStats(
         : 'alphabet-placeholder';
       letter.lang = 'hy';
       letter.textContent = stat.introduced
-        ? `${stat.letter}${alphabetLetter.lower}`
+        ? alphabetLetterText(stat.letter, alphabetLetter.lower)
         : '·';
       applyArmenianFontFamily(letter, fontFamily);
       cell.append(letter);
@@ -184,7 +183,10 @@ export function renderStats(
       chip.lang = document.documentElement.lang;
       const glyph = document.createElement('span');
       glyph.lang = 'hy';
-      glyph.textContent = `${letter}${letter.toLocaleLowerCase('hy')}`;
+      glyph.textContent = alphabetLetterText(
+        letter,
+        letter.toLocaleLowerCase('hy'),
+      );
       chip.append(glyph);
       applyArmenianFontFamily(chip, fontFamily);
       return chip;
@@ -207,7 +209,10 @@ export function renderStats(
         const source = document.createElement('span');
         source.className = 'letter-chip confusion-letter';
         source.lang = 'hy';
-        source.textContent = `${mixup.source}${mixup.source.toLocaleLowerCase('hy')}`;
+        source.textContent = alphabetLetterText(
+          mixup.source,
+          mixup.source.toLocaleLowerCase('hy'),
+        );
         applyArmenianFontFamily(source, fontFamily);
         const details = document.createElement('div');
         details.className = 'confusion-details';

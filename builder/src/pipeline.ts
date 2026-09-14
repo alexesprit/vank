@@ -1,4 +1,4 @@
-import { deriveWord, normalizeArmenian } from '../../shared/armenian.ts';
+import { deriveWord } from '../../shared/armenian.ts';
 import {
   object,
   parseDictionary,
@@ -15,12 +15,14 @@ const technical = new Set([
   'uniqueLetters',
   'length',
   'units',
+  'ligaturePositions',
   'readingLatin',
   'transliterationVersion',
   'sources',
   'source',
   'metadataSource',
 ]);
+const ambiguousCasePair = /Ե(?:Վ|վ)/u;
 export function mergeFields(
   target: Record<string, unknown>,
   incoming: Record<string, unknown>,
@@ -60,15 +62,56 @@ export function mergeSources(records: RawWord[], report: Report = () => {}) {
       a.sourceId.localeCompare(b.sourceId) ||
       a.word.localeCompare(b.word),
   );
-  ordered.forEach((record, index) => {
+  const prepared: {
+    record: RawWord;
+    derived: ReturnType<typeof deriveWord>;
+    identity: string;
+    ambiguous: boolean;
+  }[] = [];
+  ordered.forEach((record) => {
     try {
       if (!Number.isFinite(record.sourcePriority))
         throw new Error('Invalid source priority');
-      const word = normalizeArmenian(record.word);
-      if (word.length > 24) throw new Error('Word exceeds 24 characters');
-      deriveWord(word);
-      const entry = merged.get(word) ?? {
-        word,
+      const derived = deriveWord(record.word, record.ligaturePositions);
+      if (derived.length > 24) throw new Error('Word exceeds 24 characters');
+      prepared.push({
+        record,
+        derived,
+        identity: JSON.stringify(derived.letters),
+        ambiguous:
+          record.ligaturePositions === undefined &&
+          derived.ligaturePositions === undefined &&
+          ambiguousCasePair.test(record.word),
+      });
+    } catch (error) {
+      rejected.push({ word: record.word, reason: String(error) });
+    }
+  });
+  const explicit = new Map<string, Map<string, (typeof prepared)[number]>>();
+  for (const item of prepared) {
+    if (item.ambiguous) continue;
+    const variants = explicit.get(item.derived.word) ?? new Map();
+    variants.set(item.identity, item);
+    explicit.set(item.derived.word, variants);
+  }
+  prepared.forEach((item, index) => {
+    try {
+      const variants = explicit.get(item.derived.word);
+      if (item.ambiguous && (variants?.size ?? 0) > 1)
+        throw new Error(
+          'Ambiguous spelling matches multiple logical spellings',
+        );
+      const selected =
+        item.ambiguous && variants?.size === 1
+          ? [...variants.values()][0]
+          : item;
+      if (!selected) throw new Error('Missing spelling provenance');
+      const { derived, identity } = selected;
+      const entry = merged.get(identity) ?? {
+        word: derived.word,
+        ...(derived.ligaturePositions === undefined
+          ? {}
+          : { ligaturePositions: derived.ligaturePositions }),
         sources: [],
         metadata: {},
         metadataSource: {},
@@ -77,36 +120,54 @@ export function mergeSources(records: RawWord[], report: Report = () => {}) {
       };
       entry.metadata = mergeFields(
         entry.metadata,
-        record.metadata ?? {},
+        item.record.metadata ?? {},
         entry.metadataSource,
-        record.sourceId,
+        item.record.sourceId,
       );
       entry.rawDefinitions = [
-        ...new Set([...entry.rawDefinitions, ...(record.rawDefinitions ?? [])]),
+        ...new Set([
+          ...entry.rawDefinitions,
+          ...(item.record.rawDefinitions ?? []),
+        ]),
       ];
-      entry.rawPos = [...new Set([...entry.rawPos, ...(record.rawPos ?? [])])];
-      if (record.rawFrequency !== undefined)
-        entry.rawFrequency = record.rawFrequency;
+      entry.rawPos = [
+        ...new Set([...entry.rawPos, ...(item.record.rawPos ?? [])]),
+      ];
+      if (item.record.rawFrequency !== undefined)
+        entry.rawFrequency = item.record.rawFrequency;
       if (
         !entry.sources.some(
-          (s) => JSON.stringify(s) === JSON.stringify(record.source),
+          (s) => JSON.stringify(s) === JSON.stringify(item.record.source),
         )
       )
-        entry.sources.push(record.source);
-      merged.set(word, entry);
+        entry.sources.push(item.record.source);
+      merged.set(identity, entry);
     } catch (error) {
-      rejected.push({ word: record.word, reason: String(error) });
+      rejected.push({ word: item.record.word, reason: String(error) });
     }
-    if (index % 100 === 0 || index === ordered.length - 1)
+    if (index % 100 === 0 || index === prepared.length - 1)
       report({
         stage: 'normalize/merge',
-        processed: index + 1,
+        processed: Math.min(ordered.length, index + 1),
         total: ordered.length,
         rejected: rejected.length,
       });
   });
+  if (prepared.length < ordered.length)
+    report({
+      stage: 'normalize/merge',
+      processed: ordered.length,
+      total: ordered.length,
+      rejected: rejected.length,
+    });
   return {
-    words: [...merged.values()].sort((a, b) => a.word.localeCompare(b.word)),
+    words: [...merged.values()].sort(
+      (a, b) =>
+        a.word.localeCompare(b.word) ||
+        deriveWord(a.word, a.ligaturePositions).id.localeCompare(
+          deriveWord(b.word, b.ligaturePositions).id,
+        ),
+    ),
     rejected,
   };
 }
@@ -115,7 +176,7 @@ export function deriveMetadata(
   report: Report = () => {},
 ): BuildWord[] {
   return records.map((record, index) => {
-    const derived = deriveWord(record.word),
+    const derived = deriveWord(record.word, record.ligaturePositions),
       metadata = Object.fromEntries(
         Object.entries(record.metadata).filter(([key]) => !technical.has(key)),
       );

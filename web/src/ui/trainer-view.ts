@@ -1,3 +1,4 @@
+import { ALPHABET } from '../../../shared/armenian.ts';
 import type {
   CaseMode,
   Dictionary,
@@ -9,7 +10,7 @@ import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { getPracticeMode } from '../core/modes.ts';
 import { countCorrectAnswers } from '../core/session.ts';
-import { availableTypography, formatPrompt } from '../core/settings.ts';
+import { availableTypography } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
 import { mountAchievements } from './achievements-view.ts';
@@ -20,25 +21,66 @@ import { createSnackbar } from './snackbar.ts';
 import { mountStatsDialog, renderStats } from './stats-view.ts';
 import { renderSyllables } from './syllable-colors.ts';
 
+const cyrillicPattern = /\p{Script=Cyrillic}/u;
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
-function mistakeMappings(units: Evaluation['units']) {
+function mistakeMappings(
+  units: Evaluation['units'],
+  caseMode: CaseMode = 'caps',
+) {
   const seen = new Set<string>();
   return units.flatMap((unit) => {
     if (unit.observation !== 0) return [];
-    const key = `${unit.source}\u0000${unit.expected}`;
-    if (seen.has(key)) return [];
-    seen.add(key);
-    return [
-      { source: unit.source, expected: unit.expected, position: unit.position },
-    ];
+    const mappings =
+      unit.source === 'և' && caseMode === 'caps'
+        ? (['Ե', 'Վ'] as const).map((source) => ({
+            source,
+            expected: visibleLetterReading(
+              source,
+              unit.position,
+              unit.expected,
+            ),
+            position: unit.position,
+          }))
+        : [
+            {
+              source: formatMappingSource(unit.source, unit.position, caseMode),
+              expected: unit.expected,
+              position: unit.position,
+            },
+          ];
+    return mappings.filter(({ source, expected }) => {
+      const key = `${source}\u0000${expected}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   });
+}
+function visibleLetterReading(
+  letter: string,
+  position: number,
+  reading: string,
+) {
+  const alphabetLetter = ALPHABET.find(({ upper }) => upper === letter),
+    cyrillic = cyrillicPattern.test(reading);
+  return cyrillic
+    ? (alphabetLetter?.readingCyrillic[0] ?? reading)
+    : letter === 'Ե' && position === 0
+      ? 'ye'
+      : (alphabetLetter?.readingLatin[0] ?? reading);
 }
 export function formatMappingSource(
   source: string,
   position: number,
   caseMode: CaseMode,
 ) {
+  if (source === 'և')
+    return caseMode === 'caps'
+      ? 'ԵՎ'
+      : caseMode === 'normal' && position === 0
+        ? 'Եվ'
+        : 'և';
   return caseMode === 'caps' || (caseMode === 'normal' && position === 0)
     ? source
     : source.toLocaleLowerCase('hy');
@@ -60,8 +102,11 @@ export function displayMappingUnits(
     expected: word.units?.[index]?.cyrillic ?? unit.expected,
   }));
 }
-export function formatMistakes(units: Evaluation['units']) {
-  return mistakeMappings(units)
+export function formatMistakes(
+  units: Evaluation['units'],
+  caseMode: CaseMode = 'caps',
+) {
+  return mistakeMappings(units, caseMode)
     .map((mapping) => `${mapping.source} → ${mapping.expected}`)
     .join(' · ');
 }
@@ -72,7 +117,7 @@ function renderMistakeMappings(
   fontFamily: string,
   presentation: Trainer['presentation'],
 ) {
-  const mappings = mistakeMappings(units);
+  const mappings = mistakeMappings(units, presentation.caseMode);
   if (!mappings.length) {
     container.textContent = '';
     return false;
@@ -83,17 +128,13 @@ function renderMistakeMappings(
   const list = document.createElement('span');
   list.className = 'mapping-list';
   list.append(
-    ...mappings.map(({ source, expected, position }) => {
+    ...mappings.map(({ source, expected }) => {
       const chip = document.createElement('span');
       chip.className = 'mapping-chip';
       const sourceElement = document.createElement('span');
       sourceElement.className = 'mapping-source';
       sourceElement.lang = 'hy';
-      sourceElement.textContent = formatMappingSource(
-        source,
-        position,
-        presentation.caseMode,
-      );
+      sourceElement.textContent = source;
       applyArmenianFontFamily(sourceElement, fontFamily);
       sourceElement.style.fontStyle = presentation.italic ? 'italic' : 'normal';
       const arrow = document.createElement('span');
@@ -227,8 +268,9 @@ export function mountTrainer(
       result = trainer.result;
     renderSyllables(
       prompt,
-      formatPrompt(word.word, trainer.presentation.caseMode),
+      word,
       trainer.settings.syllableColors,
+      trainer.presentation.caseMode,
     );
     const canReveal = trainer.flashHidden && !result;
     wordWrap.classList.toggle('flash-is-hidden', canReveal);

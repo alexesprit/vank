@@ -1,6 +1,6 @@
 [
   {
-    "word": "ՄԱՄԱ",
+    "word": "մամա",
     "meaning": {
       "ru": "мама"
     },
@@ -11,7 +11,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՏԱՔՍԻ",
+    "word": "տաքսի",
     "meaning": {
       "ru": "такси"
     },
@@ -23,7 +23,7 @@
     "acceptedLatin": ["taksi", "taxi"]
   },
   {
-    "word": "ՊԻՑՑԱ",
+    "word": "պիցցա",
     "meaning": {
       "ru": "пицца"
     },
@@ -35,7 +35,7 @@
     "acceptedLatin": ["pitstsa", "pitsa", "pizza"]
   },
   {
-    "word": "ՌԱԴԻՈ",
+    "word": "ռադիո",
     "meaning": {
       "ru": "радио"
     },
@@ -46,7 +46,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՄԵՏՐՈ",
+    "word": "մետրո",
     "meaning": {
       "ru": "метро"
     },
@@ -57,7 +57,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԿԻՆՈ",
+    "word": "կինո",
     "meaning": {
       "ru": "кино"
     },
@@ -68,7 +68,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԲԱՆԱՆ",
+    "word": "բանան",
     "meaning": {
       "ru": "банан"
     },
@@ -79,7 +79,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԿԱԿԱՈ",
+    "word": "կակաո",
     "meaning": {
       "ru": "какао"
     },
@@ -90,7 +90,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԿՈԼԱ",
+    "word": "կոլա",
     "meaning": {
       "ru": "кола"
     },
@@ -101,7 +101,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՍՈԴԱ",
+    "word": "սոդա",
     "meaning": {
       "ru": "сода"
     },
@@ -112,7 +112,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՍԱԼԱԹ",
+    "word": "սալաթ",
     "meaning": {
       "ru": "салат"
     },
@@ -123,7 +123,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՍՈՒՊ",
+    "word": "սուպ",
     "meaning": {
       "ru": "суп"
     },
@@ -134,7 +134,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՏՈՐԹ",
+    "word": "տորթ",
     "meaning": {
       "ru": "торт"
     },
@@ -145,7 +145,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՍՈՈՒՍ",
+    "word": "սոուս",
     "meaning": {
       "ru": "соус"
     },
@@ -156,7 +156,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՍԱՈՒՆԱ",
+    "word": "սաունա",
     "meaning": {
       "ru": "сауна"
     },
@@ -167,7 +167,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԲԱՐ",
+    "word": "բար",
     "meaning": {
       "ru": "бар"
     },
@@ -178,7 +178,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԲԱՆԿ",
+    "word": "բանկ",
     "meaning": {
       "ru": "банк"
     },
@@ -189,7 +189,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՊԱՐԿ",
+    "word": "պարկ",
     "meaning": {
       "ru": "парк"
     },
@@ -200,7 +200,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՕՊԵՐԱ",
+    "word": "օպերա",
     "meaning": {
       "ru": "опера"
     },
@@ -211,7 +211,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՀՈՏԵԼ",
+    "word": "հոտել",
     "meaning": {
       "ru": "отель"
     },
@@ -222,7 +222,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՍԱԼՈՆ",
+    "word": "սալոն",
     "meaning": {
       "ru": "салон"
     },
@@ -233,7 +233,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՖՈՏՈ",
+    "word": "ֆոտո",
     "meaning": {
       "ru": "фото"
     },
@@ -244,7 +244,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՖԻԼՄ",
+    "word": "ֆիլմ",
     "meaning": {
       "ru": "фильм"
     },
@@ -255,7 +255,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԻՆՏԵՐՆԵՏ",
+    "word": "ինտերնետ",
     "meaning": {
       "ru": "интернет"
     },
@@ -266,7 +266,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԱՆՆԱ",
+    "word": "աննա",
     "meaning": {
       "ru": "Анна"
     },
@@ -277,7 +277,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՆԻՆԱ",
+    "word": "նինա",
     "meaning": {
       "ru": "Нина"
     },
@@ -288,7 +288,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՄԱՐԻԱ",
+    "word": "մարիա",
     "meaning": {
       "ru": "Мария"
     },
@@ -299,7 +299,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԻՎԱՆ",
+    "word": "իվան",
     "meaning": {
       "ru": "Иван"
     },
@@ -310,7 +310,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԱՆԴՐԵՅ",
+    "word": "անդրեյ",
     "meaning": {
       "ru": "Андрей"
     },
@@ -321,7 +321,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԱՐԱՄ",
+    "word": "արամ",
     "meaning": {
       "ru": "Арам"
     },
@@ -332,7 +332,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԵՐԵՎԱՆ",
+    "word": "երևան",
     "meaning": {
       "ru": "Ереван"
     },
@@ -343,7 +343,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ՄՈՍԿՎԱ",
+    "word": "մոսկվա",
     "meaning": {
       "ru": "Москва"
     },
@@ -354,7 +354,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԲԱՐԵՎ",
+    "word": "բարև",
     "meaning": {
       "ru": "привет"
     },
@@ -365,7 +365,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՀԱՑ",
+    "word": "հաց",
     "meaning": {
       "ru": "хлеб"
     },
@@ -376,7 +376,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՋՈՒՐ",
+    "word": "ջուր",
     "meaning": {
       "ru": "вода"
     },
@@ -387,7 +387,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԳԻՆԻ",
+    "word": "գինի",
     "meaning": {
       "ru": "вино"
     },
@@ -398,7 +398,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԿԱԹ",
+    "word": "կաթ",
     "meaning": {
       "ru": "молоко"
     },
@@ -409,7 +409,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԹԵՅ",
+    "word": "թեյ",
     "meaning": {
       "ru": "чай"
     },
@@ -420,7 +420,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՄԻՍ",
+    "word": "միս",
     "meaning": {
       "ru": "мясо"
     },
@@ -431,7 +431,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՁՈՒ",
+    "word": "ձու",
     "meaning": {
       "ru": "яйцо"
     },
@@ -442,7 +442,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԱՂ",
+    "word": "աղ",
     "meaning": {
       "ru": "соль"
     },
@@ -453,7 +453,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՇՈՒՆ",
+    "word": "շուն",
     "meaning": {
       "ru": "собака"
     },
@@ -464,7 +464,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԿԱՏՈՒ",
+    "word": "կատու",
     "meaning": {
       "ru": "кошка"
     },
@@ -475,7 +475,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՏՈՒՆ",
+    "word": "տուն",
     "meaning": {
       "ru": "дом"
     },
@@ -486,7 +486,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԽԱՆՈՒԹ",
+    "word": "խանութ",
     "meaning": {
       "ru": "магазин"
     },
@@ -497,7 +497,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԽՈՀԱՆՈՑ",
+    "word": "խոհանոց",
     "meaning": {
       "ru": "кухня"
     },
@@ -508,7 +508,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԱՅՈ",
+    "word": "այո",
     "meaning": {
       "ru": "да"
     },
@@ -519,7 +519,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՈՉ",
+    "word": "ոչ",
     "meaning": {
       "ru": "нет"
     },
@@ -530,7 +530,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԵՍ",
+    "word": "ես",
     "meaning": {
       "ru": "я"
     },
@@ -541,7 +541,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԴՈՒ",
+    "word": "դու",
     "meaning": {
       "ru": "ты"
     },
@@ -552,7 +552,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՍԱ",
+    "word": "սա",
     "meaning": {
       "ru": "это"
     },
@@ -563,7 +563,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՆԱ",
+    "word": "նա",
     "meaning": {
       "ru": "он / она"
     },
@@ -574,7 +574,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՄԱԶ",
+    "word": "մազ",
     "meaning": {
       "ru": "волос"
     },
@@ -585,7 +585,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՄԱՏ",
+    "word": "մատ",
     "meaning": {
       "ru": "палец"
     },
@@ -596,7 +596,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԴԱՍ",
+    "word": "դաս",
     "meaning": {
       "ru": "урок"
     },
@@ -607,7 +607,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԺԱՄ",
+    "word": "ժամ",
     "meaning": {
       "ru": "час"
     },
@@ -618,7 +618,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԺԱՄԱՆԱԿ",
+    "word": "ժամանակ",
     "meaning": {
       "ru": "время"
     },
@@ -629,7 +629,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԾԱՌ",
+    "word": "ծառ",
     "meaning": {
       "ru": "дерево"
     },
@@ -640,7 +640,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԾՈՎ",
+    "word": "ծով",
     "meaning": {
       "ru": "море"
     },
@@ -651,7 +651,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՁՈՐ",
+    "word": "ձոր",
     "meaning": {
       "ru": "ущелье"
     },
@@ -662,7 +662,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՃԱՇ",
+    "word": "ճաշ",
     "meaning": {
       "ru": "обед"
     },
@@ -673,7 +673,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՃԱՄՓԱ",
+    "word": "ճամփա",
     "meaning": {
       "ru": "дорога"
     },
@@ -684,7 +684,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՓՈՂ",
+    "word": "փող",
     "meaning": {
       "ru": "деньги"
     },
@@ -695,7 +695,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՓԱԿ",
+    "word": "փակ",
     "meaning": {
       "ru": "закрыто"
     },
@@ -706,7 +706,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԲԱՑ",
+    "word": "բաց",
     "meaning": {
       "ru": "открыто"
     },
@@ -717,7 +717,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՕՐ",
+    "word": "օր",
     "meaning": {
       "ru": "день"
     },
@@ -728,7 +728,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԷՋ",
+    "word": "էջ",
     "meaning": {
       "ru": "страница"
     },
@@ -739,7 +739,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԷԿՐԱՆ",
+    "word": "էկրան",
     "meaning": {
       "ru": "экран"
     },
@@ -750,7 +750,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԸՆՏԱՆԻՔ",
+    "word": "ընտանիք",
     "meaning": {
       "ru": "семья"
     },
@@ -761,7 +761,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԸՆԿԵՐ",
+    "word": "ընկեր",
     "meaning": {
       "ru": "друг"
     },
@@ -772,7 +772,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՔԱՂԱՔ",
+    "word": "քաղաք",
     "meaning": {
       "ru": "город"
     },
@@ -783,7 +783,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՈՍԿԻ",
+    "word": "ոսկի",
     "meaning": {
       "ru": "золото"
     },
@@ -794,7 +794,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՈՒՏԵԼ",
+    "word": "ուտել",
     "meaning": {
       "ru": "есть"
     },
@@ -805,7 +805,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԼՈՒՅՍ",
+    "word": "լույս",
     "meaning": {
       "ru": "свет"
     },
@@ -816,7 +816,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԼԵԶՈՒ",
+    "word": "լեզու",
     "meaning": {
       "ru": "язык"
     },
@@ -827,7 +827,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ՉԱՅ",
+    "word": "չայ",
     "meaning": {
       "ru": "чай (заимствованное)"
     },
@@ -838,7 +838,7 @@
     "tags": ["beginner"]
   },
   {
-    "word": "ԳԱՐՈՒՆ",
+    "word": "գարուն",
     "meaning": {
       "ru": "весна"
     },
@@ -849,7 +849,7 @@
     "tags": ["common"]
   },
   {
-    "word": "ԿՈՄԲՈ",
+    "word": "կոմբո",
     "meaning": {
       "ru": "комбо (набор в меню)"
     },
@@ -862,7 +862,7 @@
     "usageEvidence": "https://artlunch.am/menu"
   },
   {
-    "word": "ՃԻՇՏ",
+    "word": "ճիշտ",
     "meaning": {
       "ru": "правильный, верный"
     },

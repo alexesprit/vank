@@ -1,4 +1,10 @@
-import { ALPHABET } from '../../../shared/armenian.ts';
+import {
+  ALPHABET,
+  deriveWord,
+  displayCaps,
+  promptLetters,
+  wordTokens,
+} from '../../../shared/armenian.ts';
 import type {
   AttemptEvent,
   LearnerState,
@@ -9,6 +15,16 @@ import { familiarity, updateScores } from './scoring.ts';
 
 const barevWorldWord = 'ԲԱՐԵՎ';
 const yerevanWorldWord = 'ԵՐԵՎԱՆ';
+const barevWorld = deriveWord('բարև');
+const yerevanWorld = deriveWord('Երևան');
+const barevWorldIdentity = JSON.stringify(barevWorld.letters);
+const yerevanWorldIdentity = JSON.stringify(yerevanWorld.letters);
+const barevWorldId = barevWorld.id;
+const yerevanWorldId = yerevanWorld.id;
+const requiredWordIdentities = {
+  [barevWorldWord]: barevWorldIdentity,
+  [yerevanWorldWord]: yerevanWorldIdentity,
+};
 // ponytail: prompt-text matching; keep these spellings synced with builder/data/curated-countries.json.
 const armeniaNeighborWords = new Set([
   'ԻՐԱՆ',
@@ -23,7 +39,7 @@ export const ACHIEVEMENT_REQUIRED_WORDS = [
 ] as const;
 export const ACHIEVEMENT_DICTIONARY_REQUIREMENTS = {
   minWords: 20,
-  minStrongLetters: 19,
+  minStrongLetters: Math.ceil(ALPHABET.length / 2),
   maxFamiliarity: TRAINER_CONFIG.verificationFamiliarityThreshold,
   maxFreebieFamiliarity: 0.2,
   minDistinctLettersInWord: 6,
@@ -92,7 +108,9 @@ export interface AchievementDefinition {
 const targetLetters = new Set(ALPHABET.map(({ upper }) => upper));
 
 export function validateAchievementDictionary(words: readonly Word[]): void {
-  const availableWords = new Set(words.map(({ word }) => word));
+  const availableWords = new Set(
+    words.map((word) => JSON.stringify(wordTokens(word))),
+  );
   const allLetters = new Set(
     words.flatMap(({ uniqueLetters }) =>
       uniqueLetters.filter((letter) => targetLetters.has(letter)),
@@ -110,7 +128,7 @@ export function validateAchievementDictionary(words: readonly Word[]): void {
       ),
   );
   const missing = ACHIEVEMENT_REQUIRED_WORDS.filter(
-    (word) => !availableWords.has(word),
+    (word) => !availableWords.has(requiredWordIdentities[word]),
   );
   const failures = [
     ...(missing.length ? [`missing words: ${missing.join(', ')}`] : []),
@@ -155,12 +173,15 @@ const isUnrevealedFlash = (attempt: AttemptEvent) =>
   attempt.payload.flashMode && !attempt.payload.flashRevealed;
 const attemptLetters = (attempt: AttemptEvent) =>
   new Set(
-    attempt.payload.evaluation.units.flatMap((unit) =>
-      [...unit.source].filter((letter) => targetLetters.has(letter)),
-    ),
+    promptLetters(
+      attempt.payload.evaluation.units.flatMap((unit) => [...unit.source]),
+      attempt.payload.presentation?.caseMode ?? 'caps',
+    ).filter((letter) => targetLetters.has(letter)),
   );
 const attemptWord = (attempt: AttemptEvent) =>
-  attempt.payload.evaluation.units.map((unit) => unit.source).join('');
+  displayCaps(
+    attempt.payload.evaluation.units.flatMap((unit) => [...unit.source]),
+  );
 const correctInMode = (attempt: AttemptEvent, mode: 'toponyms' | 'countries') =>
   attempt.payload.practiceMode === mode && attempt.payload.correct;
 const distinctCorrectInMode = (
@@ -181,7 +202,11 @@ const hasObservation = (
   observation: number,
 ) =>
   attempt.payload.evaluation.units.some(
-    (unit) => unit.source.includes(letter) && unit.observation === observation,
+    (unit) =>
+      promptLetters(
+        [...unit.source],
+        attempt.payload.presentation?.caseMode ?? 'caps',
+      ).includes(letter) && unit.observation === observation,
   );
 const first = <T>(items: readonly T[], predicate: (item: T) => boolean) =>
   items.find(predicate);
@@ -207,18 +232,22 @@ const streak = (
 };
 const replayWord = (attempt: AttemptEvent) => {
   const letters = attempt.payload.evaluation.units.flatMap((unit) => [
-    ...unit.source,
-  ]);
+      ...unit.source,
+    ]),
+    caseMode = attempt.payload.presentation?.caseMode ?? 'caps';
   return {
     id: attempt.payload.wordId,
-    word: letters.join(''),
+    word: displayCaps(letters),
+    ligaturePositions: letters.flatMap((letter, index) =>
+      letter === 'և' ? [index] : [],
+    ),
     readingLatin: attempt.payload.expected,
     acceptedLatin: [attempt.payload.expected],
     acceptedCyrillic: [attempt.payload.expected],
     letters,
-    uniqueLetters: [
-      ...new Set(letters.filter((letter) => targetLetters.has(letter))),
-    ],
+    uniqueLetters: promptLetters(letters, caseMode).filter((letter) =>
+      targetLetters.has(letter),
+    ),
     length: letters.length,
     categories: [],
     tags: [],
@@ -247,6 +276,7 @@ function scoreTransition(
       word,
       attempt.payload.evaluation,
       attempt.timestamp,
+      attempt.payload.presentation?.caseMode ?? 'caps',
     );
     const evidence = predicate(attempt, before, state, word);
     if (evidence) return { attempt, evidence };
@@ -283,7 +313,7 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   },
   {
     id: 'alphabet-observed',
-    version: 1,
+    version: 2,
     thresholds: {},
     hidden: false,
     icon: 'languages',
@@ -330,7 +360,7 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   },
   {
     id: 'half-alphabet',
-    version: 1,
+    version: 2,
     thresholds: {
       count: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minStrongLetters,
       strongScore: 0.75,
@@ -473,14 +503,14 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   },
   {
     id: 'barev-world',
-    version: 1,
+    version: 2,
     thresholds: {},
     hidden: true,
     icon: 'hand',
     evaluate: ({ attempts }) => {
       const attempt = first(
         attempts,
-        (item) => attemptWord(item) === barevWorldWord && item.payload.correct,
+        (item) => item.payload.wordId === barevWorldId && item.payload.correct,
       );
       return attempt
         ? { attempt, evidence: { wordId: attempt.payload.wordId } }
@@ -489,7 +519,7 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   },
   {
     id: 'yerevan',
-    version: 1,
+    version: 2,
     thresholds: {},
     hidden: true,
     icon: 'map-pin',
@@ -497,7 +527,7 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
       const attempt = first(
         attempts,
         (item) =>
-          attemptWord(item) === yerevanWorldWord && item.payload.correct,
+          item.payload.wordId === yerevanWorldId && item.payload.correct,
       );
       return attempt
         ? { attempt, evidence: { wordId: attempt.payload.wordId } }

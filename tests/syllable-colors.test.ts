@@ -1,9 +1,6 @@
 import { expect, it } from 'vitest';
-import {
-  DEFAULT_SETTINGS,
-  formatPrompt,
-  parseSettings,
-} from '../web/src/core/settings';
+import { deriveWord } from '../shared/armenian';
+import { DEFAULT_SETTINGS, parseSettings } from '../web/src/core/settings';
 import {
   coloredSyllables,
   splitSyllables,
@@ -22,21 +19,19 @@ it('counts hidden schwa syllables without changing the displayed spelling', () =
 });
 
 it('keeps syllable boundaries consistent across typography cases', () => {
-  expect(splitSyllables(formatPrompt('ԵՐԵՎԱՆ', 'caps'))).toEqual([
-    'Ե',
-    'ՐԵՎ',
-    'ԱՆ',
-  ]);
-  expect(splitSyllables(formatPrompt('ԵՐԵՎԱՆ', 'normal'))).toEqual([
-    'Ե',
-    'րև',
-    'ան',
-  ]);
-  expect(splitSyllables(formatPrompt('ԵՐԵՎԱՆ', 'lower'))).toEqual([
-    'ե',
-    'րև',
-    'ան',
-  ]);
+  const word = deriveWord('Երևան');
+
+  expect(splitSyllables(word, 'caps')).toEqual(['Ե', 'ՐԵՎ', 'ԱՆ']);
+  expect(splitSyllables(word, 'normal')).toEqual(['Ե', 'րև', 'ան']);
+  expect(splitSyllables(word, 'lower')).toEqual(['ե', 'րև', 'ան']);
+});
+
+it('keeps separate ե + վ syllables separate from the և token', () => {
+  const ligature = deriveWord('բարև'),
+    separate = deriveWord('բարեվ');
+
+  expect(splitSyllables(ligature, 'lower')).toEqual(['բա', 'րև']);
+  expect(splitSyllables(separate, 'lower')).toEqual(['բա', 'րեվ']);
 });
 
 it('colors only words meeting the selected syllable threshold', () => {

@@ -1,5 +1,5 @@
-import { ALPHABET } from '../../../shared/armenian.ts';
-import type { CaseMode, Presentation } from '../../../shared/types.ts';
+import { ALPHABET, wordTokens } from '../../../shared/armenian.ts';
+import type { CaseMode, Presentation, Word } from '../../../shared/types.ts';
 import {
   LANGUAGE_PREFERENCES,
   type LanguagePreference,
@@ -302,13 +302,25 @@ export function selectTypography(
 export const availableTypography = (correctAnswers: number) =>
   TYPOGRAPHY_MODES.filter((mode) => correctAnswers >= mode.unlockAfterCorrect);
 
-export function formatPrompt(word: string, caseMode: CaseMode): string {
-  if (!canonicalArmenianPattern.test(word)) return word;
-  if (caseMode === 'caps') return word;
-  const lower = word.toLocaleLowerCase('hy').replaceAll('եվ', 'և');
-  return caseMode === 'normal'
-    ? lower[0].toLocaleUpperCase('hy') + lower.slice(1)
-    : lower;
+export function promptParts(word: string | Word, caseMode: CaseMode): string[] {
+  const display = typeof word === 'string' ? word : word.word;
+  if (!canonicalArmenianPattern.test(display)) return [display];
+  const letters = typeof word === 'string' ? [...display] : wordTokens(word);
+  if (caseMode === 'caps')
+    return letters.map((letter) => (letter === 'և' ? 'ԵՎ' : letter));
+  return letters.map((letter, index) =>
+    letter === 'և'
+      ? caseMode === 'normal' && index === 0
+        ? 'Եվ'
+        : 'և'
+      : caseMode === 'normal' && index === 0
+        ? letter
+        : letter.toLocaleLowerCase('hy'),
+  );
+}
+
+export function formatPrompt(word: string | Word, caseMode: CaseMode): string {
+  return promptParts(word, caseMode).join('');
 }
 
 export const availableFonts = (correctAnswers: number) =>

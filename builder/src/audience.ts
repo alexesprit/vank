@@ -1,8 +1,4 @@
-import {
-  ALPHABET,
-  deriveWord,
-  normalizeArmenian,
-} from '../../shared/armenian.ts';
+import { ALPHABET, deriveWord, wordTokens } from '../../shared/armenian.ts';
 import { object } from '../../shared/schema.ts';
 import type { Word } from '../../shared/types.ts';
 import { composeDataset } from './pipeline.ts';
@@ -42,6 +38,7 @@ export function parseAudience(
   return p as unknown as AudiencePolicy;
 }
 const curated = (w: BuildWord) => w.sources.some((s) => s.type === 'curated');
+const ambiguousCasePair = /Ե(?:Վ|վ)/u;
 export const isFamiliar = (w: BuildWord, language: string) =>
   (w.familiarity?.[language] ?? 0) >= 0.8;
 
@@ -107,9 +104,16 @@ export function shortlistAudience(
 ) {
   if (!Array.isArray(value))
     throw new Error('Expected recognition candidate array');
-  const hints = new Map<string, string>();
-  const priority = new Map<string, number>();
-  const purposes = new Map<string, 'familiar' | 'verification'>();
+  const hints = new Map<string, string>(),
+    priority = new Map<string, number>(),
+    purposes = new Map<string, 'familiar' | 'verification'>(),
+    byDisplay = new Map<string, BuildWord[]>();
+  for (const word of words) {
+    const variants = byDisplay.get(word.word) ?? [];
+    variants.push(word);
+    byDisplay.set(word.word, variants);
+  }
+  const candidates: { word: string; identity: string }[] = [];
   for (const entry of value) {
     const r = object(entry);
     if (
@@ -124,27 +128,51 @@ export function shortlistAudience(
       r.purpose !== 'verification'
     )
       throw new Error('Invalid candidate purpose');
-    const word = normalizeArmenian(r.word);
-    deriveWord(word);
-    if (hints.has(word))
-      throw new Error(`Duplicate recognition candidate: ${word}`);
-    hints.set(word, r.recognizableAs);
-    priority.set(word, priority.size);
+    if (
+      r.ligaturePositions !== undefined &&
+      (!Array.isArray(r.ligaturePositions) ||
+        r.ligaturePositions.some((position) => !Number.isInteger(position)))
+    )
+      throw new Error('Invalid recognition candidate spelling');
+    const derived = deriveWord(
+        r.word,
+        r.ligaturePositions as number[] | undefined,
+      ),
+      ambiguous =
+        derived.ligaturePositions === undefined &&
+        ambiguousCasePair.test(r.word),
+      variants = ambiguous ? byDisplay.get(derived.word) : undefined,
+      identity =
+        ambiguous && variants?.length === 1
+          ? JSON.stringify(wordTokens(variants[0] ?? derived))
+          : ambiguous && variants && variants.length > 1
+            ? `ambiguous:${derived.word}`
+            : JSON.stringify(derived.letters);
+    if (hints.has(identity))
+      throw new Error(`Duplicate recognition candidate: ${derived.word}`);
+    hints.set(identity, r.recognizableAs);
+    priority.set(identity, priority.size);
     purposes.set(
-      word,
+      identity,
       r.purpose === 'verification' ? 'verification' : 'familiar',
     );
+    candidates.push({ word: derived.word, identity });
   }
-  const available = new Set(words.map((w) => w.word));
-  const missing = [...hints.keys()].filter((word) => !available.has(word));
+  const available = new Set(
+    words.map((word) => JSON.stringify(wordTokens(word))),
+  );
+  const missing = candidates
+    .filter(({ identity }) => !available.has(identity))
+    .map(({ word }) => word);
   // Hints select attested words; they never create a lemma or certify familiarity.
   const group = (word: BuildWord) =>
-    curated(word) ? 0 : hints.has(word.word) ? 1 : 2;
+    curated(word) ? 0 : hints.has(JSON.stringify(wordTokens(word))) ? 1 : 2;
   const selected = words.sort(
     (a, b) =>
       group(a) - group(b) ||
-      (priority.get(a.word) ?? Number.MAX_SAFE_INTEGER) -
-        (priority.get(b.word) ?? Number.MAX_SAFE_INTEGER) ||
+      (priority.get(JSON.stringify(wordTokens(a))) ?? Number.MAX_SAFE_INTEGER) -
+        (priority.get(JSON.stringify(wordTokens(b))) ??
+          Number.MAX_SAFE_INTEGER) ||
       (b.frequencyScore ?? 0) - (a.frequencyScore ?? 0) ||
       a.length - b.length ||
       a.id.localeCompare(b.id),
@@ -152,7 +180,8 @@ export function shortlistAudience(
   return {
     missing,
     words: selected.map((w) => {
-      const hint = hints.get(w.word);
+      const identity = JSON.stringify(wordTokens(w)),
+        hint = hints.get(identity);
       return hint === undefined
         ? curated(w)
           ? w
@@ -160,7 +189,7 @@ export function shortlistAudience(
         : {
             ...w,
             recognitionHints: { [policy.language]: hint },
-            audiencePurpose: purposes.get(w.word),
+            audiencePurpose: purposes.get(identity),
           };
     }),
   };

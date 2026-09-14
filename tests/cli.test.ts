@@ -25,6 +25,19 @@ it('reports rejected records separately from execution failures', () => {
   expect(line).toContain('rejected 526');
   expect(line).toContain('failed 0');
 });
+it('reports normalization complete when every source record is rejected', () => {
+  const reports: import('../builder/src/types').StageProgress[] = [];
+  mergeSources(curatedSource([{ word: 'hello' }]), (progress) =>
+    reports.push(progress),
+  );
+
+  expect(reports.at(-1)).toMatchObject({
+    stage: 'normalize/merge',
+    processed: 1,
+    total: 1,
+    rejected: 1,
+  });
+});
 it('estimates remaining time from new work rather than instantaneous cache hits', () => {
   const line = formatProgress(
     { stage: 'enrich', processed: 369, total: 1500, cached: 269, api: 100 },

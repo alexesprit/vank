@@ -80,31 +80,6 @@ dialog::backdrop {
   font-size: 14px;
 }
 
-.alphabet-info {
-  position: relative;
-  top: auto;
-  right: auto;
-  display: inline-grid;
-  width: 16px;
-  height: 16px;
-  place-items: center;
-  margin-left: 4px;
-  color: var(--muted);
-  cursor: help;
-  text-decoration: none;
-}
-
-.alphabet-info::after {
-  right: auto;
-  left: 50%;
-  transform: translate(-50%, -4px);
-}
-
-.alphabet-info:hover::after,
-.alphabet-info:focus-visible::after {
-  transform: translate(-50%, 0);
-}
-
 .alphabet-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));

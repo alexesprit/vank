@@ -1,6 +1,6 @@
 import 'fake-indexeddb/auto';
 import { readFileSync } from 'node:fs';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { deriveMetadata, mergeSources } from '../builder/src/pipeline';
 import { curatedSource } from '../builder/src/sources/curated';
 import { ALPHABET, deriveWord } from '../shared/armenian';
@@ -43,6 +43,30 @@ function practicedState(attempts: number, mistakes = 0): LearnerState {
       `practice-${index}`,
     ).state;
   return state;
+}
+
+function matureState(excludedLetters: string[] = []): LearnerState {
+  const known = {
+    score: 0.8,
+    attempts: 10,
+    correct: 9,
+    lastSeenAt: 0,
+    verified: 2,
+  };
+  return {
+    letters: Object.fromEntries(
+      ALPHABET.filter(({ upper }) => !excludedLetters.includes(upper)).map(
+        ({ upper }) => [upper, known],
+      ),
+    ),
+    words: Object.fromEntries(
+      Array.from({ length: 41 }, (_, index) => [
+        `done-${index}`,
+        { attempts: 1, correct: 1, lastSeenAt: 0 },
+      ]),
+    ),
+    recent: [],
+  };
 }
 
 it('unlocks fonts and italic modes only after the required correct answers', async () => {
@@ -94,6 +118,244 @@ it('cycles the current presentation through unlocked typography modes', async ()
     italic: false,
   });
   expect(await repo.getSetting('app')).toBeUndefined();
+  repo.close();
+});
+
+it('reclassifies a ligature exposed by cycling out of CAPS', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    word = recognizable('բարև'),
+    trainer = await createTrainer(
+      [word],
+      { ...repo, loadState: async () => matureState(['և']) },
+      async (font) => font,
+      {
+        settings: {
+          ...DEFAULT_SETTINGS,
+          typography: {
+            mode: 'single',
+            selected: 'caps',
+            enabled: ['caps', 'normal', 'lower'],
+          },
+        },
+        selector: () => ({ word, phase: 'training' }),
+      },
+    );
+
+  expect(trainer.current.phase).toBe('training');
+  expect(trainer.cycleTypography()).toBe(true);
+  expect(trainer.presentation.caseMode).toBe('normal');
+  expect(trainer.current.phase).toBe('introduction');
+  expect(trainer.current.introducedLetter).toBe('և');
+  await trainer.submit(word.readingLatin);
+  expect(trainer.state.reinforcement).toEqual({ letter: 'և', remaining: 3 });
+  trainer.dispose();
+  repo.close();
+});
+
+it('blocks typography cycling when CAPS would expose two unknown letters', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    word = recognizable('բարև'),
+    trainer = await createTrainer(
+      [word],
+      { ...repo, loadState: async () => matureState(['Ե', 'Վ']) },
+      async (font) => font,
+      {
+        settings: {
+          ...DEFAULT_SETTINGS,
+          typography: {
+            mode: 'single',
+            selected: 'lower',
+            enabled: ['caps', 'normal', 'lower'],
+          },
+        },
+        selector: () => ({ word, phase: 'training' }),
+      },
+    );
+
+  expect(trainer.presentation.caseMode).toBe('lower');
+  expect(trainer.cycleTypography()).toBe(false);
+  expect(trainer.presentation.caseMode).toBe('lower');
+  trainer.dispose();
+  repo.close();
+});
+
+it('keeps the active reinforcement target when cycling would hide it', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    word = recognizable('բարև'),
+    trainer = await createTrainer(
+      [word],
+      {
+        ...repo,
+        loadState: async () => ({
+          ...matureState(['և']),
+          reinforcement: { letter: 'Ե', remaining: 3 },
+        }),
+      },
+      async (font) => font,
+      {
+        settings: {
+          ...DEFAULT_SETTINGS,
+          typography: {
+            mode: 'single',
+            selected: 'caps',
+            enabled: ['caps', 'normal', 'lower'],
+          },
+        },
+        selector: () => ({ word, phase: 'reinforcement' }),
+      },
+    );
+
+  expect(trainer.cycleTypography()).toBe(false);
+  expect(trainer.presentation.caseMode).toBe('caps');
+  await trainer.submit(word.readingLatin);
+  expect(trainer.state.reinforcement).toEqual({ letter: 'Ե', remaining: 2 });
+  trainer.dispose();
+  repo.close();
+});
+
+it('preserves reinforcement when the target stays visible during case cycling', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    word = recognizable('բարև'),
+    trainer = await createTrainer(
+      [word],
+      {
+        ...repo,
+        loadState: async () => ({
+          ...matureState(['Ե']),
+          reinforcement: { letter: 'Բ', remaining: 3 },
+        }),
+      },
+      async (font) => font,
+      {
+        settings: {
+          ...DEFAULT_SETTINGS,
+          typography: {
+            mode: 'single',
+            selected: 'lower',
+            enabled: ['caps', 'normal', 'lower'],
+          },
+        },
+        selector: () => ({ word, phase: 'reinforcement' }),
+      },
+    );
+
+  expect(trainer.cycleTypography()).toBe(true);
+  expect(trainer.presentation.caseMode).toBe('caps');
+  expect(trainer.current.phase).toBe('reinforcement');
+  await trainer.submit(word.readingLatin);
+  expect(trainer.state.reinforcement).toEqual({ letter: 'Բ', remaining: 2 });
+  trainer.dispose();
+  repo.close();
+});
+
+it('selects the next word with the presentation that will be shown', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    word = recognizable('բարև'),
+    selectedModes: string[] = [],
+    random = vi
+      .spyOn(Math, 'random')
+      .mockReturnValueOnce(0)
+      .mockReturnValueOnce(0.99);
+  try {
+    const trainer = await createTrainer([word], repo, async (font) => font, {
+      settings: {
+        ...DEFAULT_SETTINGS,
+        typography: {
+          mode: 'rotate',
+          selected: 'caps',
+          enabled: ['caps', 'lower'],
+        },
+      },
+      selector: (_state, _now, _random, _request, caseMode = 'caps') => {
+        selectedModes.push(caseMode);
+        return {
+          word,
+          phase: caseMode === 'lower' ? 'introduction' : 'training',
+          ...(caseMode === 'lower' ? { introducedLetter: 'և' } : {}),
+        };
+      },
+    });
+
+    expect(trainer.presentation.caseMode).toBe('caps');
+    await trainer.submit(word.readingLatin);
+    await trainer.next();
+
+    expect(trainer.presentation.caseMode).toBe('lower');
+    expect(selectedModes.at(-1)).toBe(trainer.presentation.caseMode);
+    expect(trainer.current.phase).toBe('introduction');
+    expect(trainer.current.introducedLetter).toBe('և');
+    trainer.dispose();
+  } finally {
+    random.mockRestore();
+    repo.close();
+  }
+});
+
+it('leaves legacy word references untouched at startup', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    legacy = deriveWord('ԲԱՐԵՎ'),
+    ligature = deriveWord('բարև');
+  const completed = completeAttempt(
+    await repo.loadState(),
+    { word: legacy, phase: 'training' },
+    legacy.readingLatin,
+    false,
+    'client',
+    1,
+    2,
+    'legacy-attempt',
+  );
+  await repo.saveAttempt(completed.attempt, completed.state);
+
+  const trainer = await createTrainer([ligature], repo, async (font) => font);
+
+  expect(trainer.state.words[legacy.id]).toEqual(
+    completed.state.words[legacy.id],
+  );
+  expect(trainer.state.words).not.toHaveProperty(ligature.id);
+  expect(trainer.state.recent[0]?.payload.wordId).toBe(legacy.id);
+  trainer.dispose();
+  repo.close();
+});
+
+it('leaves legacy word progress untouched when a later practice mode loads its ligature', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    legacy = deriveWord('ԲԱՐԵՎ'),
+    ligature = recognizable('բարև');
+  const completed = completeAttempt(
+    await repo.loadState(),
+    { word: legacy, phase: 'training' },
+    legacy.readingLatin,
+    false,
+    'client',
+    1,
+    2,
+    'legacy-mode-attempt',
+  );
+  await repo.saveAttempt(completed.attempt, completed.state);
+
+  const trainer = await createTrainer(
+    [recognizable('ՄԱՄԱ')],
+    repo,
+    async (font) => font,
+  );
+  expect(trainer.state.words).toHaveProperty(legacy.id);
+  await trainer.setSettings(
+    { fonts: trainer.settings.fonts, practiceMode: 'names' },
+    {
+      version: 1,
+      schemaVersion: 1,
+      generatedAt: '2026-09-14',
+      words: [ligature],
+    },
+  );
+
+  expect(trainer.state.words[legacy.id]).toEqual(
+    completed.state.words[legacy.id],
+  );
+  expect(trainer.state.words).not.toHaveProperty(ligature.id);
+  expect(trainer.state.recent[0]?.payload.wordId).toBe(legacy.id);
+  trainer.dispose();
   repo.close();
 });
 
@@ -286,6 +548,42 @@ it('keeps the prompt when the dictionary has no word with the selected letter', 
   repo.close();
 });
 
+it('can practice a CAPS letter exposed by the և ligature', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const current = recognizable('ՄԱՄԱ');
+  const ligature = recognizable('բարև');
+  const select = createWordSelector([current, ligature]);
+  const trainer = await createTrainer(
+    [current, ligature],
+    repo,
+    async (font) => font,
+    {
+      selector: (state, now, random, request, caseMode) =>
+        request
+          ? select(state, now, random, request, caseMode)
+          : { word: current, phase: 'training' },
+    },
+  );
+
+  expect(await trainer.practiceLetter('Ե')).toBe('target');
+  expect(trainer.current.word).toBe(ligature);
+  trainer.dispose();
+  repo.close();
+});
+
+it('reports the visible alphabet keys for a CAPS ligature score update', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    word = recognizable('բարև');
+  const trainer = await createTrainer([word], repo, async (font) => font);
+
+  await trainer.submit(word.readingLatin);
+
+  expect(Object.keys(trainer.lastScoreUpdate?.letters ?? {})).toEqual(
+    expect.arrayContaining(['Ե', 'Վ']),
+  );
+  expect(trainer.lastScoreUpdate?.letters).not.toHaveProperty('և');
+  repo.close();
+});
 it('uses the injected selector and records the active practice mode', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   const word = recognizable('ՄԱՄԱ');
@@ -333,6 +631,67 @@ it('switches practice mode on the existing trainer', async () => {
   await trainer.submit(packWord.readingLatin);
   expect(trainer.state.recent[0]?.payload.practiceMode).toBe('names');
   repo.close();
+});
+
+it('uses one selected typography mode for a practice-mode switch and its word', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
+    ligature = recognizable('բարև'),
+    dictionary: Dictionary = {
+      version: 1,
+      schemaVersion: 1,
+      generatedAt: '2026-09-09',
+      words: [ligature],
+    },
+    known = {
+      score: 0.8,
+      attempts: 10,
+      correct: 9,
+      lastSeenAt: 0,
+      verified: 2,
+    },
+    state: LearnerState = {
+      letters: Object.fromEntries(
+        ALPHABET.slice(0, -1).map((letter) => [letter.upper, known]),
+      ),
+      words: Object.fromEntries(
+        Array.from({ length: 41 }, (_, index) => [
+          `done-${index}`,
+          { attempts: 1, correct: 1, lastSeenAt: 0 },
+        ]),
+      ),
+      recent: [],
+    };
+  const trainer = await createTrainer(
+    [recognizable('ՄԱՄԱ')],
+    { ...repo, loadState: async () => state },
+    async (font) => font,
+  );
+  const random = vi
+    .spyOn(Math, 'random')
+    .mockReturnValueOnce(0.99)
+    .mockReturnValueOnce(0);
+  try {
+    await trainer.setSettings(
+      {
+        fonts: trainer.settings.fonts,
+        practiceMode: 'names',
+        typography: {
+          mode: 'rotate',
+          selected: 'caps',
+          enabled: ['caps', 'lower'],
+        },
+      },
+      dictionary,
+    );
+
+    expect(trainer.presentation.caseMode).toBe('lower');
+    expect(trainer.current.phase).toBe('introduction');
+    expect(trainer.current.introducedLetter).toBe('և');
+  } finally {
+    random.mockRestore();
+    trainer.dispose();
+    repo.close();
+  }
 });
 
 it('queues a mode switch behind an in-flight submission', async () => {
@@ -397,7 +756,7 @@ it('shows the introduction once per browser profile', async () => {
 
 it('backfills achievement unlocks and returns new unlocks with a completed attempt', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
-  const word = { ...recognizable('ԲԱՐԵՎ'), familiarity: { ru: 0.2 } };
+  const word = { ...recognizable('բարև'), familiarity: { ru: 0.2 } };
   const historical = completeAttempt(
     await repo.loadState(),
     { word, phase: 'bootstrap' },
@@ -700,7 +1059,8 @@ it.each([
         String(i),
       ).state;
     }
-    expect(Object.keys(state.letters)).toHaveLength(ALPHABET.length);
+    expect(Object.keys(state.letters)).toHaveLength(ALPHABET.length - 1);
+    expect(state.letters).not.toHaveProperty('և');
   },
   10_000,
 );

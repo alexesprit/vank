@@ -1,4 +1,7 @@
-import { normalizeArmenian } from '../../../shared/armenian.ts';
+import {
+  normalizeArmenian,
+  sourceLigaturePositions,
+} from '../../../shared/armenian.ts';
 import { object, strings } from '../../../shared/schema.ts';
 import type { RawWord } from '../types.ts';
 // Input is structured Wiktextract JSONL extracted from a Wikimedia dump.
@@ -66,8 +69,10 @@ export function wiktionaryRecord(
   const definitions = senses.flatMap((s) => strings(s.glosses ?? []));
   if (!definitions.length) return null;
   const edition = options.edition ?? 'en';
+  const ligaturePositions = sourceLigaturePositions(record.word);
   return {
     word: record.word,
+    ...(ligaturePositions === undefined ? {} : { ligaturePositions }),
     sourceId: 'wiktionary',
     sourcePriority: options.priority ?? 10,
     source: {

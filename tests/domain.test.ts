@@ -17,6 +17,7 @@ describe('Modern Eastern Armenian domain', () => {
       acceptedCyrillic: ['ханут'],
       length: 6,
     });
+    expect(word.id).toBe('hy-53d-531-546-548-552-539');
     expect(word.units?.map((u) => u.source)).toEqual([
       'Խ',
       'Ա',
@@ -46,7 +47,7 @@ describe('Modern Eastern Armenian domain', () => {
       expect(units.map((u) => u.latin).join('')).toBe(latin);
       expect(units.map((u) => u.cyrillic).join('')).toBe(cyrillic);
     }
-    expect(ALPHABET).toHaveLength(38);
+    expect(ALPHABET).toHaveLength(39);
   });
   it('rejects malformed and unsupported spellings', () => {
     for (const word of ['', 'taxi', 'ՏԱՔՍԻ!', 'Ա Բ', '123'])

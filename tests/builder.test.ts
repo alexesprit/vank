@@ -185,9 +185,42 @@ it('filters numeral glyphs, abbreviations, alternate lemmas and dialect-only sen
 });
 
 it('validates every curated pack source through deterministic derivation', () => {
-  for (const file of readdirSync('builder/data').filter((name) =>
+  const files = readdirSync('builder/data').filter((name) =>
     curatedFilePattern.test(name),
-  )) {
+  );
+  const sourceWords = files.flatMap((file) =>
+    (
+      JSON.parse(readFileSync(`builder/data/${file}`, 'utf8')) as Array<{
+        word: string;
+      }>
+    ).map(({ word }) => word),
+  );
+  expect(
+    sourceWords.every(
+      (word) =>
+        word === word.normalize('NFC') && word === word.toLocaleLowerCase('hy'),
+    ),
+  ).toBe(true);
+  expect(sourceWords).toEqual(
+    expect.arrayContaining([
+      'սերկևիլ',
+      'գևորգ',
+      'եվգենի',
+      'լևոն',
+      'սևակ',
+      'տաթևիկ',
+      'երևան',
+      'իջևան',
+      'կիևյան',
+      'տաթև',
+      'սևան',
+      'սևանավանք',
+      'աղստև',
+      'բարև',
+    ]),
+  );
+  expect(sourceWords).not.toContain('ևգենի');
+  for (const file of files) {
     const entries = JSON.parse(
       readFileSync(`builder/data/${file}`, 'utf8'),
     ) as Array<{ word: string }>;

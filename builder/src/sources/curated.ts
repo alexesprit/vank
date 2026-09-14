@@ -1,3 +1,4 @@
+import { sourceLigaturePositions } from '../../../shared/armenian.ts';
 import { object, validateMetadata } from '../../../shared/schema.ts';
 import type { RawWord } from '../types.ts';
 export function curatedSource(value: unknown, priority = 100): RawWord[] {
@@ -8,8 +9,10 @@ export function curatedSource(value: unknown, priority = 100): RawWord[] {
       throw new Error('Curated word must be a string');
     validateMetadata(entry);
     const { word, ...metadata } = entry;
+    const ligaturePositions = sourceLigaturePositions(word);
     return {
       word,
+      ...(ligaturePositions === undefined ? {} : { ligaturePositions }),
       sourceId: 'curated',
       sourcePriority: priority,
       metadata,

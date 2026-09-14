@@ -360,6 +360,36 @@ describe('adaptive selection', () => {
       ),
     ).toThrow('Dictionary has no words within the one-new-letter limit');
   });
+  it('introduces CAPS ligature exposure through the visible Ե and Վ letters', () => {
+    const candidate = word('բարև', 1),
+      state = bootstrapState(config.bootstrapSuccessfulWords, 12),
+      known = {
+        score: 0.8,
+        attempts: 10,
+        correct: 9,
+        lastSeenAt: 0,
+        verified: 2,
+      };
+    for (const letter of ['Բ', 'Ա', 'Ր', 'Ե']) state.letters[letter] = known;
+
+    expect(unknownLetters(candidate, state, 'caps')).toEqual(['Վ']);
+    const introduction = selectWord(
+      [candidate],
+      state,
+      0,
+      () => 0,
+      undefined,
+      'caps',
+    );
+    expect(introduction.phase).toBe('introduction');
+    expect(introduction.introducedLetter).toBe('Վ');
+
+    state.letters.Վ = known;
+    expect(unknownLetters(candidate, state, 'caps')).toEqual([]);
+    expect(
+      selectWord([candidate], state, 1, () => 0, undefined, 'caps').phase,
+    ).not.toBe('introduction');
+  });
   it('falls back to regular candidates when reinforcement has no match', () => {
     const candidate = word('ՄԱՄԱ', 1),
       state = known([candidate]);
@@ -539,6 +569,31 @@ describe('adaptive selection', () => {
     expect(selected.word.id).not.toBe(words[2].id);
     expect(selected.word.uniqueLetters).toContain('Ս');
     expect(selected.phase).toBe('reinforcement');
+  });
+  it('decrements the active reinforcement during a prompt with another unknown letter', () => {
+    const candidate = word('ՍԱ'),
+      state = known([word('ՍԱ')]);
+    state.letters.Ա = {
+      score: 0,
+      attempts: 1,
+      correct: 0,
+      lastSeenAt: 0,
+      verified: 0,
+    };
+    state.reinforcement = { letter: 'Ս', remaining: 3 };
+
+    const result = completeAttempt(
+      state,
+      { word: candidate, phase: 'reinforcement' },
+      candidate.readingLatin,
+      false,
+      'client',
+      0,
+      1,
+      'reinforce',
+    );
+
+    expect(result.state.reinforcement).toEqual({ letter: 'Ս', remaining: 2 });
   });
 });
 

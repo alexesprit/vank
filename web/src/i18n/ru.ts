@@ -158,8 +158,6 @@ export const ru = {
     dialogTitle: 'Подробная статистика',
     alphabetTitle: 'Освоение алфавита',
     alphabetSummary: 'букв встречено · общий счёт {{score}}',
-    alphabetInfo:
-      '39-я армянская буква և — строчная лигатура. В CAPS она выглядит как ԵՎ и учитывается здесь как Ե и Վ.',
     alphabetGridLabel: 'Счёт освоения букв',
     alphabetNotIntroduced: '{{letter}}, ещё не встречалась',
     alphabetScore: '{{letter}}, {{score}}',

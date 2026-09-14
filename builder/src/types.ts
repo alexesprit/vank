@@ -1,6 +1,7 @@
 import type { SourceInfo, Word } from '../../shared/types.ts';
 export interface RawWord {
   word: string;
+  ligaturePositions?: number[];
   sourceId: string;
   sourcePriority: number;
   source: SourceInfo;
@@ -11,6 +12,7 @@ export interface RawWord {
 }
 export interface MergedWord {
   word: string;
+  ligaturePositions?: number[];
   sources: SourceInfo[];
   metadata: Record<string, unknown>;
   metadataSource: Record<string, string>;

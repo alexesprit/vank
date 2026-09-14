@@ -11,6 +11,7 @@ import {
   mergeSources,
 } from '../builder/src/pipeline';
 import { curatedSource } from '../builder/src/sources/curated';
+import { deriveWord } from '../shared/armenian';
 
 const policy = {
   language: 'ru',
@@ -67,6 +68,37 @@ it('plans curated, reviewed, then unreviewed attested words without inventing mi
   expect(() =>
     shortlistAudience(words(), [{ word: 'ՌՈԲՈՏ', recognizableAs: '' }], policy),
   ).toThrow();
+});
+
+it('matches recognition candidates by spelling provenance, not CAPS display alone', () => {
+  const candidates = deriveMetadata(
+    mergeSources(curatedSource([{ word: 'բարև' }, { word: 'բարեվ' }])).words,
+  );
+  const ligature = deriveWord('բարև'),
+    separate = deriveWord('բարեվ');
+  const matched = shortlistAudience(
+    candidates,
+    [{ word: 'բարև', recognizableAs: 'приветствие' }],
+    policy,
+  );
+
+  expect(matched.missing).toEqual([]);
+  expect(
+    matched.words.find((word) => word.id === ligature.id)?.recognitionHints,
+  ).toEqual({ ru: 'приветствие' });
+  expect(
+    matched.words.find((word) => word.id === separate.id)?.recognitionHints,
+  ).toBeUndefined();
+
+  const ambiguous = shortlistAudience(
+    candidates,
+    [{ word: 'ԲԱՐԵՎ', recognizableAs: 'ambiguous' }],
+    policy,
+  );
+  expect(ambiguous.missing).toEqual(['ԲԱՐԵՎ']);
+  expect(
+    ambiguous.words.some((word) => word.recognitionHints !== undefined),
+  ).toBe(false);
 });
 
 it('enforces a familiar majority and a ceiling, excludes unconfirmed imports, and keeps curated verification vocabulary', () => {

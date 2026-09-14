@@ -51,16 +51,33 @@ it('validates final dictionary prerequisites for achievements', () => {
     familiarity: { ru: familiarity },
   });
   const dictionary = [
-    knownWord('ԲԱՐԵՎ'),
-    knownWord('ԵՐԵՎԱՆ'),
+    knownWord('բարև'),
+    knownWord('Երևան'),
     knownWord(ALPHABET.map(({ upper }) => upper).join('')),
     ...ALPHABET.map(({ upper }) => knownWord(upper)),
   ];
 
   expect(() => validateAchievementDictionary(dictionary)).not.toThrow();
-  expect(() =>
-    validateAchievementDictionary([knownWord('ԲԱՐԵՎ', 0.2)]),
-  ).toThrow('Achievement prerequisites unavailable');
+  expect(() => validateAchievementDictionary([knownWord('բարև', 0.2)])).toThrow(
+    'Achievement prerequisites unavailable',
+  );
+});
+
+it('requires the verified և spelling for word-specific achievement coverage', () => {
+  const knownWord = (word: string) => ({
+    ...deriveWord(word),
+    familiarity: { ru: 0.1 },
+  });
+  const dictionary = [
+    knownWord('բարեվ'),
+    knownWord('Երևան'),
+    knownWord(ALPHABET.map(({ upper }) => upper).join('')),
+    ...ALPHABET.map(({ upper }) => knownWord(upper)),
+  ];
+
+  expect(() => validateAchievementDictionary(dictionary)).toThrow(
+    'missing words: ԲԱՐԵՎ',
+  );
 });
 
 it('keeps every Part 1 achievement in the stable catalogue', () => {
@@ -91,6 +108,15 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
   expect(
     ACHIEVEMENT_DEFINITIONS.every((definition) => definition.version > 0),
   ).toBe(true);
+  expect(
+    ACHIEVEMENT_DEFINITIONS.find(({ id }) => id === 'alphabet-observed')
+      ?.version,
+  ).toBe(2);
+  for (const id of ['half-alphabet', 'barev-world', 'yerevan'])
+    expect(
+      ACHIEVEMENT_DEFINITIONS.find((definition) => definition.id === id)
+        ?.version,
+    ).toBe(2);
 });
 
 it('reveals hidden achievements only for Ctrl/Cmd review clicks', () => {
@@ -148,7 +174,7 @@ it('lists newest unlocks before visible and then hidden locked achievements', ()
 });
 
 it('uses persisted flash baselines and can unlock matching definitions together', () => {
-  const word = known('ԲԱՐԵՎ');
+  const word = known('բարև');
   const completed = completeAttempt(
     empty(),
     { word, phase: 'bootstrap' },
@@ -178,7 +204,7 @@ it('uses persisted flash baselines and can unlock matching definitions together'
 });
 
 it('unlocks ԲԱՐԵՎ on its first correct reading after earlier failures', () => {
-  const word = known('ԲԱՐԵՎ');
+  const word = known('բարև');
   const attempts = completeHistory([
     { word, correct: false },
     { word, correct: true },
@@ -192,7 +218,7 @@ it('unlocks ԲԱՐԵՎ on its first correct reading after earlier failures', () 
 });
 
 it('unlocks ԵՐԵՎԱՆ on its first correct reading after earlier failures', () => {
-  const word = known('ԵՐԵՎԱՆ');
+  const word = known('Երևան');
   const attempts = completeHistory([
     { word, correct: false },
     { word, correct: true },
@@ -203,6 +229,17 @@ it('unlocks ԵՐԵՎԱՆ on its first correct reading after earlier failures', (
       (unlock) => unlock.id === 'yerevan',
     ),
   ).toMatchObject({ triggerAttemptId: 'attempt-1' });
+});
+
+it('does not backfill word achievements from legacy split-letter IDs', () => {
+  const attempts = completeHistory([
+    { word: known('ԲԱՐԵՎ'), correct: true },
+    { word: known('ԵՐԵՎԱՆ'), correct: true },
+  ]);
+
+  expect(
+    evaluateAchievements(attempts, []).map((unlock) => unlock.id),
+  ).not.toEqual(expect.arrayContaining(['barev-world', 'yerevan']));
 });
 
 it('unlocks location achievements from mode-specific readings', () => {
@@ -344,7 +381,7 @@ it('does not reconstruct flash-reader baselines from effective exposure', () => 
 });
 
 it('keeps unlocked definitions skipped and preserves catalogue unlock order', () => {
-  const word = known('ԲԱՐԵՎ');
+  const word = known('բարև');
   const attempt = completeAttempt(
     empty(),
     { word, phase: 'bootstrap' },
@@ -439,6 +476,11 @@ it('derives alphabet observation from stored prompt units', () => {
       index,
       index + 1,
       `letter-${index}`,
+      'default',
+      {
+        caseMode: word.letters.includes('և') ? 'lower' : 'caps',
+        italic: false,
+      },
     );
     state = completed.state;
     return completed.attempt;
@@ -450,16 +492,25 @@ it('derives alphabet observation from stored prompt units', () => {
 });
 
 it('unlocks the strong-letter count milestones at their definition thresholds', () => {
-  const words = ALPHABET.slice(0, 19).map((letter) => known(letter.upper));
-  const attempts = completeHistory(
-    words.flatMap((word) =>
-      Array.from({ length: 12 }, () => ({ word, correct: true })),
-    ),
+  const attemptsForLetters = (count: number) => {
+    const words = ALPHABET.slice(0, count).map((letter) => known(letter.upper));
+    return completeHistory(
+      words.flatMap((word) =>
+        Array.from({ length: 12 }, () => ({ word, correct: true })),
+      ),
+    );
+  };
+  const nineteenLetterIds = evaluateAchievements(
+    attemptsForLetters(19),
+    [],
+  ).map((unlock) => unlock.id);
+  const twentyLetterIds = evaluateAchievements(attemptsForLetters(20), []).map(
+    (unlock) => unlock.id,
   );
-  const ids = evaluateAchievements(attempts, []).map((unlock) => unlock.id);
 
-  expect(ids).toContain('ten-strong-letters');
-  expect(ids).toContain('half-alphabet');
+  expect(nineteenLetterIds).toContain('ten-strong-letters');
+  expect(nineteenLetterIds).not.toContain('half-alphabet');
+  expect(twentyLetterIds).toContain('half-alphabet');
 });
 
 it('evaluates the remaining sequential and reading definitions', () => {

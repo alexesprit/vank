@@ -12,6 +12,7 @@ export interface SourceInfo {
 export interface Word {
   id: string;
   word: string;
+  ligaturePositions?: number[];
   readingLatin: string;
   acceptedLatin: string[];
   acceptedCyrillic: string[];

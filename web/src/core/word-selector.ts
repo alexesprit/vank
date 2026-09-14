@@ -1,4 +1,5 @@
-import type { LearnerState, Word } from '../../../shared/types.ts';
+import { promptLetters } from '../../../shared/armenian.ts';
+import type { CaseMode, LearnerState, Word } from '../../../shared/types.ts';
 import { TRAINER_CONFIG as config } from './config.ts';
 import { familiarity } from './scoring.ts';
 export interface Selection {
@@ -52,18 +53,29 @@ export type WordSelector = (
   now: number,
   random?: () => number,
   request?: SelectionRequest,
+  caseMode?: CaseMode,
 ) => Selection;
-export const unknownLetters = (word: Word, state: LearnerState): string[] =>
-  word.uniqueLetters.filter((l) => !(state.letters[l]?.score > 0));
+export const unknownLetters = (
+  word: Word,
+  state: LearnerState,
+  caseMode: CaseMode = 'caps',
+): string[] =>
+  promptLetters(word.uniqueLetters, caseMode).filter(
+    (letter) => !(state.letters[letter]?.score > 0),
+  );
 const average = (values: number[]) =>
   values.reduce((a, b) => a + b, 0) / values.length;
 const isFamiliarCandidate = (word: Word) =>
   familiarity(word) >= config.bootstrapFamiliarityThreshold &&
   ((word.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold ||
     word.tags.includes('loanword'));
-export function personalDifficulty(word: Word, state: LearnerState): number {
-  const unknown = word.uniqueLetters.map(
-    (l) => 1 - (state.letters[l]?.score ?? 0),
+export function personalDifficulty(
+  word: Word,
+  state: LearnerState,
+  caseMode: CaseMode = 'caps',
+): number {
+  const unknown = promptLetters(word.uniqueLetters, caseMode).map(
+    (letter) => 1 - (state.letters[letter]?.score ?? 0),
   );
   const w = config.difficulty;
   return Math.max(
@@ -86,6 +98,7 @@ export function selectAdaptiveWord(
   now: number,
   random = Math.random,
   request?: SelectionRequest,
+  caseMode: CaseMode = 'caps',
 ): Selection {
   if (!words.length) throw new Error('Cannot train with an empty dictionary');
   const targetLetter = request?.targetLetter;
@@ -95,7 +108,7 @@ export function selectAdaptiveWord(
     ? words.filter(
         (word) =>
           !excludedWordIds.has(word.id) &&
-          word.uniqueLetters.includes(targetLetter),
+          promptLetters(word.uniqueLetters, caseMode).includes(targetLetter),
       )
     : [];
   const knownLetterCount = Object.values(state.letters).filter(
@@ -129,7 +142,7 @@ export function selectAdaptiveWord(
       : bootstrapPool
     : words.filter(
         (w) =>
-          unknownLetters(w, state).length <=
+          unknownLetters(w, state, caseMode).length <=
           config.maxUnknownLettersIntroduction,
       );
   const eligible = candidates.length;
@@ -173,7 +186,8 @@ export function selectAdaptiveWord(
   let confidenceBreak = false;
   if (needsConfidence) {
     const familiar = candidates.filter(
-      (w) => isFamiliarCandidate(w) && !unknownLetters(w, state).length,
+      (w) =>
+        isFamiliarCandidate(w) && !unknownLetters(w, state, caseMode).length,
     );
     if (familiar.length) {
       candidates = familiar;
@@ -184,7 +198,7 @@ export function selectAdaptiveWord(
   const target = state.reinforcement;
   if (!bootstrap && !confidenceBreak && target?.remaining) {
     const reinforcement = candidates.filter((w) =>
-      w.uniqueLetters.includes(target.letter),
+      promptLetters(w.uniqueLetters, caseMode).includes(target.letter),
     );
     if (reinforcement.length) candidates = reinforcement;
   }
@@ -197,7 +211,8 @@ export function selectAdaptiveWord(
     config.familiarInjectionInterval > 0;
   if (shouldInjectFamiliar) {
     const familiar = candidates.filter(
-      (w) => isFamiliarCandidate(w) && !unknownLetters(w, state).length,
+      (w) =>
+        isFamiliarCandidate(w) && !unknownLetters(w, state, caseMode).length,
     );
     if (familiar.length) candidates = familiar;
   }
@@ -240,28 +255,33 @@ export function selectAdaptiveWord(
         components,
       };
     }
+    const visibleLetters = promptLetters(word.uniqueLetters, caseMode);
     const weak = average(
-      word.uniqueLetters.map((l) => 1 - (state.letters[l]?.score ?? 0)),
+      visibleLetters.map((letter) => 1 - (state.letters[letter]?.score ?? 0)),
     );
     const stat = state.words[word.id];
     const spacing = stat
       ? Math.min(1, Math.max(0, now - stat.lastSeenAt) / config.spacingMs)
       : 0.5;
     const mistakes = average(
-      word.uniqueLetters.map((l) => {
-        const lastMistakeAt = state.letters[l]?.lastMistakeAt;
+      visibleLetters.map((letter) => {
+        const lastMistakeAt = state.letters[letter]?.lastMistakeAt;
         return lastMistakeAt === undefined
           ? 0
           : Math.max(0, 1 - (now - lastMistakeAt) / config.spacingMs);
       }),
     );
     const match =
-      1 - Math.abs(1 - personalDifficulty(word, state) - config.targetSuccess);
+      1 -
+      Math.abs(
+        1 - personalDifficulty(word, state, caseMode) - config.targetSuccess,
+      );
     const verification =
       familiarity(word) <= config.verificationFamiliarityThreshold &&
-      word.uniqueLetters.some(
-        (l) =>
-          (state.letters[l]?.correct ?? 0) > 0 && !state.letters[l]?.verified,
+      visibleLetters.some(
+        (letter) =>
+          (state.letters[letter]?.correct ?? 0) > 0 &&
+          !state.letters[letter]?.verified,
       );
     const w = config.weights;
     const components = {
@@ -273,7 +293,7 @@ export function selectAdaptiveWord(
         w.reinforcement *
         Number(
           verification ||
-            Boolean(target && word.uniqueLetters.includes(target.letter)),
+            Boolean(target && visibleLetters.includes(target.letter)),
         ),
       recent: -w.recent * recent,
     };
@@ -305,12 +325,12 @@ export function selectAdaptiveWord(
     ranked.find((candidate) => candidate.word === requestedWord) ??
     best[Math.floor(random() * best.length)];
   const word = chosen.word;
-  const unknown = unknownLetters(word, state);
+  const unknown = unknownLetters(word, state, caseMode);
   const phase = bootstrap
     ? 'bootstrap'
     : !confidenceBreak &&
         target?.remaining &&
-        word.uniqueLetters.includes(target.letter)
+        promptLetters(word.uniqueLetters, caseMode).includes(target.letter)
       ? 'reinforcement'
       : unknown.length
         ? 'introduction'
@@ -357,8 +377,8 @@ export function createWordSelector(
   strategy: SelectionStrategy = 'adaptive',
 ): WordSelector {
   if (strategy === 'adaptive')
-    return (state, now, random, request) =>
-      selectAdaptiveWord(words, state, now, random, request);
+    return (state, now, random, request, caseMode) =>
+      selectAdaptiveWord(words, state, now, random, request, caseMode);
   if (strategy === 'finite-pack') {
     if (!words.length) throw new Error('Cannot train with an empty dictionary');
     const pack = [...words].sort(
@@ -379,8 +399,12 @@ export function createWordSelector(
         [pack[i], pack[j]] = [pack[j], pack[i]];
       }
     };
-    const createSelection = (word: Word, state: LearnerState): Selection => {
-      const unknown = unknownLetters(word, state);
+    const createSelection = (
+      word: Word,
+      state: LearnerState,
+      caseMode: CaseMode,
+    ): Selection => {
+      const unknown = unknownLetters(word, state, caseMode);
       return {
         word,
         phase: unknown.length ? 'introduction' : 'training',
@@ -400,7 +424,7 @@ export function createWordSelector(
       }
       return selected;
     };
-    return (state, _now, random = Math.random, request) => {
+    return (state, _now, random = Math.random, request, caseMode = 'caps') => {
       if (needsShuffle) {
         shuffle(random);
         needsShuffle = false;
@@ -420,7 +444,9 @@ export function createWordSelector(
           ? pack.filter(
               (word) =>
                 !excludedWordIds.has(word.id) &&
-                word.uniqueLetters.includes(targetLetter),
+                promptLetters(word.uniqueLetters, caseMode).includes(
+                  targetLetter,
+                ),
             )
           : [];
         const familiar = matching.filter(isFamiliarCandidate);
@@ -429,22 +455,22 @@ export function createWordSelector(
           ? targets[Math.floor(random() * targets.length)]
           : undefined;
         const targeted = target ? selectFromPack([target]) : undefined;
-        if (targeted) return createSelection(targeted, state);
+        if (targeted) return createSelection(targeted, state, caseMode);
         if (request.targetLetter && request.excludeWordId) {
           const current = pack.find(
             (word) => word.id === request.excludeWordId,
           );
-          if (current) return createSelection(current, state);
+          if (current) return createSelection(current, state, caseMode);
         }
         const fallback = selectFromPack(different);
-        if (fallback) return createSelection(fallback, state);
+        if (fallback) return createSelection(fallback, state, caseMode);
         const current = request.excludeWordId
           ? pack.find((word) => word.id === request.excludeWordId)
           : undefined;
-        if (current) return createSelection(current, state);
+        if (current) return createSelection(current, state, caseMode);
       }
       const word = pack[index++];
-      return createSelection(word, state);
+      return createSelection(word, state, caseMode);
     };
   }
   throw new Error(`Selection strategy is not implemented: ${strategy}`);
@@ -456,6 +482,7 @@ export function selectWord(
   now: number,
   random?: () => number,
   request?: SelectionRequest,
+  caseMode: CaseMode = 'caps',
 ): Selection {
-  return selectAdaptiveWord(words, state, now, random, request);
+  return selectAdaptiveWord(words, state, now, random, request, caseMode);
 }

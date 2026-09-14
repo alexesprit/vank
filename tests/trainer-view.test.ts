@@ -165,6 +165,16 @@ describe('mistake summaries', () => {
       'Տ → т · Ա → а · Ք → к · Ս → с · Ի → и',
     );
   });
+
+  it('maps և to the visible prompt units for each case mode', () => {
+    const word = deriveWord('ևրան'),
+      evaluation = evaluate(word, '', true),
+      ligatureUnit = evaluation.units.filter((unit) => unit.source === 'և');
+
+    expect(formatMistakes(ligatureUnit, 'lower')).toBe('և → yev');
+    expect(formatMistakes(ligatureUnit, 'normal')).toBe('Եվ → yev');
+    expect(formatMistakes(ligatureUnit, 'caps')).toBe('Ե → ye · Վ → v');
+  });
 });
 
 describe('common letter mix-ups', () => {

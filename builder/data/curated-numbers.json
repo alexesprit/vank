@@ -1,6 +1,6 @@
 [
   {
-    "word": "ԶՐՈ",
+    "word": "զրո",
     "meaning": {
       "ru": "ноль"
     },
@@ -11,7 +11,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՄԵԿ",
+    "word": "մեկ",
     "meaning": {
       "ru": "один"
     },
@@ -22,7 +22,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԿՈՒ",
+    "word": "երկու",
     "meaning": {
       "ru": "два"
     },
@@ -33,7 +33,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՔ",
+    "word": "երեք",
     "meaning": {
       "ru": "три"
     },
@@ -44,7 +44,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՉՈՐՍ",
+    "word": "չորս",
     "meaning": {
       "ru": "четыре"
     },
@@ -55,7 +55,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՆԳ",
+    "word": "հինգ",
     "meaning": {
       "ru": "пять"
     },
@@ -66,7 +66,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԵՑ",
+    "word": "վեց",
     "meaning": {
       "ru": "шесть"
     },
@@ -77,7 +77,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹ",
+    "word": "յոթ",
     "meaning": {
       "ru": "семь"
     },
@@ -88,7 +88,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹ",
+    "word": "ութ",
     "meaning": {
       "ru": "восемь"
     },
@@ -99,7 +99,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆԸ",
+    "word": "ինը",
     "meaning": {
       "ru": "девять"
     },
@@ -110,7 +110,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍԸ",
+    "word": "տասը",
     "meaning": {
       "ru": "десять"
     },
@@ -121,7 +121,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆՄԵԿ",
+    "word": "տասնմեկ",
     "meaning": {
       "ru": "одиннадцать"
     },
@@ -132,7 +132,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆԵՐԿՈՒ",
+    "word": "տասներկու",
     "meaning": {
       "ru": "двенадцать"
     },
@@ -143,7 +143,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆԵՐԵՔ",
+    "word": "տասներեք",
     "meaning": {
       "ru": "тринадцать"
     },
@@ -154,7 +154,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆՉՈՐՍ",
+    "word": "տասնչորս",
     "meaning": {
       "ru": "четырнадцать"
     },
@@ -165,7 +165,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆՀԻՆԳ",
+    "word": "տասնհինգ",
     "meaning": {
       "ru": "пятнадцать"
     },
@@ -176,7 +176,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆՎԵՑ",
+    "word": "տասնվեց",
     "meaning": {
       "ru": "шестнадцать"
     },
@@ -187,7 +187,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆՅՈԹ",
+    "word": "տասնյոթ",
     "meaning": {
       "ru": "семнадцать"
     },
@@ -198,7 +198,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆՈՒԹ",
+    "word": "տասնութ",
     "meaning": {
       "ru": "восемнадцать"
     },
@@ -209,7 +209,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏԱՍՆԻՆԸ",
+    "word": "տասնինը",
     "meaning": {
       "ru": "девятнадцать"
     },
@@ -220,7 +220,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆ",
+    "word": "քսան",
     "meaning": {
       "ru": "двадцать"
     },
@@ -231,7 +231,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆՄԵԿ",
+    "word": "քսանմեկ",
     "meaning": {
       "ru": "двадцать один"
     },
@@ -242,7 +242,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆԵՐԿՈՒ",
+    "word": "քսաներկու",
     "meaning": {
       "ru": "двадцать два"
     },
@@ -253,7 +253,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆԵՐԵՔ",
+    "word": "քսաներեք",
     "meaning": {
       "ru": "двадцать три"
     },
@@ -264,7 +264,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆՉՈՐՍ",
+    "word": "քսանչորս",
     "meaning": {
       "ru": "двадцать четыре"
     },
@@ -275,7 +275,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆՀԻՆԳ",
+    "word": "քսանհինգ",
     "meaning": {
       "ru": "двадцать пять"
     },
@@ -286,7 +286,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆՎԵՑ",
+    "word": "քսանվեց",
     "meaning": {
       "ru": "двадцать шесть"
     },
@@ -297,7 +297,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆՅՈԹ",
+    "word": "քսանյոթ",
     "meaning": {
       "ru": "двадцать семь"
     },
@@ -308,7 +308,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆՈՒԹ",
+    "word": "քսանութ",
     "meaning": {
       "ru": "двадцать восемь"
     },
@@ -319,7 +319,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔՍԱՆԻՆԸ",
+    "word": "քսանինը",
     "meaning": {
       "ru": "двадцать девять"
     },
@@ -330,7 +330,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆ",
+    "word": "երեսուն",
     "meaning": {
       "ru": "тридцать"
     },
@@ -341,7 +341,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆՄԵԿ",
+    "word": "երեսունմեկ",
     "meaning": {
       "ru": "тридцать один"
     },
@@ -352,7 +352,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆԵՐԿՈՒ",
+    "word": "երեսուներկու",
     "meaning": {
       "ru": "тридцать два"
     },
@@ -363,7 +363,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆԵՐԵՔ",
+    "word": "երեսուներեք",
     "meaning": {
       "ru": "тридцать три"
     },
@@ -374,7 +374,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆՉՈՐՍ",
+    "word": "երեսունչորս",
     "meaning": {
       "ru": "тридцать четыре"
     },
@@ -385,7 +385,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆՀԻՆԳ",
+    "word": "երեսունհինգ",
     "meaning": {
       "ru": "тридцать пять"
     },
@@ -396,7 +396,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆՎԵՑ",
+    "word": "երեսունվեց",
     "meaning": {
       "ru": "тридцать шесть"
     },
@@ -407,7 +407,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆՅՈԹ",
+    "word": "երեսունյոթ",
     "meaning": {
       "ru": "тридцать семь"
     },
@@ -418,7 +418,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆՈՒԹ",
+    "word": "երեսունութ",
     "meaning": {
       "ru": "тридцать восемь"
     },
@@ -429,7 +429,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԵՐԵՍՈՒՆԻՆԸ",
+    "word": "երեսունինը",
     "meaning": {
       "ru": "тридцать девять"
     },
@@ -440,7 +440,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆ",
+    "word": "քառասուն",
     "meaning": {
       "ru": "сорок"
     },
@@ -451,7 +451,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆՄԵԿ",
+    "word": "քառասունմեկ",
     "meaning": {
       "ru": "сорок один"
     },
@@ -462,7 +462,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆԵՐԿՈՒ",
+    "word": "քառասուներկու",
     "meaning": {
       "ru": "сорок два"
     },
@@ -473,7 +473,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆԵՐԵՔ",
+    "word": "քառասուներեք",
     "meaning": {
       "ru": "сорок три"
     },
@@ -484,7 +484,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆՉՈՐՍ",
+    "word": "քառասունչորս",
     "meaning": {
       "ru": "сорок четыре"
     },
@@ -495,7 +495,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆՀԻՆԳ",
+    "word": "քառասունհինգ",
     "meaning": {
       "ru": "сорок пять"
     },
@@ -506,7 +506,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆՎԵՑ",
+    "word": "քառասունվեց",
     "meaning": {
       "ru": "сорок шесть"
     },
@@ -517,7 +517,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆՅՈԹ",
+    "word": "քառասունյոթ",
     "meaning": {
       "ru": "сорок семь"
     },
@@ -528,7 +528,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆՈՒԹ",
+    "word": "քառասունութ",
     "meaning": {
       "ru": "сорок восемь"
     },
@@ -539,7 +539,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՔԱՌԱՍՈՒՆԻՆԸ",
+    "word": "քառասունինը",
     "meaning": {
       "ru": "сорок девять"
     },
@@ -550,7 +550,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆ",
+    "word": "հիսուն",
     "meaning": {
       "ru": "пятьдесят"
     },
@@ -561,7 +561,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆՄԵԿ",
+    "word": "հիսունմեկ",
     "meaning": {
       "ru": "пятьдесят один"
     },
@@ -572,7 +572,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆԵՐԿՈՒ",
+    "word": "հիսուներկու",
     "meaning": {
       "ru": "пятьдесят два"
     },
@@ -583,7 +583,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆԵՐԵՔ",
+    "word": "հիսուներեք",
     "meaning": {
       "ru": "пятьдесят три"
     },
@@ -594,7 +594,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆՉՈՐՍ",
+    "word": "հիսունչորս",
     "meaning": {
       "ru": "пятьдесят четыре"
     },
@@ -605,7 +605,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆՀԻՆԳ",
+    "word": "հիսունհինգ",
     "meaning": {
       "ru": "пятьдесят пять"
     },
@@ -616,7 +616,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆՎԵՑ",
+    "word": "հիսունվեց",
     "meaning": {
       "ru": "пятьдесят шесть"
     },
@@ -627,7 +627,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆՅՈԹ",
+    "word": "հիսունյոթ",
     "meaning": {
       "ru": "пятьдесят семь"
     },
@@ -638,7 +638,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆՈՒԹ",
+    "word": "հիսունութ",
     "meaning": {
       "ru": "пятьдесят восемь"
     },
@@ -649,7 +649,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԻՍՈՒՆԻՆԸ",
+    "word": "հիսունինը",
     "meaning": {
       "ru": "пятьдесят девять"
     },
@@ -660,7 +660,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆ",
+    "word": "վաթսուն",
     "meaning": {
       "ru": "шестьдесят"
     },
@@ -671,7 +671,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆՄԵԿ",
+    "word": "վաթսունմեկ",
     "meaning": {
       "ru": "шестьдесят один"
     },
@@ -682,7 +682,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆԵՐԿՈՒ",
+    "word": "վաթսուներկու",
     "meaning": {
       "ru": "шестьдесят два"
     },
@@ -693,7 +693,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆԵՐԵՔ",
+    "word": "վաթսուներեք",
     "meaning": {
       "ru": "шестьдесят три"
     },
@@ -704,7 +704,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆՉՈՐՍ",
+    "word": "վաթսունչորս",
     "meaning": {
       "ru": "шестьдесят четыре"
     },
@@ -715,7 +715,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆՀԻՆԳ",
+    "word": "վաթսունհինգ",
     "meaning": {
       "ru": "шестьдесят пять"
     },
@@ -726,7 +726,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆՎԵՑ",
+    "word": "վաթսունվեց",
     "meaning": {
       "ru": "шестьдесят шесть"
     },
@@ -737,7 +737,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆՅՈԹ",
+    "word": "վաթսունյոթ",
     "meaning": {
       "ru": "шестьдесят семь"
     },
@@ -748,7 +748,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆՈՒԹ",
+    "word": "վաթսունութ",
     "meaning": {
       "ru": "шестьдесят восемь"
     },
@@ -759,7 +759,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՎԱԹՍՈՒՆԻՆԸ",
+    "word": "վաթսունինը",
     "meaning": {
       "ru": "шестьдесят девять"
     },
@@ -770,7 +770,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆ",
+    "word": "յոթանասուն",
     "meaning": {
       "ru": "семьдесят"
     },
@@ -781,7 +781,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆՄԵԿ",
+    "word": "յոթանասունմեկ",
     "meaning": {
       "ru": "семьдесят один"
     },
@@ -792,7 +792,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆԵՐԿՈՒ",
+    "word": "յոթանասուներկու",
     "meaning": {
       "ru": "семьдесят два"
     },
@@ -803,7 +803,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆԵՐԵՔ",
+    "word": "յոթանասուներեք",
     "meaning": {
       "ru": "семьдесят три"
     },
@@ -814,7 +814,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆՉՈՐՍ",
+    "word": "յոթանասունչորս",
     "meaning": {
       "ru": "семьдесят четыре"
     },
@@ -825,7 +825,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆՀԻՆԳ",
+    "word": "յոթանասունհինգ",
     "meaning": {
       "ru": "семьдесят пять"
     },
@@ -836,7 +836,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆՎԵՑ",
+    "word": "յոթանասունվեց",
     "meaning": {
       "ru": "семьдесят шесть"
     },
@@ -847,7 +847,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆՅՈԹ",
+    "word": "յոթանասունյոթ",
     "meaning": {
       "ru": "семьдесят семь"
     },
@@ -858,7 +858,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆՈՒԹ",
+    "word": "յոթանասունութ",
     "meaning": {
       "ru": "семьдесят восемь"
     },
@@ -869,7 +869,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՅՈԹԱՆԱՍՈՒՆԻՆԸ",
+    "word": "յոթանասունինը",
     "meaning": {
       "ru": "семьдесят девять"
     },
@@ -880,7 +880,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆ",
+    "word": "ութսուն",
     "meaning": {
       "ru": "восемьдесят"
     },
@@ -891,7 +891,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆՄԵԿ",
+    "word": "ութսունմեկ",
     "meaning": {
       "ru": "восемьдесят один"
     },
@@ -902,7 +902,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆԵՐԿՈՒ",
+    "word": "ութսուներկու",
     "meaning": {
       "ru": "восемьдесят два"
     },
@@ -913,7 +913,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆԵՐԵՔ",
+    "word": "ութսուներեք",
     "meaning": {
       "ru": "восемьдесят три"
     },
@@ -924,7 +924,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆՉՈՐՍ",
+    "word": "ութսունչորս",
     "meaning": {
       "ru": "восемьдесят четыре"
     },
@@ -935,7 +935,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆՀԻՆԳ",
+    "word": "ութսունհինգ",
     "meaning": {
       "ru": "восемьдесят пять"
     },
@@ -946,7 +946,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆՎԵՑ",
+    "word": "ութսունվեց",
     "meaning": {
       "ru": "восемьдесят шесть"
     },
@@ -957,7 +957,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆՅՈԹ",
+    "word": "ութսունյոթ",
     "meaning": {
       "ru": "восемьдесят семь"
     },
@@ -968,7 +968,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆՈՒԹ",
+    "word": "ութսունութ",
     "meaning": {
       "ru": "восемьдесят восемь"
     },
@@ -979,7 +979,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՈՒԹՍՈՒՆԻՆԸ",
+    "word": "ութսունինը",
     "meaning": {
       "ru": "восемьдесят девять"
     },
@@ -990,7 +990,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆ",
+    "word": "իննսուն",
     "meaning": {
       "ru": "девяносто"
     },
@@ -1001,7 +1001,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆՄԵԿ",
+    "word": "իննսունմեկ",
     "meaning": {
       "ru": "девяносто один"
     },
@@ -1012,7 +1012,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆԵՐԿՈՒ",
+    "word": "իննսուներկու",
     "meaning": {
       "ru": "девяносто два"
     },
@@ -1023,7 +1023,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆԵՐԵՔ",
+    "word": "իննսուներեք",
     "meaning": {
       "ru": "девяносто три"
     },
@@ -1034,7 +1034,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆՉՈՐՍ",
+    "word": "իննսունչորս",
     "meaning": {
       "ru": "девяносто четыре"
     },
@@ -1045,7 +1045,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆՀԻՆԳ",
+    "word": "իննսունհինգ",
     "meaning": {
       "ru": "девяносто пять"
     },
@@ -1056,7 +1056,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆՎԵՑ",
+    "word": "իննսունվեց",
     "meaning": {
       "ru": "девяносто шесть"
     },
@@ -1067,7 +1067,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆՅՈԹ",
+    "word": "իննսունյոթ",
     "meaning": {
       "ru": "девяносто семь"
     },
@@ -1078,7 +1078,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆՈՒԹ",
+    "word": "իննսունութ",
     "meaning": {
       "ru": "девяносто восемь"
     },
@@ -1089,7 +1089,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ԻՆՆՍՈՒՆԻՆԸ",
+    "word": "իննսունինը",
     "meaning": {
       "ru": "девяносто девять"
     },
@@ -1100,7 +1100,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԱՐՅՈՒՐ",
+    "word": "հարյուր",
     "meaning": {
       "ru": "сто"
     },
@@ -1111,7 +1111,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՀԱԶԱՐ",
+    "word": "հազար",
     "meaning": {
       "ru": "тысяча"
     },
@@ -1122,7 +1122,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՄԻԼԻՈՆ",
+    "word": "միլիոն",
     "meaning": {
       "ru": "миллион"
     },
@@ -1133,7 +1133,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՄԻԼԻԱՐԴ",
+    "word": "միլիարդ",
     "meaning": {
       "ru": "миллиард"
     },
@@ -1144,7 +1144,7 @@
     "categories": ["numbers-time"]
   },
   {
-    "word": "ՏՐԻԼԻՈՆ",
+    "word": "տրիլիոն",
     "meaning": {
       "ru": "триллион"
     },

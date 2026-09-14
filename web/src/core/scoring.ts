@@ -1,3 +1,4 @@
+import { promptLetters } from '../../../shared/armenian.ts';
 import type { Evaluation, LearnerState, Word } from '../../../shared/types.ts';
 import { TRAINER_CONFIG as config } from './config.ts';
 export const familiarity = (word: Word): number =>
@@ -7,13 +8,14 @@ export function updateScores(
   word: Word,
   result: Evaluation,
   now: number,
+  caseMode: 'caps' | 'normal' | 'lower' = 'caps',
 ): LearnerState {
   const letters = { ...state.letters };
   const weight = Math.max(
     config.familiarWordEvidenceFloor,
     1 - familiarity(word) * config.familiarityDiscount,
   );
-  for (const letter of word.uniqueLetters) {
+  for (const letter of promptLetters(word.uniqueLetters, caseMode)) {
     const old = letters[letter] ?? {
       score: 0,
       attempts: 0,
@@ -22,7 +24,8 @@ export function updateScores(
       verified: 0,
     };
     const observations = result.units.flatMap((unit) =>
-      unit.source.includes(letter) && unit.observation !== null
+      promptLetters([...unit.source], caseMode).includes(letter) &&
+      unit.observation !== null
         ? [unit.observation]
         : [],
     );

@@ -76,11 +76,17 @@ function section(title: string, value: unknown, collapsed = false) {
   return container;
 }
 
+export function fontAlphabetSamples(): [string, string] {
+  return [
+    ALPHABET.map(({ upper }) => (upper === 'և' ? 'ԵՎ' : upper)).join(''),
+    ALPHABET.map(({ lower }) => lower).join(''),
+  ];
+}
+
 function fontPreviews(word: string) {
   const previews = document.createElement('div');
   previews.className = 'debug-font-previews';
-  const alphabet = ALPHABET.map(({ upper }) => upper).join('');
-  const lowercase = ALPHABET.map(({ lower }) => lower).join('');
+  const [alphabet, lowercase] = fontAlphabetSamples();
 
   for (const font of FONTS) {
     const card = document.createElement('section');
@@ -96,7 +102,7 @@ function fontPreviews(word: string) {
     upper.textContent = alphabet;
     const lower = document.createElement('p');
     lower.className = 'debug-font-alphabet';
-    lower.textContent = `${lowercase} և`;
+    lower.textContent = lowercase;
     card.append(heading, sample, upper, lower);
     previews.append(card);
     void loadFont(font).catch(() => {});
