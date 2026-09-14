@@ -1,13 +1,109 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { deriveWord } from '../shared/armenian';
 import type { AttemptEvent } from '../shared/types.ts';
 import { evaluate } from '../web/src/core/answer-checker';
+import type { Trainer } from '../web/src/trainer.ts';
 import { commonMixups } from '../web/src/ui/stats-view';
 import {
   displayMappingUnits,
   formatMappingSource,
   formatMistakes,
+  mountIntro,
 } from '../web/src/ui/trainer-view';
+
+function fakeElement() {
+  const listeners = new Map<string, EventListener>();
+  return {
+    hidden: true,
+    checked: false,
+    disabled: false,
+    addEventListener(type: string, listener: EventListener) {
+      listeners.set(type, listener);
+    },
+    click() {
+      listeners.get('click')?.(new Event('click'));
+    },
+    close: vi.fn(),
+    showModal: vi.fn(),
+  };
+}
+
+function setupIntro() {
+  const elements = Object.fromEntries(
+    [
+      'intro-dialog',
+      'intro-quick-settings',
+      'intro-analytics',
+      'intro-metadata-hints-setting',
+      'intro-analytics-setting',
+      'intro-analytics-dnt',
+      'help-open',
+      'intro-close',
+      'intro-start',
+    ].map((id) => [id, fakeElement()]),
+  ) as Record<string, ReturnType<typeof fakeElement>>;
+  vi.stubGlobal('document', {
+    getElementById: (id: string) => elements[id],
+  });
+  vi.stubGlobal('navigator', { doNotTrack: undefined });
+
+  const trainer = {
+    introShown: false,
+    settings: { analytics: false, metadataHints: false },
+    setSettings: vi.fn(async (_settings: Trainer['settings']) => {}),
+    markIntroShown: vi.fn(async () => {}),
+    pauseFlash: vi.fn(),
+    resumeFlash: vi.fn(),
+  } as unknown as Trainer;
+  const startAnalytics = vi.fn();
+  mountIntro(trainer, vi.fn(), vi.fn(), startAnalytics);
+  return { elements, trainer, startAnalytics };
+}
+
+afterEach(() => vi.unstubAllGlobals());
+
+describe('intro analytics consent', () => {
+  it('starts checked even when saved analytics are off', () => {
+    const { elements, trainer } = setupIntro();
+
+    expect(trainer.settings.analytics).toBe(false);
+    expect(elements['intro-analytics-setting']?.checked).toBe(true);
+  });
+
+  it('saves the checked value only when starting practice', async () => {
+    const { elements, trainer, startAnalytics } = setupIntro();
+
+    elements['intro-start']?.click();
+    await Promise.resolve();
+
+    expect(trainer.setSettings).toHaveBeenCalledWith(
+      expect.objectContaining({ analytics: true }),
+    );
+    expect(startAnalytics).toHaveBeenCalledOnce();
+  });
+
+  it('keeps analytics off when the intro is dismissed', () => {
+    const { elements, trainer } = setupIntro();
+
+    elements['intro-close']?.click();
+
+    expect(trainer.setSettings).not.toHaveBeenCalled();
+    expect(trainer.settings.analytics).toBe(false);
+  });
+
+  it('saves an unchecked choice when starting practice', async () => {
+    const { elements, trainer } = setupIntro();
+    const checkbox = elements['intro-analytics-setting'];
+    if (checkbox) checkbox.checked = false;
+
+    elements['intro-start']?.click();
+    await Promise.resolve();
+
+    expect(trainer.setSettings).toHaveBeenCalledWith(
+      expect.objectContaining({ analytics: false }),
+    );
+  });
+});
 
 const readingAttempt = (
   wordText: string,

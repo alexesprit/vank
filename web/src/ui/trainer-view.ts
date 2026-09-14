@@ -116,7 +116,7 @@ export function showError(error: unknown) {
   message.textContent =
     error instanceof Error ? error.message : t('status.genericError');
 }
-function mountIntro(
+export function mountIntro(
   trainer: Trainer,
   renderTrainer: () => void,
   startFlash: () => void,
@@ -174,7 +174,7 @@ function mountIntro(
     introAnalytics.hidden = false;
     quickMetadataHints.checked = trainer.settings.metadataHints;
     const dnt = doNotTrackEnabled();
-    quickAnalytics.checked = trainer.settings.analytics && !dnt;
+    quickAnalytics.checked = !dnt;
     quickAnalytics.disabled = dnt;
     quickAnalyticsDnt.hidden = !dnt;
     quickMetadataHints.addEventListener('change', async () => {
