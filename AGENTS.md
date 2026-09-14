@@ -35,3 +35,5 @@ Write short, imperative commit subjects (for example, `Add configurable Armenian
 ## Security & Configuration
 
 Keep provider credentials in ignored `.env` files using `.env.example` as the template. Never commit API keys, caches, generated dictionaries, or learner data.
+
+Never add files under `ai-local/` to Git, even with `git add -f`; keep this local directory ignored.
