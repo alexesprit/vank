@@ -122,6 +122,10 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
     ACHIEVEMENT_DEFINITIONS.find(({ id }) => id === 'ev-one-letter-or-two')
       ?.hidden,
   ).toBe(true);
+  expect(
+    ACHIEVEMENT_DEFINITIONS.find(({ id }) => id === 'ev-one-letter-or-two')
+      ?.version,
+  ).toBe(2);
 });
 
 it('reveals hidden achievements only for Ctrl/Cmd review clicks', () => {
@@ -236,7 +240,7 @@ it('unlocks ԵՐԵՎԱՆ on its first correct reading after earlier failures', (
   ).toMatchObject({ triggerAttemptId: 'attempt-1' });
 });
 
-it('requires correct lowercase and title-case readings of և', () => {
+it('requires correct readings of և as both one letter and two', () => {
   const initialLigature = known('ևրան');
   const internalLigature = known('բարև');
   const makeAttempt = (
@@ -280,7 +284,7 @@ it('requires correct lowercase and title-case readings of և', () => {
       { word: initialLigature, caseMode: 'lower', correct: true },
       { word: initialLigature, caseMode: 'caps', correct: true },
     ]),
-  ).toBeUndefined();
+  ).toMatchObject({ triggerAttemptId: 'ev-1' });
   expect(
     evUnlock([
       { word: initialLigature, caseMode: 'lower', correct: true },
@@ -309,6 +313,13 @@ it('requires correct lowercase and title-case readings of և', () => {
   ).toMatchObject({
     triggerAttemptId: 'ev-1',
   });
+
+  expect(
+    evUnlock([
+      { word: known('թերապևտ'), caseMode: 'caps', correct: true },
+      { word: known('տետև'), caseMode: 'normal', correct: true },
+    ]),
+  ).toMatchObject({ triggerAttemptId: 'ev-1' });
 });
 
 it('does not backfill word achievements from legacy split-letter IDs', () => {

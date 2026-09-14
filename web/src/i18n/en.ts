@@ -326,8 +326,7 @@ export const en = {
       },
       'ev-one-letter-or-two': {
         title: 'Is it one letter or two?',
-        description:
-          'Correctly read lowercase և as one letter and title-case Եվ as two.',
+        description: 'Correctly read և as one letter and ԵՎ as two.',
       },
     },
   },

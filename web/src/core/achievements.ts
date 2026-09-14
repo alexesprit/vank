@@ -738,27 +738,36 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   },
   {
     id: 'ev-one-letter-or-two',
-    version: 1,
+    version: 2,
     thresholds: {},
     hidden: true,
     icon: 'circle-help',
     evaluate: ({ attempts }) => {
-      let lowercaseAttempt: AttemptEvent | undefined;
-      let titleCaseAttempt: AttemptEvent | undefined;
+      let oneLetterAttempt: AttemptEvent | undefined;
+      let twoLetterAttempt: AttemptEvent | undefined;
       for (const attempt of attempts) {
         if (!attempt.payload.correct) continue;
         const mode = attempt.payload.presentation?.caseMode ?? 'caps';
         const units = attempt.payload.evaluation.units;
-        if (mode === 'lower' && units.some(({ source }) => source === 'և'))
-          lowercaseAttempt ??= attempt;
-        if (mode === 'normal' && units[0]?.source === 'և')
-          titleCaseAttempt ??= attempt;
-        if (lowercaseAttempt && titleCaseAttempt)
+        if (
+          (mode === 'lower' && units.some(({ source }) => source === 'և')) ||
+          (mode === 'normal' &&
+            units.some(
+              ({ source, position }) => source === 'և' && position > 0,
+            ))
+        )
+          oneLetterAttempt ??= attempt;
+        if (
+          (mode === 'caps' && units.some(({ source }) => source === 'և')) ||
+          (mode === 'normal' && units[0]?.source === 'և')
+        )
+          twoLetterAttempt ??= attempt;
+        if (oneLetterAttempt && twoLetterAttempt)
           return {
             attempt,
             evidence: {
-              lowercaseAttemptId: lowercaseAttempt.id,
-              titleCaseAttemptId: titleCaseAttempt.id,
+              oneLetterAttemptId: oneLetterAttempt.id,
+              twoLetterAttemptId: twoLetterAttempt.id,
             },
           };
       }
