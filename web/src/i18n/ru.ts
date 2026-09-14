@@ -142,6 +142,9 @@ export const ru = {
     verifiedHint:
       'Точность в словах, которые не считаются знакомыми: так подсказка по памяти помогает меньше.',
     needsPractice: 'Нужна практика',
+    practiceLetter: 'Практиковать слова с буквой {{letter}}',
+    letterMissing: 'В текущей подборке нет слов с буквой {{letter}}.',
+    letterUnavailable: 'Другого слова с буквой {{letter}} не нашлось.',
     recent: 'Последние 20: {{accuracy}} · Пропущено: {{skips}}',
     sessionWords_one: 'Слов за сессию: {{count}}',
     sessionWords_few: 'Слов за сессию: {{count}}',

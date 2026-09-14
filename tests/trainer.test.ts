@@ -9,6 +9,7 @@ import type { Dictionary, LearnerState } from '../shared/types';
 import { PRACTICE_MODES } from '../web/src/core/modes';
 import { completeAttempt, progress } from '../web/src/core/session';
 import { DEFAULT_SETTINGS, FONTS } from '../web/src/core/settings';
+import { createWordSelector } from '../web/src/core/word-selector';
 import { openRepository } from '../web/src/storage/repository';
 import { createTrainer as createTrainerWithFontLoader } from '../web/src/trainer';
 
@@ -132,6 +133,156 @@ it('submits once, saves before advancing, restores progress and retains stable c
   expect(reloaded.current.word.id).not.toBe(first.id);
   await reloaded.submit('', true);
   expect(reloaded.state.recent[0].clientId).toBe(clientId);
+  repo.close();
+});
+
+it('replaces prompts for a weak letter without scoring the discarded prompt', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const words = ['ՄԱՍ', 'ՄԱՄԱ', 'ՄԱՆ', 'ԳԱԶ', 'ՖԴԾ'].map(recognizable);
+  const select = createWordSelector(words);
+  const requests: Parameters<typeof select>[3][] = [];
+  const trainer = await createTrainer(words, repo, async (font) => font, {
+    selector: (state, now, random, request) => {
+      requests.push(request);
+      return select(state, now, random, request);
+    },
+  });
+  const unansweredWordId = trainer.current.word.id;
+
+  expect(await trainer.practiceLetter('Մ')).toBe('target');
+  expect(trainer.current.word.id).not.toBe(unansweredWordId);
+  expect(trainer.current.word.uniqueLetters).toContain('Մ');
+  expect(trainer.state).toEqual({ letters: {}, words: {}, recent: [] });
+  expect(trainer.result).toBeUndefined();
+
+  await trainer.submit(trainer.current.word.readingLatin);
+  const savedAttempt = trainer.state.recent[0];
+  expect(savedAttempt?.payload.wordId).toBe(trainer.current.word.id);
+
+  expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+  expect(trainer.current.word.id).not.toBe(savedAttempt?.payload.wordId);
+  expect(trainer.current.word.uniqueLetters).toContain('Ֆ');
+  expect(trainer.state.recent).toEqual([savedAttempt]);
+  expect(trainer.result).toBeUndefined();
+
+  await trainer.submit(trainer.current.word.readingLatin);
+  expect(trainer.state.recent).toHaveLength(2);
+  await trainer.next();
+  expect(requests.at(-1)).toBeUndefined();
+  repo.close();
+});
+
+it('avoids recently shown letter words and clears that history on mode change', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const first = recognizable('ՖԱՍ');
+  const familiar = recognizable('ՖԱՏ');
+  const unfamiliar = {
+    ...recognizable('ՖԱՐ'),
+    familiarity: { ru: 0.1 },
+    loanwordScore: 0,
+  };
+  const words = [first, familiar, unfamiliar];
+  const select = createWordSelector(words);
+  const requests: Parameters<typeof select>[3][] = [];
+  const trainer = await createTrainer(words, repo, async (font) => font, {
+    selector: (state, now, random, request) => {
+      requests.push(request);
+      return request
+        ? select(state, now, random, request)
+        : { word: first, phase: 'training' };
+    },
+  });
+
+  expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+  expect(trainer.current.word.id).toBe(familiar.id);
+  expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+  expect(trainer.current.word.id).toBe(unfamiliar.id);
+  expect(await trainer.practiceLetter('Ֆ')).toBe('unavailable');
+  expect(trainer.current.word.id).toBe(unfamiliar.id);
+  const letterRequests = requests.filter((request) => request !== undefined);
+  expect(letterRequests[0]?.excludeWordIds).toContain(first.id);
+  expect(letterRequests[1]?.excludeWordIds).toEqual([first.id, familiar.id]);
+  expect(letterRequests[2]?.excludeWordIds).toEqual([
+    first.id,
+    familiar.id,
+    unfamiliar.id,
+  ]);
+
+  const dictionary: Dictionary = {
+    version: 1,
+    schemaVersion: 1,
+    generatedAt: '2026-09-09',
+    words,
+  };
+  await trainer.setSettings(
+    { fonts: trainer.settings.fonts, practiceMode: 'names' },
+    dictionary,
+  );
+  expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+  repo.close();
+});
+
+it('keeps only the last ten prompts in a letter history', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const words = ['Ա', 'Բ', 'Գ', 'Դ', 'Ե', 'Զ', 'Է', 'Ը', 'Թ', 'Ժ', 'Ի'].map(
+    (letter) => recognizable(`Ֆ${letter}`),
+  );
+  const select = createWordSelector(words);
+  const requests: NonNullable<Parameters<typeof select>[3]>[] = [];
+  const trainer = await createTrainer(words, repo, async (font) => font, {
+    selector: (state, now, random, request) => {
+      if (request) requests.push(request);
+      return request
+        ? select(state, now, random, request)
+        : { word: words[0], phase: 'training' };
+    },
+  });
+  const shown = new Set([trainer.current.word.id]);
+
+  for (let count = 0; count < 10; count++) {
+    expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+    expect(shown.has(trainer.current.word.id)).toBe(false);
+    shown.add(trainer.current.word.id);
+  }
+  expect(shown.size).toBe(11);
+  expect(
+    requests.every((request) => (request.excludeWordIds?.length ?? 0) <= 10),
+  ).toBe(true);
+  expect(requests.at(-1)?.excludeWordIds).toHaveLength(10);
+
+  expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+  expect(trainer.current.word.id).toBe(words[0].id);
+  repo.close();
+});
+
+it('keeps the prompt instead of falling back when no different word has the letter', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const current = recognizable('ՄԱՄԱ');
+  const ordinaryAlternative = recognizable('ՆԱՆԱ');
+  const words = [current, ordinaryAlternative];
+  const select = createWordSelector(words);
+  const trainer = await createTrainer(words, repo, async (font) => font, {
+    selector: (state, now, random, request) =>
+      request
+        ? select(state, now, random, request)
+        : { word: current, phase: 'training' },
+  });
+
+  expect(await trainer.practiceLetter('Մ')).toBe('unavailable');
+  expect(trainer.current.word.id).toBe(current.id);
+  expect(trainer.state).toEqual({ letters: {}, words: {}, recent: [] });
+  repo.close();
+});
+
+it('keeps the prompt when the dictionary has no word with the selected letter', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const words = ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable);
+  const trainer = await createTrainer(words, repo, async (font) => font);
+  const currentWordId = trainer.current.word.id;
+
+  expect(await trainer.practiceLetter('Ֆ')).toBe('missing');
+  expect(trainer.current.word.id).toBe(currentWordId);
+  expect(trainer.state).toEqual({ letters: {}, words: {}, recent: [] });
   repo.close();
 });
 

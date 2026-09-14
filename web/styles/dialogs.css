@@ -279,7 +279,7 @@ dialog::backdrop {
   bottom: 24px;
   left: 50%;
   display: grid;
-  grid-template-columns: 40px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
   align-items: center;
   width: min(520px, calc(100% - 32px));
@@ -289,6 +289,10 @@ dialog::backdrop {
   box-shadow: 0 16px 48px rgba(22, 26, 33, 0.3);
   color: var(--on-accent);
   transform: translateX(-50%);
+}
+
+.snackbar.has-icon {
+  grid-template-columns: 40px minmax(0, 1fr) auto;
 }
 
 .snackbar-icon {
@@ -303,10 +307,7 @@ dialog::backdrop {
 }
 
 .snackbar-copy strong {
-  overflow: hidden;
   font-size: 14px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .snackbar-action {

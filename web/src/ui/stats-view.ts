@@ -175,10 +175,16 @@ export function renderStats(
   const weak = element('weak');
   weak.replaceChildren(
     ...stats.weakLetters.map((letter) => {
-      const chip = document.createElement('span');
+      const chip = document.createElement('button');
+      chip.type = 'button';
       chip.className = 'letter-chip';
-      chip.lang = 'hy';
-      chip.textContent = `${letter}${letter.toLocaleLowerCase('hy')}`;
+      chip.dataset.letter = letter;
+      chip.setAttribute('aria-label', t('progress.practiceLetter', { letter }));
+      chip.lang = document.documentElement.lang;
+      const glyph = document.createElement('span');
+      glyph.lang = 'hy';
+      glyph.textContent = `${letter}${letter.toLocaleLowerCase('hy')}`;
+      chip.append(glyph);
       applyArmenianFontFamily(chip, fontFamily);
       return chip;
     }),

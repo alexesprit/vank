@@ -16,6 +16,7 @@ import { mountAchievements } from './achievements-view.ts';
 import { applyArmenianFontFamily } from './armenian-font.ts';
 import { mountDebugDialog } from './debug-view.ts';
 import { mountSettings } from './settings-view.ts';
+import { createSnackbar } from './snackbar.ts';
 import { mountStatsDialog, renderStats } from './stats-view.ts';
 import { renderSyllables } from './syllable-colors.ts';
 
@@ -198,6 +199,7 @@ export function mountTrainer(
   startAnalytics: () => void,
 ) {
   let activeDictionary = dictionary;
+  const letterSnackbar = createSnackbar();
   const input = element<HTMLInputElement>('answer'),
     form = element<HTMLFormElement>('answer-form');
   const check = element<HTMLButtonElement>('check'),
@@ -329,6 +331,33 @@ export function mountTrainer(
       showError(error);
     }
   }
+  async function practiceLetter(letter: string) {
+    letterSnackbar.hide();
+    try {
+      const selection = await trainer.practiceLetter(letter);
+      if (selection === 'target') letterSnackbar.hide();
+      else
+        letterSnackbar.show({
+          label: t('progress.needsPractice'),
+          title:
+            selection === 'missing'
+              ? t('progress.letterMissing', { letter })
+              : t('progress.letterUnavailable', { letter }),
+        });
+      if (selection !== 'target') return;
+      render();
+      trainer.startFlash();
+    } catch (error) {
+      showError(error);
+    }
+  }
+  element('weak').addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
+    const letter = event.target.closest<HTMLButtonElement>(
+      'button[data-letter]',
+    )?.dataset.letter;
+    if (letter) void practiceLetter(letter);
+  });
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (trainer.result) void advance();

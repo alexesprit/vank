@@ -147,6 +147,10 @@ export const en = {
     verifiedHint:
       'Accuracy on words that are not considered familiar, where memory provides less help.',
     needsPractice: 'Needs practice',
+    practiceLetter: 'Practice words with {{letter}}',
+    letterMissing:
+      'There are no words with {{letter}} in the current word list.',
+    letterUnavailable: 'No other word with {{letter}} was found.',
     recent: 'Last 20: {{accuracy}} · Skipped: {{skips}}',
     sessionWords_one: 'Words this session: {{count}}',
     sessionWords_few: 'Words this session: {{count}}',

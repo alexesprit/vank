@@ -42,15 +42,25 @@ export interface SelectionDiagnostics {
   alternatives: CandidateDiagnostics[];
 }
 export type SelectionStrategy = 'adaptive' | 'finite-pack';
+export interface SelectionRequest {
+  targetLetter?: string;
+  excludeWordId?: string;
+  excludeWordIds?: readonly string[];
+}
 export type WordSelector = (
   state: LearnerState,
   now: number,
   random?: () => number,
+  request?: SelectionRequest,
 ) => Selection;
 export const unknownLetters = (word: Word, state: LearnerState): string[] =>
   word.uniqueLetters.filter((l) => !(state.letters[l]?.score > 0));
 const average = (values: number[]) =>
   values.reduce((a, b) => a + b, 0) / values.length;
+const isFamiliarCandidate = (word: Word) =>
+  familiarity(word) >= config.bootstrapFamiliarityThreshold &&
+  ((word.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold ||
+    word.tags.includes('loanword'));
 export function personalDifficulty(word: Word, state: LearnerState): number {
   const unknown = word.uniqueLetters.map(
     (l) => 1 - (state.letters[l]?.score ?? 0),
@@ -75,8 +85,19 @@ export function selectAdaptiveWord(
   state: LearnerState,
   now: number,
   random = Math.random,
+  request?: SelectionRequest,
 ): Selection {
   if (!words.length) throw new Error('Cannot train with an empty dictionary');
+  const targetLetter = request?.targetLetter;
+  const excludedWordIds = new Set(request?.excludeWordIds);
+  if (request?.excludeWordId) excludedWordIds.add(request.excludeWordId);
+  const matchingTargets = targetLetter
+    ? words.filter(
+        (word) =>
+          !excludedWordIds.has(word.id) &&
+          word.uniqueLetters.includes(targetLetter),
+      )
+    : [];
   const knownLetterCount = Object.values(state.letters).filter(
     (l) => l.score > 0,
   ).length;
@@ -92,10 +113,6 @@ export function selectAdaptiveWord(
     ? (words.find((word) => word.id === state.recent[0]?.payload.wordId) ??
       bootstrapPool.find((word) => word.id === state.recent[0]?.payload.wordId))
     : undefined;
-  const isFamiliarCandidate = (word: Word) =>
-    familiarity(word) >= config.bootstrapFamiliarityThreshold &&
-    ((word.loanwordScore ?? 0) >= config.bootstrapLoanwordThreshold ||
-      word.tags.includes('loanword'));
   const loanwords = bootstrapPool.filter(isFamiliarCandidate);
   const attemptsSinceLastFamiliarWord = () => {
     let count = 0;
@@ -116,8 +133,17 @@ export function selectAdaptiveWord(
           config.maxUnknownLettersIntroduction,
       );
   const eligible = candidates.length;
-  if (!candidates.length)
-    throw new Error('Dictionary has no words within the one-new-letter limit');
+  if (!candidates.length) {
+    const current = request?.excludeWordId
+      ? words.find((word) => word.id === request.excludeWordId)
+      : undefined;
+    if (current) candidates = [current];
+    else if (matchingTargets.length) candidates = matchingTargets;
+    else
+      throw new Error(
+        'Dictionary has no words within the one-new-letter limit',
+      );
+  }
   const latest = state.recent[0]?.payload.wordId;
   const different = candidates.filter((w) => w.id !== latest);
   if (different.length) candidates = different;
@@ -176,6 +202,22 @@ export function selectAdaptiveWord(
     if (familiar.length) candidates = familiar;
   }
   const afterFamiliarInjection = candidates.length;
+  let requestedWord: Word | undefined;
+  if (request) {
+    if (matchingTargets.length) {
+      const familiar = matchingTargets.filter(isFamiliarCandidate);
+      candidates = familiar.length ? familiar : matchingTargets;
+      requestedWord = candidates[Math.floor(random() * candidates.length)];
+    } else if (request.targetLetter && request.excludeWordId) {
+      const current = words.find((word) => word.id === request.excludeWordId);
+      if (current) candidates = [current];
+    } else {
+      const eligibleDifferent = request.excludeWordId
+        ? candidates.filter((word) => word.id !== request.excludeWordId)
+        : candidates;
+      if (eligibleDifferent.length) candidates = eligibleDifferent;
+    }
+  }
   const diagnose = (word: Word): CandidateDiagnostics => {
     const recentIndex = state.recent
       .slice(0, config.recentWordWindow)
@@ -259,7 +301,9 @@ export function selectAdaptiveWord(
     (candidate) =>
       candidate.diagnostic.priority === ranked[0].diagnostic.priority,
   );
-  const chosen = best[Math.floor(random() * best.length)];
+  const chosen =
+    ranked.find((candidate) => candidate.word === requestedWord) ??
+    best[Math.floor(random() * best.length)];
   const word = chosen.word;
   const unknown = unknownLetters(word, state);
   const phase = bootstrap
@@ -313,8 +357,8 @@ export function createWordSelector(
   strategy: SelectionStrategy = 'adaptive',
 ): WordSelector {
   if (strategy === 'adaptive')
-    return (state, now, random) =>
-      selectAdaptiveWord(words, state, now, random);
+    return (state, now, random, request) =>
+      selectAdaptiveWord(words, state, now, random, request);
   if (strategy === 'finite-pack') {
     if (!words.length) throw new Error('Cannot train with an empty dictionary');
     const pack = [...words].sort(
@@ -335,7 +379,28 @@ export function createWordSelector(
         [pack[i], pack[j]] = [pack[j], pack[i]];
       }
     };
-    return (state, _now, random = Math.random) => {
+    const createSelection = (word: Word, state: LearnerState): Selection => {
+      const unknown = unknownLetters(word, state);
+      return {
+        word,
+        phase: unknown.length ? 'introduction' : 'training',
+        ...(unknown.length === 1 ? { introducedLetter: unknown[0] } : {}),
+      };
+    };
+    const selectFromPack = (candidates: Word[]): Word | undefined => {
+      if (!candidates.length) return undefined;
+      const ordered = [...pack.slice(index), ...pack.slice(0, index)];
+      const candidateIds = new Set(candidates.map((word) => word.id));
+      const selected = ordered.find((word) => candidateIds.has(word.id));
+      if (!selected) return undefined;
+      const selectedIndex = pack.findIndex((word) => word.id === selected.id);
+      if (selectedIndex >= index) {
+        [pack[index], pack[selectedIndex]] = [pack[selectedIndex], pack[index]];
+        index++;
+      }
+      return selected;
+    };
+    return (state, _now, random = Math.random, request) => {
       if (needsShuffle) {
         shuffle(random);
         needsShuffle = false;
@@ -344,13 +409,42 @@ export function createWordSelector(
         shuffle(random);
         index = 0;
       }
+      if (request) {
+        const different = request.excludeWordId
+          ? pack.filter((word) => word.id !== request.excludeWordId)
+          : pack;
+        const targetLetter = request.targetLetter;
+        const excludedWordIds = new Set(request.excludeWordIds);
+        if (request.excludeWordId) excludedWordIds.add(request.excludeWordId);
+        const matching = targetLetter
+          ? pack.filter(
+              (word) =>
+                !excludedWordIds.has(word.id) &&
+                word.uniqueLetters.includes(targetLetter),
+            )
+          : [];
+        const familiar = matching.filter(isFamiliarCandidate);
+        const targets = familiar.length ? familiar : matching;
+        const target = targets.length
+          ? targets[Math.floor(random() * targets.length)]
+          : undefined;
+        const targeted = target ? selectFromPack([target]) : undefined;
+        if (targeted) return createSelection(targeted, state);
+        if (request.targetLetter && request.excludeWordId) {
+          const current = pack.find(
+            (word) => word.id === request.excludeWordId,
+          );
+          if (current) return createSelection(current, state);
+        }
+        const fallback = selectFromPack(different);
+        if (fallback) return createSelection(fallback, state);
+        const current = request.excludeWordId
+          ? pack.find((word) => word.id === request.excludeWordId)
+          : undefined;
+        if (current) return createSelection(current, state);
+      }
       const word = pack[index++];
-      const unknown = unknownLetters(word, state);
-      return {
-        word,
-        phase: unknown.length ? 'introduction' : 'training',
-        ...(unknown.length === 1 ? { introducedLetter: unknown[0] } : {}),
-      };
+      return createSelection(word, state);
     };
   }
   throw new Error(`Selection strategy is not implemented: ${strategy}`);
@@ -361,6 +455,7 @@ export function selectWord(
   state: LearnerState,
   now: number,
   random?: () => number,
+  request?: SelectionRequest,
 ): Selection {
-  return selectAdaptiveWord(words, state, now, random);
+  return selectAdaptiveWord(words, state, now, random, request);
 }

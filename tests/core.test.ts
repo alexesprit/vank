@@ -394,6 +394,78 @@ describe('adaptive selection', () => {
       personalDifficulty(words[0], state),
     );
   });
+  it('randomly selects familiar target words regardless of eligibility', () => {
+    const current = word('ՄԱՍ', 1);
+    const unfamiliar = word('ՄԱՆ', 0.1);
+    const tooDifficult = word('ՄԱԹԾ', 1);
+    const familiar = word('ՄԱՄԱ', 1);
+    const words = [current, unfamiliar, tooDifficult, familiar];
+    const state = known(words);
+    state.letters.Թ.score = 0;
+    state.letters.Ծ.score = 0;
+
+    expect(
+      selectWord(words, state, 0, () => 0, {
+        targetLetter: 'Մ',
+        excludeWordId: current.id,
+      }).word,
+    ).toBe(tooDifficult);
+    expect(
+      selectWord(words, state, 0, () => 0.999, {
+        targetLetter: 'Մ',
+        excludeWordId: current.id,
+      }).word,
+    ).toBe(familiar);
+
+    const otherUnfamiliar = word('ՄՈՒ', 0.1);
+    const unfamiliarWords = [current, unfamiliar, otherUnfamiliar];
+    expect(
+      selectWord(unfamiliarWords, known(unfamiliarWords), 0, () => 0.999, {
+        targetLetter: 'Մ',
+        excludeWordId: current.id,
+      }).word,
+    ).toBe(otherUnfamiliar);
+  });
+  it('keeps the current word when no different target-letter word exists', () => {
+    const current = word('ՄԱՄԱ', 1);
+    const alternative = word('ՆԱՆԱ', 0.1);
+    const words = [current, alternative];
+    const selected = selectWord(words, known(words), 0, () => 0, {
+      targetLetter: 'Մ',
+      excludeWordId: current.id,
+    });
+
+    expect(selected.word).toBe(current);
+  });
+  it('uses another matching word when all familiar targets are excluded', () => {
+    const current = word('ՖԱՍ', 1);
+    const familiar = word('ՖԱՏ', 1);
+    const unfamiliar = word('ՖԱՐ', 0.1);
+    const words = [current, familiar, unfamiliar];
+
+    for (const strategy of ['adaptive', 'finite-pack'] as const) {
+      const selected = createWordSelector(words, strategy)(
+        known(words),
+        0,
+        () => 0,
+        {
+          targetLetter: 'Ֆ',
+          excludeWordId: current.id,
+          excludeWordIds: [current.id, familiar.id],
+        },
+      );
+      expect(selected.word).toBe(unfamiliar);
+    }
+  });
+  it('keeps the current word when no different candidate exists', () => {
+    const current = word('ՄԱՄԱ', 1);
+    const selected = selectWord([current], known([current]), 0, () => 0, {
+      targetLetter: 'Մ',
+      excludeWordId: current.id,
+    });
+
+    expect(selected.word).toBe(current);
+  });
   it('offers a familiar word after two failed verification words', () => {
     const familiar = word('ԲԱՆԿ', 1),
       native = [word('ԵՍ', 0.05), word('ՆԱ', 0.05)],
@@ -481,6 +553,66 @@ it('cycles finite packs without adaptive eligibility failures', () => {
   );
   expect(new Set(words.map(({ id }) => id))).toContain(repeated.word.id);
   expect(first.phase).toBe('introduction');
+});
+
+it('selects a familiar target letter from a finite pack without repeating the current prompt', () => {
+  const current = word('ՄԱՍ', 1);
+  const unfamiliar = word('ՄԱՆ', 0.1);
+  const familiar = word('ՄԱՄԱ', 1);
+  const select = createWordSelector(
+    [current, unfamiliar, familiar],
+    'finite-pack',
+  );
+  const selected = select(known([current, unfamiliar, familiar]), 0, () => 0, {
+    targetLetter: 'Մ',
+    excludeWordId: current.id,
+  });
+
+  expect(selected.word).toBe(familiar);
+});
+
+it('randomly selects among familiar finite-pack target words', () => {
+  const current = word('ՄԱՍ');
+  const unfamiliar = word('ՄԱՆ');
+  const familiarA = word('ՄԱՄԱ', 1);
+  const familiarB = word('ՄՈՒ', 1);
+  const words = [current, unfamiliar, familiarA, familiarB];
+  const selectTarget = (targetRandom: number) => {
+    const select = createWordSelector(words, 'finite-pack');
+    let calls = 0;
+    const random = () => (calls++ < 3 ? 0 : targetRandom);
+    const currentWord = select(empty(), 0, random).word;
+    return select(known(words), 1, random, {
+      targetLetter: 'Մ',
+      excludeWordId: currentWord.id,
+    }).word;
+  };
+
+  const first = selectTarget(0);
+  const last = selectTarget(0.999);
+  expect([familiarA, familiarB]).toContain(first);
+  expect([familiarA, familiarB]).toContain(last);
+  expect(last).not.toBe(first);
+});
+
+it('keeps the current finite-pack word when no different target match exists', () => {
+  const words = [word('ՄԱՍ'), word('ՆԱՆԱ')];
+  const select = createWordSelector(words, 'finite-pack');
+  const current = select(empty(), 0, () => 0.999).word;
+  const selected = select(empty(), 1, () => 0.999, {
+    targetLetter: 'Ֆ',
+    excludeWordId: current.id,
+  });
+
+  expect(selected.word.id).toBe(current.id);
+
+  const onlyWord = word('ՄԱՍ');
+  const selectOnly = createWordSelector([onlyWord], 'finite-pack');
+  const kept = selectOnly(empty(), 0, () => 0, {
+    targetLetter: 'Ֆ',
+    excludeWordId: onlyWord.id,
+  });
+  expect(kept.word).toBe(onlyWord);
 });
 
 it('shuffles a finite pack before its first word', () => {

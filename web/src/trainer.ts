@@ -29,6 +29,8 @@ import {
 } from './core/word-selector.ts';
 import type { Repository } from './storage/repository.ts';
 
+const LETTER_WORD_HISTORY_LIMIT = 10;
+
 interface ScoreUpdateDiagnostics {
   wordId: string;
   practiceMode: PracticeModeId;
@@ -51,6 +53,8 @@ export async function createTrainer(
   options: TrainerOptions = {},
 ) {
   let state = await repository.loadState();
+  let activeWords = words;
+  const recentLetterWords = new Map<string, string[]>();
   let achievementUnlocks = await repository.getAchievementUnlocks();
   const backfilledAchievementUnlocks = evaluateAchievements(
     [...state.recent].reverse(),
@@ -117,6 +121,17 @@ export async function createTrainer(
       loaded = await requested;
     }
     return loaded;
+  };
+  const replacePrompt = async (next: Selection) => {
+    pendingFont = fontLoader(selectFont(settings, correctAnswers()));
+    font = await latestFont(pendingFont);
+    presentation = selectTypography(settings, correctAnswers());
+    current = next;
+    metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+    metadataHintsCaptured = false;
+    result = undefined;
+    lastAchievementUnlocks = [];
+    flash.reset();
   };
   return {
     get current() {
@@ -254,19 +269,45 @@ export async function createTrainer(
         result = completed.attempt.payload.evaluation;
       });
     },
+    async practiceLetter(letter: string) {
+      return serialize(async () => {
+        if (!activeWords.some((word) => word.uniqueLetters.includes(letter)))
+          return 'missing' as const;
+        const recent = recentLetterWords.get(letter) ?? [];
+        const currentMatches = current.word.uniqueLetters.includes(letter);
+        const excludedWordIds = currentMatches
+          ? [
+              ...recent.filter((wordId) => wordId !== current.word.id),
+              current.word.id,
+            ].slice(-LETTER_WORD_HISTORY_LIMIT)
+          : recent;
+        if (currentMatches) recentLetterWords.set(letter, excludedWordIds);
+        const next = select(state, Date.now(), Math.random, {
+          targetLetter: letter,
+          excludeWordId: current.word.id,
+          excludeWordIds: excludedWordIds,
+        });
+        if (
+          next.word.id === current.word.id ||
+          !next.word.uniqueLetters.includes(letter)
+        )
+          return 'unavailable' as const;
+        recentLetterWords.set(
+          letter,
+          [
+            ...excludedWordIds.filter((wordId) => wordId !== next.word.id),
+            next.word.id,
+          ].slice(-LETTER_WORD_HISTORY_LIMIT),
+        );
+        await replacePrompt(next);
+        return 'target' as const;
+      });
+    },
     async next() {
       return serialize(async () => {
         if (!result) return;
         const next = select(state, Date.now());
-        pendingFont = fontLoader(selectFont(settings, correctAnswers()));
-        font = await latestFont(pendingFont);
-        presentation = selectTypography(settings, correctAnswers());
-        current = next;
-        metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
-        metadataHintsCaptured = false;
-        result = undefined;
-        lastAchievementUnlocks = [];
-        flash.reset();
+        await replacePrompt(next);
       });
     },
     async setSettings(
@@ -293,12 +334,14 @@ export async function createTrainer(
         const modeChanged = saved.practiceMode !== settings.practiceMode;
         let nextMode = mode;
         let nextSelect = select;
+        let nextWords = activeWords;
         let nextCurrent = current;
         if (modeChanged) {
           if (!dictionary)
             throw new Error('A dictionary is required to change practice mode');
           nextMode = getPracticeMode(saved.practiceMode);
           nextSelect = createWordSelector(dictionary.words, nextMode.strategy);
+          nextWords = dictionary.words;
           nextCurrent = nextSelect(state, Date.now());
         }
         await repository.setSetting('app', saved);
@@ -308,6 +351,8 @@ export async function createTrainer(
           const wasPaused = flash.paused;
           mode = nextMode;
           select = nextSelect;
+          activeWords = nextWords;
+          recentLetterWords.clear();
           current = nextCurrent;
           result = undefined;
           lastScoreUpdate = undefined;

@@ -5,6 +5,7 @@ import type { LearnerState } from '../shared/types';
 import { createFlashSession } from '../web/src/core/flash-session';
 import { completeAttempt, progress } from '../web/src/core/session';
 import { DEFAULT_SETTINGS, flashExposureMs } from '../web/src/core/settings';
+import { createWordSelector } from '../web/src/core/word-selector';
 import { openRepository } from '../web/src/storage/repository';
 import { createTrainer } from '../web/src/trainer';
 
@@ -299,5 +300,56 @@ it('resumes the remaining exposure after tab visibility invalidates timing', asy
   ).toBeUndefined();
   repo.close();
   vi.unstubAllGlobals();
+  vi.useRealTimers();
+});
+
+it('restarts prompt and flash timing after selecting a weak letter', async () => {
+  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  vi.setSystemTime(0);
+  const repo = await openRepository(`flash-${crypto.randomUUID()}`);
+  const words = ['ՄԱՄԱ', 'ՄԱՆ', 'ՄԱՍ', 'ԳԱԶ'].map((word) => deriveWord(word));
+  let state = empty();
+  const familiarWord = deriveWord('ՄԱՄԱ');
+  for (let index = 0; index < 10; index++)
+    state = completeAttempt(
+      state,
+      { word: familiarWord, phase: 'bootstrap' },
+      familiarWord.readingLatin,
+      false,
+      'seed',
+      index,
+      index + 1,
+      `seed-${index}`,
+    ).state;
+  await repo.setSetting('app', {
+    ...DEFAULT_SETTINGS,
+    flash: { enabled: true, exposureMs: 1_000 },
+  });
+  const trainer = await createTrainer(
+    words,
+    { ...repo, loadState: async () => state },
+    async (font) => font,
+    { selector: createWordSelector(words) },
+  );
+
+  trainer.startFlash();
+  vi.advanceTimersByTime(1_000);
+  expect(trainer.flashHidden).toBe(true);
+  expect(await trainer.practiceLetter('Մ')).toBe('target');
+  expect(trainer.flashHidden).toBe(false);
+
+  trainer.startFlash();
+  vi.advanceTimersByTime(999);
+  expect(trainer.flashHidden).toBe(false);
+  vi.advanceTimersByTime(1);
+  expect(trainer.flashHidden).toBe(true);
+  trainer.revealFlash();
+  vi.advanceTimersByTime(400);
+  await trainer.submit(trainer.current.word.readingLatin);
+  expect(trainer.state.recent[0]?.payload.shownAt).toBe(1_000);
+  expect(trainer.state.recent[0]?.payload.answeredAt).toBe(2_400);
+
+  trainer.dispose();
+  repo.close();
   vi.useRealTimers();
 });

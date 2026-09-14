@@ -38,6 +38,7 @@ export function createSnackbar(duration = 6_000) {
     if (dismissTimer !== undefined) clearTimeout(dismissTimer);
   };
   const show = (options: SnackbarOptions) => {
+    snackbar.className = options.icon ? 'snackbar has-icon' : 'snackbar';
     label.textContent = options.label;
     title.textContent = options.title;
     icon.replaceChildren();

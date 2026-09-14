@@ -244,6 +244,10 @@
   text-align: center;
 }
 
+button.letter-chip {
+  cursor: pointer;
+}
+
 .font-stat {
   margin: 8px 0 0;
   color: var(--muted);
