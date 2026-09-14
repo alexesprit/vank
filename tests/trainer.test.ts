@@ -434,6 +434,47 @@ it('replaces prompts for a weak letter without scoring the discarded prompt', as
   repo.close();
 });
 
+it('shows up to five available words for a letter, then resumes normal selection', async () => {
+  for (const poolSize of [4, 9]) {
+    const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+    const ordinary = recognizable('ՆԱՆԱ');
+    const targets = ALPHABET.slice(0, poolSize).map((letter) =>
+      recognizable(`Ֆ${letter.upper}`),
+    );
+    const words = [ordinary, ...targets];
+    const select = createWordSelector(words);
+    const requests: Parameters<typeof select>[3][] = [];
+    const trainer = await createTrainer(words, repo, async (font) => font, {
+      selector: (state, now, random, request, caseMode) => {
+        requests.push(request);
+        return request
+          ? select(state, now, random, request, caseMode)
+          : { word: ordinary, phase: 'training' };
+      },
+    });
+    const shown = new Set<string>();
+    const count = Math.min(5, poolSize);
+
+    expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+    for (let index = 0; index < count; index++) {
+      if (index > 0) await trainer.next();
+      expect(trainer.current.word.uniqueLetters).toContain('Ֆ');
+      expect(shown.has(trainer.current.word.id)).toBe(false);
+      shown.add(trainer.current.word.id);
+      await trainer.submit(trainer.current.word.readingLatin);
+    }
+    await trainer.next();
+
+    expect(shown.size).toBe(count);
+    expect(
+      requests.filter((request) => request?.targetLetter === 'Ֆ'),
+    ).toHaveLength(count);
+    expect(requests.at(-1)).toBeUndefined();
+    trainer.dispose();
+    repo.close();
+  }
+});
+
 it('avoids recently shown letter words and clears that history on mode change', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   const first = recognizable('ՖԱՍ');
@@ -462,13 +503,9 @@ it('avoids recently shown letter words and clears that history on mode change', 
   expect(await trainer.practiceLetter('Ֆ')).toBe('unavailable');
   expect(trainer.current.word.id).toBe(unfamiliar.id);
   const letterRequests = requests.filter((request) => request !== undefined);
+  expect(letterRequests).toHaveLength(2);
   expect(letterRequests[0]?.excludeWordIds).toContain(first.id);
   expect(letterRequests[1]?.excludeWordIds).toEqual([first.id, familiar.id]);
-  expect(letterRequests[2]?.excludeWordIds).toEqual([
-    first.id,
-    familiar.id,
-    unfamiliar.id,
-  ]);
 
   const dictionary: Dictionary = {
     version: 1,
