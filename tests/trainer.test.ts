@@ -692,6 +692,32 @@ it('can practice a CAPS letter exposed by the և ligature', async () => {
   repo.close();
 });
 
+it('practices the logical և token in CAPS and continues to another matching word', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const current = recognizable('ՄԱՄԱ');
+  const targets = [recognizable('բարև'), recognizable('Երևան')];
+  const words = [current, ...targets];
+  const select = createWordSelector(words);
+  const trainer = await createTrainer(words, repo, async (font) => font, {
+    selector: (state, now, random, request, caseMode) =>
+      request
+        ? select(state, now, random, request, caseMode)
+        : { word: current, phase: 'training' },
+  });
+
+  expect(await trainer.practiceLetter('և')).toBe('target');
+  const first = trainer.current.word;
+  expect(first.uniqueLetters).toContain('և');
+
+  await trainer.submit(first.readingLatin);
+  await trainer.next();
+
+  expect(trainer.current.word.id).not.toBe(first.id);
+  expect(trainer.current.word.uniqueLetters).toContain('և');
+  trainer.dispose();
+  repo.close();
+});
+
 it('reports the visible alphabet keys for a CAPS ligature score update', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
     word = recognizable('բարև');

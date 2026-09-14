@@ -487,6 +487,22 @@ describe('adaptive selection', () => {
       expect(selected.word).toBe(unfamiliar);
     }
   });
+  it('matches a logical և target in CAPS for every selector strategy', () => {
+    const current = word('ՄԱՄԱ');
+    const target = word('բարև');
+    const words = [current, target];
+
+    for (const strategy of ['adaptive', 'finite-pack'] as const) {
+      const selected = createWordSelector(words, strategy)(
+        known(words),
+        0,
+        () => 0,
+        { targetLetter: 'և', excludeWordId: current.id },
+        'caps',
+      );
+      expect(selected.word).toBe(target);
+    }
+  });
   it('keeps the current word when no different candidate exists', () => {
     const current = word('ՄԱՄԱ', 1);
     const selected = selectWord([current], known([current]), 0, () => 0, {

@@ -63,6 +63,13 @@ export const unknownLetters = (
   promptLetters(word.uniqueLetters, caseMode).filter(
     (letter) => !(state.letters[letter]?.score > 0),
   );
+export const matchesTargetLetter = (
+  word: Word,
+  letter: string,
+  caseMode: CaseMode,
+) =>
+  word.uniqueLetters.includes(letter) ||
+  promptLetters(word.uniqueLetters, caseMode).includes(letter);
 const average = (values: number[]) =>
   values.reduce((a, b) => a + b, 0) / values.length;
 const isFamiliarCandidate = (word: Word) =>
@@ -108,7 +115,7 @@ export function selectAdaptiveWord(
     ? words.filter(
         (word) =>
           !excludedWordIds.has(word.id) &&
-          promptLetters(word.uniqueLetters, caseMode).includes(targetLetter),
+          matchesTargetLetter(word, targetLetter, caseMode),
       )
     : [];
   const knownLetterCount = Object.values(state.letters).filter(
@@ -198,7 +205,7 @@ export function selectAdaptiveWord(
   const target = state.reinforcement;
   if (!bootstrap && !confidenceBreak && target?.remaining) {
     const reinforcement = candidates.filter((w) =>
-      promptLetters(w.uniqueLetters, caseMode).includes(target.letter),
+      matchesTargetLetter(w, target.letter, caseMode),
     );
     if (reinforcement.length) candidates = reinforcement;
   }
@@ -330,7 +337,7 @@ export function selectAdaptiveWord(
     ? 'bootstrap'
     : !confidenceBreak &&
         target?.remaining &&
-        promptLetters(word.uniqueLetters, caseMode).includes(target.letter)
+        matchesTargetLetter(word, target.letter, caseMode)
       ? 'reinforcement'
       : unknown.length
         ? 'introduction'
@@ -444,9 +451,7 @@ export function createWordSelector(
           ? pack.filter(
               (word) =>
                 !excludedWordIds.has(word.id) &&
-                promptLetters(word.uniqueLetters, caseMode).includes(
-                  targetLetter,
-                ),
+                matchesTargetLetter(word, targetLetter, caseMode),
             )
           : [];
         const familiar = matching.filter(isFamiliarCandidate);

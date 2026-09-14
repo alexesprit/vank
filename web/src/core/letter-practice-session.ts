@@ -1,6 +1,9 @@
-import { promptLetters } from '../../../shared/armenian.ts';
 import type { CaseMode, LearnerState, Word } from '../../../shared/types.ts';
-import type { Selection, WordSelector } from './word-selector.ts';
+import {
+  matchesTargetLetter,
+  type Selection,
+  type WordSelector,
+} from './word-selector.ts';
 
 const WORD_HISTORY_LIMIT = 10;
 const WORD_LIMIT = 5;
@@ -46,7 +49,7 @@ export function createLetterPracticeSession(options: LetterPracticeOptions) {
       const words = options.getWords();
       const current = options.getCurrent();
       const matchesLetter = (word: Word) =>
-        promptLetters(word.uniqueLetters, caseMode).includes(targetLetter);
+        matchesTargetLetter(word, targetLetter, caseMode);
       if (!words.some(matchesLetter)) return { status: 'missing' };
 
       const recent = recentWords.get(targetLetter) ?? [];
@@ -128,9 +131,7 @@ export function createLetterPracticeSession(options: LetterPracticeOptions) {
       );
       if (
         !candidates.has(selection.word.id) ||
-        !promptLetters(selection.word.uniqueLetters, caseMode).includes(
-          targetLetter,
-        )
+        !matchesTargetLetter(selection.word, targetLetter, caseMode)
       ) {
         return { selection: selectNormally(caseMode), commit: end };
       }
