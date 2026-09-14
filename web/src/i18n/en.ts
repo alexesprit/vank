@@ -159,7 +159,12 @@ export const en = {
     sessionWords_other: 'Words this session: {{count}}',
     keepGoing: 'Keep it up!',
     start: 'Start with the first word',
-    weaker: '{{summary}} · weaker: {{letters}}',
+    fontAccuracy_one: 'Accuracy: {{accuracy}} · {{count}} attempt',
+    fontAccuracy_few: 'Accuracy: {{accuracy}} · {{count}} attempts',
+    fontAccuracy_many: 'Accuracy: {{accuracy}} · {{count}} attempts',
+    fontAccuracy_other: 'Accuracy: {{accuracy}} · {{count}} attempts',
+    fontProblemLetters:
+      'Less often recognized in recent attempts than on other fonts:',
     empty: 'Available after the first attempt',
     dialogTitle: 'Detailed statistics',
     alphabetTitle: 'Alphabet mastery',

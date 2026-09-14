@@ -269,7 +269,7 @@ button.letter-chip {
   font-size: 13px;
 }
 
-.font-stat.weak-font {
+.font-stat-warning {
   color: var(--danger);
 }
 

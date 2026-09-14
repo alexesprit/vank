@@ -263,25 +263,34 @@ export function renderStats(
   fontStats.replaceChildren(
     ...stats.fontStats.map((stat) => {
       const row = document.createElement('p');
-      row.className = stat.weakLetters.length
-        ? 'font-stat weak-font'
-        : 'font-stat';
-      const summary = `${fontName(stat.fontId)}: ${percentage(stat.accuracy)}`;
-      if (stat.weakLetters.length) {
-        const weakLetters = document.createElement('span');
-        weakLetters.lang = 'hy';
-        weakLetters.textContent = stat.weakLetters.join(' ');
+      row.className = 'font-stat';
+      const name = document.createElement('strong');
+      name.textContent = fontName(stat.fontId);
+      const summary = document.createElement('span');
+      summary.textContent = t('progress.fontAccuracy', {
+        accuracy: percentage(stat.accuracy),
+        count: stat.attempts,
+      });
+      row.append(name, document.createElement('br'), summary);
+      if (stat.lowerAccuracyLetters.length) {
+        const problemLabel = document.createElement('span');
+        problemLabel.className = 'font-stat-warning';
+        problemLabel.textContent = t('progress.fontProblemLetters');
+        const problemLetters = document.createElement('span');
+        problemLetters.className = 'font-stat-warning';
+        problemLetters.lang = 'hy';
+        problemLetters.textContent = stat.lowerAccuracyLetters.join(' ');
         applyArmenianFontFamily(
-          weakLetters,
+          problemLetters,
           fontFamilyById.get(stat.fontId) ?? fontFamily,
         );
         row.append(
-          document.createTextNode(
-            t('progress.weaker', { letters: '', summary }),
-          ),
-          weakLetters,
+          document.createElement('br'),
+          problemLabel,
+          document.createTextNode(' '),
+          problemLetters,
         );
-      } else row.textContent = summary;
+      }
       return row;
     }),
   );

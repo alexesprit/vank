@@ -192,22 +192,31 @@ describe('Armenian ligature identity', () => {
   });
 
   it('attributes CAPS ligature observations to the visible Ե and Վ in font stats', () => {
-    const event = attempt(deriveWord('բարև'), 'caps').attempt;
-    event.payload.fontId = 'noto-sans-armenian';
-    if (event.payload.presentation)
-      event.payload.presentation.fontId = 'noto-sans-armenian';
-    event.payload.evaluation.units = event.payload.evaluation.units.map(
-      (unit) => (unit.source === 'և' ? { ...unit, observation: 0 } : unit),
-    );
+    const sansAttempts = Array.from({ length: 3 }, (_, index) => {
+      const event = attempt(deriveWord('բարև'), 'caps').attempt;
+      event.id = `sans-${index}`;
+      event.payload.fontId = 'noto-sans-armenian';
+      if (event.payload.presentation)
+        event.payload.presentation.fontId = 'noto-sans-armenian';
+      event.payload.evaluation.units = event.payload.evaluation.units.map(
+        (unit) => (unit.source === 'և' ? { ...unit, observation: 0 } : unit),
+      );
+      return event;
+    });
+    const serifAttempts = Array.from({ length: 3 }, (_, index) => {
+      const event = attempt(deriveWord('բարև'), 'caps').attempt;
+      event.id = `serif-${index}`;
+      event.payload.fontId = 'noto-serif-armenian';
+      if (event.payload.presentation)
+        event.payload.presentation.fontId = 'noto-serif-armenian';
+      return event;
+    });
     const state = empty();
-    state.recent = [event];
-    state.letters = Object.fromEntries(
-      ['Ե', 'Վ'].map((letter) => [
-        letter,
-        { score: 0.8, attempts: 1, correct: 1, lastSeenAt: 1, verified: 1 },
-      ]),
-    );
+    state.recent = [...sansAttempts, ...serifAttempts];
 
-    expect(progress(state).fontStats[0]?.weakLetters).toEqual(['Ե', 'Վ']);
+    expect(progress(state).fontStats[0]?.lowerAccuracyLetters).toEqual([
+      'Ե',
+      'Վ',
+    ]);
   });
 });
