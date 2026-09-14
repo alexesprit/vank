@@ -26,7 +26,7 @@ Use a 4px spacing grid for new or modified layout spacing: margins, padding, gap
 
 ## Testing Guidelines
 
-Use TDD for core logic wherever practical: failing test, smallest passing change, refactor. Add focused `*.test.ts` files under `tests/`, using Vitest `describe`, `it`, and `expect`. Cover behavioral and failure paths, especially persistence, schema validation, scoring, and builder boundaries. Tests must remain offline; use `tests/fixtures/` and `fake-indexeddb` instead of live Wiktionary or OpenRouter calls. Run `npm run test:run` before submitting.
+For general implementation, debugging, and refactoring, follow the [general development skill](.agents/skills/general-development/SKILL.md). Add focused `*.test.ts` files under `tests/`, using Vitest `describe`, `it`, and `expect`. Cover behavioral and failure paths, especially persistence, schema validation, scoring, and builder boundaries. Tests must remain offline; use `tests/fixtures/` and `fake-indexeddb` instead of live Wiktionary or OpenRouter calls. Run `npm run test:run` before submitting.
 
 ## Commit & Pull Request Guidelines
 
