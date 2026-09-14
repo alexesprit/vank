@@ -8,6 +8,7 @@ import {
   t,
 } from '../web/src/i18n';
 import { en } from '../web/src/i18n/en.ts';
+import { ru } from '../web/src/i18n/ru.ts';
 
 describe('interface localization', () => {
   beforeAll(() => initializeI18n('ru', []));
@@ -54,6 +55,15 @@ describe('interface localization', () => {
     );
     expect(t('settings.unlockAfter', { count: 5, name: 'Шрифт' })).toBe(
       'Шрифт · после 5 верных ответов',
+    );
+  });
+
+  it('uses the requested title for the hidden և achievement', () => {
+    expect(en.achievements.items['ev-one-letter-or-two'].title).toBe(
+      'Is it one letter or two?',
+    );
+    expect(ru.achievements.items['ev-one-letter-or-two'].title).toBe(
+      'Это одна буква или две?',
     );
   });
 

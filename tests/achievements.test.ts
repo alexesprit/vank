@@ -104,6 +104,7 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
     'no-repeats',
     'cold-read',
     'sixth-sense',
+    'ev-one-letter-or-two',
   ]);
   expect(
     ACHIEVEMENT_DEFINITIONS.every((definition) => definition.version > 0),
@@ -117,6 +118,10 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
       ACHIEVEMENT_DEFINITIONS.find((definition) => definition.id === id)
         ?.version,
     ).toBe(2);
+  expect(
+    ACHIEVEMENT_DEFINITIONS.find(({ id }) => id === 'ev-one-letter-or-two')
+      ?.hidden,
+  ).toBe(true);
 });
 
 it('reveals hidden achievements only for Ctrl/Cmd review clicks', () => {
@@ -229,6 +234,81 @@ it('unlocks ԵՐԵՎԱՆ on its first correct reading after earlier failures', (
       (unlock) => unlock.id === 'yerevan',
     ),
   ).toMatchObject({ triggerAttemptId: 'attempt-1' });
+});
+
+it('requires correct lowercase and title-case readings of և', () => {
+  const initialLigature = known('ևրան');
+  const internalLigature = known('բարև');
+  const makeAttempt = (
+    word: Word,
+    caseMode: 'lower' | 'normal' | 'caps',
+    correct: boolean,
+    id: string,
+  ) =>
+    completeAttempt(
+      empty(),
+      { word, phase: 'training' },
+      correct ? word.readingLatin : '',
+      false,
+      'client',
+      0,
+      1,
+      id,
+      'default',
+      { caseMode, italic: false },
+    ).attempt;
+
+  const evUnlock = (
+    entries: readonly {
+      word: Word;
+      caseMode: 'lower' | 'normal' | 'caps';
+      correct: boolean;
+    }[],
+  ) =>
+    evaluateAchievements(
+      entries.map(({ word, caseMode, correct }, index) =>
+        makeAttempt(word, caseMode, correct, `ev-${index}`),
+      ),
+      [],
+    ).find(({ id }) => id === 'ev-one-letter-or-two');
+
+  expect(
+    evUnlock([{ word: initialLigature, caseMode: 'lower', correct: true }]),
+  ).toBeUndefined();
+  expect(
+    evUnlock([
+      { word: initialLigature, caseMode: 'lower', correct: true },
+      { word: initialLigature, caseMode: 'caps', correct: true },
+    ]),
+  ).toBeUndefined();
+  expect(
+    evUnlock([
+      { word: initialLigature, caseMode: 'lower', correct: true },
+      { word: internalLigature, caseMode: 'normal', correct: true },
+    ]),
+  ).toBeUndefined();
+  expect(
+    evUnlock([
+      { word: initialLigature, caseMode: 'lower', correct: true },
+      { word: initialLigature, caseMode: 'normal', correct: false },
+    ]),
+  ).toBeUndefined();
+  expect(
+    evUnlock([
+      { word: initialLigature, caseMode: 'lower', correct: true },
+      { word: initialLigature, caseMode: 'normal', correct: true },
+    ]),
+  ).toMatchObject({
+    triggerAttemptId: 'ev-1',
+  });
+  expect(
+    evUnlock([
+      { word: initialLigature, caseMode: 'normal', correct: true },
+      { word: initialLigature, caseMode: 'lower', correct: true },
+    ]),
+  ).toMatchObject({
+    triggerAttemptId: 'ev-1',
+  });
 });
 
 it('does not backfill word achievements from legacy split-letter IDs', () => {

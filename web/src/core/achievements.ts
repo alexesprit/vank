@@ -68,6 +68,7 @@ export const ACHIEVEMENT_IDS = [
   'no-repeats',
   'cold-read',
   'sixth-sense',
+  'ev-one-letter-or-two',
 ] as const;
 
 export type AchievementId = (typeof ACHIEVEMENT_IDS)[number];
@@ -731,6 +732,34 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
           return {
             attempt,
             evidence: { wordId: attempt.payload.wordId, letters: [...letters] },
+          };
+      }
+    },
+  },
+  {
+    id: 'ev-one-letter-or-two',
+    version: 1,
+    thresholds: {},
+    hidden: true,
+    icon: 'circle-help',
+    evaluate: ({ attempts }) => {
+      let lowercaseAttempt: AttemptEvent | undefined;
+      let titleCaseAttempt: AttemptEvent | undefined;
+      for (const attempt of attempts) {
+        if (!attempt.payload.correct) continue;
+        const mode = attempt.payload.presentation?.caseMode ?? 'caps';
+        const units = attempt.payload.evaluation.units;
+        if (mode === 'lower' && units.some(({ source }) => source === 'և'))
+          lowercaseAttempt ??= attempt;
+        if (mode === 'normal' && units[0]?.source === 'և')
+          titleCaseAttempt ??= attempt;
+        if (lowercaseAttempt && titleCaseAttempt)
+          return {
+            attempt,
+            evidence: {
+              lowercaseAttemptId: lowercaseAttempt.id,
+              titleCaseAttemptId: titleCaseAttempt.id,
+            },
           };
       }
     },
