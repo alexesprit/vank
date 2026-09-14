@@ -51,6 +51,7 @@ export const en = {
     countries: 'Countries',
     names: 'Names',
     food: 'Food',
+    numbers: 'Numbers',
   },
   metadata: {
     label: 'Word metadata hints',

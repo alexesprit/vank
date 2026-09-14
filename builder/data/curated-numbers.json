@@ -1,0 +1,1157 @@
+[
+  {
+    "word": "ԶՐՈ",
+    "meaning": {
+      "ru": "ноль"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՄԵԿ",
+    "meaning": {
+      "ru": "один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԿՈՒ",
+    "meaning": {
+      "ru": "два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՔ",
+    "meaning": {
+      "ru": "три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՉՈՐՍ",
+    "meaning": {
+      "ru": "четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՆԳ",
+    "meaning": {
+      "ru": "пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԵՑ",
+    "meaning": {
+      "ru": "шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹ",
+    "meaning": {
+      "ru": "семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹ",
+    "meaning": {
+      "ru": "восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆԸ",
+    "meaning": {
+      "ru": "девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍԸ",
+    "meaning": {
+      "ru": "десять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆՄԵԿ",
+    "meaning": {
+      "ru": "одиннадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "двенадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆԵՐԵՔ",
+    "meaning": {
+      "ru": "тринадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆՉՈՐՍ",
+    "meaning": {
+      "ru": "четырнадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆՀԻՆԳ",
+    "meaning": {
+      "ru": "пятнадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆՎԵՑ",
+    "meaning": {
+      "ru": "шестнадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆՅՈԹ",
+    "meaning": {
+      "ru": "семнадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆՈՒԹ",
+    "meaning": {
+      "ru": "восемнадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏԱՍՆԻՆԸ",
+    "meaning": {
+      "ru": "девятнадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆ",
+    "meaning": {
+      "ru": "двадцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆՄԵԿ",
+    "meaning": {
+      "ru": "двадцать один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "двадцать два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆԵՐԵՔ",
+    "meaning": {
+      "ru": "двадцать три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆՉՈՐՍ",
+    "meaning": {
+      "ru": "двадцать четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆՀԻՆԳ",
+    "meaning": {
+      "ru": "двадцать пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆՎԵՑ",
+    "meaning": {
+      "ru": "двадцать шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆՅՈԹ",
+    "meaning": {
+      "ru": "двадцать семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆՈՒԹ",
+    "meaning": {
+      "ru": "двадцать восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔՍԱՆԻՆԸ",
+    "meaning": {
+      "ru": "двадцать девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆ",
+    "meaning": {
+      "ru": "тридцать"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆՄԵԿ",
+    "meaning": {
+      "ru": "тридцать один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "тридцать два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆԵՐԵՔ",
+    "meaning": {
+      "ru": "тридцать три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆՉՈՐՍ",
+    "meaning": {
+      "ru": "тридцать четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆՀԻՆԳ",
+    "meaning": {
+      "ru": "тридцать пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆՎԵՑ",
+    "meaning": {
+      "ru": "тридцать шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆՅՈԹ",
+    "meaning": {
+      "ru": "тридцать семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆՈՒԹ",
+    "meaning": {
+      "ru": "тридцать восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԵՐԵՍՈՒՆԻՆԸ",
+    "meaning": {
+      "ru": "тридцать девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆ",
+    "meaning": {
+      "ru": "сорок"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆՄԵԿ",
+    "meaning": {
+      "ru": "сорок один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "сорок два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆԵՐԵՔ",
+    "meaning": {
+      "ru": "сорок три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆՉՈՐՍ",
+    "meaning": {
+      "ru": "сорок четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆՀԻՆԳ",
+    "meaning": {
+      "ru": "сорок пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆՎԵՑ",
+    "meaning": {
+      "ru": "сорок шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆՅՈԹ",
+    "meaning": {
+      "ru": "сорок семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆՈՒԹ",
+    "meaning": {
+      "ru": "сорок восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՔԱՌԱՍՈՒՆԻՆԸ",
+    "meaning": {
+      "ru": "сорок девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆ",
+    "meaning": {
+      "ru": "пятьдесят"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆՄԵԿ",
+    "meaning": {
+      "ru": "пятьдесят один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "пятьдесят два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆԵՐԵՔ",
+    "meaning": {
+      "ru": "пятьдесят три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆՉՈՐՍ",
+    "meaning": {
+      "ru": "пятьдесят четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆՀԻՆԳ",
+    "meaning": {
+      "ru": "пятьдесят пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆՎԵՑ",
+    "meaning": {
+      "ru": "пятьдесят шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆՅՈԹ",
+    "meaning": {
+      "ru": "пятьдесят семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆՈՒԹ",
+    "meaning": {
+      "ru": "пятьдесят восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԻՍՈՒՆԻՆԸ",
+    "meaning": {
+      "ru": "пятьдесят девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆ",
+    "meaning": {
+      "ru": "шестьдесят"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆՄԵԿ",
+    "meaning": {
+      "ru": "шестьдесят один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "шестьдесят два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆԵՐԵՔ",
+    "meaning": {
+      "ru": "шестьдесят три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆՉՈՐՍ",
+    "meaning": {
+      "ru": "шестьдесят четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆՀԻՆԳ",
+    "meaning": {
+      "ru": "шестьдесят пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆՎԵՑ",
+    "meaning": {
+      "ru": "шестьдесят шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆՅՈԹ",
+    "meaning": {
+      "ru": "шестьдесят семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆՈՒԹ",
+    "meaning": {
+      "ru": "шестьдесят восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՎԱԹՍՈՒՆԻՆԸ",
+    "meaning": {
+      "ru": "шестьдесят девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆ",
+    "meaning": {
+      "ru": "семьдесят"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆՄԵԿ",
+    "meaning": {
+      "ru": "семьдесят один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "семьдесят два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆԵՐԵՔ",
+    "meaning": {
+      "ru": "семьдесят три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆՉՈՐՍ",
+    "meaning": {
+      "ru": "семьдесят четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆՀԻՆԳ",
+    "meaning": {
+      "ru": "семьдесят пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆՎԵՑ",
+    "meaning": {
+      "ru": "семьдесят шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆՅՈԹ",
+    "meaning": {
+      "ru": "семьдесят семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆՈՒԹ",
+    "meaning": {
+      "ru": "семьдесят восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՅՈԹԱՆԱՍՈՒՆԻՆԸ",
+    "meaning": {
+      "ru": "семьдесят девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆ",
+    "meaning": {
+      "ru": "восемьдесят"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆՄԵԿ",
+    "meaning": {
+      "ru": "восемьдесят один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "восемьдесят два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆԵՐԵՔ",
+    "meaning": {
+      "ru": "восемьдесят три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆՉՈՐՍ",
+    "meaning": {
+      "ru": "восемьдесят четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆՀԻՆԳ",
+    "meaning": {
+      "ru": "восемьдесят пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆՎԵՑ",
+    "meaning": {
+      "ru": "восемьдесят шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆՅՈԹ",
+    "meaning": {
+      "ru": "восемьдесят семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆՈՒԹ",
+    "meaning": {
+      "ru": "восемьдесят восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՈՒԹՍՈՒՆԻՆԸ",
+    "meaning": {
+      "ru": "восемьдесят девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆ",
+    "meaning": {
+      "ru": "девяносто"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆՄԵԿ",
+    "meaning": {
+      "ru": "девяносто один"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆԵՐԿՈՒ",
+    "meaning": {
+      "ru": "девяносто два"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆԵՐԵՔ",
+    "meaning": {
+      "ru": "девяносто три"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆՉՈՐՍ",
+    "meaning": {
+      "ru": "девяносто четыре"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆՀԻՆԳ",
+    "meaning": {
+      "ru": "девяносто пять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆՎԵՑ",
+    "meaning": {
+      "ru": "девяносто шесть"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆՅՈԹ",
+    "meaning": {
+      "ru": "девяносто семь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆՈՒԹ",
+    "meaning": {
+      "ru": "девяносто восемь"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ԻՆՆՍՈՒՆԻՆԸ",
+    "meaning": {
+      "ru": "девяносто девять"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԱՐՅՈՒՐ",
+    "meaning": {
+      "ru": "сто"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 1,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՀԱԶԱՐ",
+    "meaning": {
+      "ru": "тысяча"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.95,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՄԻԼԻՈՆ",
+    "meaning": {
+      "ru": "миллион"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.9,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՄԻԼԻԱՐԴ",
+    "meaning": {
+      "ru": "миллиард"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.7,
+    "categories": ["numbers-time"]
+  },
+  {
+    "word": "ՏՐԻԼԻՈՆ",
+    "meaning": {
+      "ru": "триллион"
+    },
+    "familiarity": {
+      "ru": 0.05
+    },
+    "usefulnessScore": 0.5,
+    "categories": ["numbers-time"]
+  }
+]

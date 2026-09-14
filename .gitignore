@@ -9,6 +9,7 @@ builder/data/toponyms/
 builder/data/countries/
 builder/data/names/
 builder/data/food/
+builder/data/numbers/
 .env
 builder/data/wiktionary.jsonl
 builder/data/raw.json

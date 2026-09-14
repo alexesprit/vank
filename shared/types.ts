@@ -42,7 +42,8 @@ export type PracticeModeId =
   | 'toponyms'
   | 'countries'
   | 'names'
-  | 'food';
+  | 'food'
+  | 'numbers';
 export interface LetterStat {
   score: number;
   attempts: number;

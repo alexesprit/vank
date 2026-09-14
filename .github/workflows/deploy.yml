@@ -41,11 +41,20 @@ jobs:
           node-version: 24
       - run: npm ci
         if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
-      - name: Download the current complete release
+      - name: Download assets already in the current release
         if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: npm run dict:download
+        run: |
+          gh release view --json assets --jq '[.assets[].name]' > "$RUNNER_TEMP/release-assets.json"
+          jq -e --slurpfile assets "$RUNNER_TEMP/release-assets.json" '
+            [.targets[] | select(.enabled != false and .pack != true) | .asset]
+            | all(.[]; . as $asset | $assets[0] | index($asset) != null)
+          ' builder/targets.json > /dev/null
+          jq --slurpfile assets "$RUNNER_TEMP/release-assets.json" '
+            .targets |= with_entries(select(.value.asset as $asset | $assets[0] | index($asset)))
+          ' builder/targets.json > "$RUNNER_TEMP/targets.json"
+          node --input-type=module -e 'import { downloadDictionaries } from "./builder/scripts/download-dictionary.ts"; await downloadDictionaries(process.argv[1], process.env)' "$RUNNER_TEMP/targets.json"
       - name: Build configured packs only
         if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
         run: npm run dict:build -- --pack --no-ai

@@ -53,6 +53,17 @@
       "asset": "food.json",
       "enrichment": "none",
       "checks": []
+    },
+    "numbers": {
+      "enabled": true,
+      "required": true,
+      "pack": true,
+      "config": "builder/config-numbers.json",
+      "dataDir": "builder/data/numbers",
+      "output": "web/data/numbers.json",
+      "asset": "numbers.json",
+      "enrichment": "none",
+      "checks": []
     }
   }
 }

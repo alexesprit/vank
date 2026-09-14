@@ -2,6 +2,7 @@ import type { PracticeModeId } from '../../../shared/types.ts';
 import countriesUrl from '../../data/countries.json?url';
 import foodUrl from '../../data/food.json?url';
 import namesUrl from '../../data/names.json?url';
+import numbersUrl from '../../data/numbers.json?url';
 import toponymsUrl from '../../data/toponyms.json?url';
 import wordsUrl from '../../data/words.json?url';
 import type { SelectionStrategy } from './word-selector.ts';
@@ -53,6 +54,13 @@ export const PRACTICE_MODES = [
     url: foodUrl,
     strategy: 'finite-pack',
     labelKey: 'modes.food',
+  },
+  {
+    id: 'numbers',
+    group: 'packs',
+    url: numbersUrl,
+    strategy: 'finite-pack',
+    labelKey: 'modes.numbers',
   },
 ] as const satisfies readonly PracticeModeDescriptor[];
 

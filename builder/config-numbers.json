@@ -1,0 +1,10 @@
+{
+  "learnerLanguages": ["ru"],
+  "sources": [
+    {
+      "type": "curated",
+      "path": "builder/data/curated-numbers.json",
+      "priority": 100
+    }
+  ]
+}

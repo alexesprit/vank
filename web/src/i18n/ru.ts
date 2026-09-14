@@ -46,6 +46,7 @@ export const ru = {
     countries: 'Страны',
     names: 'Имена',
     food: 'Еда',
+    numbers: 'Числа',
   },
   metadata: {
     label: 'Подсказки по слову',
