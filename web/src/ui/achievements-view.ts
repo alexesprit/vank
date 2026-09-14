@@ -128,7 +128,10 @@ export function mountAchievements(trainer: Trainer) {
     snackbar.hide();
     render();
     renderList(revealHidden);
-    if (!dialog.open) dialog.showModal();
+    if (!dialog.open) {
+      trainer.markTimingInterrupted();
+      dialog.showModal();
+    }
   };
   const show = (
     unlocks: readonly Pick<AchievementUnlock, 'id'>[],
@@ -156,6 +159,7 @@ export function mountAchievements(trainer: Trainer) {
     open(revealHiddenAchievements(event));
   });
   element('achievements-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => trainer.restartResponseTiming());
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });

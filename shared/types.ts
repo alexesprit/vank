@@ -100,6 +100,7 @@ export interface AttemptEvent {
     correct: boolean;
     shownAt: number;
     answeredAt: number;
+    timingInterrupted?: boolean;
     evaluation: Evaluation;
     familiarity: number;
     learnerLanguage: string;

@@ -133,6 +133,7 @@ export function mountDebugDialog(
   const content = element('debug-content');
 
   element('debug-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => trainer.restartResponseTiming());
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });

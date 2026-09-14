@@ -122,6 +122,57 @@ it('cycles the current presentation through unlocked typography modes', async ()
   repo.close();
 });
 
+it('records interruptions and stops response timing at the first submitted answer', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const trainer = await createTrainer(
+    ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable),
+    repo,
+    async (font) => font,
+  );
+  const shownAt = Date.now();
+  const now = vi.spyOn(Date, 'now').mockReturnValue(shownAt);
+  trainer.startFlash();
+  now.mockReturnValue(shownAt + 1000);
+
+  trainer.markTimingInterrupted();
+  await trainer.submit(trainer.current.word.readingLatin);
+
+  expect(trainer.state.recent[0]?.payload).toMatchObject({
+    shownAt,
+    answeredAt: shownAt + 1000,
+    timingInterrupted: true,
+  });
+  now.mockRestore();
+  trainer.dispose();
+  repo.close();
+});
+
+it('restarts response timing when the presentation changes', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const trainer = await createTrainer(
+    ['ՄԱՄԱ', 'ՆԱՆԱ'].map(recognizable),
+    repo,
+    async (font) => font,
+  );
+  trainer.startFlash();
+  const initialShownAt = Date.now();
+  const now = vi.spyOn(Date, 'now').mockReturnValue(initialShownAt + 1000);
+
+  trainer.markTimingInterrupted();
+  trainer.restartResponseTiming();
+  now.mockReturnValue(initialShownAt + 2000);
+  await trainer.submit(trainer.current.word.readingLatin);
+
+  expect(trainer.state.recent[0]?.payload).toMatchObject({
+    shownAt: initialShownAt + 1000,
+    answeredAt: initialShownAt + 2000,
+  });
+  expect(trainer.state.recent[0]?.payload.timingInterrupted).toBeUndefined();
+  now.mockRestore();
+  trainer.dispose();
+  repo.close();
+});
+
 it('reclassifies a ligature exposed by cycling out of CAPS', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`),
     word = recognizable('բարև'),

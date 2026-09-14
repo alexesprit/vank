@@ -92,6 +92,9 @@ export async function createTrainer(
     ),
     font = await pendingFont,
     shownAt = Date.now();
+  let timingInterrupted = false;
+  let firstAnswerAt: number | undefined;
+  let interruptedAtFirstAnswer = false;
   let flashChange: (() => void) | undefined;
   const hintsEnabled = () => options.metadataHints ?? settings.metadataHints;
   let metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
@@ -121,8 +124,14 @@ export async function createTrainer(
     getCurrent: () => current,
     getSelector: () => select,
   });
-  const startFlash = () => {
+  const restartResponseTiming = () => {
     shownAt = Date.now();
+    timingInterrupted = false;
+    firstAnswerAt = undefined;
+    interruptedAtFirstAnswer = false;
+  };
+  const startFlash = () => {
+    restartResponseTiming();
     flash.start();
   };
   const pauseFlash = () => flash.pause();
@@ -148,6 +157,7 @@ export async function createTrainer(
     result = undefined;
     lastAchievementUnlocks = [];
     flash.reset();
+    restartResponseTiming();
   };
   return {
     get current() {
@@ -193,6 +203,11 @@ export async function createTrainer(
       return flash.revealed;
     },
     startFlash,
+    restartResponseTiming,
+    markTimingInterrupted() {
+      if (result || firstAnswerAt !== undefined) return;
+      timingInterrupted = true;
+    },
     pauseFlash,
     resumeFlash,
     onFlashChange(callback: () => void) {
@@ -250,6 +265,11 @@ export async function createTrainer(
       return lastScoreUpdate;
     },
     async submit(answer: string, skipped = false) {
+      if (firstAnswerAt === undefined) {
+        firstAnswerAt = Date.now();
+        interruptedAtFirstAnswer = timingInterrupted;
+      }
+      const answeredAt = firstAnswerAt;
       return serialize(async () => {
         if (result) return;
         const flashAttempt = flash.capture();
@@ -260,7 +280,7 @@ export async function createTrainer(
           skipped,
           installationId,
           shownAt,
-          Date.now(),
+          answeredAt,
           crypto.randomUUID(),
           font.id,
           presentation,
@@ -268,6 +288,8 @@ export async function createTrainer(
           flashAttempt,
           mode.id,
         );
+        if (interruptedAtFirstAnswer)
+          completed.attempt.payload.timingInterrupted = true;
         const newAchievementUnlocks = evaluateAchievements(
           [...state.recent].reverse().concat(completed.attempt),
           achievementUnlocks,

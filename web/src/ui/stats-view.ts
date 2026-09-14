@@ -1,8 +1,17 @@
 import { ALPHABET } from '../../../shared/armenian.ts';
-import type { AttemptEvent, LearnerState } from '../../../shared/types.ts';
+import type {
+  AttemptEvent,
+  CaseMode,
+  LearnerState,
+} from '../../../shared/types.ts';
 import { progress } from '../core/progress.ts';
+import {
+  type ResponseSpeedFinding,
+  responseSpeed,
+} from '../core/response-speed.ts';
 import { FONTS } from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
+import type { Trainer } from '../trainer.ts';
 import { applyArmenianFontFamily } from './armenian-font.ts';
 
 const fontFamilyById = new Map(FONTS.map(({ id, family }) => [id, family]));
@@ -12,6 +21,41 @@ const alphabetByUpper = new Map(
 
 const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
+const fluencyDuration = (milliseconds: number) => {
+  const locale = document.documentElement.lang || undefined;
+  return milliseconds >= 1000
+    ? t('progress.fluencySeconds', {
+        value: new Intl.NumberFormat(locale, {
+          maximumFractionDigits: 1,
+        }).format(milliseconds / 1000),
+      })
+    : t('progress.fluencyMilliseconds', {
+        value: Math.round(milliseconds),
+      });
+};
+const fluencyFindingLabel = (finding: ResponseSpeedFinding) => {
+  switch (finding.dimension) {
+    case 'familiarity':
+      return t(`progress.familiarity.${finding.key}`);
+    case 'wordLength':
+      return t(`progress.wordLength.${finding.key}`);
+    case 'font':
+      return fontName(finding.key);
+    case 'typography': {
+      const [caseMode, italic] = finding.key.split(':');
+      return typographyName(
+        (caseMode ?? 'caps') as CaseMode,
+        italic === 'true',
+      );
+    }
+    case 'practiceMode':
+      return t('progress.fluencyPracticeMode', {
+        mode: t(`modes.${finding.key}`),
+      });
+    case 'promptMode':
+      return t(`progress.promptMode.${finding.key}`);
+  }
+};
 export const alphabetLetterText = (upper: string, lower: string) =>
   upper === 'և' ? lower : `${upper}${lower}`;
 const readingCharacter = /^[\p{Script=Latin}\p{Script=Cyrillic}]$/u;
@@ -105,6 +149,61 @@ export function renderStats(
     accuracy: percentage(stats.rolling20),
     skips: stats.skips,
   });
+  const fluency = responseSpeed(state.recent);
+  element('fluency-word-median').textContent =
+    fluency.medianResponseMs === null
+      ? '—'
+      : fluencyDuration(fluency.medianResponseMs);
+  element('fluency-letter-median').textContent =
+    fluency.medianMsPerLetter === null
+      ? '—'
+      : fluencyDuration(fluency.medianMsPerLetter);
+  element('fluency-trend-row').hidden = fluency.changePercent === null;
+  element('fluency-trend').textContent =
+    fluency.changePercent === null
+      ? '—'
+      : fluency.changePercent > 0
+        ? t('progress.fluencySlower', {
+            change: `+${fluency.changePercent}%`,
+          })
+        : fluency.changePercent < 0
+          ? t('progress.fluencyFaster', {
+              change: `−${Math.abs(fluency.changePercent)}%`,
+            })
+          : t('progress.fluencyUnchanged');
+  const slowLetterSection = element('fluency-letter-section');
+  slowLetterSection.hidden = fluency.slowLetters.length === 0;
+  element('fluency-slow-letters').replaceChildren(
+    ...fluency.slowLetters.map((stat) => {
+      const row = document.createElement('p');
+      row.className = 'fluency-finding';
+      const letter = document.createElement('span');
+      letter.lang = 'hy';
+      letter.textContent = stat.letter;
+      applyArmenianFontFamily(letter, fontFamily);
+      const value = document.createElement('span');
+      value.className = 'fluency-finding-value';
+      value.textContent = fluencyDuration(stat.medianMsPerLetter);
+      row.append(letter, value);
+      return row;
+    }),
+  );
+  const findings = fluency.findings.slice(0, 3);
+  const findingsSection = element('fluency-other-section');
+  findingsSection.hidden = findings.length === 0;
+  element('fluency-findings').replaceChildren(
+    ...findings.map((finding) => {
+      const row = document.createElement('p');
+      row.className = 'fluency-finding';
+      const label = document.createElement('span');
+      label.textContent = fluencyFindingLabel(finding);
+      const value = document.createElement('span');
+      value.className = 'fluency-finding-value';
+      value.textContent = `+${finding.changePercent}%`;
+      row.append(label, value);
+      return row;
+    }),
+  );
   element('session-progress').textContent = t('progress.sessionWords', {
     count: state.recent.length - sessionStart,
   });
@@ -328,13 +427,18 @@ export function renderStats(
     flashStats.replaceChildren(emptyStats());
 }
 
-export function mountStatsDialog(openDebug: () => Promise<void>) {
+export function mountStatsDialog(
+  openDebug: () => Promise<void>,
+  trainer: Trainer,
+) {
   const dialog = element('progress-dialog') as HTMLDialogElement;
   element('progress-open').addEventListener('click', (event) => {
+    trainer.markTimingInterrupted();
     if (event.metaKey || event.ctrlKey) void openDebug();
     else dialog.showModal();
   });
   element('progress-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => trainer.restartResponseTiming());
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });

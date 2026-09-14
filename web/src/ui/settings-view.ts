@@ -369,6 +369,7 @@ export function mountSettings(
       if (analyticsChanged) startAnalytics();
       render();
       renderTrainer();
+      trainer.restartResponseTiming();
       startPreview();
     } catch (error) {
       if (applyId !== latestApply) return;
@@ -385,6 +386,7 @@ export function mountSettings(
   }
 
   element('settings-open').addEventListener('click', () => {
+    trainer.markTimingInterrupted();
     trainer.pauseFlash();
     render();
     dialog.showModal();
@@ -394,6 +396,7 @@ export function mountSettings(
   dialog.addEventListener('close', () => {
     stopPreview();
     trainer.resumeFlash();
+    trainer.restartResponseTiming();
     resetConfirmation.hidden = true;
     resetOpen.hidden = false;
     resetError.hidden = true;

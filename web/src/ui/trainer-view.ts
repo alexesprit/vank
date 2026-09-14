@@ -173,16 +173,21 @@ export function mountIntro(
   const quickAnalyticsDnt = element('intro-analytics-dnt');
   const firstRun = !trainer.introShown;
   let promptStarted = !firstRun;
-  const close = () => {
-    dialog.close();
+  const afterClose = () => {
     quickSettings.hidden = true;
     renderTrainer();
     if (!promptStarted) {
       promptStarted = true;
       startFlash();
-    } else trainer.resumeFlash();
+    } else {
+      trainer.resumeFlash();
+      trainer.restartResponseTiming();
+    }
   };
+  const close = () => dialog.close();
+  dialog.addEventListener('close', afterClose);
   element('help-open').addEventListener('click', (event) => {
+    trainer.markTimingInterrupted();
     trainer.pauseFlash();
     quickSettings.hidden = !(event.metaKey || event.ctrlKey);
     introAnalytics.hidden = true;
@@ -410,6 +415,7 @@ export function mountTrainer(
   element('presentation-label').addEventListener('click', () => {
     if (trainer.cycleTypography()) {
       render();
+      trainer.restartResponseTiming();
       element('presentation-label').focus();
     }
   });
@@ -419,10 +425,20 @@ export function mountTrainer(
     input.focus();
   });
   trainer.onFlashChange(() => render(false));
+  const markTimingInterrupted = () => trainer.markTimingInterrupted();
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') markTimingInterrupted();
+  });
+  document.addEventListener('freeze', markTimingInterrupted);
+  window.addEventListener('blur', markTimingInterrupted);
+  window.addEventListener('pagehide', markTimingInterrupted);
   element('trainer').hidden = false;
   element('loading').hidden = true;
   mountIntro(trainer, render, () => trainer.startFlash(), startAnalytics);
-  mountStatsDialog(mountDebugDialog(trainer, () => activeDictionary));
+  mountStatsDialog(
+    mountDebugDialog(trainer, () => activeDictionary),
+    trainer,
+  );
   const achievements = mountAchievements(trainer);
   mountSettings(trainer, render, startAnalytics, (nextDictionary) => {
     activeDictionary = nextDictionary;

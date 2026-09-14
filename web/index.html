@@ -69,6 +69,18 @@
         <section><h3 data-i18n="progress.byFont">По шрифтам</h3><div id="font-stats"></div></section>
         <section><h3 data-i18n="progress.byTypography">По начертанию</h3><div id="typography-stats"></div></section>
         <section><h3 data-i18n="progress.byFlash">По мгновенному распознаванию</h3><div id="flash-stats"></div></section>
+        <section class="fluency-details" aria-labelledby="fluency-title">
+          <h3 id="fluency-title" data-i18n="progress.responseSpeedTitle">Скорость ответа</h3>
+          <div class="reading-fluency">
+            <div class="fluency-metrics">
+              <p class="fluency-metric"><strong id="fluency-word-median">—</strong><span data-i18n="progress.fluencyPerWord">/ слово</span></p>
+              <p class="fluency-metric"><strong id="fluency-letter-median" class="fluency-metric-secondary">—</strong><span data-i18n="progress.fluencyPerLetter">/ букву</span></p>
+              <p id="fluency-trend-row" class="fluency-metric"><strong id="fluency-trend">—</strong><span data-i18n="progress.fluencyTrendLabel">к предыдущим 30 дням</span></p>
+            </div>
+            <div id="fluency-letter-section" hidden><h4 data-i18n="progress.fluencySlowLetters">С какими буквами медленнее</h4><div id="fluency-slow-letters" class="fluency-findings"></div></div>
+            <div id="fluency-other-section" hidden><h4 data-i18n="progress.fluencyFindingsTitle">Что заметно замедляет</h4><div id="fluency-findings" class="fluency-findings"></div></div>
+          </div>
+        </section>
       </div>
     </div>
   </dialog>

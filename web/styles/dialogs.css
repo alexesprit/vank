@@ -62,12 +62,84 @@ dialog::backdrop {
 
 .stats-breakdown {
   display: grid;
-  gap: 24px;
+  gap: 16px;
 }
 
 .stats-breakdown h3 {
   margin: 0 0 8px;
   font-size: 14px;
+}
+
+.fluency-details {
+  display: grid;
+  gap: 8px;
+}
+
+.fluency-details > h3 {
+  margin-bottom: 0;
+}
+
+.fluency-details h4 {
+  margin: 0 0 4px;
+  font-size: 13px;
+}
+
+.reading-fluency {
+  display: grid;
+  gap: 8px;
+}
+
+.fluency-metrics {
+  display: grid;
+  gap: 4px;
+}
+
+.fluency-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: 0;
+}
+
+.fluency-metric[hidden] {
+  display: none;
+}
+
+.fluency-metric strong {
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.fluency-metric strong.fluency-metric-secondary {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.fluency-metric span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.fluency-findings {
+  display: grid;
+  gap: 4px;
+}
+
+.fluency-finding {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.fluency-finding-value {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .alphabet-summary {
