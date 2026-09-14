@@ -170,9 +170,6 @@ export function progress(state: LearnerState) {
     ),
     rolling20: accuracy(ordinaryAttempts.slice(0, 20)),
     rolling50: accuracy(ordinaryAttempts.slice(0, 50)),
-    skips: ordinaryAttempts.filter(
-      (a) => a.payload.evaluation.status === 'unknown',
-    ).length,
     weakLetters: Object.entries(state.letters)
       .filter(([, s]) => s.score < config.strongThreshold)
       .sort((a, b) => a[1].score - b[1].score)

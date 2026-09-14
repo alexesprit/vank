@@ -145,14 +145,14 @@ export const en = {
       'Letters with a score of at least 75% and at least one correct attempt on an unfamiliar word.',
     accuracy: 'without mistakes',
     verified: 'without a familiar-word hint',
+    accuracyHint: 'Accuracy for the last 50 attempts counted in these stats.',
     verifiedHint:
-      'Accuracy on words that are not considered familiar, where memory provides less help.',
+      'Accuracy on unfamiliar words within those 50 attempts, where memory provides less help.',
     needsPractice: 'Needs practice',
     practiceLetter: 'Practice words with {{letter}}',
     letterMissing:
       'There are no words with {{letter}} in the current word list.',
     letterUnavailable: 'No other word with {{letter}} was found.',
-    recent: 'Last 20: {{accuracy}} · Skipped: {{skips}}',
     responseSpeedTitle: 'Response speed',
     fluencyPerWord: '/ word',
     fluencyPerLetter: '/ letter',

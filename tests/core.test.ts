@@ -736,8 +736,8 @@ it('creates rich immutable attempt events and real progress metrics', () => {
     strong: 0,
     accuracy: 1,
     verifiedAccuracy: 1,
-    skips: 0,
   });
+  expect(progress(result.state)).not.toHaveProperty('skips');
 });
 
 it('reports every Armenian letter with an introduced mastery state', () => {

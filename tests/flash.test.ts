@@ -130,7 +130,6 @@ it('excludes unrevealed flash attempts from ordinary result statistics', () => {
 
   expect(stats.accuracy).toBe(1);
   expect(stats.rolling20).toBe(1);
-  expect(stats.skips).toBe(0);
   expect(stats.fontStats[0]?.attempts).toBe(1);
   expect(stats.typographyStats[0]?.attempts).toBe(1);
 });

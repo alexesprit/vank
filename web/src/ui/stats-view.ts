@@ -124,12 +124,19 @@ const element = (id: string) => {
   if (!found) throw new Error(`Missing element: ${id}`);
   return found;
 };
+export function recentProgress(state: LearnerState) {
+  const ordinary = state.recent.filter(
+    (attempt) => !(attempt.payload.flashMode && !attempt.payload.flashRevealed),
+  );
+  return progress({ ...state, recent: ordinary.slice(0, 50) });
+}
 export function renderStats(
   state: LearnerState,
   sessionStart: number,
   fontFamily: string,
 ) {
   const stats = progress(state);
+  const recentStats = recentProgress(state);
   const emptyStats = () => {
     const row = document.createElement('p');
     row.className = 'font-stat';
@@ -137,18 +144,15 @@ export function renderStats(
     return row;
   };
   element('strong-help').dataset.tooltip = t('progress.strongHint');
+  element('accuracy-help').dataset.tooltip = t('progress.accuracyHint');
   element('verified-help').dataset.tooltip = t('progress.verifiedHint');
   for (const [id, value] of Object.entries({
     introduced: stats.introduced,
     strong: stats.strong,
-    accuracy: percentage(stats.accuracy),
-    verified: percentage(stats.verifiedAccuracy),
+    accuracy: percentage(recentStats.accuracy),
+    verified: percentage(recentStats.verifiedAccuracy),
   }))
     element(id).textContent = String(value);
-  element('rolling').textContent = t('progress.recent', {
-    accuracy: percentage(stats.rolling20),
-    skips: stats.skips,
-  });
   const fluency = responseSpeed(state.recent);
   element('fluency-word-median').textContent =
     fluency.medianResponseMs === null
