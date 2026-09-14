@@ -3,8 +3,9 @@ import { ALPHABET, deriveWord } from '../shared/armenian';
 import type { LearnerState, Word } from '../shared/types';
 import { evaluate, normalizeAnswer } from '../web/src/core/answer-checker';
 import { TRAINER_CONFIG as config } from '../web/src/core/config';
+import { progress } from '../web/src/core/progress';
 import { updateScores } from '../web/src/core/scoring';
-import { completeAttempt, progress } from '../web/src/core/session';
+import { completeAttempt } from '../web/src/core/session';
 import {
   createWordSelector,
   personalDifficulty,

@@ -2,7 +2,7 @@ import { version as appVersion } from '../../../package.json';
 import { ALPHABET } from '../../../shared/armenian.ts';
 import type { Dictionary } from '../../../shared/types.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
-import { progress } from '../core/session.ts';
+import { progress } from '../core/progress.ts';
 import { FONTS, loadFont } from '../core/settings.ts';
 import { fontName, t } from '../i18n/index.ts';
 import { PROGRESS_SCHEMA_VERSION } from '../storage/repository.ts';

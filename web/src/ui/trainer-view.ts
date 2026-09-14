@@ -9,7 +9,7 @@ import { doNotTrackEnabled } from '../analytics.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
 import { getPracticeMode } from '../core/modes.ts';
-import { countCorrectAnswers } from '../core/session.ts';
+import { countCorrectAnswers } from '../core/progress.ts';
 import { availableTypography } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';

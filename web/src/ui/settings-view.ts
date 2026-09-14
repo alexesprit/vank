@@ -6,7 +6,7 @@ import {
   type PracticeModeGroup,
   type PracticeModeId,
 } from '../core/modes.ts';
-import { countCorrectAnswers } from '../core/session.ts';
+import { countCorrectAnswers } from '../core/progress.ts';
 import {
   FLASH_UNLOCK_AFTER_CORRECT,
   FONTS,

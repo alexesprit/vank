@@ -1,6 +1,6 @@
 import { ALPHABET } from '../../../shared/armenian.ts';
 import type { AttemptEvent, LearnerState } from '../../../shared/types.ts';
-import { progress } from '../core/session.ts';
+import { progress } from '../core/progress.ts';
 import { FONTS } from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
 import { applyArmenianFontFamily } from './armenian-font.ts';

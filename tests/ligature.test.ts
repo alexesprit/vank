@@ -7,7 +7,8 @@ import { ALPHABET, deriveWord } from '../shared/armenian';
 import { parseDictionary } from '../shared/schema';
 import type { LearnerState } from '../shared/types';
 import { evaluateAchievements } from '../web/src/core/achievements';
-import { completeAttempt, progress } from '../web/src/core/session';
+import { progress } from '../web/src/core/progress';
+import { completeAttempt } from '../web/src/core/session';
 import { formatPrompt } from '../web/src/core/settings';
 
 const empty = (): LearnerState => ({ letters: {}, words: {}, recent: [] });

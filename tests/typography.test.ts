@@ -1,7 +1,8 @@
 import { expect, it } from 'vitest';
 import { deriveWord } from '../shared/armenian';
 import type { LearnerState } from '../shared/types';
-import { completeAttempt, progress } from '../web/src/core/session';
+import { progress } from '../web/src/core/progress';
+import { completeAttempt } from '../web/src/core/session';
 import {
   availableTypography,
   DEFAULT_PRESENTATION,

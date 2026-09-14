@@ -14,7 +14,8 @@ import { createFlashSession } from './core/flash-session.ts';
 import { createLetterPracticeSession } from './core/letter-practice-session.ts';
 import { hasMetadataHints } from './core/metadata-hints.ts';
 import { getPracticeMode, type PracticeMode } from './core/modes.ts';
-import { completeAttempt, countCorrectAnswers } from './core/session.ts';
+import { countCorrectAnswers } from './core/progress.ts';
+import { completeAttempt } from './core/session.ts';
 import {
   type AppSettings,
   availableTypography,
