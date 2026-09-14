@@ -14,6 +14,7 @@ const percentage = (value: number | null) =>
   value === null ? '—' : `${Math.round(value * 100)}%`;
 const readingCharacter = /^[\p{Script=Latin}\p{Script=Cyrillic}]$/u;
 const minimumMixupObservations = 3;
+const mixupAttemptWindow = 50;
 
 export function commonMixups(attempts: readonly AttemptEvent[]) {
   const totals = new Map<string, number>();
@@ -21,7 +22,7 @@ export function commonMixups(attempts: readonly AttemptEvent[]) {
     string,
     { source: string; expected: string; actual: string; count: number }
   >();
-  for (const attempt of attempts) {
+  for (const attempt of attempts.slice(0, mixupAttemptWindow)) {
     const { evaluation } = attempt.payload;
     if (evaluation.status === 'unknown' || evaluation.status === 'ambiguous')
       continue;

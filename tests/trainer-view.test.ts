@@ -78,6 +78,13 @@ describe('common letter mix-ups', () => {
     ).toEqual([]);
   });
 
+  it('ignores mix-ups outside the latest 50 attempts', () => {
+    const recent = Array.from({ length: 50 }, () => readingAttempt('ԿԻ', 'ki'));
+    const older = Array.from({ length: 3 }, () => readingAttempt('ԿԻ', 'ii'));
+
+    expect(commonMixups([...recent, ...older])).toEqual([]);
+  });
+
   it('ranks clear single-letter substitutions and reports their rate', () => {
     const ambiguous = readingAttempt('ԿԻ', 'ii');
     ambiguous.payload.evaluation.status = 'ambiguous';
