@@ -11,6 +11,7 @@ import type { AchievementUnlock } from './core/achievements.ts';
 import { evaluateAchievements } from './core/achievements.ts';
 import { TRAINER_CONFIG } from './core/config.ts';
 import { createFlashSession } from './core/flash-session.ts';
+import { createLetterPracticeSession } from './core/letter-practice-session.ts';
 import { hasMetadataHints } from './core/metadata-hints.ts';
 import { getPracticeMode, type PracticeMode } from './core/modes.ts';
 import { completeAttempt, countCorrectAnswers } from './core/session.ts';
@@ -30,9 +31,6 @@ import {
   type WordSelector,
 } from './core/word-selector.ts';
 import type { Repository } from './storage/repository.ts';
-
-const LETTER_WORD_HISTORY_LIMIT = 10;
-const LETTER_PRACTICE_WORD_LIMIT = 5;
 
 interface ScoreUpdateDiagnostics {
   wordId: string;
@@ -57,10 +55,6 @@ export async function createTrainer(
 ) {
   let state = await repository.loadState();
   let activeWords = words;
-  const recentLetterWords = new Map<string, string[]>();
-  let forcedLetter: string | undefined;
-  let forcedWordsRemaining = 0;
-  let forcedCandidateWordIds: string[] = [];
   let achievementUnlocks = await repository.getAchievementUnlocks();
   const backfilledAchievementUnlocks = evaluateAchievements(
     [...state.recent].reverse(),
@@ -119,6 +113,12 @@ export async function createTrainer(
     getWordLength: () => current.word.length,
     getHasResult: () => Boolean(result),
     onChange: () => flashChange?.(),
+  });
+  const letterPractice = createLetterPracticeSession({
+    getWords: () => activeWords,
+    getState: () => state,
+    getCurrent: () => current,
+    getSelector: () => select,
   });
   const startFlash = () => {
     shownAt = Date.now();
@@ -309,145 +309,27 @@ export async function createTrainer(
         achievementUnlocks = [...achievementUnlocks, ...newAchievementUnlocks];
         lastAchievementUnlocks = newAchievementUnlocks;
         result = completed.attempt.payload.evaluation;
-        if (forcedLetter && forcedWordsRemaining > 0) {
-          forcedWordsRemaining--;
-          if (!forcedWordsRemaining) {
-            forcedLetter = undefined;
-            forcedCandidateWordIds = [];
-          }
-        }
+        letterPractice.recordAttempt();
       });
     },
     async practiceLetter(letter: string) {
       return serialize(async () => {
         const nextPresentation = selectTypography(settings, correctAnswers());
-        const matchesLetter = (word: Word) =>
-          promptLetters(word.uniqueLetters, nextPresentation.caseMode).includes(
-            letter,
-          );
-        if (!activeWords.some(matchesLetter)) return 'missing' as const;
-        const recent = recentLetterWords.get(letter) ?? [];
-        const currentMatches = matchesLetter(current.word);
-        const excludedWordIds = currentMatches
-          ? [
-              ...recent.filter((wordId) => wordId !== current.word.id),
-              current.word.id,
-            ].slice(-LETTER_WORD_HISTORY_LIMIT)
-          : recent;
-        const excludedIds = new Set([...excludedWordIds, current.word.id]);
-        const candidateWordIds = [
-          ...new Set(
-            activeWords
-              .filter(
-                (word) => matchesLetter(word) && !excludedIds.has(word.id),
-              )
-              .map((word) => word.id),
-          ),
-        ];
-        if (!candidateWordIds.length) return 'unavailable' as const;
-        const request = {
-          targetLetter: letter,
-          excludeWordId: current.word.id,
-          excludeWordIds: excludedWordIds,
-        };
-        const next = select(
-          state,
-          Date.now(),
-          Math.random,
-          request,
-          nextPresentation.caseMode,
-        );
-        if (!candidateWordIds.includes(next.word.id))
-          return 'unavailable' as const;
-        await replacePrompt(next, nextPresentation);
-        recentLetterWords.set(
-          letter,
-          [
-            ...excludedWordIds.filter((wordId) => wordId !== next.word.id),
-            next.word.id,
-          ].slice(-LETTER_WORD_HISTORY_LIMIT),
-        );
-        forcedLetter = letter;
-        forcedWordsRemaining = Math.min(
-          LETTER_PRACTICE_WORD_LIMIT,
-          candidateWordIds.length,
-        );
-        forcedCandidateWordIds = candidateWordIds.filter(
-          (wordId) => wordId !== next.word.id,
-        );
-        return 'target' as const;
+        const started = letterPractice.start(letter, nextPresentation.caseMode);
+        if (started.status === 'target') {
+          await replacePrompt(started.selection, nextPresentation);
+          started.commit();
+        }
+        return started.status;
       });
     },
     async next() {
       return serialize(async () => {
         if (!result) return;
         const nextPresentation = selectTypography(settings, correctAnswers());
-        let next: Selection;
-        let forcedSelection: Selection | undefined;
-        let forceComplete = false;
-        if (forcedLetter && forcedWordsRemaining > 0) {
-          const letter = forcedLetter;
-          const candidates = new Set(forcedCandidateWordIds);
-          const excludeWordIds = activeWords
-            .filter((word) => !candidates.has(word.id))
-            .map((word) => word.id);
-          const selected = select(
-            state,
-            Date.now(),
-            Math.random,
-            {
-              targetLetter: letter,
-              excludeWordId: current.word.id,
-              excludeWordIds,
-            },
-            nextPresentation.caseMode,
-          );
-          if (
-            candidates.has(selected.word.id) &&
-            promptLetters(
-              selected.word.uniqueLetters,
-              nextPresentation.caseMode,
-            ).includes(letter)
-          ) {
-            next = selected;
-            forcedSelection = selected;
-          } else {
-            next = select(
-              state,
-              Date.now(),
-              undefined,
-              undefined,
-              nextPresentation.caseMode,
-            );
-            forceComplete = true;
-          }
-        } else {
-          next = select(
-            state,
-            Date.now(),
-            undefined,
-            undefined,
-            nextPresentation.caseMode,
-          );
-        }
-        await replacePrompt(next, nextPresentation);
-        if (forcedSelection && forcedLetter) {
-          forcedCandidateWordIds = forcedCandidateWordIds.filter(
-            (wordId) => wordId !== forcedSelection.word.id,
-          );
-          const recent = recentLetterWords.get(forcedLetter) ?? [];
-          recentLetterWords.set(
-            forcedLetter,
-            [
-              ...recent.filter((wordId) => wordId !== forcedSelection.word.id),
-              forcedSelection.word.id,
-            ].slice(-LETTER_WORD_HISTORY_LIMIT),
-          );
-        } else if (forceComplete) {
-          forcedLetter = undefined;
-          forcedWordsRemaining = 0;
-          forcedCandidateWordIds = [];
-        }
+        const next = letterPractice.selectNext(nextPresentation.caseMode);
+        await replacePrompt(next.selection, nextPresentation);
+        next.commit();
       });
     },
     async setSettings(
@@ -499,10 +381,7 @@ export async function createTrainer(
           mode = nextMode;
           select = nextSelect;
           activeWords = nextWords;
-          recentLetterWords.clear();
-          forcedLetter = undefined;
-          forcedWordsRemaining = 0;
-          forcedCandidateWordIds = [];
+          letterPractice.reset();
           current = nextCurrent;
           result = undefined;
           lastScoreUpdate = undefined;

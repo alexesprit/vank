@@ -585,6 +585,90 @@ it('keeps the prompt when the dictionary has no word with the selected letter', 
   repo.close();
 });
 
+it('keeps the prompt when the selector cannot start letter practice', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const current = recognizable('ՆԱՆԱ');
+  const target = recognizable('ՖԱՍ');
+  const trainer = await createTrainer(
+    [current, target],
+    repo,
+    async (font) => font,
+    { selector: () => ({ word: current, phase: 'training' }) },
+  );
+
+  expect(await trainer.practiceLetter('Ֆ')).toBe('unavailable');
+  expect(trainer.current.word.id).toBe(current.id);
+  expect(trainer.state).toEqual({ letters: {}, words: {}, recent: [] });
+  repo.close();
+});
+
+it('ends letter practice when the selector cannot continue it', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const ordinary = recognizable('ՆԱՆԱ');
+  const targets = ['ՖԱՍ', 'ՖԱՏ'].map(recognizable);
+  let targetRequests = 0;
+  const trainer = await createTrainer(
+    [ordinary, ...targets],
+    repo,
+    async (font) => font,
+    {
+      selector: (_state, _now, _random, request) => {
+        if (!request) return { word: ordinary, phase: 'training' };
+        targetRequests++;
+        return {
+          word: targetRequests === 1 ? targets[0] : ordinary,
+          phase: 'training',
+        };
+      },
+    },
+  );
+
+  expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+  await trainer.submit(trainer.current.word.readingLatin);
+  await trainer.next();
+  expect(trainer.current.word.id).toBe(ordinary.id);
+
+  await trainer.submit(ordinary.readingLatin);
+  await trainer.next();
+  expect(targetRequests).toBe(2);
+  repo.close();
+});
+
+it('does not consume a letter-practice word when prompt replacement fails', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const ordinary = recognizable('ՆԱՆԱ');
+  const targets = ['ՖԱՍ', 'ՖԱՏ'].map(recognizable);
+  let fontLoads = 0;
+  const trainer = await createTrainer(
+    [ordinary, ...targets],
+    repo,
+    async (font) => {
+      fontLoads++;
+      if (fontLoads === 2) throw new Error('font load failed');
+      return font;
+    },
+    {
+      selector: (_state, _now, _random, request) => ({
+        word: request
+          ? (targets.find(
+              (word) =>
+                word.id !== request.excludeWordId &&
+                !request.excludeWordIds?.includes(word.id),
+            ) ?? ordinary)
+          : ordinary,
+        phase: 'training',
+      }),
+    },
+  );
+
+  await expect(trainer.practiceLetter('Ֆ')).rejects.toThrow('font load failed');
+  expect(trainer.current.word.id).toBe(ordinary.id);
+
+  expect(await trainer.practiceLetter('Ֆ')).toBe('target');
+  expect(trainer.current.word.id).toBe(targets[0].id);
+  repo.close();
+});
+
 it('can practice a CAPS letter exposed by the և ligature', async () => {
   const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
   const current = recognizable('ՄԱՄԱ');
