@@ -140,7 +140,9 @@ it('builds a fixture without network, retains intermediate stages, supports quie
       output,
       '--no-ai',
     ];
-    const { stdout } = await exec(process.execPath, [...args, '--quiet']);
+    const { stdout } = await exec(process.execPath, [...args, '--quiet'], {
+      env: { ...process.env, AI_PROVIDER: 'not-a-provider' },
+    });
     expect(stdout).toBe('');
     const outputText = await readFile(output, 'utf8');
     const dictionary = JSON.parse(outputText);

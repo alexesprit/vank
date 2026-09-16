@@ -26,6 +26,7 @@
     "derive": "node builder/src/cli.ts derive",
     "enrich": "node builder/src/cli.ts enrich",
     "validate": "node builder/src/cli.ts validate",
+    "eval:enrichment": "node builder/scripts/evaluate-enrichment.ts",
     "dict:build": "node builder/scripts/build-dictionaries.ts",
     "build:seed": "node builder/scripts/build-dictionaries.ts --curated-only --no-ai"
   },

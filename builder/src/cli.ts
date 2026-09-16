@@ -13,7 +13,7 @@ import {
   parseAudience,
   shortlistAudience,
 } from './audience.ts';
-import { enrichWords } from './enrichment.ts';
+import { type EnrichmentProvider, enrichWords } from './enrichment.ts';
 import {
   downloadSource,
   parseRawWords,
@@ -243,45 +243,72 @@ async function main() {
       });
       deterministic = shortlist.words;
     }
-    const enriched = values['no-ai']
-      ? deterministic
-      : await enrichWords(deterministic, {
-          apiKey: process.env.OPENROUTER_API_KEY ?? '',
-          model: process.env.OPENROUTER_MODEL ?? '',
-          languages,
-          cacheDir: join(directory, '..', 'cache'),
-          concurrency: Number(process.env.OPENROUTER_CONCURRENCY ?? 3),
-          report,
-          stopWhen: audience
-            ? (words) => {
-                if (words.length < audienceLimit) return false;
-                const ids = new Set(words.map((word) => word.id));
-                if (overrideIds.some((id) => !ids.has(id))) return false;
-                const overridden = applyOverrides(words, overrides);
-                if (
-                  overridden.filter((word) =>
-                    isFamiliar(word, audience.language),
-                  ).length <
-                  Math.max(
-                    audience.minFamiliarWords,
-                    Math.ceil(audienceLimit * audience.minFamiliarShare),
-                  )
+    let enriched: BuildWord[];
+    if (values['no-ai']) enriched = deterministic;
+    else {
+      const envValue = (value: string | undefined) =>
+        value?.trim() || undefined;
+      const providerValue = envValue(process.env.AI_PROVIDER) ?? 'openrouter';
+      if (!['openrouter', 'ollama'].includes(providerValue))
+        throw new Error(`Invalid AI provider: ${providerValue}`);
+      const provider = providerValue as EnrichmentProvider,
+        model =
+          envValue(process.env.AI_MODEL) ??
+          (provider === 'ollama'
+            ? (envValue(process.env.OLLAMA_MODEL) ?? '')
+            : (envValue(process.env.OPENROUTER_MODEL) ?? '')),
+        apiKey =
+          provider === 'ollama'
+            ? (process.env.OLLAMA_API_KEY ?? '')
+            : (process.env.OPENROUTER_API_KEY ?? ''),
+        concurrency = Number(
+          envValue(process.env.AI_CONCURRENCY) ??
+            envValue(process.env.OPENROUTER_CONCURRENCY) ??
+            3,
+        ),
+        batchSizeValue = envValue(process.env.AI_BATCH_SIZE),
+        batchSize =
+          batchSizeValue === undefined ? undefined : Number(batchSizeValue);
+      enriched = await enrichWords(deterministic, {
+        provider,
+        apiKey,
+        model,
+        endpoint: envValue(process.env.AI_ENDPOINT),
+        languages,
+        cacheDir: join(directory, '..', 'cache'),
+        batchSize,
+        concurrency,
+        report,
+        stopWhen: audience
+          ? (words) => {
+              if (words.length < audienceLimit) return false;
+              const ids = new Set(words.map((word) => word.id));
+              if (overrideIds.some((id) => !ids.has(id))) return false;
+              const overridden = applyOverrides(words, overrides);
+              if (
+                overridden.filter((word) => isFamiliar(word, audience.language))
+                  .length <
+                Math.max(
+                  audience.minFamiliarWords,
+                  Math.ceil(audienceLimit * audience.minFamiliarShare),
                 )
-                  return false;
-                const selected = composeAudience(
-                  overridden,
-                  audienceLimit,
-                  audience,
-                );
-                return (
-                  selected.length === audienceLimit &&
-                  countLetterCoverage(selected).every(
-                    ({ words }) => words >= audience.minLetterCoverage,
-                  )
-                );
-              }
-            : undefined,
-        });
+              )
+                return false;
+              const selected = composeAudience(
+                overridden,
+                audienceLimit,
+                audience,
+              );
+              return (
+                selected.length === audienceLimit &&
+                countLetterCoverage(selected).every(
+                  ({ words }) => words >= audience.minLetterCoverage,
+                )
+              );
+            }
+          : undefined,
+      });
+    }
     await writeJson(file('enriched'), enriched);
     if (stage === 'enrich') return;
   }

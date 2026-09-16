@@ -1,0 +1,261 @@
+[
+  {
+    "word": "ՏԱՔՍԻ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["такси; автомобиль для перевозки пассажиров"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "такси" } }
+  },
+  {
+    "word": "ՊԻՑՑԱ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["пицца; блюдо из теста с начинкой"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "пицца" } }
+  },
+  {
+    "word": "ՌԱԴԻՈ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["радио; устройство или передача"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "радио" } }
+  },
+  {
+    "word": "ԲԱՐԵՎ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["привет; здравствуй"],
+    "rawPos": ["interjection"],
+    "metadata": { "recognitionHints": { "ru": "барев" } }
+  },
+  {
+    "word": "ՋՈՒՐ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["вода; прозрачная жидкость для питья"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "жур" } }
+  },
+  {
+    "word": "ՄԵՏՐՈ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["метро; подземная железная дорога"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "метро" } }
+  },
+  {
+    "word": "ԱՎՏՈԲՈՒՍ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["автобус; пассажирский автомобиль"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "автобус" } }
+  },
+  {
+    "word": "ՄԵՆՅՈՒ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["меню; список блюд"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "меню" } }
+  },
+  {
+    "word": "ՍՈՒՊԵՐՄԱՐԿԵՏ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["супермаркет; большой магазин самообслуживания"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "супермаркет" } }
+  },
+  {
+    "word": "ԲԱՆԿ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["банк; финансовое учреждение"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "банк" } }
+  },
+  {
+    "word": "ՄԱՄԱ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["мама; мать"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "мама" } }
+  },
+  {
+    "word": "ՊԱՊԱ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["папа; отец"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "папа" } }
+  },
+  {
+    "word": "ՍԵՐԳԵՅ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["Сергей; мужское имя"],
+    "rawPos": ["proper noun"],
+    "metadata": { "recognitionHints": { "ru": "Сергей" } }
+  },
+  {
+    "word": "ԵՐԵՎԱՆ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["Ереван; столица Армении"],
+    "rawPos": ["proper noun"],
+    "metadata": { "recognitionHints": { "ru": "Ереван" } }
+  },
+  {
+    "word": "ՀԱՅԱՍՏԱՆ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["Армения; страна на Кавказе"],
+    "rawPos": ["proper noun"]
+  },
+  {
+    "word": "ՍՈՒՐՃ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["кофе; напиток из обжаренных зёрен"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ՀԱՑ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["хлеб; выпеченный продукт из муки"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ԲԺԻՇԿ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["врач; специалист по лечению болезней"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ԴՊՐՈՑ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["школа; учебное заведение"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ՓՈՂՈՑ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["улица; дорога между домами"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ՄՈՒՏՔ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["вход; место для входа"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ԵԼՔ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["выход; место для выхода"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ԿԱՐՄԻՐ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["красный; цвет крови"],
+    "rawPos": ["adjective"]
+  },
+  {
+    "word": "ԸՆՏԱՆԻՔ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["семья; родственники, живущие вместе"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ԳՐԱԲԱՐ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": [
+      "древнеармянский язык; классический письменный армянский"
+    ],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ԱՐԱԳ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["быстрый; скорый"],
+    "rawPos": ["adjective"]
+  },
+  {
+    "word": "ՍԵՐ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["любовь; сливки"],
+    "rawPos": ["noun"]
+  },
+  {
+    "word": "ՄԱՏ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["палец"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "мат" } }
+  },
+  {
+    "word": "ԿԱԹ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["молоко"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "кот" } }
+  },
+  {
+    "word": "ՇԱՀ",
+    "sourceId": "evaluation",
+    "sourcePriority": 100,
+    "source": { "type": "evaluation", "name": "Enrichment fixture" },
+    "rawDefinitions": ["прибыль; выгода"],
+    "rawPos": ["noun"],
+    "metadata": { "recognitionHints": { "ru": "шах" } }
+  }
+]

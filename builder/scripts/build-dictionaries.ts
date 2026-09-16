@@ -10,7 +10,10 @@ import {
   readTargetManifest,
   selectTargets,
   type TargetManifest,
+  targetEnvironment,
 } from '../src/targets.ts';
+
+if (existsSync('.env')) process.loadEnvFile('.env');
 
 interface Options {
   manifest: string;
@@ -116,7 +119,10 @@ async function buildTarget(
     ...(options.verbose ? ['--verbose'] : []),
   ];
   await new Promise<void>((resolve, reject) => {
-    const child = spawn(process.execPath, args, { stdio: 'inherit' });
+    const child = spawn(process.execPath, args, {
+      stdio: 'inherit',
+      env: targetEnvironment(target, process.env),
+    });
     child.once('error', reject);
     child.once('exit', (code, signal) => {
       if (code === 0) resolve();

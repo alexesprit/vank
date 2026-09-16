@@ -1,6 +1,6 @@
 import { readJson } from './io.ts';
 
-export type EnrichmentMode = 'none' | 'openrouter';
+export type EnrichmentMode = 'none' | 'openrouter' | 'ollama';
 export type TargetCheck = 'audience' | 'achievements';
 
 export interface DictionaryTarget {
@@ -50,7 +50,11 @@ export function parseTargetManifest(value: unknown): TargetManifest {
     )
       throw new Error(`Invalid checks for target ${id}`);
     const enrichment = target.enrichment ?? 'none';
-    if (enrichment !== 'none' && enrichment !== 'openrouter')
+    if (
+      enrichment !== 'none' &&
+      enrichment !== 'openrouter' &&
+      enrichment !== 'ollama'
+    )
       throw new Error(`Invalid enrichment for target ${id}`);
     if (target.pack !== undefined && typeof target.pack !== 'boolean')
       throw new Error(`Invalid pack setting for target ${id}`);
@@ -103,4 +107,13 @@ export function selectTargets(
     if (target.required && !selected.includes(target))
       throw new Error(`Required dictionary target is missing: ${target.id}`);
   return selected;
+}
+
+export function targetEnvironment(
+  target: DictionaryTarget,
+  environment: NodeJS.ProcessEnv,
+): NodeJS.ProcessEnv {
+  return target.enrichment === 'none' || environment.AI_PROVIDER?.trim()
+    ? { ...environment }
+    : { ...environment, AI_PROVIDER: target.enrichment };
 }

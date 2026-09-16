@@ -28,6 +28,7 @@ export interface BuildWord extends Word {
   rawDefinitions: string[];
   rawPos: string[];
   ai?: {
+    provider?: 'openrouter' | 'ollama';
     model: string;
     promptVersion: number;
     schemaVersion: number;

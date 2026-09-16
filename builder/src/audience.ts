@@ -11,6 +11,8 @@ export interface AudiencePolicy {
   minFamiliarShare: number;
   minLetterCoverage: number;
 }
+export const FAMILIARITY_THRESHOLD = 0.8;
+export const VERIFICATION_THRESHOLD = 0.4;
 export function parseAudience(
   value: unknown,
   languages: string[],
@@ -40,7 +42,7 @@ export function parseAudience(
 const curated = (w: BuildWord) => w.sources.some((s) => s.type === 'curated');
 const ambiguousCasePair = /Ե(?:Վ|վ)/u;
 export const isFamiliar = (w: BuildWord, language: string) =>
-  (w.familiarity?.[language] ?? 0) >= 0.8;
+  (w.familiarity?.[language] ?? 0) >= FAMILIARITY_THRESHOLD;
 
 export const countLetterCoverage = (words: Pick<Word, 'uniqueLetters'>[]) =>
   ALPHABET.map(({ upper: letter }) => ({
@@ -216,7 +218,7 @@ export function composeAudience(
   const verificationPool = eligible.filter(
     (w) =>
       (curated(w) || w.audiencePurpose === 'verification') &&
-      (w.familiarity?.[policy.language] ?? 1) <= 0.4,
+      (w.familiarity?.[policy.language] ?? 1) <= VERIFICATION_THRESHOLD,
   );
   const verification = composeDataset(
     verificationPool,

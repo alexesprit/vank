@@ -87,7 +87,8 @@ npm run build:seed                 # reproducible curated-only runtime dictionar
 npm run fetch                     # download/cache source exports and save raw.json
 npm run normalize                 # re-read raw.json; normalize and merge fields
 npm run derive                    # read normalized.json; derive technical metadata
-npm run enrich                    # read deterministic.json; cached OpenRouter batches
+npm run enrich                    # read deterministic.json; cached provider batches
+npm run eval:enrichment           # run the no-cache provider evaluation fixture
 npm run validate                  # apply overrides, compose, validate, emit words.json
 npm run dict:build                 # build all enabled targets from builder/targets.json
 npm run dict:build -- --pack       # build only targets marked pack in builder/targets.json
@@ -121,9 +122,13 @@ they supply, including individual language-map values. Same-priority duplicate
 records use the last supplied field value; definitions and provenance accumulate.
 
 For live enrichment, create an ignored `.env` with the variable names in
-`.env.example`, or export `OPENROUTER_API_KEY` and `OPENROUTER_MODEL`. The model
-must support structured JSON-schema responses. No provider/model is hardcoded.
-`OPENROUTER_CONCURRENCY` controls parallel requests, defaults to 3, and accepts 1–10.
+`.env.example`, or export `AI_PROVIDER`, `AI_MODEL`, and the provider credentials.
+The default provider is `openrouter`; `ollama` uses the local
+`http://localhost:11434/v1/chat/completions` endpoint and does not require a key.
+The model must support structured JSON-schema responses. `AI_ENDPOINT` overrides
+the provider endpoint. `AI_CONCURRENCY` and `AI_BATCH_SIZE` control parallel
+requests and words per request; legacy `OPENROUTER_*` variables remain supported
+as fallbacks.
 `ru` is the default enrichment language; adding languages is a configuration change.
 The configured audience policy plans words **before** AI enrichment:
 
@@ -183,6 +188,24 @@ counts, percentage when the total is known, batches, cache/API work, rejected
 entries, execution/API failures, retries, elapsed time, and ETA based on newly
 processed work rather than cache hits. Source exclusions and flagged words
 count as rejections, not failures; repeated validation does not duplicate them.
+
+The enrichment evaluation fixture under `builder/evals/enrichment/` intentionally
+does not cache results. It uses the same schema and dictionary validation as the
+build and compares provider output with human-reviewed references. The 30-word
+fixture covers common vocabulary, loans, names, categories, and deliberate
+recognition-hint false friends; `ԳՐԱԲԱՐ` is flagged because it is historical
+language content outside the beginner/current-word target.
+
+Run it against either provider, for example:
+
+```sh
+AI_PROVIDER=ollama OLLAMA_MODEL=qwen3-coder:30b npm run eval:enrichment
+AI_PROVIDER=openrouter OPENROUTER_MODEL=... npm run eval:enrichment
+```
+
+Use `--output FILE` to save the JSON metrics and per-word diff report;
+`--source`, `--reference`, `--language`, `--batch-size`, `--concurrency`, and
+`--max-retries` are also available for custom evaluation sets.
 
 Put corrections in `builder/data/overrides.json`, keyed by the stable word ID:
 

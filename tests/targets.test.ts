@@ -3,6 +3,7 @@ import {
   parseTargetManifest,
   readTargetManifest,
   selectTargets,
+  targetEnvironment,
 } from '../builder/src/targets.ts';
 
 const manifest = parseTargetManifest({
@@ -25,6 +26,14 @@ const manifest = parseTargetManifest({
       enrichment: 'none',
       checks: [],
     },
+    local: {
+      config: 'builder/config.json',
+      dataDir: 'builder/data',
+      output: 'web/data/local.json',
+      asset: 'local.json',
+      enrichment: 'ollama',
+      checks: [],
+    },
   },
 });
 
@@ -33,6 +42,7 @@ describe('dictionary targets', () => {
     expect(selectTargets(manifest).map(({ id }) => id)).toEqual([
       'words',
       'countries',
+      'local',
     ]);
     expect(() => selectTargets(manifest, ['countries'])).toThrow(
       'Required dictionary target is missing: words',
@@ -66,6 +76,16 @@ describe('dictionary targets', () => {
         },
       }),
     ).toThrow('Invalid pack setting for target words');
+  });
+
+  it('lets an explicit provider override the target default', () => {
+    expect(
+      targetEnvironment(manifest.targets.words, { AI_PROVIDER: 'ollama' })
+        .AI_PROVIDER,
+    ).toBe('ollama');
+    expect(targetEnvironment(manifest.targets.words, {}).AI_PROVIDER).toBe(
+      'openrouter',
+    );
   });
 
   it('marks pack targets in the real manifest and excludes the AI dictionary', async () => {

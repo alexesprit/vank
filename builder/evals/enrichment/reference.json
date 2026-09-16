@@ -1,0 +1,213 @@
+[
+  {
+    "word": "ՏԱՔՍԻ",
+    "meaning": { "ru": ["такси"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["transport"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՊԻՑՑԱ",
+    "meaning": { "ru": ["пицца"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["food"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՌԱԴԻՈ",
+    "meaning": { "ru": ["радио"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["technology"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԲԱՐԵՎ",
+    "meaning": { "ru": ["привет", "здравствуй"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["greetings"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՋՈՒՐ",
+    "meaning": { "ru": ["вода"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["everyday"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՄԵՏՐՈ",
+    "meaning": { "ru": ["метро"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["transport"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԱՎՏՈԲՈՒՍ",
+    "meaning": { "ru": ["автобус"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["transport"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՄԵՆՅՈՒ",
+    "meaning": { "ru": ["меню"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["restaurant"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՍՈՒՊԵՐՄԱՐԿԵՏ",
+    "meaning": { "ru": ["супермаркет"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["shopping"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԲԱՆԿ",
+    "meaning": { "ru": ["банк"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["everyday"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՄԱՄԱ",
+    "meaning": { "ru": ["мама", "мать"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["family"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՊԱՊԱ",
+    "meaning": { "ru": ["папа", "отец"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["family"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՍԵՐԳԵՅ",
+    "meaning": { "ru": ["Сергей"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["person-name"],
+    "usefulnessMin": 0.4
+  },
+  {
+    "word": "ԵՐԵՎԱՆ",
+    "meaning": { "ru": ["Ереван"] },
+    "familiarity": { "ru": "familiar" },
+    "categories": ["place-name"],
+    "usefulnessMin": 0.6
+  },
+  {
+    "word": "ՀԱՅԱՍՏԱՆ",
+    "meaning": { "ru": ["Армения"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["country"],
+    "usefulnessMin": 0.6
+  },
+  {
+    "word": "ՍՈՒՐՃ",
+    "meaning": { "ru": ["кофе"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["food"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՀԱՑ",
+    "meaning": { "ru": ["хлеб"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["food"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԲԺԻՇԿ",
+    "meaning": { "ru": ["врач"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["medical"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԴՊՐՈՑ",
+    "meaning": { "ru": ["школа"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["education"],
+    "usefulnessMin": 0.6
+  },
+  {
+    "word": "ՓՈՂՈՑ",
+    "meaning": { "ru": ["улица"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["street"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՄՈՒՏՔ",
+    "meaning": { "ru": ["вход"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["signage"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԵԼՔ",
+    "meaning": { "ru": ["выход"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["signage"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԿԱՐՄԻՐ",
+    "meaning": { "ru": ["красный"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["colors"],
+    "usefulnessMin": 0.6
+  },
+  {
+    "word": "ԸՆՏԱՆԻՔ",
+    "meaning": { "ru": ["семья"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["family"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ԳՐԱԲԱՐ",
+    "meaning": { "ru": ["древнеармянский язык"] },
+    "familiarity": { "ru": "verification" },
+    "flagged": true,
+    "categories": ["education"],
+    "usefulnessMin": 0.2
+  },
+  {
+    "word": "ԱՐԱԳ",
+    "meaning": { "ru": ["быстрый"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["everyday"],
+    "usefulnessMin": 0.6
+  },
+  {
+    "word": "ՍԵՐ",
+    "meaning": { "ru": ["любовь", "сливки"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["everyday"],
+    "usefulnessMin": 0.6
+  },
+  {
+    "word": "ՄԱՏ",
+    "meaning": { "ru": ["палец"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["everyday"],
+    "usefulnessMin": 0.6
+  },
+  {
+    "word": "ԿԱԹ",
+    "meaning": { "ru": ["молоко"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["food"],
+    "usefulnessMin": 0.8
+  },
+  {
+    "word": "ՇԱՀ",
+    "meaning": { "ru": ["прибыль", "выгода"] },
+    "familiarity": { "ru": "verification" },
+    "categories": ["work"],
+    "usefulnessMin": 0.6
+  }
+]
