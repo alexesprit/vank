@@ -70,6 +70,32 @@ it('whitelists and translates food tags', async () => {
   await initializeI18n('en', []);
 });
 
+it('translates car-pack tags', async () => {
+  const word = {
+    categories: ['transport'],
+    tags: ['brand', 'model', 'part', 'driving'],
+  };
+  expect(
+    metadataHintLabels(word, (key, fallback) =>
+      t(key, { defaultValue: fallback }),
+    ),
+  ).toEqual(['Transport', 'Brand', 'Model', 'Car components', 'Vehicle use']);
+  await initializeI18n('ru', []);
+  expect(
+    metadataHintLabels(word, (key, fallback) =>
+      t(key, { defaultValue: fallback }),
+    ),
+  ).toEqual([
+    'Транспорт',
+    'Марка',
+    'Модель',
+    'Устройство автомобиля',
+    // biome-ignore lint/security/noSecrets: Russian UI copy triggers the entropy heuristic.
+    'Эксплуатация',
+  ]);
+  await initializeI18n('en', []);
+});
+
 it('persists the opt-in setting and records rendered visibility only when supplied', () => {
   expect(
     parseSettings({ ...DEFAULT_SETTINGS, metadataHints: true }).metadataHints,

@@ -63,6 +63,7 @@ it('loads specialized dictionaries through the mode registry', async () => {
     dictionaryUrl('names'),
     dictionaryUrl('food'),
     dictionaryUrl('numbers'),
+    dictionaryUrl('cars'),
   ]);
 });
 
@@ -76,6 +77,7 @@ it('groups modes by selection strategy for the settings UI', () => {
     { id: 'names', group: 'packs', strategy: 'finite-pack' },
     { id: 'food', group: 'packs', strategy: 'finite-pack' },
     { id: 'numbers', group: 'packs', strategy: 'finite-pack' },
+    { id: 'cars', group: 'packs', strategy: 'finite-pack' },
   ]);
 });
 

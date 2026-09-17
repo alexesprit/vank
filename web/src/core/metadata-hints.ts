@@ -61,6 +61,10 @@ export const DISPLAYABLE_TAGS = new Set([
   'travel',
   'culinary',
   'animals',
+  'brand',
+  'model',
+  'part',
+  'driving',
 ]);
 
 const normalize = (value: string) =>

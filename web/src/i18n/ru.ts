@@ -47,6 +47,7 @@ export const ru = {
     names: 'Имена',
     food: 'Еда',
     numbers: 'Числа',
+    cars: 'Автомобили и вождение',
   },
   metadata: {
     label: 'Подсказки по слову',
@@ -129,6 +130,11 @@ export const ru = {
       travel: 'Путешествия',
       culinary: 'Кулинария',
       animals: 'Животные',
+      brand: 'Марка',
+      model: 'Модель',
+      part: 'Устройство автомобиля',
+      // biome-ignore lint/security/noSecrets: Russian UI copy triggers the entropy heuristic.
+      driving: 'Эксплуатация',
     },
   },
   progress: {

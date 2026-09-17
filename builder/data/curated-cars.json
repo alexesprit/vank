@@ -1,0 +1,1652 @@
+[
+  {
+    "word": "տոյոտա",
+    "meaning": {
+      "ru": "Toyota"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "մերսեդես",
+    "meaning": {
+      "ru": "Mercedes-Benz"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "բմվ",
+    "meaning": {
+      "ru": "BMW"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ֆոլքսվագեն",
+    "meaning": {
+      "ru": "Volkswagen"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "աուդի",
+    "meaning": {
+      "ru": "Audi"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "լեքսուս",
+    "meaning": {
+      "ru": "Lexus"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "նիսսան",
+    "meaning": {
+      "ru": "Nissan"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "հոնդա",
+    "meaning": {
+      "ru": "Honda"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "հյունդաի",
+    "meaning": {
+      "ru": "Hyundai"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "կիա",
+    "meaning": {
+      "ru": "Kia"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ֆորդ",
+    "meaning": {
+      "ru": "Ford"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "շևրոլե",
+    "meaning": {
+      "ru": "Chevrolet"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "սուբարու",
+    "meaning": {
+      "ru": "Subaru"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "մազդա",
+    "meaning": {
+      "ru": "Mazda"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "միցուբիշի",
+    "meaning": {
+      "ru": "Mitsubishi"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ռենո",
+    "meaning": {
+      "ru": "Renault"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "պեժո",
+    "meaning": {
+      "ru": "Peugeot"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "սիտրոեն",
+    "meaning": {
+      "ru": "Citroën"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "օպել",
+    "meaning": {
+      "ru": "Opel"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "վոլվո",
+    "meaning": {
+      "ru": "Volvo"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "շկոդա",
+    "meaning": {
+      "ru": "Škoda"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "տեսլա",
+    "meaning": {
+      "ru": "Tesla"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "պորշե",
+    "meaning": {
+      "ru": "Porsche"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ջիպ",
+    "meaning": {
+      "ru": "Jeep"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ջագուար",
+    "meaning": {
+      "ru": "Jaguar"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ֆիատ",
+    "meaning": {
+      "ru": "Fiat"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "սուզուկի",
+    "meaning": {
+      "ru": "Suzuki"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "դաչիա",
+    "meaning": {
+      "ru": "Dacia"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "լադա",
+    "meaning": {
+      "ru": "Lada"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "դաեվու",
+    "meaning": {
+      "ru": "Daewoo"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ջենեսիս",
+    "meaning": {
+      "ru": "Genesis"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ինֆինիտի",
+    "meaning": {
+      "ru": "Infiniti"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "կադիլակ",
+    "meaning": {
+      "ru": "Cadillac"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "քրայսլեր",
+    "meaning": {
+      "ru": "Chrysler"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "դոջ",
+    "meaning": {
+      "ru": "Dodge"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ջիմսի",
+    "meaning": {
+      "ru": "GMC"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "մինի",
+    "meaning": {
+      "ru": "Mini"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "սմարթ",
+    "meaning": {
+      "ru": "Smart"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ֆերարի",
+    "meaning": {
+      "ru": "Ferrari"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "լամբորգինի",
+    "meaning": {
+      "ru": "Lamborghini"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "մազերատի",
+    "meaning": {
+      "ru": "Maserati"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "բենթլի",
+    "meaning": {
+      "ru": "Bentley"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "մակլարեն",
+    "meaning": {
+      "ru": "McLaren"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "բուգատի",
+    "meaning": {
+      "ru": "Bugatti"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "չերի",
+    "meaning": {
+      "ru": "Chery"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ջիլի",
+    "meaning": {
+      "ru": "Geely"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "հավալ",
+    "meaning": {
+      "ru": "Haval"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "չանգան",
+    "meaning": {
+      "ru": "Changan"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "ջեյաք",
+    "meaning": {
+      "ru": "JAC"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["brand"]
+  },
+  {
+    "word": "կորոլա",
+    "meaning": {
+      "ru": "Corolla"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "քեմրի",
+    "meaning": {
+      "ru": "Camry"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "պրիուս",
+    "meaning": {
+      "ru": "Prius"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "յարիս",
+    "meaning": {
+      "ru": "Yaris"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "հիլուքս",
+    "meaning": {
+      "ru": "Hilux"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "մուստանգ",
+    "meaning": {
+      "ru": "Mustang"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "ֆոկուս",
+    "meaning": {
+      "ru": "Focus"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "էքսփլորեր",
+    "meaning": {
+      "ru": "Explorer"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "գոլֆ",
+    "meaning": {
+      "ru": "Golf"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "պասատ",
+    "meaning": {
+      "ru": "Passat"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "տիգուան",
+    "meaning": {
+      "ru": "Tiguan"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "պոլո",
+    "meaning": {
+      "ru": "Polo"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "բիթլ",
+    "meaning": {
+      "ru": "Beetle"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "նիվա",
+    "meaning": {
+      "ru": "Niva"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "սամարա",
+    "meaning": {
+      "ru": "Samara"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "օկտավիա",
+    "meaning": {
+      "ru": "Octavia"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "ֆաբիա",
+    "meaning": {
+      "ru": "Fabia"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "քաշքայ",
+    "meaning": {
+      "ru": "Qashqai"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "պատրոլ",
+    "meaning": {
+      "ru": "Patrol"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "սիվիկ",
+    "meaning": {
+      "ru": "Civic"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "ակորդ",
+    "meaning": {
+      "ru": "Accord"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "սպորտեյջ",
+    "meaning": {
+      "ru": "Sportage"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "սորենտո",
+    "meaning": {
+      "ru": "Sorento"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "դիֆենդեր",
+    "meaning": {
+      "ru": "Defender"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "ռանգլեր",
+    "meaning": {
+      "ru": "Wrangler"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "մական",
+    "meaning": {
+      "ru": "Macan"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "կայնե",
+    "meaning": {
+      "ru": "Cayenne"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "պանամերա",
+    "meaning": {
+      "ru": "Panamera"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "պրիորա",
+    "meaning": {
+      "ru": "Priora"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["model"]
+  },
+  {
+    "word": "շարժիչ",
+    "meaning": {
+      "ru": "двигатель"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "փոխանցատուփ",
+    "meaning": {
+      "ru": "коробка передач"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "կցորդիչ",
+    "meaning": {
+      "ru": "сцепление"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "արգելակ",
+    "meaning": {
+      "ru": "тормоз"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "ոտնակ",
+    "meaning": {
+      "ru": "педаль"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "ղեկ",
+    "meaning": {
+      "ru": "руль"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "անիվ",
+    "meaning": {
+      "ru": "колесо"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "դող",
+    "meaning": {
+      "ru": "шина"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "անվադող",
+    "meaning": {
+      "ru": "автомобильная шина"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "մարտկոց",
+    "meaning": {
+      "ru": "аккумулятор"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "ռադիատոր",
+    "meaning": {
+      "ru": "радиатор"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "յուղ",
+    "meaning": {
+      "ru": "масло; моторное масло"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "ֆիլտր",
+    "meaning": {
+      "ru": "фильтр"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "կայծամոմ",
+    "meaning": {
+      "ru": "свеча зажигания"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "գեներատոր",
+    "meaning": {
+      "ru": "генератор"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "շղթա",
+    "meaning": {
+      "ru": "цепь"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "կապոտ",
+    "meaning": {
+      "ru": "капот"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "բեռնախցիկ",
+    "meaning": {
+      "ru": "багажник"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "դուռ",
+    "meaning": {
+      "ru": "дверь"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "պատուհան",
+    "meaning": {
+      "ru": "окно"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "ապակի",
+    "meaning": {
+      "ru": "стекло"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "հողմապակի",
+    "meaning": {
+      "ru": "лобовое стекло"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "հայելի",
+    "meaning": {
+      "ru": "зеркало"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "նստատեղ",
+    "meaning": {
+      "ru": "сиденье"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "օդաբարձիկ",
+    "meaning": {
+      "ru": "подушка безопасности"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "լուսարձակ",
+    "meaning": {
+      "ru": "фара"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "թափք",
+    "meaning": {
+      "ru": "кузов"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "շասսի",
+    "meaning": {
+      "ru": "шасси"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "կախոց",
+    "meaning": {
+      "ru": "подвеска"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "կարբյուրատոր",
+    "meaning": {
+      "ru": "карбюратор"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "տուրբին",
+    "meaning": {
+      "ru": "турбина"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "խլացուցիչ",
+    "meaning": {
+      "ru": "глушитель"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "վարորդ",
+    "meaning": {
+      "ru": "водитель"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "երթևեկություն",
+    "meaning": {
+      "ru": "дорожное движение"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "ճանապարհ",
+    "meaning": {
+      "ru": "дорога"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "մայրուղի",
+    "meaning": {
+      "ru": "шоссе"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "փողոց",
+    "meaning": {
+      "ru": "улица"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "խաչմերուկ",
+    "meaning": {
+      "ru": "перекрёсток"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "շրջադարձ",
+    "meaning": {
+      "ru": "поворот"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "կանգառ",
+    "meaning": {
+      "ru": "остановка"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "կայանում",
+    "meaning": {
+      "ru": "парковка"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "կայանատեղի",
+    "meaning": {
+      "ru": "парковочное место"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "արագություն",
+    "meaning": {
+      "ru": "скорость"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "սահմանափակում",
+    "meaning": {
+      "ru": "ограничение"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "նշան",
+    "meaning": {
+      "ru": "знак"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "լուսացույց",
+    "meaning": {
+      "ru": "светофор"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "երթուղի",
+    "meaning": {
+      "ru": "маршрут"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "քարտեզ",
+    "meaning": {
+      "ru": "карта"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "նավիգացիա",
+    "meaning": {
+      "ru": "навигация"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "ուղևոր",
+    "meaning": {
+      "ru": "пассажир"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "ապահովագրություն",
+    "meaning": {
+      "ru": "страховка"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "վթար",
+    "meaning": {
+      "ru": "авария"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "վերանորոգում",
+    "meaning": {
+      "ru": "ремонт"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "սպասարկում",
+    "meaning": {
+      "ru": "техническое обслуживание"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "մեխանիկ",
+    "meaning": {
+      "ru": "механик"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "արհեստանոց",
+    "meaning": {
+      "ru": "мастерская"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "ավտոլվացում",
+    "meaning": {
+      "ru": "автомойка"
+    },
+    "familiarity": {
+      "ru": 0.6
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "վառելիք",
+    "meaning": {
+      "ru": "топливо"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "բենզին",
+    "meaning": {
+      "ru": "бензин"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "դիզել",
+    "meaning": {
+      "ru": "дизель"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "գազ",
+    "meaning": {
+      "ru": "газ"
+    },
+    "familiarity": {
+      "ru": 0.9
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "լիցքավորում",
+    "meaning": {
+      "ru": "зарядка"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "բանալի",
+    "meaning": {
+      "ru": "ключ"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "գրանցում",
+    "meaning": {
+      "ru": "регистрация"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "տուգանք",
+    "meaning": {
+      "ru": "штраф"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "ամրագոտի",
+    "meaning": {
+      "ru": "ремень безопасности"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "ատամնանիվ",
+    "meaning": {
+      "ru": "шестерня"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "արագաչափ",
+    "meaning": {
+      "ru": "спидометр"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "վազաչափ",
+    "meaning": {
+      "ru": "одометр"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "օդորակիչ",
+    "meaning": {
+      "ru": "кондиционер"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  },
+  {
+    "word": "ավտոմեքենա",
+    "meaning": {
+      "ru": "автомобиль"
+    },
+    "familiarity": {
+      "ru": 0.3
+    },
+    "categories": ["transport"],
+    "tags": ["driving"]
+  },
+  {
+    "word": "փոկ",
+    "meaning": {
+      "ru": "ремень (деталь двигателя)"
+    },
+    "familiarity": {
+      "ru": 0.1
+    },
+    "categories": ["transport"],
+    "tags": ["part"]
+  }
+]

@@ -1,4 +1,5 @@
 import type { PracticeModeId } from '../../../shared/types.ts';
+import carsUrl from '../../data/cars.json?url';
 import countriesUrl from '../../data/countries.json?url';
 import foodUrl from '../../data/food.json?url';
 import namesUrl from '../../data/names.json?url';
@@ -61,6 +62,13 @@ export const PRACTICE_MODES = [
     url: numbersUrl,
     strategy: 'finite-pack',
     labelKey: 'modes.numbers',
+  },
+  {
+    id: 'cars',
+    group: 'packs',
+    url: carsUrl,
+    strategy: 'finite-pack',
+    labelKey: 'modes.cars',
   },
 ] as const satisfies readonly PracticeModeDescriptor[];
 

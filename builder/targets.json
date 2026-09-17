@@ -64,6 +64,17 @@
       "asset": "numbers.json",
       "enrichment": "none",
       "checks": []
+    },
+    "cars": {
+      "enabled": true,
+      "required": true,
+      "pack": true,
+      "config": "builder/config-cars.json",
+      "dataDir": "builder/data/cars",
+      "output": "web/data/cars.json",
+      "asset": "cars.json",
+      "enrichment": "none",
+      "checks": []
     }
   }
 }

@@ -44,7 +44,8 @@ export type PracticeModeId =
   | 'countries'
   | 'names'
   | 'food'
-  | 'numbers';
+  | 'numbers'
+  | 'cars';
 export interface LetterStat {
   score: number;
   attempts: number;

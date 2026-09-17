@@ -100,7 +100,7 @@ npm run dict:download -- --force    # refresh all enabled targets from the lates
 `builder/targets.json` defines each dictionary target: its builder config,
 intermediate directory, runtime output, release asset name, enrichment mode,
 and validation checks. The manifest ships `words`, `toponyms`, `countries`,
-`names`, `food`, and `numbers`; the latter five are finite curated packs built
+`names`, `food`, `numbers`, and `cars`; the latter six are finite curated packs built
 from matching `builder/data/curated-*.json` sources.
 To update a pack manually, run `npm run dict:download -- --force`, build with
 `npm run dict:build -- --pack`, inspect the target intermediates and generated

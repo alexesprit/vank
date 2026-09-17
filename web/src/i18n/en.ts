@@ -52,6 +52,7 @@ export const en = {
     names: 'Names',
     food: 'Food',
     numbers: 'Numbers',
+    cars: 'Cars and driving',
   },
   metadata: {
     label: 'Word metadata hints',
@@ -134,6 +135,10 @@ export const en = {
       travel: 'Travel',
       culinary: 'Culinary',
       animals: 'Animals',
+      brand: 'Brand',
+      model: 'Model',
+      part: 'Car components',
+      driving: 'Vehicle use',
     },
   },
   progress: {

@@ -10,6 +10,7 @@ builder/data/countries/
 builder/data/names/
 builder/data/food/
 builder/data/numbers/
+builder/data/cars/
 .env
 builder/data/wiktionary.jsonl
 builder/data/raw.json
