@@ -56,6 +56,7 @@ export const ACHIEVEMENT_IDS = [
   'read-dont-guess',
   'flash-reader',
   'first-flash-hit',
+  'flash-reflex',
   'barev-world',
   'yerevan',
   'first-landmark',
@@ -499,6 +500,26 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
       const attempt = first(attempts, (item) =>
         Boolean(isUnrevealedFlash(item) && item.payload.correct),
       );
+      return attempt ? { attempt, evidence: {} } : undefined;
+    },
+  },
+  {
+    id: 'flash-reflex',
+    version: 1,
+    thresholds: {},
+    hidden: false,
+    icon: 'timer',
+    evaluate: ({ attempts }) => {
+      const attempt = first(attempts, (item) => {
+        const { flashExposureMs, flashVisibleDurationMs } = item.payload;
+        return Boolean(
+          isUnrevealedFlash(item) &&
+            item.payload.correct &&
+            flashVisibleDurationMs !== undefined &&
+            flashExposureMs !== undefined &&
+            flashVisibleDurationMs < flashExposureMs,
+        );
+      });
       return attempt ? { attempt, evidence: {} } : undefined;
     },
   },

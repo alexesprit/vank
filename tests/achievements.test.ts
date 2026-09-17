@@ -92,6 +92,7 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
     'read-dont-guess',
     'flash-reader',
     'first-flash-hit',
+    'flash-reflex',
     'barev-world',
     'yerevan',
     'first-landmark',
@@ -210,6 +211,50 @@ it('uses persisted flash baselines and can unlock matching definitions together'
     { id: 'first-flash-hit', triggerAttemptId: 'flash-1' },
     { id: 'barev-world', triggerAttemptId: 'flash-1' },
   ]);
+});
+
+it('unlocks flash reflex only for a correct unrevealed answer before disappearance', () => {
+  const word = known('բարև');
+  const attempt = (
+    visibleDurationMs?: number,
+    revealed = false,
+    correct = true,
+  ) =>
+    completeAttempt(
+      empty(),
+      { word, phase: 'bootstrap' },
+      correct ? word.readingLatin : 'wrong',
+      false,
+      'client',
+      100,
+      200,
+      `flash-reflex-${visibleDurationMs}-${revealed}-${correct}`,
+      'default',
+      { caseMode: 'caps', italic: false },
+      undefined,
+      {
+        baseExposureMs: 1_000,
+        exposureMs: 1_000,
+        visibleDurationMs,
+        revealed,
+      },
+    ).attempt;
+
+  expect(
+    evaluateAchievements([attempt(999)], []).map(({ id }) => id),
+  ).toContain('flash-reflex');
+  expect(
+    evaluateAchievements([attempt(1_000)], []).map(({ id }) => id),
+  ).not.toContain('flash-reflex');
+  expect(
+    evaluateAchievements([attempt()], []).map(({ id }) => id),
+  ).not.toContain('flash-reflex');
+  expect(
+    evaluateAchievements(
+      [attempt(500, true), attempt(500, false, false)],
+      [],
+    ).map(({ id }) => id),
+  ).not.toContain('flash-reflex');
 });
 
 it('unlocks ԲԱՐԵՎ on its first correct reading after earlier failures', () => {

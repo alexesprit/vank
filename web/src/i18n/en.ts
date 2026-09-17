@@ -286,6 +286,11 @@ export const en = {
         title: 'Caught It at a Glance',
         description: 'Correctly read an unrevealed flash prompt.',
       },
+      'flash-reflex': {
+        title: 'Beat the Flash',
+        description:
+          'Submit a correct flash answer before the word disappears.',
+      },
       'barev-world': {
         title: 'Բարև, World!',
         description: 'Correctly read ԲԱՐԵՎ.',
