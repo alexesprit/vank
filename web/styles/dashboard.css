@@ -61,7 +61,7 @@
 
 .stat-help::after,
 .alphabet-cell::before,
-.mode-tooltip {
+.viewport-tooltip {
   position: absolute;
   z-index: 1;
   padding: 8px 12px;
@@ -87,6 +87,22 @@
   width: max-content;
   max-width: min(220px, calc(100vw - 32px));
   content: attr(data-tooltip);
+}
+
+.stat-help[data-viewport-tooltip]::after {
+  display: none;
+}
+
+.viewport-tooltip {
+  position: fixed;
+  z-index: 2;
+  display: block;
+  max-width: min(220px, calc(100vw - 32px));
+}
+
+.viewport-tooltip:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .alphabet-cell::before {
@@ -144,31 +160,10 @@
   display: none;
 }
 
-.mode-tooltip {
-  display: block;
-}
-
-.mode-tooltip:not([hidden]) {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .flash-duration-label .stat-help {
   position: relative;
   top: auto;
   right: auto;
-}
-
-.flash-duration-label .stat-help::after {
-  left: 50%;
-  right: auto;
-  max-width: min(180px, calc(100vw - 32px));
-  transform: translate(-50%, -4px);
-}
-
-.flash-duration-label .stat-help:hover::after,
-.flash-duration-label .stat-help:focus-visible::after {
-  transform: translate(-50%, 0);
 }
 
 .progress-details {

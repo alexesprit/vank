@@ -20,6 +20,7 @@ import { fontName, t, typographyName } from '../i18n/index.ts';
 import type { LanguagePreference } from '../i18n/types.ts';
 import type { Trainer } from '../trainer.ts';
 import { renderSyllables } from './syllable-colors.ts';
+import { mountTooltips } from './tooltip.ts';
 
 const element = <T extends HTMLElement>(id: string) =>
   document.getElementById(id) as T;
@@ -167,43 +168,20 @@ export function mountSettings(
     group.append(new Option(t(mode.labelKey), mode.id));
   }
   practiceMode.replaceChildren(...modeGroups.values());
-  const modeTooltip = element<HTMLElement>('mode-tooltip');
-  for (const [id, key] of [
-    ['adaptive-mode-help', 'modes.adaptiveHint'],
-    ['packs-mode-help', 'modes.packsHint'],
-  ] as const) {
-    const help = element<HTMLElement>(id);
-    const positionTooltip = () => {
-      const { bottom, left, width } = help.getBoundingClientRect();
-      const container = help.closest('.practice-mode-help');
-      const bounds = container?.getBoundingClientRect();
-      const availableWidth = bounds?.width ?? window.innerWidth;
-      const tooltipWidth = Math.min(220, Math.max(0, availableWidth - 32));
-      const minLeft = Math.min(16, availableWidth - tooltipWidth);
-      const maxLeft = Math.max(minLeft, availableWidth - 16 - tooltipWidth);
-      const centeredLeft =
-        left + width / 2 - (bounds?.left ?? 0) - tooltipWidth / 2;
-      modeTooltip.style.left = `${Math.min(
-        maxLeft,
-        Math.max(minLeft, centeredLeft),
-      )}px`;
-      modeTooltip.style.top = `${bottom - (bounds?.top ?? 0) + 8}px`;
-      modeTooltip.style.width = `${tooltipWidth}px`;
-      modeTooltip.textContent = t(key);
-      modeTooltip.hidden = false;
-    };
-    const hideTooltip = () => {
-      modeTooltip.hidden = true;
-    };
-    help.addEventListener('mouseenter', positionTooltip);
-    help.addEventListener('focus', positionTooltip);
-    help.addEventListener('mouseleave', () => {
-      if (document.activeElement !== help) hideTooltip();
-    });
-    help.addEventListener('blur', () => {
-      if (!help.matches(':hover')) hideTooltip();
-    });
-  }
+  mountTooltips([
+    {
+      element: element('adaptive-mode-help'),
+      getText: () => t('modes.adaptiveHint'),
+    },
+    {
+      element: element('packs-mode-help'),
+      getText: () => t('modes.packsHint'),
+    },
+    {
+      element: flashDurationHint,
+      getText: () => t('settings.flashDurationHint'),
+    },
+  ]);
   if (practiceModeFieldset)
     practiceModeFieldset.hidden = PRACTICE_MODES.length < 2;
 

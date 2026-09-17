@@ -13,6 +13,7 @@ import { FONTS } from '../core/settings.ts';
 import { fontName, t, typographyName } from '../i18n/index.ts';
 import type { Trainer } from '../trainer.ts';
 import { applyArmenianFontFamily } from './armenian-font.ts';
+import { mountTooltips } from './tooltip.ts';
 
 const fontFamilyById = new Map(FONTS.map(({ id, family }) => [id, family]));
 const alphabetByUpper = new Map(
@@ -435,6 +436,12 @@ export function mountStatsDialog(
   openDebug: () => Promise<void>,
   trainer: Trainer,
 ) {
+  mountTooltips(
+    ['strong-help', 'accuracy-help', 'verified-help'].map((id) => ({
+      element: element(id),
+      getText: () => element(id).dataset.tooltip ?? '',
+    })),
+  );
   const dialog = element('progress-dialog') as HTMLDialogElement;
   element('progress-open').addEventListener('click', (event) => {
     trainer.markTimingInterrupted();
