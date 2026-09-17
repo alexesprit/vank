@@ -699,6 +699,28 @@ it('shuffles a finite pack before its first word', () => {
   expect(refreshed).not.toBe(first);
 });
 
+it('does not sort finite packs by usefulness before shuffling', () => {
+  const low = { ...word('ԳԱԶ'), usefulnessScore: 0.1 };
+  const high = { ...word('ԶԱԼ'), usefulnessScore: 1 };
+  const selected = createWordSelector([low, high], 'finite-pack')(
+    empty(),
+    0,
+    () => 0,
+  );
+  expect(selected.word).toBe(high);
+});
+
+it('does not sort finite packs by frequency before shuffling', () => {
+  const low = { ...word('ԳԱԶ'), frequencyScore: 0.1 };
+  const high = { ...word('ԶԱԼ'), frequencyScore: 1 };
+  const selected = createWordSelector([low, high], 'finite-pack')(
+    empty(),
+    0,
+    () => 0,
+  );
+  expect(selected.word).toBe(high);
+});
+
 it('creates rich immutable attempt events and real progress metrics', () => {
   const w = word('ՏԱՔՍԻ', 0.2);
   const result = completeAttempt(

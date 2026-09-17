@@ -388,12 +388,7 @@ export function createWordSelector(
       selectAdaptiveWord(words, state, now, random, request, caseMode);
   if (strategy === 'finite-pack') {
     if (!words.length) throw new Error('Cannot train with an empty dictionary');
-    const pack = [...words].sort(
-      (a, b) =>
-        (b.usefulnessScore ?? 0.5) - (a.usefulnessScore ?? 0.5) ||
-        (b.frequencyScore ?? 0.5) - (a.frequencyScore ?? 0.5) ||
-        a.id.localeCompare(b.id),
-    );
+    const pack = [...words];
     let index = 0;
     let needsShuffle = true;
     const shuffle = (random: () => number) => {
