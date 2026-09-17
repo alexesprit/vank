@@ -796,10 +796,30 @@ it('uses the injected selector and records the active practice mode', async () =
   });
 
   expect(selections).toBe(1);
+  expect(trainer.practiceMode.id).toBe('words');
   await trainer.submit(word.readingLatin);
   expect(trainer.state.recent[0]?.payload.practiceMode).toBe('words');
   await trainer.next();
   expect(selections).toBe(2);
+  repo.close();
+});
+
+it('does not count hidden finite-pack categories as visible metadata', async () => {
+  const repo = await openRepository(`trainer-${crypto.randomUUID()}`);
+  const word = {
+    ...recognizable('ՄԱՄԱ'),
+    categories: ['transport'],
+    tags: [],
+  };
+  const trainer = await createTrainer([word], repo, async (font) => font, {
+    metadataHints: true,
+    mode: PRACTICE_MODES[6],
+    selector: () => ({ word, phase: 'training' }),
+  });
+
+  expect(trainer.metadataHintsEnabled).toBe(true);
+  expect(trainer.metadataHintsShown).toBe(false);
+  trainer.dispose();
   repo.close();
 });
 

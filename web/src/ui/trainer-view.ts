@@ -8,7 +8,6 @@ import type {
 import { doNotTrackEnabled } from '../analytics.ts';
 import { TRAINER_CONFIG } from '../core/config.ts';
 import { metadataHintLabels } from '../core/metadata-hints.ts';
-import { getPracticeMode } from '../core/modes.ts';
 import { countCorrectAnswers } from '../core/progress.ts';
 import { availableTypography } from '../core/settings.ts';
 import { t, typographyName } from '../i18n/index.ts';
@@ -286,10 +285,13 @@ export function mountTrainer(
     prompt.style.fontFamily = trainer.font.family;
     prompt.style.fontStyle = trainer.presentation.italic ? 'italic' : 'normal';
     fitPrompt();
+    const practiceMode = trainer.practiceMode;
     const hintRow = element('metadata-hint-row');
     const labels = trainer.metadataHintsEnabled
-      ? metadataHintLabels(word, (key, fallback) =>
-          t(key, { defaultValue: fallback }),
+      ? metadataHintLabels(
+          word,
+          (key, fallback) => t(key, { defaultValue: fallback }),
+          practiceMode.strategy === 'finite-pack',
         )
       : [];
     hintRow.replaceChildren(
@@ -305,7 +307,6 @@ export function mountTrainer(
     if (!element<HTMLDialogElement>('intro-dialog').open)
       trainer.setMetadataHintsShown(labels.length > 0);
     const presentationLabel = element<HTMLButtonElement>('presentation-label');
-    const practiceMode = getPracticeMode(trainer.settings.practiceMode);
     const typography = typographyName(
       trainer.presentation.caseMode,
       trainer.presentation.italic,

@@ -8,8 +8,8 @@
       "ru": 0.1
     },
     "usefulnessScore": 1,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "վրաստան",
@@ -20,8 +20,8 @@
       "ru": 0.1
     },
     "usefulnessScore": 1,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ռուսաստան",
@@ -32,8 +32,8 @@
       "ru": 0.35
     },
     "usefulnessScore": 1,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "իրան",
@@ -44,8 +44,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 1,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "թուրքիա",
@@ -56,8 +56,8 @@
       "ru": 0.8
     },
     "usefulnessScore": 1,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ադրբեջան",
@@ -68,8 +68,8 @@
       "ru": 0.75
     },
     "usefulnessScore": 1,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ալբանիա",
@@ -80,8 +80,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.82,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "ալժիր",
@@ -92,8 +92,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.75,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "անգոլա",
@@ -104,8 +104,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.7,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "ավստրալիա",
@@ -116,8 +116,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["oceania"]
   },
   {
     "word": "ավստրիա",
@@ -128,8 +128,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "արգենտինա",
@@ -140,8 +140,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "աֆղանստան",
@@ -152,8 +152,8 @@
       "ru": 0.75
     },
     "usefulnessScore": 0.85,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "բահրեյն",
@@ -164,8 +164,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.72,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "բանգլադեշ",
@@ -176,8 +176,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.78,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "բելառուս",
@@ -188,8 +188,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.95,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "բելգիա",
@@ -200,8 +200,8 @@
       "ru": 0.82
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "բենին",
@@ -212,8 +212,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.65,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "բուլղարիա",
@@ -224,8 +224,8 @@
       "ru": 0.72
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "բուրունդի",
@@ -236,8 +236,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.62,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "բրազիլ",
@@ -248,8 +248,8 @@
       "ru": 0.75
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "գաբոն",
@@ -260,8 +260,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.65,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "գանա",
@@ -272,8 +272,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.7,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "գերմանիա",
@@ -284,8 +284,8 @@
       "ru": 0.88
     },
     "usefulnessScore": 0.98,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "գվատեմալա",
@@ -296,8 +296,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.75,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["north-america"]
   },
   {
     "word": "գվինեա",
@@ -308,8 +308,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.68,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "դանիա",
@@ -320,8 +320,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "եգիպտոս",
@@ -332,8 +332,8 @@
       "ru": 0.5
     },
     "usefulnessScore": 0.95,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "եթովպիա",
@@ -344,8 +344,8 @@
       "ru": 0.45
     },
     "usefulnessScore": 0.8,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "զամբիա",
@@ -356,8 +356,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.68,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "զիմբաբվե",
@@ -368,8 +368,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.72,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "էկվադոր",
@@ -380,8 +380,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.78,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "էստոնիա",
@@ -392,8 +392,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "թաիլանդ",
@@ -404,8 +404,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "թունիս",
@@ -416,8 +416,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.78,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "թուրքմենստան",
@@ -428,8 +428,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ինդոնեզիա",
@@ -440,8 +440,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "իռլանդիա",
@@ -452,8 +452,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "իսլանդիա",
@@ -464,8 +464,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.86,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "իսպանիա",
@@ -476,8 +476,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.97,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "իսրայել",
@@ -488,8 +488,8 @@
       "ru": 0.8
     },
     "usefulnessScore": 0.95,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "իտալիա",
@@ -500,8 +500,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.98,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "իրաք",
@@ -512,8 +512,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "լատվիա",
@@ -524,8 +524,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "լեհաստան",
@@ -536,8 +536,8 @@
       "ru": 0.05
     },
     "usefulnessScore": 0.94,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "լիբանան",
@@ -548,8 +548,8 @@
       "ru": 0.65
     },
     "usefulnessScore": 0.86,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "լիբիա",
@@ -560,8 +560,8 @@
       "ru": 0.88
     },
     "usefulnessScore": 0.78,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "լիտվա",
@@ -572,8 +572,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "լյուքսեմբուրգ",
@@ -584,8 +584,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.78,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "խորվաթիա",
@@ -596,8 +596,8 @@
       "ru": 0.88
     },
     "usefulnessScore": 0.86,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "կամբոջա",
@@ -608,8 +608,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.78,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "կամերուն",
@@ -620,8 +620,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.72,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "կանադա",
@@ -632,8 +632,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.95,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["north-america"]
   },
   {
     "word": "կատար",
@@ -644,8 +644,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "կիպրոս",
@@ -656,8 +656,8 @@
       "ru": 0.65
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "կոլումբիա",
@@ -668,8 +668,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.84,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "կոնգո",
@@ -680,8 +680,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.72,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "կուբա",
@@ -692,8 +692,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["north-america"]
   },
   {
     "word": "հնդկաստան",
@@ -704,8 +704,8 @@
       "ru": 0.05
     },
     "usefulnessScore": 0.95,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "հորդանան",
@@ -716,8 +716,8 @@
       "ru": 0.25
     },
     "usefulnessScore": 0.82,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "հունաստան",
@@ -728,8 +728,8 @@
       "ru": 0.05
     },
     "usefulnessScore": 0.93,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "հունգարիա",
@@ -740,8 +740,8 @@
       "ru": 0.25
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "ղազախստան",
@@ -752,8 +752,8 @@
       "ru": 0.88
     },
     "usefulnessScore": 0.95,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ղրղզստան",
@@ -764,8 +764,8 @@
       "ru": 0.7
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ճապոնիա",
@@ -776,8 +776,8 @@
       "ru": 0.15
     },
     "usefulnessScore": 0.97,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "մալայզիա",
@@ -788,8 +788,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.84,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "մալթա",
@@ -800,8 +800,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.82,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "մալի",
@@ -812,8 +812,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.68,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "մավրիտանիա",
@@ -824,8 +824,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.62,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "մարոկկո",
@@ -836,8 +836,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.86,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "մեքսիկա",
@@ -848,8 +848,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.94,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["north-america"]
   },
   {
     "word": "մոնղոլիա",
@@ -860,8 +860,8 @@
       "ru": 0.82
     },
     "usefulnessScore": 0.86,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "նեպալ",
@@ -872,8 +872,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.8,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "նիգերիա",
@@ -884,8 +884,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.8,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "նիդերլանդներ",
@@ -896,8 +896,8 @@
       "ru": 0.7
     },
     "usefulnessScore": 0.94,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "նիկարագուա",
@@ -908,8 +908,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.72,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["north-america"]
   },
   {
     "word": "նորվեգիա",
@@ -920,8 +920,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "շվեդիա",
@@ -932,8 +932,8 @@
       "ru": 0.8
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "շվեյցարիա",
@@ -944,8 +944,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.94,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "չեխիա",
@@ -956,8 +956,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "չեռնոգորիա",
@@ -968,8 +968,8 @@
       "ru": 0.88
     },
     "usefulnessScore": 0.84,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "չիլի",
@@ -980,8 +980,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.84,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "չինաստան",
@@ -992,8 +992,8 @@
       "ru": 0.05
     },
     "usefulnessScore": 0.98,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "պանամա",
@@ -1004,8 +1004,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.78,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["north-america"]
   },
   {
     "word": "պարագվայ",
@@ -1016,8 +1016,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.72,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "պերու",
@@ -1028,8 +1028,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.82,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "պորտուգալիա",
@@ -1040,8 +1040,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "ռուանդա",
@@ -1052,8 +1052,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.7,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "ռումինիա",
@@ -1064,8 +1064,8 @@
       "ru": 0.84
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "սենեգալ",
@@ -1076,8 +1076,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.72,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "սերբիա",
@@ -1088,8 +1088,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "սլովակիա",
@@ -1100,8 +1100,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "սլովենիա",
@@ -1112,8 +1112,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.86,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "վենեսուելա",
@@ -1124,8 +1124,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.8,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "վիետնամ",
@@ -1136,8 +1136,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.88,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "տաջիկստան",
@@ -1148,8 +1148,8 @@
       "ru": 0.88
     },
     "usefulnessScore": 0.9,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ուգանդա",
@@ -1160,8 +1160,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.7,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["africa"]
   },
   {
     "word": "ուզբեկստան",
@@ -1172,8 +1172,8 @@
       "ru": 0.95
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ուկրաինա",
@@ -1184,8 +1184,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.98,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "ուրուգվայ",
@@ -1196,8 +1196,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.74,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["south-america"]
   },
   {
     "word": "քուվեյթ",
@@ -1208,8 +1208,8 @@
       "ru": 0.92
     },
     "usefulnessScore": 0.8,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "օման",
@@ -1220,8 +1220,8 @@
       "ru": 0.98
     },
     "usefulnessScore": 0.8,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ֆիլիպիններ",
@@ -1232,8 +1232,8 @@
       "ru": 0.65
     },
     "usefulnessScore": 0.84,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["asia"]
   },
   {
     "word": "ֆինլանդիա",
@@ -1244,8 +1244,8 @@
       "ru": 0.9
     },
     "usefulnessScore": 0.92,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   },
   {
     "word": "ֆրանսիա",
@@ -1256,7 +1256,7 @@
       "ru": 0.82
     },
     "usefulnessScore": 0.98,
-    "categories": ["place-name"],
-    "tags": ["country"]
+    "categories": [],
+    "tags": ["europe"]
   }
 ]

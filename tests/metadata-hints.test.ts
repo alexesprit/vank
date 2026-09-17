@@ -25,7 +25,7 @@ it('normalizes and deduplicates category and tag hints in source order', () => {
     { key: 'metadata.tags.proper-name', fallback: 'Proper Name' },
   ]);
   expect(
-    metadataHints({ categories: [], tags: ['loanword', 'noun', 'Europe'] }),
+    metadataHints({ categories: [], tags: ['loanword', 'noun', 'Atlantis'] }),
   ).toEqual([{ key: 'metadata.tags.loanword', fallback: 'Loanword' }]);
   expect(
     metadataHintLabels(
@@ -43,6 +43,19 @@ it('normalizes and deduplicates category and tag hints in source order', () => {
   ).toEqual(['Food', 'Restaurant', 'Proper name']);
   expect(hasMetadataHints(word)).toBe(true);
   expect(hasMetadataHints({ categories: [], tags: [] })).toBe(false);
+  expect(metadataHints(word, true)).toEqual([
+    { key: 'metadata.tags.proper-name', fallback: 'Proper Name' },
+  ]);
+  expect(
+    metadataHintLabels(
+      { categories: ['place-name'], tags: ['europe'] },
+      (_key, fallback) => fallback,
+      true,
+    ),
+  ).toEqual(['Europe']);
+  expect(hasMetadataHints({ categories: ['food'], tags: [] }, true)).toBe(
+    false,
+  );
 });
 
 it('whitelists and translates food tags', async () => {

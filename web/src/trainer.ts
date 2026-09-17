@@ -81,6 +81,8 @@ export async function createTrainer(
   }
   const installationId = clientId as string;
   const correctAnswers = () => countCorrectAnswers(state.recent);
+  const hasVisibleMetadataHints = (word: Word) =>
+    hasMetadataHints(word, mode.strategy === 'finite-pack');
   let pendingFont = fontLoader(selectFont(settings, correctAnswers()));
   let presentation = selectTypography(settings, correctAnswers());
   let current = select(
@@ -97,7 +99,8 @@ export async function createTrainer(
   let interruptedAtFirstAnswer = false;
   let flashChange: (() => void) | undefined;
   const hintsEnabled = () => options.metadataHints ?? settings.metadataHints;
-  let metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+  let metadataHintsShown =
+    hintsEnabled() && hasVisibleMetadataHints(current.word);
   let metadataHintsCaptured = false;
   let result: Evaluation | undefined,
     lastScoreUpdate: ScoreUpdateDiagnostics | undefined;
@@ -152,7 +155,8 @@ export async function createTrainer(
     font = await latestFont(pendingFont);
     presentation = nextPresentation;
     current = next;
-    metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+    metadataHintsShown =
+      hintsEnabled() && hasVisibleMetadataHints(current.word);
     metadataHintsCaptured = false;
     result = undefined;
     lastAchievementUnlocks = [];
@@ -171,6 +175,9 @@ export async function createTrainer(
     },
     get settings() {
       return settings;
+    },
+    get practiceMode() {
+      return mode;
     },
     get introShown() {
       return introShown;
@@ -409,7 +416,8 @@ export async function createTrainer(
           result = undefined;
           lastScoreUpdate = undefined;
           lastAchievementUnlocks = [];
-          metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+          metadataHintsShown =
+            hintsEnabled() && hasVisibleMetadataHints(current.word);
           metadataHintsCaptured = false;
           flash.reset();
           if (wasStarted) {
@@ -427,7 +435,8 @@ export async function createTrainer(
           if (wasPaused) pauseFlash();
         }
         if (!metadataHintsCaptured)
-          metadataHintsShown = hintsEnabled() && hasMetadataHints(current.word);
+          metadataHintsShown =
+            hintsEnabled() && hasVisibleMetadataHints(current.word);
       };
       return practiceModeChanged ? serialize(applySettings) : applySettings();
     },

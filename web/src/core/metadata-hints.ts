@@ -18,6 +18,12 @@ export const DISPLAYABLE_TAGS = new Set([
   'loan-from-russian',
   'geography',
   'country',
+  'europe',
+  'asia',
+  'africa',
+  'north-america',
+  'south-america',
+  'oceania',
   'dairy',
   'dish',
   'drink',
@@ -61,6 +67,7 @@ export const DISPLAYABLE_TAGS = new Set([
   'travel',
   'culinary',
   'animals',
+  'nature',
   'brand',
   'model',
   'part',
@@ -82,7 +89,10 @@ const titleCase = (value: string) =>
     .map((part) => part[0]?.toLocaleUpperCase() + part.slice(1))
     .join(' ');
 
-export function metadataHints(word: Pick<Word, 'categories' | 'tags'>) {
+export function metadataHints(
+  word: Pick<Word, 'categories' | 'tags'>,
+  hideCategories = false,
+) {
   const hints: MetadataHint[] = [];
   const seen = new Set<string>();
   const add = (namespace: 'categories' | 'tags', value: string) => {
@@ -90,6 +100,7 @@ export function metadataHints(word: Pick<Word, 'categories' | 'tags'>) {
     if (
       !normalized ||
       seen.has(normalized) ||
+      (namespace === 'categories' && hideCategories) ||
       (namespace === 'tags' && !DISPLAYABLE_TAGS.has(normalized))
     )
       return;
@@ -108,9 +119,10 @@ export function metadataHintLabels(
   word: Pick<Word, 'categories' | 'tags'>,
   translate: (key: string, fallback: string) => string = (_key, fallback) =>
     fallback,
+  hideCategories = false,
 ) {
   const seen = new Set<string>();
-  return metadataHints(word).flatMap(({ key, fallback }) => {
+  return metadataHints(word, hideCategories).flatMap(({ key, fallback }) => {
     const label = translate(key, fallback);
     const normalized = label.normalize('NFC').trim().toLocaleLowerCase();
     if (!normalized || seen.has(normalized)) return [];
@@ -119,5 +131,7 @@ export function metadataHintLabels(
   });
 }
 
-export const hasMetadataHints = (word: Pick<Word, 'categories' | 'tags'>) =>
-  metadataHints(word).length > 0;
+export const hasMetadataHints = (
+  word: Pick<Word, 'categories' | 'tags'>,
+  hideCategories = false,
+) => metadataHints(word, hideCategories).length > 0;
