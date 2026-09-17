@@ -7,7 +7,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": [],
     "tags": ["asia"]
   },
@@ -19,7 +18,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": [],
     "tags": ["asia"]
   },
@@ -31,7 +29,6 @@
     "familiarity": {
       "ru": 0.35
     },
-    "usefulnessScore": 1,
     "categories": [],
     "tags": ["europe"]
   },
@@ -43,7 +40,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 1,
     "categories": [],
     "tags": ["asia"]
   },
@@ -55,7 +51,6 @@
     "familiarity": {
       "ru": 0.8
     },
-    "usefulnessScore": 1,
     "categories": [],
     "tags": ["asia"]
   },
@@ -67,7 +62,6 @@
     "familiarity": {
       "ru": 0.75
     },
-    "usefulnessScore": 1,
     "categories": [],
     "tags": ["asia"]
   },
@@ -79,7 +73,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.82,
     "categories": [],
     "tags": ["europe"]
   },
@@ -91,7 +84,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.75,
     "categories": [],
     "tags": ["africa"]
   },
@@ -103,7 +95,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.7,
     "categories": [],
     "tags": ["africa"]
   },
@@ -115,7 +106,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["oceania"]
   },
@@ -127,7 +117,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["europe"]
   },
@@ -139,7 +128,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -151,7 +139,6 @@
     "familiarity": {
       "ru": 0.75
     },
-    "usefulnessScore": 0.85,
     "categories": [],
     "tags": ["asia"]
   },
@@ -163,7 +150,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.72,
     "categories": [],
     "tags": ["asia"]
   },
@@ -175,7 +161,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.78,
     "categories": [],
     "tags": ["asia"]
   },
@@ -187,7 +172,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.95,
     "categories": [],
     "tags": ["europe"]
   },
@@ -199,7 +183,6 @@
     "familiarity": {
       "ru": 0.82
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["europe"]
   },
@@ -211,7 +194,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.65,
     "categories": [],
     "tags": ["africa"]
   },
@@ -223,7 +205,6 @@
     "familiarity": {
       "ru": 0.72
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["europe"]
   },
@@ -235,7 +216,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.62,
     "categories": [],
     "tags": ["africa"]
   },
@@ -247,7 +227,6 @@
     "familiarity": {
       "ru": 0.75
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -259,7 +238,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.65,
     "categories": [],
     "tags": ["africa"]
   },
@@ -271,7 +249,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.7,
     "categories": [],
     "tags": ["africa"]
   },
@@ -283,7 +260,6 @@
     "familiarity": {
       "ru": 0.88
     },
-    "usefulnessScore": 0.98,
     "categories": [],
     "tags": ["europe"]
   },
@@ -295,7 +271,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.75,
     "categories": [],
     "tags": ["north-america"]
   },
@@ -307,7 +282,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.68,
     "categories": [],
     "tags": ["africa"]
   },
@@ -319,7 +293,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["europe"]
   },
@@ -331,7 +304,6 @@
     "familiarity": {
       "ru": 0.5
     },
-    "usefulnessScore": 0.95,
     "categories": [],
     "tags": ["africa"]
   },
@@ -343,7 +315,6 @@
     "familiarity": {
       "ru": 0.45
     },
-    "usefulnessScore": 0.8,
     "categories": [],
     "tags": ["africa"]
   },
@@ -355,7 +326,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.68,
     "categories": [],
     "tags": ["africa"]
   },
@@ -367,7 +337,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.72,
     "categories": [],
     "tags": ["africa"]
   },
@@ -379,7 +348,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.78,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -391,7 +359,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["europe"]
   },
@@ -403,7 +370,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["asia"]
   },
@@ -415,7 +381,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.78,
     "categories": [],
     "tags": ["africa"]
   },
@@ -427,7 +392,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["asia"]
   },
@@ -439,7 +403,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["asia"]
   },
@@ -451,7 +414,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["europe"]
   },
@@ -463,7 +425,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.86,
     "categories": [],
     "tags": ["europe"]
   },
@@ -475,7 +436,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.97,
     "categories": [],
     "tags": ["europe"]
   },
@@ -487,7 +447,6 @@
     "familiarity": {
       "ru": 0.8
     },
-    "usefulnessScore": 0.95,
     "categories": [],
     "tags": ["asia"]
   },
@@ -499,7 +458,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.98,
     "categories": [],
     "tags": ["europe"]
   },
@@ -511,7 +469,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["asia"]
   },
@@ -523,7 +480,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["europe"]
   },
@@ -535,7 +491,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.94,
     "categories": [],
     "tags": ["europe"]
   },
@@ -547,7 +502,6 @@
     "familiarity": {
       "ru": 0.65
     },
-    "usefulnessScore": 0.86,
     "categories": [],
     "tags": ["asia"]
   },
@@ -559,7 +513,6 @@
     "familiarity": {
       "ru": 0.88
     },
-    "usefulnessScore": 0.78,
     "categories": [],
     "tags": ["africa"]
   },
@@ -571,7 +524,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["europe"]
   },
@@ -583,7 +535,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.78,
     "categories": [],
     "tags": ["europe"]
   },
@@ -595,7 +546,6 @@
     "familiarity": {
       "ru": 0.88
     },
-    "usefulnessScore": 0.86,
     "categories": [],
     "tags": ["europe"]
   },
@@ -607,7 +557,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.78,
     "categories": [],
     "tags": ["asia"]
   },
@@ -619,7 +568,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.72,
     "categories": [],
     "tags": ["africa"]
   },
@@ -631,7 +579,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.95,
     "categories": [],
     "tags": ["north-america"]
   },
@@ -643,7 +590,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["asia"]
   },
@@ -655,7 +601,6 @@
     "familiarity": {
       "ru": 0.65
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["asia"]
   },
@@ -667,7 +612,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.84,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -679,7 +623,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.72,
     "categories": [],
     "tags": ["africa"]
   },
@@ -691,7 +634,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["north-america"]
   },
@@ -703,7 +645,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.95,
     "categories": [],
     "tags": ["asia"]
   },
@@ -715,7 +656,6 @@
     "familiarity": {
       "ru": 0.25
     },
-    "usefulnessScore": 0.82,
     "categories": [],
     "tags": ["asia"]
   },
@@ -727,7 +667,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.93,
     "categories": [],
     "tags": ["europe"]
   },
@@ -739,7 +678,6 @@
     "familiarity": {
       "ru": 0.25
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["europe"]
   },
@@ -751,7 +689,6 @@
     "familiarity": {
       "ru": 0.88
     },
-    "usefulnessScore": 0.95,
     "categories": [],
     "tags": ["asia"]
   },
@@ -763,7 +700,6 @@
     "familiarity": {
       "ru": 0.7
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["asia"]
   },
@@ -775,7 +711,6 @@
     "familiarity": {
       "ru": 0.15
     },
-    "usefulnessScore": 0.97,
     "categories": [],
     "tags": ["asia"]
   },
@@ -787,7 +722,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.84,
     "categories": [],
     "tags": ["asia"]
   },
@@ -799,7 +733,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.82,
     "categories": [],
     "tags": ["europe"]
   },
@@ -811,7 +744,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.68,
     "categories": [],
     "tags": ["africa"]
   },
@@ -823,7 +755,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.62,
     "categories": [],
     "tags": ["africa"]
   },
@@ -835,7 +766,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.86,
     "categories": [],
     "tags": ["africa"]
   },
@@ -847,7 +777,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.94,
     "categories": [],
     "tags": ["north-america"]
   },
@@ -859,7 +788,6 @@
     "familiarity": {
       "ru": 0.82
     },
-    "usefulnessScore": 0.86,
     "categories": [],
     "tags": ["asia"]
   },
@@ -871,7 +799,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.8,
     "categories": [],
     "tags": ["asia"]
   },
@@ -883,7 +810,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.8,
     "categories": [],
     "tags": ["africa"]
   },
@@ -895,7 +821,6 @@
     "familiarity": {
       "ru": 0.7
     },
-    "usefulnessScore": 0.94,
     "categories": [],
     "tags": ["europe"]
   },
@@ -907,7 +832,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.72,
     "categories": [],
     "tags": ["north-america"]
   },
@@ -919,7 +843,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["europe"]
   },
@@ -931,7 +854,6 @@
     "familiarity": {
       "ru": 0.8
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["europe"]
   },
@@ -943,7 +865,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.94,
     "categories": [],
     "tags": ["europe"]
   },
@@ -955,7 +876,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["europe"]
   },
@@ -967,7 +887,6 @@
     "familiarity": {
       "ru": 0.88
     },
-    "usefulnessScore": 0.84,
     "categories": [],
     "tags": ["europe"]
   },
@@ -979,7 +898,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.84,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -991,7 +909,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.98,
     "categories": [],
     "tags": ["asia"]
   },
@@ -1003,7 +920,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.78,
     "categories": [],
     "tags": ["north-america"]
   },
@@ -1015,7 +931,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.72,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -1027,7 +942,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.82,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -1039,7 +953,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["europe"]
   },
@@ -1051,7 +964,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.7,
     "categories": [],
     "tags": ["africa"]
   },
@@ -1063,7 +975,6 @@
     "familiarity": {
       "ru": 0.84
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["europe"]
   },
@@ -1075,7 +986,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.72,
     "categories": [],
     "tags": ["africa"]
   },
@@ -1087,7 +997,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["europe"]
   },
@@ -1099,7 +1008,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["europe"]
   },
@@ -1111,7 +1019,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.86,
     "categories": [],
     "tags": ["europe"]
   },
@@ -1123,7 +1030,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.8,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -1135,7 +1041,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.88,
     "categories": [],
     "tags": ["asia"]
   },
@@ -1147,7 +1052,6 @@
     "familiarity": {
       "ru": 0.88
     },
-    "usefulnessScore": 0.9,
     "categories": [],
     "tags": ["asia"]
   },
@@ -1159,7 +1063,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.7,
     "categories": [],
     "tags": ["africa"]
   },
@@ -1171,7 +1074,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["asia"]
   },
@@ -1183,7 +1085,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.98,
     "categories": [],
     "tags": ["europe"]
   },
@@ -1195,7 +1096,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.74,
     "categories": [],
     "tags": ["south-america"]
   },
@@ -1207,7 +1107,6 @@
     "familiarity": {
       "ru": 0.92
     },
-    "usefulnessScore": 0.8,
     "categories": [],
     "tags": ["asia"]
   },
@@ -1219,7 +1118,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.8,
     "categories": [],
     "tags": ["asia"]
   },
@@ -1231,7 +1129,6 @@
     "familiarity": {
       "ru": 0.65
     },
-    "usefulnessScore": 0.84,
     "categories": [],
     "tags": ["asia"]
   },
@@ -1243,7 +1140,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.92,
     "categories": [],
     "tags": ["europe"]
   },
@@ -1255,7 +1151,6 @@
     "familiarity": {
       "ru": 0.82
     },
-    "usefulnessScore": 0.98,
     "categories": [],
     "tags": ["europe"]
   }

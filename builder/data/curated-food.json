@@ -7,7 +7,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -19,7 +18,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -31,7 +29,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -43,7 +40,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -55,7 +51,6 @@
     "familiarity": {
       "ru": 0.15
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -67,7 +62,6 @@
     "familiarity": {
       "ru": 0.4
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -79,7 +73,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -91,7 +84,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -103,7 +95,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -115,7 +106,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -127,7 +117,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -139,7 +128,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -151,7 +139,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -163,7 +150,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -175,7 +161,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -187,7 +172,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.8,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -199,7 +183,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.75,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -211,7 +194,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.75,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -223,7 +205,6 @@
     "familiarity": {
       "ru": 0.75
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -235,7 +216,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -247,7 +227,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -259,7 +238,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -271,7 +249,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -283,7 +260,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -295,7 +271,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -307,7 +282,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -319,7 +293,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -331,7 +304,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -343,7 +315,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -355,7 +326,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["fruit"]
   },
@@ -367,7 +337,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -379,7 +348,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -391,7 +359,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -403,7 +370,6 @@
     "familiarity": {
       "ru": 0.75
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -415,7 +381,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -427,7 +392,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -439,7 +403,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -451,7 +414,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -463,7 +425,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.8,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -475,7 +436,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -487,7 +447,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -499,7 +458,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -511,7 +469,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -523,7 +480,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -535,7 +491,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.75,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -547,7 +502,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.8,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -559,7 +513,6 @@
     "familiarity": {
       "ru": 0.15
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -571,7 +524,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -583,7 +535,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.8,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -595,7 +546,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.75,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -607,7 +557,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -619,7 +568,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -631,7 +579,6 @@
     "familiarity": {
       "ru": 0.25
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -643,7 +590,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -655,7 +601,6 @@
     "familiarity": {
       "ru": 0.05
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -667,7 +612,6 @@
     "familiarity": {
       "ru": 0.65
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -679,7 +623,6 @@
     "familiarity": {
       "ru": 0.55
     },
-    "usefulnessScore": 0.7,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -691,7 +634,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.75,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -703,7 +645,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -715,7 +656,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["vegetable"]
   },
@@ -727,7 +667,6 @@
     "familiarity": {
       "ru": 0.25
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -739,7 +678,6 @@
     "familiarity": {
       "ru": 0.8
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -751,7 +689,6 @@
     "familiarity": {
       "ru": 0.3
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -763,7 +700,6 @@
     "familiarity": {
       "ru": 0.85
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -775,7 +711,6 @@
     "familiarity": {
       "ru": 0.2
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -787,7 +722,6 @@
     "familiarity": {
       "ru": 0.85
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -799,7 +733,6 @@
     "familiarity": {
       "ru": 0.8
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -811,7 +744,6 @@
     "familiarity": {
       "ru": 0.55
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -823,7 +755,6 @@
     "familiarity": {
       "ru": 0.75
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dish", "bakery"]
   },
@@ -835,7 +766,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dish", "bakery"]
   },
@@ -847,7 +777,6 @@
     "familiarity": {
       "ru": 0.35
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish", "bakery"]
   },
@@ -859,7 +788,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -871,7 +799,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -883,7 +810,6 @@
     "familiarity": {
       "ru": 0.7
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -895,7 +821,6 @@
     "familiarity": {
       "ru": 0.25
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -907,7 +832,6 @@
     "familiarity": {
       "ru": 0.75
     },
-    "usefulnessScore": 0.8,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -919,7 +843,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish", "bakery"]
   },
@@ -931,7 +854,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -943,7 +865,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -955,7 +876,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -967,7 +887,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -979,7 +898,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -991,7 +909,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1003,7 +920,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.8,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1015,7 +931,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1027,7 +942,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1039,7 +953,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1051,7 +964,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1063,7 +975,6 @@
     "familiarity": {
       "ru": 0.9
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1075,7 +986,6 @@
     "familiarity": {
       "ru": 0.95
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1087,7 +997,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1099,7 +1008,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["dish"]
   },
@@ -1111,7 +1019,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["bakery"]
   },
@@ -1123,7 +1030,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dairy"]
   },
@@ -1135,7 +1041,6 @@
     "familiarity": {
       "ru": 0.45
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["dairy"]
   },
@@ -1147,7 +1052,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 1,
     "categories": ["food"],
     "tags": ["dairy"]
   },
@@ -1159,7 +1063,6 @@
     "familiarity": {
       "ru": 0.35
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["dairy", "drink"]
   },
@@ -1171,7 +1074,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["grain"]
   },
@@ -1183,7 +1085,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["drink"]
   },
@@ -1195,7 +1096,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.95,
     "categories": ["food"],
     "tags": ["drink"]
   },
@@ -1207,7 +1107,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["bakery"]
   },
@@ -1219,7 +1118,6 @@
     "familiarity": {
       "ru": 0.98
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["bakery"]
   },
@@ -1231,7 +1129,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["bakery"]
   },
@@ -1243,7 +1140,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["bakery"]
   },
@@ -1255,7 +1151,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["grain"]
   },
@@ -1267,7 +1162,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.8,
     "categories": ["food"],
     "tags": ["grain"]
   },
@@ -1279,7 +1173,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.85,
     "categories": ["food"],
     "tags": ["grain"]
   },
@@ -1291,7 +1184,6 @@
     "familiarity": {
       "ru": 0.1
     },
-    "usefulnessScore": 0.9,
     "categories": ["food"],
     "tags": ["grain"]
   }
