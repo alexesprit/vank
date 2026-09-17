@@ -160,7 +160,8 @@ export const en = {
     accuracyHint: 'Accuracy for the last 50 attempts counted in these stats.',
     verifiedHint:
       'Accuracy on unfamiliar words within those 50 attempts, where memory provides less help.',
-    needsPractice: 'Needs practice',
+    needsPractice: 'Letters to practice',
+    needsPracticeHint: 'Click a letter to practice words with it.',
     practiceLetter: 'Practice words with {{letter}}',
     letterMissing:
       'There are no words with {{letter}} in the current word list.',
@@ -196,7 +197,7 @@ export const en = {
     sessionWords_few: 'Words this session: {{count}}',
     sessionWords_many: 'Words this session: {{count}}',
     sessionWords_other: 'Words this session: {{count}}',
-    keepGoing: 'Keep it up!',
+    keepGoing: 'No letters need review',
     start: 'Start with the first word',
     fontAccuracy_one: 'Accuracy: {{accuracy}} · {{count}} attempt',
     fontAccuracy_few: 'Accuracy: {{accuracy}} · {{count}} attempts',

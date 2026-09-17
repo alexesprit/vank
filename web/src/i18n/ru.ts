@@ -157,7 +157,8 @@ export const ru = {
       'Точность по последним 50 попыткам, учитываемым в этой статистике.',
     verifiedHint:
       'Точность по незнакомым словам среди этих 50 попыток: здесь подсказка по памяти помогает меньше.',
-    needsPractice: 'Нужна практика',
+    needsPractice: 'Буквы для практики',
+    needsPracticeHint: 'Нажмите на букву, чтобы потренировать слова с ней.',
     practiceLetter: 'Практиковать слова с буквой {{letter}}',
     letterMissing: 'В текущей подборке нет слов с буквой {{letter}}.',
     letterUnavailable: 'Другого слова с буквой {{letter}} не нашлось.',
@@ -192,7 +193,7 @@ export const ru = {
     sessionWords_few: 'Слов за сессию: {{count}}',
     sessionWords_many: 'Слов за сессию: {{count}}',
     sessionWords_other: 'Слов за сессию: {{count}}',
-    keepGoing: 'Так держать!',
+    keepGoing: 'Нет букв для повторения',
     start: 'Начните с первого слова',
     fontAccuracy_one: 'Точность: {{accuracy}} · {{count}} попытка',
     fontAccuracy_few: 'Точность: {{accuracy}} · {{count}} попытки',

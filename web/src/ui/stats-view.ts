@@ -147,6 +147,9 @@ export function renderStats(
   element('strong-help').dataset.tooltip = t('progress.strongHint');
   element('accuracy-help').dataset.tooltip = t('progress.accuracyHint');
   element('verified-help').dataset.tooltip = t('progress.verifiedHint');
+  const needsPracticeHelp = element('needs-practice-help');
+  needsPracticeHelp.hidden = stats.weakLetters.length === 0;
+  needsPracticeHelp.dataset.tooltip = t('progress.needsPracticeHint');
   for (const [id, value] of Object.entries({
     introduced: stats.introduced,
     strong: stats.strong,
@@ -437,7 +440,12 @@ export function mountStatsDialog(
   trainer: Trainer,
 ) {
   mountTooltips(
-    ['strong-help', 'accuracy-help', 'verified-help'].map((id) => ({
+    [
+      'strong-help',
+      'accuracy-help',
+      'verified-help',
+      'needs-practice-help',
+    ].map((id) => ({
       element: element(id),
       getText: () => element(id).dataset.tooltip ?? '',
     })),
