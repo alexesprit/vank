@@ -254,6 +254,8 @@ export function mountTrainer(
   const wordWrap = element('word-wrap');
   const prompt = element('word');
   const flashReveal = element<HTMLButtonElement>('flash-reveal');
+  const presentationTitle = element('presentation-title');
+  const presentationSubtitle = element('presentation-subtitle');
   const sessionStart = trainer.state.recent.length;
   const fitPrompt = () => {
     const availableWidth = wordWrap.clientWidth;
@@ -308,12 +310,14 @@ export function mountTrainer(
       trainer.presentation.caseMode,
       trainer.presentation.italic,
     );
-    presentationLabel.textContent =
+    const presentationMode =
       practiceMode.strategy === 'adaptive'
-        ? t('trainer.adaptive', { mode: typography })
-        : `${t(practiceMode.labelKey)} · ${typography}`;
+        ? t('trainer.adaptive')
+        : t(practiceMode.labelKey);
+    presentationTitle.textContent = presentationMode;
+    presentationSubtitle.textContent = typography;
     presentationLabel.ariaLabel = t('trainer.changeTypography', {
-      label: presentationLabel.textContent,
+      label: `${presentationMode} · ${typography}`,
     });
     presentationLabel.disabled =
       trainer.flashHidden ||

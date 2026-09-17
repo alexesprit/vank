@@ -23,7 +23,7 @@ export const en = {
   },
   trainer: {
     practice: 'Reading practice',
-    adaptive: 'Adaptive practice · {{mode}}',
+    adaptive: 'Adaptive practice',
     changeTypography: 'Change typography: {{label}}',
     answer: 'How is this word pronounced?',
     answerScripts: 'Use Cyrillic or Latin letters',

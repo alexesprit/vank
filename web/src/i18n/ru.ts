@@ -18,7 +18,7 @@ export const ru = {
   },
   trainer: {
     practice: 'Практика чтения',
-    adaptive: 'Адаптивная практика · {{mode}}',
+    adaptive: 'Адаптивная практика',
     changeTypography: 'Сменить начертание: {{label}}',
     answer: 'Как читается слово?',
     answerScripts: 'Кириллицей или латиницей',
