@@ -13,6 +13,7 @@ import {
   parseAudience,
   shortlistAudience,
 } from './audience.ts';
+import { applyWordBlacklist, parseWordBlacklist } from './blacklist.ts';
 import { type EnrichmentProvider, enrichWords } from './enrichment.ts';
 import {
   downloadSource,
@@ -243,6 +244,28 @@ async function main() {
       });
       deterministic = shortlist.words;
     }
+    const blacklistPath = file('blacklist');
+    if (existsSync(blacklistPath)) {
+      const blacklist = parseWordBlacklist(await readJson(blacklistPath));
+      const filtered = applyWordBlacklist(deterministic, blacklist);
+      deterministic = filtered.words;
+      rejects.push(
+        ...filtered.blocked.map((word) => ({
+          id: word.id,
+          word: word.word,
+          source: 'blacklist',
+          reason: ['blacklist'],
+        })),
+      );
+      report({
+        stage: 'blacklist',
+        processed: filtered.blocked.length,
+        total: filtered.words.length + filtered.blocked.length,
+        rejected: filtered.blocked.length,
+        detail: `complete: ${filtered.blocked.length} entries blocked`,
+      });
+      await writeJson(file('rejected'), rejects);
+    }
     let enriched: BuildWord[];
     if (values['no-ai']) enriched = deterministic;
     else {
@@ -315,7 +338,9 @@ async function main() {
   if (stage === 'validate' || stage === 'build') {
     try {
       // Recompute AI/manual review rejects; rerunning validation must not count them twice.
-      rejects = rejects.filter((r) => !('id' in object(r)));
+      rejects = rejects.filter(
+        (r) => !('id' in object(r)) || object(r).source === 'blacklist',
+      );
       const words = await readBuilt('enriched');
       const overridden = applyOverrides(words, overrides);
       // Validate every candidate before composition so filtering cannot hide hard errors.
