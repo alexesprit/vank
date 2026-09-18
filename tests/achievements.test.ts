@@ -127,6 +127,17 @@ it('keeps every Part 1 achievement in the stable catalogue', () => {
     ACHIEVEMENT_DEFINITIONS.find(({ id }) => id === 'ev-one-letter-or-two')
       ?.version,
   ).toBe(2);
+  expect(
+    ACHIEVEMENT_DEFINITIONS.filter(
+      (definition) => definition.requiresScoreReplay,
+    ).map(({ id }) => id),
+  ).toEqual([
+    'first-strong-letter',
+    'ten-strong-letters',
+    'half-alphabet',
+    'backslide',
+    'phoenix-letter',
+  ]);
 });
 
 it('reveals hidden achievements only for Ctrl/Cmd review clicks', () => {
@@ -478,6 +489,40 @@ it('unlocks cold-read and sixth-sense after earlier failed attempts', () => {
   });
 });
 
+it('matches cold-read letters across presentation modes', () => {
+  const word = known('ՄԱ');
+  const first = completeAttempt(
+    empty(),
+    { word, phase: 'training' },
+    '',
+    true,
+    'client',
+    0,
+    1,
+    'lower-failure',
+    'default',
+    { caseMode: 'lower', italic: false },
+  );
+  const second = completeAttempt(
+    first.state,
+    { word, phase: 'training' },
+    word.readingLatin,
+    false,
+    'client',
+    1,
+    2,
+    'caps-success',
+    'default',
+    { caseMode: 'caps', italic: false },
+  );
+
+  expect(
+    evaluateAchievements([first.attempt, second.attempt], []).find(
+      ({ id }) => id === 'cold-read',
+    ),
+  ).toMatchObject({ triggerAttemptId: 'caps-success' });
+});
+
 it('does not reconstruct flash-reader baselines from effective exposure', () => {
   const word = known('ՄԱՄԱ');
   const baseAttempt = completeAttempt(
@@ -505,15 +550,16 @@ it('does not reconstruct flash-reader baselines from effective exposure', () => 
   expect(
     evaluateAchievements(flashAttempts, []).map((unlock) => unlock.id),
   ).not.toContain('flash-reader');
-  expect(
-    evaluateAchievements(
-      flashAttempts.map((attempt) => ({
-        ...attempt,
-        payload: { ...attempt.payload, flashBaseExposureMs: 3_000 },
-      })),
-      [],
-    ).map((unlock) => unlock.id),
-  ).toContain('flash-reader');
+  const unlock = evaluateAchievements(
+    flashAttempts.map((attempt) => ({
+      ...attempt,
+      payload: { ...attempt.payload, flashBaseExposureMs: 3_000 },
+    })),
+    [],
+  ).find(({ id }) => id === 'flash-reader');
+  expect(unlock).toMatchObject({
+    evidence: { count: 10, maxBaseExposureMs: 3_000 },
+  });
 });
 
 it('keeps unlocked definitions skipped and preserves catalogue unlock order', () => {
@@ -597,6 +643,98 @@ it('replays score transitions for regression and recovery achievements', () => {
   expect(ids).toContain('first-strong-letter');
   expect(ids).toContain('backslide');
   expect(ids).toContain('phoenix-letter');
+});
+
+it('replays score achievements for the caps presentation of և', () => {
+  const word = known('և');
+  const attempts = completeHistory(
+    Array.from({ length: 12 }, () => ({ word, correct: true })),
+  );
+
+  expect(evaluateAchievements(attempts, []).map(({ id }) => id)).toContain(
+    'first-strong-letter',
+  );
+});
+
+it('replays score transitions across caps and lower presentations', () => {
+  const word = known('ՄԱՄԱ');
+  let state = empty();
+  const attempts = [];
+  for (let index = 0; index < 12; index++) {
+    const completed = completeAttempt(
+      state,
+      { word, phase: 'verification' },
+      word.readingLatin,
+      false,
+      'client',
+      index,
+      index + 1,
+      `caps-correct-${index}`,
+      'default',
+      { caseMode: 'caps', italic: false },
+    );
+    state = completed.state;
+    attempts.push(completed.attempt);
+  }
+  const failed = Array.from({ length: 2 }, (_, index) => {
+    const completed = completeAttempt(
+      state,
+      { word, phase: 'training' },
+      '',
+      true,
+      'client',
+      20 + index,
+      21 + index,
+      `lower-failure-${index}`,
+      'default',
+      { caseMode: 'lower', italic: false },
+    );
+    state = completed.state;
+    return completed.attempt;
+  });
+
+  expect(
+    evaluateAchievements([...attempts, ...failed], []).map(({ id }) => id),
+  ).toContain('backslide');
+});
+
+it('does not count unrevealed flashes in letter-score replay', () => {
+  const word = known('ՄԱՄԱ');
+  let state = empty();
+  const flash = completeAttempt(
+    state,
+    { word, phase: 'verification' },
+    word.readingLatin,
+    false,
+    'client',
+    0,
+    1,
+    'flash-score',
+    'default',
+    { caseMode: 'caps', italic: false },
+    undefined,
+    { baseExposureMs: 1_000, exposureMs: 1_000, revealed: false },
+  );
+  const attempts = [flash.attempt];
+  state = flash.state;
+  for (let index = 0; index < 10; index++) {
+    const completed = completeAttempt(
+      state,
+      { word, phase: 'verification' },
+      word.readingLatin,
+      false,
+      'client',
+      index + 1,
+      index + 2,
+      `score-${index}`,
+    );
+    state = completed.state;
+    attempts.push(completed.attempt);
+  }
+
+  expect(evaluateAchievements(attempts, []).map(({ id }) => id)).not.toContain(
+    'first-strong-letter',
+  );
 });
 
 it('derives alphabet observation from stored prompt units', () => {

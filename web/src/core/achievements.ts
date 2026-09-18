@@ -1,7 +1,6 @@
 import {
   ALPHABET,
   deriveWord,
-  displayCaps,
   promptLetters,
   wordTokens,
 } from '../../../shared/armenian.ts';
@@ -89,25 +88,14 @@ interface Match {
   attempt: AttemptEvent;
   evidence: Evidence;
 }
-interface EvaluationContext {
-  attempts: readonly AttemptEvent[];
-}
-
-export interface AchievementDefinition {
-  /** Stable persisted ID. Never rename or reuse after release. */
-  id: AchievementId;
-  /** Increment when this definition's condition or thresholds change. */
-  version: number;
-  thresholds: AchievementThresholds;
-  hidden: boolean;
-  icon: string;
-  evaluate(
-    context: EvaluationContext,
-    thresholds: AchievementThresholds,
-  ): Match | undefined;
-}
 
 const targetLetters = new Set(ALPHABET.map(({ upper }) => upper));
+const canonicalLetter = (letter: string) =>
+  letter === 'և' ? letter : letter.toLocaleUpperCase('hy');
+const visibleLetter = (letter: string) =>
+  letter === 'և' ? letter : letter.toLocaleUpperCase('hy');
+const stateLetter = (letter: string, caseMode: 'caps' | 'normal' | 'lower') =>
+  caseMode === 'lower' ? canonicalLetter(letter) : visibleLetter(letter);
 
 export function validateAchievementDictionary(words: readonly Word[]): void {
   const availableWords = new Set(
@@ -115,7 +103,9 @@ export function validateAchievementDictionary(words: readonly Word[]): void {
   );
   const allLetters = new Set(
     words.flatMap(({ uniqueLetters }) =>
-      uniqueLetters.filter((letter) => targetLetters.has(letter)),
+      uniqueLetters
+        .map(canonicalLetter)
+        .filter((letter) => targetLetters.has(letter)),
     ),
   );
   const strongLetters = new Set(
@@ -126,7 +116,9 @@ export function validateAchievementDictionary(words: readonly Word[]): void {
           ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
       )
       .flatMap(({ uniqueLetters }) =>
-        uniqueLetters.filter((letter) => targetLetters.has(letter)),
+        uniqueLetters
+          .map(canonicalLetter)
+          .filter((letter) => targetLetters.has(letter)),
       ),
   );
   const missing = ACHIEVEMENT_REQUIRED_WORDS.filter(
@@ -157,7 +149,9 @@ export function validateAchievementDictionary(words: readonly Word[]): void {
       : []),
     ...(words.some(
       ({ uniqueLetters }) =>
-        uniqueLetters.filter((letter) => targetLetters.has(letter)).length >=
+        uniqueLetters
+          .map(canonicalLetter)
+          .filter((letter) => targetLetters.has(letter)).length >=
         ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minDistinctLettersInWord,
     )
       ? []
@@ -171,85 +165,42 @@ export function validateAchievementDictionary(words: readonly Word[]): void {
     );
 }
 
+const STRONG_SCORE = 0.75;
+const LEARNING_SCORE = 0.6;
+const TEN_STRONG_LETTERS = 10;
+const READ_DONT_GUESS_COUNT = 10;
+const FLASH_READER_COUNT = 10;
+const LOCATION_COUNT = 20;
+const NO_MORE_FREEBIES_COUNT = 15;
+const NO_REPEATS_COUNT = ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minWords;
+const FLASH_MAX_BASE_EXPOSURE_MS = 3_000;
 const isUnrevealedFlash = (attempt: AttemptEvent) =>
-  attempt.payload.flashMode && !attempt.payload.flashRevealed;
-const attemptLetters = (attempt: AttemptEvent) =>
-  new Set(
-    promptLetters(
-      attempt.payload.evaluation.units.flatMap((unit) => [...unit.source]),
-      attempt.payload.presentation?.caseMode ?? 'caps',
-    ).filter((letter) => targetLetters.has(letter)),
-  );
-const attemptWord = (attempt: AttemptEvent) =>
-  displayCaps(
-    attempt.payload.evaluation.units.flatMap((unit) => [...unit.source]),
-  );
-const correctInMode = (attempt: AttemptEvent, mode: 'toponyms' | 'countries') =>
-  attempt.payload.practiceMode === mode && attempt.payload.correct;
-const distinctCorrectInMode = (
-  attempts: readonly AttemptEvent[],
-  mode: 'toponyms' | 'countries',
-  count: number,
-) => {
-  const wordIds = new Set<string>();
-  for (const attempt of attempts) {
-    if (!correctInMode(attempt, mode)) continue;
-    wordIds.add(attempt.payload.wordId);
-    if (wordIds.size >= count) return { attempt, wordIds: [...wordIds] };
-  }
-};
-const hasObservation = (
+  Boolean(attempt.payload.flashMode && !attempt.payload.flashRevealed);
+interface AttemptFacts {
+  attempt: AttemptEvent;
+  caseMode: 'caps' | 'normal' | 'lower';
+  correct: boolean;
+  familiarity: number;
+  isUnrevealedFlash: boolean;
+  letters: Set<string>;
+  observations: Map<string, Set<number>>;
+  word: Word;
+  wordText: string;
+}
+const replayWord = (
   attempt: AttemptEvent,
-  letter: string,
-  observation: number,
-) =>
-  attempt.payload.evaluation.units.some(
-    (unit) =>
-      promptLetters(
-        [...unit.source],
-        attempt.payload.presentation?.caseMode ?? 'caps',
-      ).includes(letter) && unit.observation === observation,
-  );
-const first = <T>(items: readonly T[], predicate: (item: T) => boolean) =>
-  items.find(predicate);
-const nth = <T>(
-  items: readonly T[],
-  predicate: (item: T) => boolean,
-  count: number,
+  letters: string[],
+  uniqueLetters: string[],
+  wordText: string,
 ) => {
-  let found = 0;
-  for (const item of items)
-    if (predicate(item) && ++found === count) return item;
-};
-const streak = (
-  attempts: readonly AttemptEvent[],
-  predicate: (attempt: AttemptEvent) => boolean,
-  count: number,
-) => {
-  let length = 0;
-  for (const attempt of attempts) {
-    length = predicate(attempt) ? length + 1 : 0;
-    if (length === count) return attempt;
-  }
-};
-const replayWord = (attempt: AttemptEvent) => {
-  const letters = attempt.payload.evaluation.units.flatMap((unit) => [
-      ...unit.source,
-    ]),
-    caseMode = attempt.payload.presentation?.caseMode ?? 'caps';
   return {
     id: attempt.payload.wordId,
-    word: displayCaps(letters),
-    ligaturePositions: letters.flatMap((letter, index) =>
-      letter === 'և' ? [index] : [],
-    ),
+    word: wordText,
     readingLatin: attempt.payload.expected,
     acceptedLatin: [attempt.payload.expected],
     acceptedCyrillic: [attempt.payload.expected],
     letters,
-    uniqueLetters: promptLetters(letters, caseMode).filter((letter) =>
-      targetLetters.has(letter),
-    ),
+    uniqueLetters,
     length: letters.length,
     categories: [],
     tags: [],
@@ -259,59 +210,126 @@ const replayWord = (attempt: AttemptEvent) => {
   };
 };
 
-function scoreTransition(
-  context: EvaluationContext,
-  predicate: (
-    attempt: AttemptEvent,
-    before: LearnerState,
-    after: LearnerState,
-    word: ReturnType<typeof replayWord>,
-  ) => Evidence | undefined,
-) {
-  let state: LearnerState = { letters: {}, words: {}, recent: [] };
-  for (const attempt of context.attempts) {
-    if (isUnrevealedFlash(attempt)) continue;
-    const word = replayWord(attempt);
-    const before = state;
-    state = updateScores(
-      state,
-      word,
-      attempt.payload.evaluation,
-      attempt.timestamp,
-      attempt.payload.presentation?.caseMode ?? 'caps',
-    );
-    const evidence = predicate(attempt, before, state, word);
-    if (evidence) return { attempt, evidence };
+const factsFor = (attempt: AttemptEvent): AttemptFacts => {
+  const caseMode = attempt.payload.presentation?.caseMode ?? 'caps';
+  const letters = attempt.payload.evaluation.units.flatMap((unit) => [
+    ...unit.source,
+  ]);
+  const uniqueLetters = [
+    ...new Set(
+      promptLetters(letters, caseMode)
+        .map((letter) => stateLetter(letter, caseMode))
+        .filter((letter) => targetLetters.has(canonicalLetter(letter))),
+    ),
+  ];
+  const logicalLetters = new Set(uniqueLetters.map(canonicalLetter));
+  const observations = new Map<string, Set<number>>();
+  for (const unit of attempt.payload.evaluation.units) {
+    if (unit.observation === null) continue;
+    for (const rawLetter of promptLetters([...unit.source], caseMode)) {
+      const letter = stateLetter(rawLetter, caseMode);
+      if (!targetLetters.has(canonicalLetter(letter))) continue;
+      const values = observations.get(letter) ?? new Set<number>();
+      values.add(unit.observation);
+      observations.set(letter, values);
+    }
   }
-}
+  const canonicalLetters = letters.map(canonicalLetter);
+  const wordText = canonicalLetters.join('');
+  return {
+    attempt,
+    caseMode,
+    correct: attempt.payload.correct,
+    familiarity: attempt.payload.familiarity,
+    isUnrevealedFlash: isUnrevealedFlash(attempt),
+    letters: logicalLetters,
+    observations,
+    word: replayWord(attempt, canonicalLetters, uniqueLetters, wordText),
+    wordText,
+  };
+};
 
 const strong = (
   stat: LearnerState['letters'][string] | undefined,
   threshold: number,
 ) => Boolean(stat && stat.score >= threshold && stat.verified > 0);
-const strongCount = (state: LearnerState, threshold: number) =>
-  Object.values(state.letters).filter((stat) => strong(stat, threshold)).length;
+const scoreState = (letters: LearnerState['letters'], letter: string) =>
+  letters[letter] ??
+  letters[canonicalLetter(letter)] ??
+  letters[visibleLetter(letter)];
+const strongCount = (letters: LearnerState['letters'], threshold: number) =>
+  Object.values(letters).filter((stat) => strong(stat, threshold)).length;
+
+const replayLetterScores = (
+  letters: LearnerState['letters'],
+  facts: AttemptFacts,
+) =>
+  updateScores(
+    { letters, words: {}, recent: [] },
+    facts.word,
+    facts.attempt.payload.evaluation,
+    facts.attempt.timestamp,
+    facts.caseMode,
+  ).letters;
+
+interface AchievementAttemptContext {
+  facts: AttemptFacts;
+  beforeLetters: LearnerState['letters'];
+  afterLetters: LearnerState['letters'];
+}
+type AchievementTracker = (
+  context: AchievementAttemptContext,
+) => Evidence | undefined;
+
+const maxFamiliarity = ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity;
+const maxFreebieFamiliarity =
+  ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFreebieFamiliarity;
+
+const correctInMode = (facts: AttemptFacts, mode: 'toponyms' | 'countries') =>
+  facts.correct && facts.attempt.payload.practiceMode === mode;
+const hasObservation = (
+  facts: AttemptFacts,
+  letter: string,
+  observation: number,
+) => facts.observations.get(letter)?.has(observation) ?? false;
+
+const createDistinctModeTracker = (
+  mode: 'toponyms' | 'countries',
+  count: number,
+): AchievementTracker => {
+  const wordIds = new Set<string>();
+  return ({ facts }) => {
+    if (!correctInMode(facts, mode)) return;
+    wordIds.add(facts.attempt.payload.wordId);
+    if (wordIds.size >= count) return { count: wordIds.size };
+  };
+};
+
+export interface AchievementDefinition {
+  /** Stable persisted ID. Never rename or reuse after release. */
+  id: AchievementId;
+  /** Increment when this definition's condition or thresholds change. */
+  version: number;
+  thresholds: AchievementThresholds;
+  hidden: boolean;
+  icon: string;
+  createTracker: (thresholds: AchievementThresholds) => AchievementTracker;
+  requiresScoreReplay?: true;
+}
 
 export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
   {
     id: 'training-wheels-off',
     version: 1,
-    thresholds: {
-      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
-    },
+    thresholds: { familiarity: maxFamiliarity },
     hidden: false,
     icon: 'bike',
-    evaluate: ({ attempts }, thresholds) => {
-      const attempt = first(
-        attempts,
-        (item) =>
-          item.payload.correct &&
-          item.payload.familiarity <= thresholds.familiarity,
-      );
-      return attempt
-        ? { attempt, evidence: { familiarity: attempt.payload.familiarity } }
-        : undefined;
-    },
+    createTracker:
+      (thresholds) =>
+      ({ facts }) =>
+        facts.correct && facts.familiarity <= thresholds.familiarity
+          ? { familiarity: facts.familiarity }
+          : undefined,
   },
   {
     id: 'alphabet-observed',
@@ -319,175 +337,188 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: false,
     icon: 'languages',
-    evaluate: ({ attempts }) => {
+    createTracker: () => {
       const seen = new Set<string>();
-      for (const attempt of attempts) {
-        for (const letter of attemptLetters(attempt)) seen.add(letter);
+      return ({ facts }) => {
+        for (const letter of facts.letters) seen.add(canonicalLetter(letter));
         if (seen.size === targetLetters.size)
-          return { attempt, evidence: { letters: [...seen].sort() } };
-      }
+          return { letters: [...seen].sort() };
+      };
     },
   },
   {
     id: 'first-strong-letter',
     version: 1,
-    thresholds: { strongScore: 0.75 },
+    thresholds: { strongScore: STRONG_SCORE },
     hidden: false,
     icon: 'badge-check',
-    evaluate: (context, thresholds) =>
-      scoreTransition(context, (_attempt, before, after, word) => {
-        const letter = word.uniqueLetters.find(
+    requiresScoreReplay: true,
+    createTracker:
+      (thresholds) =>
+      ({ facts, beforeLetters, afterLetters }) => {
+        const letter = facts.word.uniqueLetters.find(
           (item) =>
-            !strong(before.letters[item], thresholds.strongScore) &&
-            strong(after.letters[item], thresholds.strongScore),
+            !strong(scoreState(beforeLetters, item), thresholds.strongScore) &&
+            strong(scoreState(afterLetters, item), thresholds.strongScore),
         );
-        return letter
-          ? { letter, score: after.letters[letter].score }
-          : undefined;
-      }),
+        const next = letter ? scoreState(afterLetters, letter) : undefined;
+        return letter && next ? { letter, score: next.score } : undefined;
+      },
   },
   {
     id: 'ten-strong-letters',
     version: 1,
-    thresholds: { count: 10, strongScore: 0.75 },
+    thresholds: { count: TEN_STRONG_LETTERS, strongScore: STRONG_SCORE },
     hidden: false,
     icon: 'award',
-    evaluate: (context, thresholds) =>
-      scoreTransition(context, (_attempt, before, after) =>
-        strongCount(before, thresholds.strongScore) < thresholds.count &&
-        strongCount(after, thresholds.strongScore) >= thresholds.count
-          ? { strong: strongCount(after, thresholds.strongScore) }
-          : undefined,
-      ),
+    requiresScoreReplay: true,
+    createTracker:
+      (thresholds) =>
+      ({ beforeLetters, afterLetters }) => {
+        const beforeStrong = strongCount(beforeLetters, thresholds.strongScore);
+        const afterStrong = strongCount(afterLetters, thresholds.strongScore);
+        return beforeStrong < thresholds.count &&
+          afterStrong >= thresholds.count
+          ? { strong: afterStrong }
+          : undefined;
+      },
   },
   {
     id: 'half-alphabet',
     version: 2,
     thresholds: {
       count: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minStrongLetters,
-      strongScore: 0.75,
+      strongScore: STRONG_SCORE,
     },
     hidden: false,
     icon: 'chart-no-axes-column-increasing',
-    evaluate: (context, thresholds) =>
-      scoreTransition(context, (_attempt, before, after) =>
-        strongCount(before, thresholds.strongScore) < thresholds.count &&
-        strongCount(after, thresholds.strongScore) >= thresholds.count
-          ? { strong: strongCount(after, thresholds.strongScore) }
-          : undefined,
-      ),
+    requiresScoreReplay: true,
+    createTracker:
+      (thresholds) =>
+      ({ beforeLetters, afterLetters }) => {
+        const beforeStrong = strongCount(beforeLetters, thresholds.strongScore);
+        const afterStrong = strongCount(afterLetters, thresholds.strongScore);
+        return beforeStrong < thresholds.count &&
+          afterStrong >= thresholds.count
+          ? { strong: afterStrong }
+          : undefined;
+      },
   },
   {
     id: 'backslide',
     version: 1,
-    thresholds: { learningScore: 0.6, strongScore: 0.75 },
+    thresholds: {
+      learningScore: LEARNING_SCORE,
+      strongScore: STRONG_SCORE,
+    },
     hidden: true,
     icon: 'trending-down',
-    evaluate: (context, thresholds) => {
+    requiresScoreReplay: true,
+    createTracker: (thresholds) => {
       const reachedStrong = new Set<string>();
-      return scoreTransition(context, (attempt, before, after, word) => {
-        for (const letter of word.uniqueLetters) {
-          if (strong(before.letters[letter], thresholds.strongScore))
-            reachedStrong.add(letter);
-          const previous = before.letters[letter];
-          const next = after.letters[letter];
+      return ({ facts, beforeLetters, afterLetters }) => {
+        for (const letter of facts.word.uniqueLetters) {
+          const logicalLetter = canonicalLetter(letter);
+          if (strong(scoreState(beforeLetters, letter), thresholds.strongScore))
+            reachedStrong.add(logicalLetter);
+          const previous = scoreState(beforeLetters, letter);
+          const next = scoreState(afterLetters, letter);
           if (
-            reachedStrong.has(letter) &&
+            reachedStrong.has(logicalLetter) &&
             previous?.score !== undefined &&
             previous.score >= thresholds.learningScore &&
             next.score < thresholds.learningScore &&
-            hasObservation(attempt, letter, 0)
+            hasObservation(facts, letter, 0)
           )
             return { letter, from: previous.score, to: next.score };
-          if (strong(next, thresholds.strongScore)) reachedStrong.add(letter);
+          if (strong(next, thresholds.strongScore))
+            reachedStrong.add(logicalLetter);
         }
-      });
+      };
     },
   },
   {
     id: 'phoenix-letter',
     version: 1,
-    thresholds: { learningScore: 0.6, strongScore: 0.75 },
+    thresholds: {
+      learningScore: LEARNING_SCORE,
+      strongScore: STRONG_SCORE,
+    },
     hidden: true,
     icon: 'flame',
-    evaluate: (context, thresholds) => {
+    requiresScoreReplay: true,
+    createTracker: (thresholds) => {
       const reachedStrong = new Set<string>();
       const backslid = new Set<string>();
-      return scoreTransition(context, (attempt, before, after, word) => {
-        for (const letter of word.uniqueLetters) {
-          if (strong(before.letters[letter], thresholds.strongScore))
-            reachedStrong.add(letter);
-          const previous = before.letters[letter];
-          const next = after.letters[letter];
+      return ({ facts, beforeLetters, afterLetters }) => {
+        for (const letter of facts.word.uniqueLetters) {
+          const logicalLetter = canonicalLetter(letter);
+          if (strong(scoreState(beforeLetters, letter), thresholds.strongScore))
+            reachedStrong.add(logicalLetter);
+          const previous = scoreState(beforeLetters, letter);
+          const next = scoreState(afterLetters, letter);
           if (
-            reachedStrong.has(letter) &&
+            reachedStrong.has(logicalLetter) &&
             previous?.score !== undefined &&
             previous.score >= thresholds.learningScore &&
             next.score < thresholds.learningScore &&
-            hasObservation(attempt, letter, 0)
+            hasObservation(facts, letter, 0)
           )
-            backslid.add(letter);
+            backslid.add(logicalLetter);
           if (
-            backslid.has(letter) &&
+            backslid.has(logicalLetter) &&
             !strong(previous, thresholds.strongScore) &&
             strong(next, thresholds.strongScore) &&
-            hasObservation(attempt, letter, 1)
+            hasObservation(facts, letter, 1)
           )
             return { letter, score: next.score };
-          if (strong(next, thresholds.strongScore)) reachedStrong.add(letter);
+          if (strong(next, thresholds.strongScore))
+            reachedStrong.add(logicalLetter);
         }
-      });
+      };
     },
   },
   {
     id: 'read-dont-guess',
     version: 1,
-    thresholds: {
-      count: 10,
-      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
-    },
+    thresholds: { count: READ_DONT_GUESS_COUNT, familiarity: maxFamiliarity },
     hidden: false,
     icon: 'book-open-check',
-    evaluate: ({ attempts }, thresholds) => {
-      const attempt = nth(
-        attempts,
-        (item) =>
-          item.payload.correct &&
-          item.payload.familiarity <= thresholds.familiarity,
-        thresholds.count,
-      );
-      return attempt
-        ? { attempt, evidence: { count: thresholds.count } }
-        : undefined;
+    createTracker: (thresholds) => {
+      let count = 0;
+      return ({ facts }) => {
+        if (facts.correct && facts.familiarity <= thresholds.familiarity)
+          count++;
+        if (count === thresholds.count) return { count };
+      };
     },
   },
   {
     id: 'flash-reader',
     version: 1,
-    thresholds: { count: 10, maxBaseExposureMs: 3_000 },
+    thresholds: {
+      count: FLASH_READER_COUNT,
+      maxBaseExposureMs: FLASH_MAX_BASE_EXPOSURE_MS,
+    },
     hidden: false,
     icon: 'zap',
-    evaluate: ({ attempts }, thresholds) => {
-      const attempt = streak(
-        attempts,
-        (item) =>
-          Boolean(
-            isUnrevealedFlash(item) &&
-              item.payload.correct &&
-              item.payload.flashBaseExposureMs !== undefined &&
-              item.payload.flashBaseExposureMs <= thresholds.maxBaseExposureMs,
-          ),
-        thresholds.count,
-      );
-      return attempt
-        ? {
-            attempt,
-            evidence: {
-              count: thresholds.count,
-              maxBaseExposureMs: thresholds.maxBaseExposureMs,
-            },
-          }
-        : undefined;
+    createTracker: (thresholds) => {
+      let streak = 0;
+      return ({ facts }) => {
+        const match = Boolean(
+          facts.isUnrevealedFlash &&
+            facts.correct &&
+            facts.attempt.payload.flashBaseExposureMs !== undefined &&
+            facts.attempt.payload.flashBaseExposureMs <=
+              thresholds.maxBaseExposureMs,
+        );
+        streak = match ? streak + 1 : 0;
+        if (streak === thresholds.count)
+          return {
+            count: streak,
+            maxBaseExposureMs: thresholds.maxBaseExposureMs,
+          };
+      };
     },
   },
   {
@@ -496,12 +527,10 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: true,
     icon: 'eye',
-    evaluate: ({ attempts }) => {
-      const attempt = first(attempts, (item) =>
-        Boolean(isUnrevealedFlash(item) && item.payload.correct),
-      );
-      return attempt ? { attempt, evidence: {} } : undefined;
-    },
+    createTracker:
+      () =>
+      ({ facts }) =>
+        facts.isUnrevealedFlash && facts.correct ? {} : undefined,
   },
   {
     id: 'flash-reflex',
@@ -509,19 +538,19 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: false,
     icon: 'timer',
-    evaluate: ({ attempts }) => {
-      const attempt = first(attempts, (item) => {
-        const { flashExposureMs, flashVisibleDurationMs } = item.payload;
-        return Boolean(
-          isUnrevealedFlash(item) &&
-            item.payload.correct &&
-            flashVisibleDurationMs !== undefined &&
-            flashExposureMs !== undefined &&
-            flashVisibleDurationMs < flashExposureMs,
-        );
-      });
-      return attempt ? { attempt, evidence: {} } : undefined;
-    },
+    createTracker:
+      () =>
+      ({ facts }) => {
+        const { flashExposureMs, flashVisibleDurationMs } =
+          facts.attempt.payload;
+        return facts.isUnrevealedFlash &&
+          facts.correct &&
+          flashVisibleDurationMs !== undefined &&
+          flashExposureMs !== undefined &&
+          flashVisibleDurationMs < flashExposureMs
+          ? {}
+          : undefined;
+      },
   },
   {
     id: 'barev-world',
@@ -529,15 +558,12 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: true,
     icon: 'hand',
-    evaluate: ({ attempts }) => {
-      const attempt = first(
-        attempts,
-        (item) => item.payload.wordId === barevWorldId && item.payload.correct,
-      );
-      return attempt
-        ? { attempt, evidence: { wordId: attempt.payload.wordId } }
-        : undefined;
-    },
+    createTracker:
+      () =>
+      ({ facts }) =>
+        facts.correct && facts.attempt.payload.wordId === barevWorldId
+          ? { wordId: facts.attempt.payload.wordId }
+          : undefined,
   },
   {
     id: 'yerevan',
@@ -545,16 +571,12 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: true,
     icon: 'map-pin',
-    evaluate: ({ attempts }) => {
-      const attempt = first(
-        attempts,
-        (item) =>
-          item.payload.wordId === yerevanWorldId && item.payload.correct,
-      );
-      return attempt
-        ? { attempt, evidence: { wordId: attempt.payload.wordId } }
-        : undefined;
-    },
+    createTracker:
+      () =>
+      ({ facts }) =>
+        facts.correct && facts.attempt.payload.wordId === yerevanWorldId
+          ? { wordId: facts.attempt.payload.wordId }
+          : undefined,
   },
   {
     id: 'first-landmark',
@@ -562,31 +584,21 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: false,
     icon: 'map-pin',
-    evaluate: ({ attempts }) => {
-      const attempt = first(attempts, (item) =>
-        correctInMode(item, 'toponyms'),
-      );
-      return attempt
-        ? { attempt, evidence: { wordId: attempt.payload.wordId } }
-        : undefined;
-    },
+    createTracker:
+      () =>
+      ({ facts }) =>
+        correctInMode(facts, 'toponyms')
+          ? { wordId: facts.attempt.payload.wordId }
+          : undefined,
   },
   {
     id: 'local-guide',
     version: 1,
-    thresholds: { count: 20 },
+    thresholds: { count: LOCATION_COUNT },
     hidden: false,
     icon: 'map',
-    evaluate: ({ attempts }, thresholds) => {
-      const match = distinctCorrectInMode(
-        attempts,
-        'toponyms',
-        thresholds.count,
-      );
-      return match
-        ? { attempt: match.attempt, evidence: { count: match.wordIds.length } }
-        : undefined;
-    },
+    createTracker: (thresholds) =>
+      createDistinctModeTracker('toponyms', thresholds.count),
   },
   {
     id: 'passport-stamped',
@@ -594,31 +606,21 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: false,
     icon: 'stamp',
-    evaluate: ({ attempts }) => {
-      const attempt = first(attempts, (item) =>
-        correctInMode(item, 'countries'),
-      );
-      return attempt
-        ? { attempt, evidence: { wordId: attempt.payload.wordId } }
-        : undefined;
-    },
+    createTracker:
+      () =>
+      ({ facts }) =>
+        correctInMode(facts, 'countries')
+          ? { wordId: facts.attempt.payload.wordId }
+          : undefined,
   },
   {
     id: 'border-reader',
     version: 1,
-    thresholds: { count: 20 },
+    thresholds: { count: LOCATION_COUNT },
     hidden: false,
     icon: 'route',
-    evaluate: ({ attempts }, thresholds) => {
-      const match = distinctCorrectInMode(
-        attempts,
-        'countries',
-        thresholds.count,
-      );
-      return match
-        ? { attempt: match.attempt, evidence: { count: match.wordIds.length } }
-        : undefined;
-    },
+    createTracker: (thresholds) =>
+      createDistinctModeTracker('countries', thresholds.count),
   },
   {
     id: 'armenia-neighbors',
@@ -626,38 +628,33 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: { count: armeniaNeighborWords.size },
     hidden: true,
     icon: 'compass',
-    evaluate: ({ attempts }, thresholds) => {
+    createTracker: (thresholds) => {
       const words = new Set<string>();
-      for (const attempt of attempts) {
-        if (!correctInMode(attempt, 'countries')) continue;
-        const word = attemptWord(attempt);
-        if (!armeniaNeighborWords.has(word)) continue;
-        words.add(word);
-        if (words.size >= thresholds.count)
-          return { attempt, evidence: { words: [...words].sort() } };
-      }
+      return ({ facts }) => {
+        if (!correctInMode(facts, 'countries')) return;
+        if (!armeniaNeighborWords.has(facts.wordText)) return;
+        words.add(facts.wordText);
+        if (words.size >= thresholds.count) return { words: [...words].sort() };
+      };
     },
   },
   {
     id: 'no-more-freebies',
     version: 1,
     thresholds: {
-      count: 15,
-      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFreebieFamiliarity,
+      count: NO_MORE_FREEBIES_COUNT,
+      familiarity: maxFreebieFamiliarity,
     },
     hidden: false,
     icon: 'shield-check',
-    evaluate: ({ attempts }, thresholds) => {
-      const attempt = streak(
-        attempts,
-        (item) =>
-          item.payload.correct &&
-          item.payload.familiarity < thresholds.familiarity,
-        thresholds.count,
-      );
-      return attempt
-        ? { attempt, evidence: { count: thresholds.count } }
-        : undefined;
+    createTracker: (thresholds) => {
+      let streak = 0;
+      return ({ facts }) => {
+        const match =
+          facts.correct && facts.familiarity < thresholds.familiarity;
+        streak = match ? streak + 1 : 0;
+        if (streak === thresholds.count) return { count: streak };
+      };
     },
   },
   {
@@ -666,72 +663,64 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: true,
     icon: 'rotate-ccw',
-    evaluate: ({ attempts }) => {
+    createTracker: () => {
       const last = new Map<string, AttemptEvent>();
-      for (const attempt of attempts) {
-        const previous = last.get(attempt.payload.wordId);
-        if (attempt.payload.correct && previous && !previous.payload.correct)
-          return {
-            attempt,
-            evidence: {
-              wordId: attempt.payload.wordId,
-              previousAttemptId: previous.id,
-            },
-          };
-        last.set(attempt.payload.wordId, attempt);
-      }
+      return ({ facts }) => {
+        const wordId = facts.attempt.payload.wordId;
+        const previous = last.get(wordId);
+        if (
+          facts.correct &&
+          previous !== undefined &&
+          !previous.payload.correct
+        )
+          return { wordId, previousAttemptId: previous.id };
+        last.set(wordId, facts.attempt);
+      };
     },
   },
   {
     id: 'no-repeats',
     version: 1,
-    thresholds: { count: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.minWords },
+    thresholds: { count: NO_REPEATS_COUNT },
     hidden: false,
     icon: 'list-checks',
-    evaluate: ({ attempts }, thresholds) => {
-      const window: AttemptEvent[] = [];
-      for (const attempt of attempts) {
-        if (!attempt.payload.correct) {
+    createTracker: (thresholds) => {
+      const window: string[] = [];
+      return ({ facts }) => {
+        if (!facts.correct) {
           window.length = 0;
-          continue;
+          return;
         }
-        window.push(attempt);
+        window.push(facts.attempt.payload.wordId);
         if (window.length > thresholds.count) window.shift();
         if (
           window.length === thresholds.count &&
-          new Set(window.map((item) => item.payload.wordId)).size ===
-            thresholds.count
+          new Set(window).size === thresholds.count
         )
-          return { attempt, evidence: { count: thresholds.count } };
-      }
+          return { count: thresholds.count };
+      };
     },
   },
   {
     id: 'cold-read',
     version: 1,
-    thresholds: {
-      familiarity: ACHIEVEMENT_DICTIONARY_REQUIREMENTS.maxFamiliarity,
-    },
+    thresholds: { familiarity: maxFamiliarity },
     hidden: true,
     icon: 'snowflake',
-    evaluate: ({ attempts }, thresholds) => {
+    createTracker: (thresholds) => {
       const letters = new Set<string>();
-      for (const attempt of attempts) {
-        const promptLetters = attemptLetters(attempt);
+      return ({ facts }) => {
         if (
-          attempt.payload.correct &&
-          attempt.payload.familiarity <= thresholds.familiarity &&
-          [...promptLetters].every((letter) => letters.has(letter))
+          facts.correct &&
+          facts.familiarity <= thresholds.familiarity &&
+          [...facts.letters].every((letter) => letters.has(letter))
         )
           return {
-            attempt,
-            evidence: {
-              wordId: attempt.payload.wordId,
-              letters: [...promptLetters],
-            },
+            wordId: facts.attempt.payload.wordId,
+            letters: [...facts.letters],
           };
-        for (const letter of promptLetters) letters.add(letter);
-      }
+        for (const letter of facts.letters) letters.add(letter);
+      };
     },
   },
   {
@@ -743,19 +732,15 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     },
     hidden: true,
     icon: 'sparkles',
-    evaluate: ({ attempts }, thresholds) => {
-      for (const attempt of attempts) {
-        const letters = attemptLetters(attempt);
-        if (
-          attempt.payload.correct &&
-          letters.size >= thresholds.distinctLetters
-        )
-          return {
-            attempt,
-            evidence: { wordId: attempt.payload.wordId, letters: [...letters] },
-          };
-      }
-    },
+    createTracker:
+      (thresholds) =>
+      ({ facts }) =>
+        facts.correct && facts.letters.size >= thresholds.distinctLetters
+          ? {
+              wordId: facts.attempt.payload.wordId,
+              letters: [...facts.letters],
+            }
+          : undefined,
   },
   {
     id: 'ev-one-letter-or-two',
@@ -763,35 +748,33 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
     thresholds: {},
     hidden: true,
     icon: 'circle-help',
-    evaluate: ({ attempts }) => {
+    createTracker: () => {
       let oneLetterAttempt: AttemptEvent | undefined;
       let twoLetterAttempt: AttemptEvent | undefined;
-      for (const attempt of attempts) {
-        if (!attempt.payload.correct) continue;
-        const mode = attempt.payload.presentation?.caseMode ?? 'caps';
-        const units = attempt.payload.evaluation.units;
+      return ({ facts }) => {
+        if (!facts.correct) return;
+        const units = facts.attempt.payload.evaluation.units;
         if (
-          (mode === 'lower' && units.some(({ source }) => source === 'և')) ||
-          (mode === 'normal' &&
+          (facts.caseMode === 'lower' &&
+            units.some(({ source }) => source === 'և')) ||
+          (facts.caseMode === 'normal' &&
             units.some(
               ({ source, position }) => source === 'և' && position > 0,
             ))
         )
-          oneLetterAttempt ??= attempt;
+          oneLetterAttempt ??= facts.attempt;
         if (
-          (mode === 'caps' && units.some(({ source }) => source === 'և')) ||
-          (mode === 'normal' && units[0]?.source === 'և')
+          (facts.caseMode === 'caps' &&
+            units.some(({ source }) => source === 'և')) ||
+          (facts.caseMode === 'normal' && units[0]?.source === 'և')
         )
-          twoLetterAttempt ??= attempt;
-        if (oneLetterAttempt && twoLetterAttempt)
+          twoLetterAttempt ??= facts.attempt;
+        if (oneLetterAttempt !== undefined && twoLetterAttempt !== undefined)
           return {
-            attempt,
-            evidence: {
-              oneLetterAttemptId: oneLetterAttempt.id,
-              twoLetterAttemptId: twoLetterAttempt.id,
-            },
+            oneLetterAttemptId: oneLetterAttempt.id,
+            twoLetterAttemptId: twoLetterAttempt.id,
           };
-      }
+      };
     },
   },
 ];
@@ -802,10 +785,46 @@ export function evaluateAchievements(
   recordedAt = Date.now(),
 ): AchievementUnlock[] {
   const unlocked = new Set(existing.map((unlock) => unlock.id));
-  const context = { attempts };
+  const trackers = ACHIEVEMENT_DEFINITIONS.filter(
+    ({ id }) => !unlocked.has(id),
+  ).map((definition) => ({
+    definition,
+    track: definition.createTracker(definition.thresholds),
+    match: undefined as Match | undefined,
+  }));
+  if (!trackers.length) return [];
+
+  let scoreTrackersRemaining = trackers.filter(
+    ({ definition }) => definition.requiresScoreReplay,
+  ).length;
+  let scoreLetters: LearnerState['letters'] = {};
+  let remaining = trackers.length;
+
+  for (const attempt of attempts) {
+    const facts = factsFor(attempt);
+    const beforeLetters = scoreLetters;
+    let afterLetters = scoreLetters;
+    if (scoreTrackersRemaining && !facts.isUnrevealedFlash) {
+      afterLetters = replayLetterScores(scoreLetters, facts);
+      scoreLetters = afterLetters;
+    }
+    const context = { facts, beforeLetters, afterLetters };
+    for (const tracker of trackers) {
+      if (tracker.match !== undefined) continue;
+      const evidence = tracker.track(context);
+      if (evidence === undefined) continue;
+      tracker.match = { attempt, evidence };
+      remaining--;
+      if (tracker.definition.requiresScoreReplay) scoreTrackersRemaining--;
+    }
+    if (!remaining) break;
+  }
+
   return ACHIEVEMENT_DEFINITIONS.flatMap((definition) => {
-    if (unlocked.has(definition.id)) return [];
-    const match = definition.evaluate(context, definition.thresholds);
+    const tracker = trackers.find(
+      ({ definition: tracked }) => tracked.id === definition.id,
+    );
+    const match = tracker?.match;
     return match
       ? [
           {
