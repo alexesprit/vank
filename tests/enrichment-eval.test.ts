@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import {
   type EnrichmentProvider,
-  enrichWordsWithoutCache,
+  enrichWords,
 } from '../builder/src/enrichment';
 import {
   evaluateEnrichment,
@@ -94,7 +94,7 @@ describe('provider-neutral no-cache evaluation', () => {
             });
           },
         );
-        const result = await enrichWordsWithoutCache(dataset, {
+        const result = await enrichWords(dataset, {
           provider,
           model: 'eval/model',
           apiKey: provider === 'openrouter' ? 'key' : '',
@@ -102,7 +102,7 @@ describe('provider-neutral no-cache evaluation', () => {
             provider === 'openrouter'
               ? 'http://provider.test/v1/chat/completions'
               : undefined,
-          cacheDir,
+          cacheDir: undefined,
           maxRetries: 0,
           fetcher,
         });

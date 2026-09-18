@@ -469,10 +469,3 @@ export async function enrichWords(
   emit('complete', nextToCommit);
   return materialize();
 }
-
-export function enrichWordsWithoutCache(
-  words: BuildWord[],
-  options: EnrichmentOptions,
-): Promise<BuildWord[]> {
-  return enrichWords(words, { ...options, cacheDir: undefined });
-}

@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 import {
   type EnrichmentProvider,
-  enrichWordsWithoutCache,
+  enrichWords,
 } from '../src/enrichment.ts';
 import {
   evaluateEnrichment,
@@ -67,7 +67,7 @@ async function main() {
     provider === 'ollama'
       ? (process.env.OLLAMA_API_KEY ?? '')
       : (process.env.OPENROUTER_API_KEY ?? '');
-  const enriched = await enrichWordsWithoutCache(deterministic, {
+  const enriched = await enrichWords(deterministic, {
     provider,
     model,
     apiKey,
