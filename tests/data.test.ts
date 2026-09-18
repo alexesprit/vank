@@ -11,13 +11,15 @@ it('loads and runtime-validates static JSON; reports HTTP and schema errors', as
     words: [deriveWord('ՄԱՄԱ')],
   };
   expect(
-    (await loadDictionary(async () => Response.json(data))).words,
+    (await loadDictionary('words', async () => Response.json(data))).words,
   ).toHaveLength(1);
   await expect(
-    loadDictionary(async () => new Response('', { status: 404 })),
+    loadDictionary('words', async () => new Response('', { status: 404 })),
   ).rejects.toThrow('404');
   await expect(
-    loadDictionary(async () => Response.json({ ...data, schemaVersion: 99 })),
+    loadDictionary('words', async () =>
+      Response.json({ ...data, schemaVersion: 99 }),
+    ),
   ).rejects.toThrow('schema');
 });
 

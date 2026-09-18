@@ -1,5 +1,4 @@
 import { parseDictionary } from '../../../shared/schema.ts';
-import type { Dictionary } from '../../../shared/types.ts';
 import { PRACTICE_MODES, type PracticeModeId } from '../core/modes.ts';
 
 export function dictionaryUrl(mode: PracticeModeId): string {
@@ -9,21 +8,11 @@ export function dictionaryUrl(mode: PracticeModeId): string {
 }
 
 export async function loadDictionary(
-  fetcher?: typeof fetch,
-): Promise<Dictionary>;
-export async function loadDictionary(
-  mode: PracticeModeId,
-  fetcher?: typeof fetch,
-  signal?: AbortSignal,
-): Promise<Dictionary>;
-export async function loadDictionary(
-  modeOrFetcher: PracticeModeId | typeof fetch = 'words',
+  mode: PracticeModeId = 'words',
   fetcher = fetch,
   signal?: AbortSignal,
 ) {
-  const mode = typeof modeOrFetcher === 'function' ? 'words' : modeOrFetcher;
-  const request = typeof modeOrFetcher === 'function' ? modeOrFetcher : fetcher;
-  return loadDictionaryForMode(mode, request, signal);
+  return loadDictionaryForMode(mode, fetcher, signal);
 }
 
 async function loadDictionaryForMode(
