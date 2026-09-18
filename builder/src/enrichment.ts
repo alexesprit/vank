@@ -194,8 +194,8 @@ export async function enrichWords(
   if (!Number.isInteger(batchSize) || batchSize < 1 || batchSize > 100)
     throw new Error('Batch size must be 1..100');
   const concurrency = options.concurrency ?? 3;
-  if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 10)
-    throw new Error('Concurrency must be 1..10');
+  if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 32)
+    throw new Error('Concurrency must be 1..32');
   const timeoutMs =
     options.timeoutMs ?? (provider === 'ollama' ? 180_000 : 60_000);
   if (!Number.isInteger(timeoutMs) || timeoutMs < 1)

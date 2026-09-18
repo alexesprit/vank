@@ -94,10 +94,13 @@ describe('AI response boundary', () => {
 });
 it('validates enrichment concurrency', async () => {
   const cacheDir = await directory();
-  for (const concurrency of [0, 1.5, 11])
+  for (const concurrency of [0, 1.5, 33])
     await expect(
       enrichWords([], { apiKey: '', model: 'm', cacheDir, concurrency }),
-    ).rejects.toThrow('Concurrency must be 1..10');
+    ).rejects.toThrow('Concurrency must be 1..32');
+  await expect(
+    enrichWords([], { apiKey: '', model: 'm', cacheDir, concurrency: 32 }),
+  ).resolves.toEqual([]);
 });
 it('batches, validates, caches individual words and resumes after an interruption', async () => {
   const cacheDir = await directory(),
