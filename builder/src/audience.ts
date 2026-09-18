@@ -40,14 +40,20 @@ export function parseAudience(
   return p as unknown as AudiencePolicy;
 }
 const curated = (w: BuildWord) => w.sources.some((s) => s.type === 'curated');
-const ambiguousCasePair = /Ե(?:Վ|վ)/u;
+const uppercaseDisplayLigature = /ԵՎ/u;
+const displayKey = (letters: readonly string[]) =>
+  letters
+    .map((letter) => (letter === 'և' ? 'ԵՎ' : letter.toLocaleUpperCase('hy')))
+    .join('');
 export const isFamiliar = (w: BuildWord, language: string) =>
   (w.familiarity?.[language] ?? 0) >= FAMILIARITY_THRESHOLD;
 
 export const countLetterCoverage = (words: Pick<Word, 'uniqueLetters'>[]) =>
   ALPHABET.map(({ upper: letter }) => ({
     letter,
-    words: words.filter((word) => word.uniqueLetters.includes(letter)).length,
+    words: words.filter((word) =>
+      word.uniqueLetters.includes(letter.toLocaleLowerCase('hy')),
+    ).length,
   }));
 
 function selectByLetterCoverage(
@@ -59,7 +65,7 @@ function selectByLetterCoverage(
   const result = words.filter(curated).slice(0, limit);
   const counts = new Map(
     countLetterCoverage([...selected, ...result]).map(({ letter, words }) => [
-      letter,
+      letter.toLocaleLowerCase('hy'),
       words,
     ]),
   );
@@ -108,12 +114,17 @@ export function shortlistAudience(
     throw new Error('Expected recognition candidate array');
   const hints = new Map<string, string>(),
     priority = new Map<string, number>(),
-    purposes = new Map<string, 'familiar' | 'verification'>(),
-    byDisplay = new Map<string, BuildWord[]>();
+    purposes = new Map<string, 'familiar' | 'verification'>();
+  const available = new Set(
+    words.map((word) => JSON.stringify(wordTokens(word))),
+  );
+  const availableByDisplay = new Map<string, string[]>();
   for (const word of words) {
-    const variants = byDisplay.get(word.word) ?? [];
-    variants.push(word);
-    byDisplay.set(word.word, variants);
+    const identity = JSON.stringify(wordTokens(word));
+    const display = displayKey(wordTokens(word));
+    const identities = availableByDisplay.get(display) ?? [];
+    identities.push(identity);
+    availableByDisplay.set(display, identities);
   }
   const candidates: { word: string; identity: string }[] = [];
   for (const entry of value) {
@@ -130,26 +141,16 @@ export function shortlistAudience(
       r.purpose !== 'verification'
     )
       throw new Error('Invalid candidate purpose');
-    if (
-      r.ligaturePositions !== undefined &&
-      (!Array.isArray(r.ligaturePositions) ||
-        r.ligaturePositions.some((position) => !Number.isInteger(position)))
-    )
-      throw new Error('Invalid recognition candidate spelling');
-    const derived = deriveWord(
-        r.word,
-        r.ligaturePositions as number[] | undefined,
-      ),
-      ambiguous =
-        derived.ligaturePositions === undefined &&
-        ambiguousCasePair.test(r.word),
-      variants = ambiguous ? byDisplay.get(derived.word) : undefined,
-      identity =
-        ambiguous && variants?.length === 1
-          ? JSON.stringify(wordTokens(variants[0] ?? derived))
-          : ambiguous && variants && variants.length > 1
-            ? `ambiguous:${derived.word}`
-            : JSON.stringify(derived.letters);
+    const derived = deriveWord(r.word);
+    const exactIdentity = JSON.stringify(derived.letters);
+    const displayMatches =
+      availableByDisplay.get(displayKey([...r.word])) ?? [];
+    const identity =
+      uppercaseDisplayLigature.test(r.word) &&
+      !available.has(exactIdentity) &&
+      displayMatches.length === 1
+        ? (displayMatches[0] ?? exactIdentity)
+        : exactIdentity;
     if (hints.has(identity))
       throw new Error(`Duplicate recognition candidate: ${derived.word}`);
     hints.set(identity, r.recognizableAs);
@@ -160,9 +161,6 @@ export function shortlistAudience(
     );
     candidates.push({ word: derived.word, identity });
   }
-  const available = new Set(
-    words.map((word) => JSON.stringify(wordTokens(word))),
-  );
   const missing = candidates
     .filter(({ identity }) => !available.has(identity))
     .map(({ word }) => word);

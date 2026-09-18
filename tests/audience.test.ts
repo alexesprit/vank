@@ -24,16 +24,16 @@ const words = () =>
   deriveMetadata(
     mergeSources(
       curatedSource([
-        { word: 'ՏԱՔՍԻ', familiarity: { ru: 1 } },
-        { word: 'ՄԵՏՐՈ', familiarity: { ru: 1 } },
-        { word: 'ԲԱՆԿ', familiarity: { ru: 1 } },
-        { word: 'ՋՈՒՐ', familiarity: { ru: 0.05 } },
-        { word: 'ՌՈԲՈՏ' },
-        { word: 'ԾԱՌ' },
+        { word: 'տաքսի', familiarity: { ru: 1 } },
+        { word: 'մետրո', familiarity: { ru: 1 } },
+        { word: 'բանկ', familiarity: { ru: 1 } },
+        { word: 'ջուր', familiarity: { ru: 0.05 } },
+        { word: 'ռոբոտ' },
+        { word: 'ծառ' },
       ]),
     ).words,
   ).map((w) =>
-    ['ՌՈԲՈՏ', 'ԾԱՌ'].includes(w.word)
+    ['ռոբոտ', 'ծառ'].includes(w.word)
       ? { ...w, sources: [{ type: 'wiktionary' }], rawDefinitions: ['fixture'] }
       : w,
   );
@@ -43,19 +43,19 @@ it('plans curated, reviewed, then unreviewed attested words without inventing mi
     words(),
     [
       { word: 'ռոբոտ', recognizableAs: 'робот' },
-      { word: 'ԿՈՄԲՈ', recognizableAs: 'комбо' },
+      { word: 'կոմբո', recognizableAs: 'комбо' },
     ],
     policy,
   );
-  expect(result.words.map((w) => w.word)).toContain('ՌՈԲՈՏ');
-  expect(result.words.map((w) => w.word)).toContain('ՋՈՒՐ');
-  expect(result.words.map((w) => w.word)).toContain('ԾԱՌ');
-  expect(result.words.map((w) => w.word)).not.toContain('ԿՈՄԲՈ');
-  expect(result.missing).toEqual(['ԿՈՄԲՈ']);
+  expect(result.words.map((w) => w.word)).toContain('ռոբոտ');
+  expect(result.words.map((w) => w.word)).toContain('ջուր');
+  expect(result.words.map((w) => w.word)).toContain('ծառ');
+  expect(result.words.map((w) => w.word)).not.toContain('կոմբո');
+  expect(result.missing).toEqual(['կոմբո']);
   expect(
-    result.words.find((w) => w.word === 'ՌՈԲՈՏ')?.recognitionHints,
+    result.words.find((w) => w.word === 'ռոբոտ')?.recognitionHints,
   ).toEqual({ ru: 'робот' });
-  expect(result.words.find((w) => w.word === 'ԾԱՌ')?.audiencePurpose).toBe(
+  expect(result.words.find((w) => w.word === 'ծառ')?.audiencePurpose).toBe(
     'verification',
   );
   expect(() =>
@@ -66,7 +66,7 @@ it('plans curated, reviewed, then unreviewed attested words without inventing mi
     ),
   ).toThrow();
   expect(() =>
-    shortlistAudience(words(), [{ word: 'ՌՈԲՈՏ', recognizableAs: '' }], policy),
+    shortlistAudience(words(), [{ word: 'ռոբոտ', recognizableAs: '' }], policy),
   ).toThrow();
 });
 
@@ -92,19 +92,36 @@ it('matches recognition candidates by spelling provenance, not CAPS display alon
 
   const ambiguous = shortlistAudience(
     candidates,
-    [{ word: 'ԲԱՐԵՎ', recognizableAs: 'ambiguous' }],
+    [{ word: 'բարեվ', recognizableAs: 'ambiguous' }],
     policy,
   );
-  expect(ambiguous.missing).toEqual(['ԲԱՐԵՎ']);
+  expect(ambiguous.missing).toEqual([]);
   expect(
-    ambiguous.words.some((word) => word.recognitionHints !== undefined),
-  ).toBe(false);
+    ambiguous.words.find((word) => word.id === separate.id)?.recognitionHints,
+  ).toEqual({ ru: 'ambiguous' });
+
+  const displayOnly = shortlistAudience(
+    candidates.slice(0, 1),
+    [{ word: 'ԲԱՐԵՎ', recognizableAs: 'display spelling' }],
+    policy,
+  );
+  expect(displayOnly.missing).toEqual([]);
+  expect(displayOnly.words[0]?.recognitionHints).toEqual({
+    ru: 'display spelling',
+  });
+
+  const explicitSeparate = shortlistAudience(
+    candidates.filter((word) => word.id === ligature.id),
+    [{ word: 'բարեվ', recognizableAs: 'separate spelling' }],
+    policy,
+  );
+  expect(explicitSeparate.missing).toEqual(['բարեվ']);
 });
 
 it('enforces a familiar majority and a ceiling, excludes unconfirmed imports, and keeps curated verification vocabulary', () => {
   const result = composeAudience(words(), 1000, policy);
   expect(result).toHaveLength(4);
-  expect(result.some((w) => w.word === 'ՋՈՒՐ')).toBe(true);
+  expect(result.some((w) => w.word === 'ջուր')).toBe(true);
   expect(composeAudience(words(), 3, policy)).toHaveLength(3);
   expect(
     composeAudience(words(), 3, { ...policy, minFamiliarWords: 3 }),
@@ -117,7 +134,7 @@ it('enforces a familiar majority and a ceiling, excludes unconfirmed imports, an
     ),
   ).toThrow('familiar');
   const uncertain = words().map((w) =>
-    w.word === 'ՌՈԲՈՏ'
+    w.word === 'ռոբոտ'
       ? {
           ...w,
           familiarity: { ru: 1 },
@@ -132,28 +149,28 @@ it('enforces a familiar majority and a ceiling, excludes unconfirmed imports, an
       : w,
   );
   expect(
-    composeAudience(uncertain, 1000, policy).some((w) => w.word === 'ՌՈԲՈՏ'),
+    composeAudience(uncertain, 1000, policy).some((w) => w.word === 'ռոբոտ'),
   ).toBe(false);
   const confirmed = uncertain.map((w) =>
     w.ai ? { ...w, ai: { ...w.ai, confidence: 0.9 } } : w,
   );
   expect(
-    composeAudience(confirmed, 1000, policy).some((w) => w.word === 'ՌՈԲՈՏ'),
+    composeAudience(confirmed, 1000, policy).some((w) => w.word === 'ռոբոտ'),
   ).toBe(true);
   const recognizable = confirmed.map((w) =>
-    w.word === 'ՌՈԲՈՏ' ? { ...w, usefulnessScore: 0.3 } : w,
+    w.word === 'ռոբոտ' ? { ...w, usefulnessScore: 0.3 } : w,
   );
   expect(
-    composeAudience(recognizable, 1000, policy).some((w) => w.word === 'ՌՈԲՈՏ'),
+    composeAudience(recognizable, 1000, policy).some((w) => w.word === 'ռոբոտ'),
   ).toBe(true);
   expect(
     composeAudience(
       words().map((w) =>
-        w.word === 'ՏԱՔՍԻ' ? { ...w, flags: ['suspect'] } : w,
+        w.word === 'տաքսի' ? { ...w, flags: ['suspect'] } : w,
       ),
       1000,
       policy,
-    ).some((w) => w.word === 'ՏԱՔՍԻ'),
+    ).some((w) => w.word === 'տաքսի'),
   ).toBe(false);
 });
 
@@ -177,11 +194,11 @@ it('admits explicitly proposed verification words only after enrichment', () => 
   const input = words();
   const shortlist = shortlistAudience(
     input,
-    [{ word: 'ԾԱՌ', recognizableAs: 'дерево', purpose: 'verification' }],
+    [{ word: 'ծառ', recognizableAs: 'дерево', purpose: 'verification' }],
     policy,
   );
   const enriched = shortlist.words.map((w) =>
-    w.word === 'ԾԱՌ'
+    w.word === 'ծառ'
       ? {
           ...w,
           familiarity: { ru: 0.05 },
@@ -197,27 +214,27 @@ it('admits explicitly proposed verification words only after enrichment', () => 
   );
   expect(
     composeAudience(enriched, 1000, { ...policy, minFamiliarShare: 0.5 }).some(
-      (w) => w.word === 'ԾԱՌ',
+      (w) => w.word === 'ծառ',
     ),
   ).toBe(true);
   const guessable = enriched.map((w) =>
-    w.word === 'ԾԱՌ' ? { ...w, familiarity: { ru: 0.6 } } : w,
+    w.word === 'ծառ' ? { ...w, familiarity: { ru: 0.6 } } : w,
   );
   expect(
     composeAudience(guessable, 1000, { ...policy, minFamiliarShare: 0.5 }).some(
-      (w) => w.word === 'ԾԱՌ',
+      (w) => w.word === 'ծառ',
     ),
   ).toBe(false);
 });
 
 it('uses verification slots to improve letter distribution', () => {
   const enriched = words().map((word) =>
-    ['ԾԱՌ', 'ՌՈԲՈՏ'].includes(word.word)
+    ['ծառ', 'ռոբոտ'].includes(word.word)
       ? {
           ...word,
           audiencePurpose: 'verification' as const,
           familiarity: { ru: 0.05 },
-          usefulnessScore: word.word === 'ՌՈԲՈՏ' ? 0.9 : 0.5,
+          usefulnessScore: word.word === 'ռոբոտ' ? 0.9 : 0.5,
           ai: {
             model: 'fixture',
             promptVersion: 2,
@@ -232,15 +249,15 @@ it('uses verification slots to improve letter distribution', () => {
     minFamiliarShare: 0.5,
   });
 
-  expect(selected.map((word) => word.word)).toContain('ԾԱՌ');
-  expect(selected.map((word) => word.word)).not.toContain('ՌՈԲՈՏ');
+  expect(selected.map((word) => word.word)).toContain('ծառ');
+  expect(selected.map((word) => word.word)).not.toContain('ռոբոտ');
 });
 
 it('balances familiar words when their pool exceeds its available slots', () => {
   const enriched = words().map((word) => {
-    if (word.word === 'ՄԵՏՐՈ') return { ...word, flags: ['fixture'] };
-    if (word.word === 'ՋՈՒՐ') return { ...word, familiarity: { ru: 1 } };
-    return word.word === 'ՌՈԲՈՏ'
+    if (word.word === 'մետրո') return { ...word, flags: ['fixture'] };
+    if (word.word === 'ջուր') return { ...word, familiarity: { ru: 1 } };
+    return word.word === 'ռոբոտ'
       ? {
           ...word,
           familiarity: { ru: 1 },
@@ -255,7 +272,7 @@ it('balances familiar words when their pool exceeds its available slots', () => 
       : word;
   });
   const [giraffe] = deriveMetadata(
-    mergeSources(curatedSource([{ word: 'ԸՆՁՈՒՂՏ' }])).words,
+    mergeSources(curatedSource([{ word: 'ընձուղտ' }])).words,
   );
   if (!giraffe) throw new Error('Missing fixture word');
   enriched.push({
@@ -275,8 +292,8 @@ it('balances familiar words when their pool exceeds its available slots', () => 
     minFamiliarShare: 1,
   });
 
-  expect(selected.map((word) => word.word)).toContain('ԸՆՁՈՒՂՏ');
-  expect(selected.map((word) => word.word)).not.toContain('ՌՈԲՈՏ');
+  expect(selected.map((word) => word.word)).toContain('ընձուղտ');
+  expect(selected.map((word) => word.word)).not.toContain('ռոբոտ');
 });
 
 it('keeps existing ranking when every familiar word fits', () => {
@@ -294,8 +311,8 @@ it('keeps curated words first and otherwise preserves reviewed candidate order',
   const result = shortlistAudience(
     words(),
     [
-      { word: 'ԾԱՌ', recognizableAs: 'дерево' },
-      { word: 'ՌՈԲՈՏ', recognizableAs: 'робот' },
+      { word: 'ծառ', recognizableAs: 'дерево' },
+      { word: 'ռոբոտ', recognizableAs: 'робот' },
     ],
     policy,
   );
@@ -305,5 +322,5 @@ it('keeps curated words first and otherwise preserves reviewed candidate order',
         (word) => !word.sources.some((source) => source.type === 'curated'),
       )
       .map((word) => word.word),
-  ).toEqual(['ԾԱՌ', 'ՌՈԲՈՏ']);
+  ).toEqual(['ծառ', 'ռոբոտ']);
 });

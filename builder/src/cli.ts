@@ -432,7 +432,7 @@ async function main() {
           ),
         ),
       ];
-      const attribution = `Vank dictionary\n\nProject-owned curated vocabulary plus the following imported sources.\nImported definitions and derived dataset: CC-BY-SA-4.0 where indicated.\nhttps://creativecommons.org/licenses/by-sa/4.0/\nChanges: uppercase normalization, filtering, source merging, deterministic readings and optional AI metadata.\nSource URLs link to entries and contributor histories. No quotations, audio or images imported.\n\n${sources.join('\n\n')}\n`;
+      const attribution = `Vank dictionary\n\nProject-owned curated vocabulary plus the following imported sources.\nImported definitions and derived dataset: CC-BY-SA-4.0 where indicated.\nhttps://creativecommons.org/licenses/by-sa/4.0/\nChanges: lowercase canonical normalization, filtering, source merging, deterministic readings and optional AI metadata.\nSource URLs link to entries and contributor histories. No quotations, audio or images imported.\n\n${sources.join('\n\n')}\n`;
       await mkdir(dirname(output), { recursive: true });
       await writeFile(join(dirname(output), 'ATTRIBUTION.txt'), attribution);
       report({

@@ -1,7 +1,7 @@
 import { normalizeArmenian } from '../../shared/armenian.ts';
 import type { BuildWord } from './types.ts';
 
-const armenianWordPattern = /^[Ա-ՖԵՎ]+$/u;
+const armenianWordPattern = /^[ա-ֆև]+$/u;
 
 export function parseWordBlacklist(value: unknown): Set<string> {
   if (!Array.isArray(value)) throw new Error('Word blacklist must be an array');

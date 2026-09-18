@@ -1,5 +1,6 @@
 import { mkdir, rename, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
+import { DICTIONARY_SCHEMA_VERSION } from '../../shared/schema.ts';
 import type { Dictionary, Word } from '../../shared/types.ts';
 
 type RuntimeDictionary = Omit<Dictionary, 'words'> & {
@@ -9,14 +10,11 @@ type RuntimeDictionary = Omit<Dictionary, 'words'> & {
 export function runtimeDictionary(dictionary: Dictionary): RuntimeDictionary {
   return {
     version: dictionary.version,
-    schemaVersion: dictionary.schemaVersion,
+    schemaVersion: DICTIONARY_SCHEMA_VERSION,
     generatedAt: dictionary.generatedAt,
     words: dictionary.words.map((word) => ({
       id: word.id,
       word: word.word,
-      ...(word.ligaturePositions === undefined
-        ? {}
-        : { ligaturePositions: word.ligaturePositions }),
       readingLatin: word.readingLatin,
       acceptedLatin: word.acceptedLatin,
       acceptedCyrillic: word.acceptedCyrillic,

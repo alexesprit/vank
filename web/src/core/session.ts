@@ -78,7 +78,16 @@ export function completeAttempt(
   const introducedLetter = promptLetters(
     word.uniqueLetters,
     presentation.caseMode,
-  ).find((letter) => !(state.letters[letter]?.score > 0));
+  ).find(
+    (letter) =>
+      !(
+        (
+          state.letters[letter.toLocaleLowerCase('hy')] ??
+          state.letters[letter] ??
+          state.letters[letter.toLocaleUpperCase('hy')]
+        )?.score > 0
+      ),
+  );
   if (
     !(flash && !flash.revealed) &&
     selection.phase === 'introduction' &&

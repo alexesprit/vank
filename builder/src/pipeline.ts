@@ -15,14 +15,12 @@ const technical = new Set([
   'uniqueLetters',
   'length',
   'units',
-  'ligaturePositions',
   'readingLatin',
   'transliterationVersion',
   'sources',
   'source',
   'metadataSource',
 ]);
-const ambiguousCasePair = /Ե(?:Վ|վ)/u;
 export function mergeFields(
   target: Record<string, unknown>,
   incoming: Record<string, unknown>,
@@ -66,52 +64,27 @@ export function mergeSources(records: RawWord[], report: Report = () => {}) {
     record: RawWord;
     derived: ReturnType<typeof deriveWord>;
     identity: string;
-    ambiguous: boolean;
   }[] = [];
   ordered.forEach((record) => {
     try {
       if (!Number.isFinite(record.sourcePriority))
         throw new Error('Invalid source priority');
-      const derived = deriveWord(record.word, record.ligaturePositions);
+      const derived = deriveWord(record.word);
       if (derived.length > 24) throw new Error('Word exceeds 24 characters');
       prepared.push({
         record,
         derived,
         identity: JSON.stringify(derived.letters),
-        ambiguous:
-          record.ligaturePositions === undefined &&
-          derived.ligaturePositions === undefined &&
-          ambiguousCasePair.test(record.word),
       });
     } catch (error) {
       rejected.push({ word: record.word, reason: String(error) });
     }
   });
-  const explicit = new Map<string, Map<string, (typeof prepared)[number]>>();
-  for (const item of prepared) {
-    if (item.ambiguous) continue;
-    const variants = explicit.get(item.derived.word) ?? new Map();
-    variants.set(item.identity, item);
-    explicit.set(item.derived.word, variants);
-  }
   prepared.forEach((item, index) => {
     try {
-      const variants = explicit.get(item.derived.word);
-      if (item.ambiguous && (variants?.size ?? 0) > 1)
-        throw new Error(
-          'Ambiguous spelling matches multiple logical spellings',
-        );
-      const selected =
-        item.ambiguous && variants?.size === 1
-          ? [...variants.values()][0]
-          : item;
-      if (!selected) throw new Error('Missing spelling provenance');
-      const { derived, identity } = selected;
+      const { derived, identity } = item;
       const entry = merged.get(identity) ?? {
         word: derived.word,
-        ...(derived.ligaturePositions === undefined
-          ? {}
-          : { ligaturePositions: derived.ligaturePositions }),
         sources: [],
         metadata: {},
         metadataSource: {},
@@ -164,9 +137,7 @@ export function mergeSources(records: RawWord[], report: Report = () => {}) {
     words: [...merged.values()].sort(
       (a, b) =>
         a.word.localeCompare(b.word) ||
-        deriveWord(a.word, a.ligaturePositions).id.localeCompare(
-          deriveWord(b.word, b.ligaturePositions).id,
-        ),
+        deriveWord(a.word).id.localeCompare(deriveWord(b.word).id),
     ),
     rejected,
   };
@@ -176,7 +147,7 @@ export function deriveMetadata(
   report: Report = () => {},
 ): BuildWord[] {
   return records.map((record, index) => {
-    const derived = deriveWord(record.word, record.ligaturePositions),
+    const derived = deriveWord(record.word),
       metadata = Object.fromEntries(
         Object.entries(record.metadata).filter(([key]) => !technical.has(key)),
       );
@@ -267,5 +238,5 @@ export function validateDataset(
 ) {
   for (const word of words)
     validateMetadata(word as unknown as Record<string, unknown>);
-  return parseDictionary({ version: 1, schemaVersion: 1, generatedAt, words });
+  return parseDictionary({ version: 1, schemaVersion: 2, generatedAt, words });
 }

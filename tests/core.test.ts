@@ -123,13 +123,13 @@ describe('learning evidence', () => {
     const w = word('ՏԱՔՍԻ', 1),
       state = known([w], 0.5);
     const next = updateScores(state, w, evaluate(w, 'таксо'), 100);
-    expect(next.letters.Տ.score).toBeCloseTo(0.51875);
-    expect(next.letters.Ի.score).toBeCloseTo(0.425);
-    expect(next.letters.Ի.lastMistakeAt).toBe(100);
-    expect(state.letters.Տ.score).toBe(0.5);
+    expect(next.letters.տ.score).toBeCloseTo(0.51875);
+    expect(next.letters.ի.score).toBeCloseTo(0.425);
+    expect(next.letters.ի.lastMistakeAt).toBe(100);
+    expect(state.letters.տ.score).toBe(0.5);
     const low = word('ՏԱՔՍԻ', 0);
     expect(
-      updateScores(state, low, evaluate(low, 'такси'), 100).letters.Տ.score,
+      updateScores(state, low, evaluate(low, 'такси'), 100).letters.տ.score,
     ).toBeCloseTo(0.575);
   });
   it('keeps repeated glyphs to one observation per attempt and protects mastery from guesses', () => {
@@ -163,7 +163,7 @@ describe('learning evidence', () => {
       200,
       'skip',
     );
-    expect(completed.state.letters.Շ).toMatchObject({
+    expect(completed.state.letters.շ).toMatchObject({
       score: 0.68,
       attempts: 11,
       correct: 9,
@@ -187,7 +187,7 @@ describe('adaptive selection', () => {
   it('bootstraps with recognizable loanwords only', () => {
     const native = { ...word('ՄԱՄԱ', 1), loanwordScore: 0 };
     const words = [native, word('ԽՈՀԱՆՈՑ', 0.05), word('ՏԱՔՍԻ', 1)];
-    expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('ՏԱՔՍԻ');
+    expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('տաքսի');
     expect(selectWord(words, empty(), 0, () => 0).phase).toBe('bootstrap');
   });
   it('prefers bootstrap words sharing letters with the previous word', () => {
@@ -214,15 +214,15 @@ describe('adaptive selection', () => {
   });
   it('randomizes equally ranked bootstrap words', () => {
     const words = [word('ԳԱԶ', 1), word('ԶԱԼ', 1)];
-    expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('ԳԱԶ');
-    expect(selectWord(words, empty(), 0, () => 0.999).word.word).toBe('ԶԱԼ');
+    expect(selectWord(words, empty(), 0, () => 0).word.word).toBe('գազ');
+    expect(selectWord(words, empty(), 0, () => 0.999).word.word).toBe('զալ');
   });
   it('retains the selection decision for diagnostics', () => {
     const words = [word('ԳԱԶ', 1), word('ԶԱԼ', 1)];
     const selected = selectWord(words, empty(), 0, () => 0);
     expect(selected.diagnostics).toMatchObject({
       bootstrap: true,
-      unknownLetters: selected.word.uniqueLetters,
+      unknownLetters: ['Գ', 'Ա', 'Զ'],
       candidates: { dictionary: 2, unseen: 2, loanwords: 2, eligible: 2 },
       selected: { wordId: selected.word.id },
     });
@@ -419,8 +419,8 @@ describe('adaptive selection', () => {
   it('prefers weak letters over otherwise identical strong words', () => {
     const words = [word('ՄԱՄԱ'), word('ՆԱՆԱ')],
       state = known(words);
-    state.letters.Ն.score = 0.1;
-    expect(selectWord(words, state, 100).word.word).toBe('ՆԱՆԱ');
+    state.letters.ն.score = 0.1;
+    expect(selectWord(words, state, 100).word.word).toBe('նանա');
     expect(personalDifficulty(words[1], state)).toBeGreaterThan(
       personalDifficulty(words[0], state),
     );
@@ -432,8 +432,8 @@ describe('adaptive selection', () => {
     const familiar = word('ՄԱՄԱ', 1);
     const words = [current, unfamiliar, tooDifficult, familiar];
     const state = known(words);
-    state.letters.Թ.score = 0;
-    state.letters.Ծ.score = 0;
+    state.letters.թ.score = 0;
+    state.letters.ծ.score = 0;
 
     expect(
       selectWord(words, state, 0, () => 0, {
@@ -584,7 +584,7 @@ describe('adaptive selection', () => {
     expect(result.state.reinforcement).toEqual({ letter: 'Ս', remaining: 3 });
     const selected = selectWord(words, result.state, 3);
     expect(selected.word.id).not.toBe(words[2].id);
-    expect(selected.word.uniqueLetters).toContain('Ս');
+    expect(selected.word.uniqueLetters).toContain('ս');
     expect(selected.phase).toBe('reinforcement');
   });
   it('decrements the active reinforcement during a prompt with another unknown letter', () => {

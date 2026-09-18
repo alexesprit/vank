@@ -152,7 +152,7 @@ it('batches, validates, caches individual words and resumes after an interruptio
   expect(reports).toContainEqual(
     expect.objectContaining({ cached: 1, api: 2, processed: 3, total: 3 }),
   );
-  expect(result.find((w) => w.word === 'ՏԱՔՍԻ')?.familiarity?.ru).toBe(1);
+  expect(result.find((w) => w.word === 'տաքսի')?.familiarity?.ru).toBe(1);
   expect(result[0].ai).toMatchObject({
     model: 'test/model',
     promptVersion: 2,

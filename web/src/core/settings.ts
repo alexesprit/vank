@@ -1,4 +1,8 @@
-import { ALPHABET, wordTokens } from '../../../shared/armenian.ts';
+import {
+  ALPHABET,
+  normalizeArmenian,
+  wordTokens,
+} from '../../../shared/armenian.ts';
 import type { CaseMode, Presentation, Word } from '../../../shared/types.ts';
 import {
   LANGUAGE_PREFERENCES,
@@ -12,7 +16,7 @@ import {
 
 const googleStylesheet = (family: string) =>
   `https://fonts.googleapis.com/css2?family=${family.replaceAll(' ', '+')}:wght@700&display=swap`;
-const canonicalArmenianPattern = /^[Ա-Ֆ]+$/u;
+const canonicalArmenianPattern = /^[ա-ֆև]+$/u;
 
 export const SYLLABLE_COLOR_THRESHOLDS = [0, 2, 3, 4] as const;
 export type SyllableColorThreshold = (typeof SYLLABLE_COLOR_THRESHOLDS)[number];
@@ -304,17 +308,27 @@ export const availableTypography = (correctAnswers: number) =>
 
 export function promptParts(word: string | Word, caseMode: CaseMode): string[] {
   const display = typeof word === 'string' ? word : word.word;
-  if (!canonicalArmenianPattern.test(display)) return [display];
-  const letters = typeof word === 'string' ? [...display] : wordTokens(word);
+  let canonical = display;
+  if (typeof word === 'string') {
+    try {
+      canonical = normalizeArmenian(display);
+    } catch {
+      return [display];
+    }
+  }
+  if (!canonicalArmenianPattern.test(canonical)) return [display];
+  const letters = typeof word === 'string' ? [...canonical] : wordTokens(word);
   if (caseMode === 'caps')
-    return letters.map((letter) => (letter === 'և' ? 'ԵՎ' : letter));
+    return letters.map((letter) =>
+      letter === 'և' ? 'ԵՎ' : letter.toLocaleUpperCase('hy'),
+    );
   return letters.map((letter, index) =>
     letter === 'և'
       ? caseMode === 'normal' && index === 0
         ? 'Եվ'
         : 'և'
       : caseMode === 'normal' && index === 0
-        ? letter
+        ? letter.toLocaleUpperCase('hy')
         : letter.toLocaleLowerCase('hy'),
   );
 }

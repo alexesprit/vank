@@ -13,8 +13,8 @@ describe('word blacklist', () => {
       mergeSources(curatedSource([{ word: 'բլյատ' }, { word: 'բարև' }])).words,
     );
     const result = applyWordBlacklist(words, blacklist);
-    expect(result.blocked.map((word) => word.word)).toEqual(['ԲԼՅԱՏ']);
-    expect(result.words.map((word) => word.word)).toEqual(['ԲԱՐԵՎ']);
+    expect(result.blocked.map((word) => word.word)).toEqual(['բլյատ']);
+    expect(result.words.map((word) => word.word)).toEqual(['բարև']);
     expect(() => parseWordBlacklist(['bad-word'])).toThrow(
       'must be Armenian words',
     );

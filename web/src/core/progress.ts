@@ -146,7 +146,10 @@ export function progress(state: LearnerState) {
       ? letters.reduce((sum, l) => sum + l.score, 0) / letters.length
       : 0,
     alphabetStats: ALPHABET.map(({ upper }) => {
-      const stat = state.letters[upper];
+      const stat =
+        state.letters[upper.toLocaleLowerCase('hy')] ??
+        state.letters[upper] ??
+        state.letters[upper.toLocaleUpperCase('hy')];
       const introduced = Boolean(stat?.attempts);
       const score = stat?.score ?? 0;
       return {

@@ -36,10 +36,9 @@ describe('Armenian ligature identity', () => {
     const word = deriveWord('բարև');
 
     expect(word).toMatchObject({
-      word: 'ԲԱՐԵՎ',
-      ligaturePositions: [3],
-      letters: ['Բ', 'Ա', 'Ր', 'և'],
-      uniqueLetters: ['Բ', 'Ա', 'Ր', 'և'],
+      word: 'բարև',
+      letters: ['բ', 'ա', 'ր', 'և'],
+      uniqueLetters: ['բ', 'ա', 'ր', 'և'],
       length: 4,
       units: [
         { source: 'Բ' },
@@ -48,14 +47,14 @@ describe('Armenian ligature identity', () => {
         { source: 'և' },
       ],
     });
-    expect(deriveWord('բարեվ').ligaturePositions).toEqual([]);
+    expect(deriveWord('բարեվ').letters).toEqual(['բ', 'ա', 'ր', 'ե', 'վ']);
     expect(word.id).not.toBe(deriveWord('բարեվ').id);
   });
 
-  it('keeps uppercase ԵՎ as two legacy letters when no provenance is present', () => {
+  it('keeps uppercase ԵՎ as two letters when normalized', () => {
     const word = deriveWord('ԵՐԵՎԱՆ');
 
-    expect(word.letters).toEqual(['Ե', 'Ր', 'Ե', 'Վ', 'Ա', 'Ն']);
+    expect(word.letters).toEqual(['ե', 'ր', 'ե', 'վ', 'ա', 'ն']);
     expect(word.length).toBe(6);
   });
 
@@ -83,10 +82,7 @@ describe('Armenian ligature identity', () => {
     ).words;
 
     expect(words).toHaveLength(2);
-    expect(words.map(({ word }) => word)).toEqual(['ԲԱՐԵՎ', 'ԲԱՐԵՎ']);
-    const positions = words.map(({ ligaturePositions }) => ligaturePositions);
-    expect(positions).toContainEqual([3]);
-    expect(positions).toContainEqual([]);
+    expect(words.map(({ word }) => word)).toEqual(['բարեվ', 'բարև']);
   });
 
   it('captures explicit Wiktionary ligatures and leaves title-case ԵՎ ambiguous', () => {
@@ -97,10 +93,7 @@ describe('Armenian ligature identity', () => {
       senses: [{ glosses: ['test'] }],
     });
 
-    expect(wiktionaryRecord(record('բարև'))?.ligaturePositions).toEqual([3]);
-    expect(wiktionaryRecord(record('Եվգենի'))).not.toHaveProperty(
-      'ligaturePositions',
-    );
+    expect(wiktionaryRecord(record('բարև'))?.word).toBe('բարև');
 
     const ambiguous = wiktionaryRecord(record('ԲԱՐԵՎ'));
     if (!ambiguous) throw new Error('Missing Wiktionary record');
@@ -108,8 +101,8 @@ describe('Armenian ligature identity', () => {
       ...curatedSource([{ word: 'բարև' }]),
       ambiguous,
     ]).words;
-    expect(merged).toHaveLength(1);
-    expect(merged[0]?.ligaturePositions).toEqual([3]);
+    expect(merged).toHaveLength(2);
+    expect(merged.map(({ word }) => word)).toContain('բարև');
   });
 
   it('serializes provenance and reconstructs logical fields from runtime dictionaries', () => {
@@ -121,11 +114,10 @@ describe('Armenian ligature identity', () => {
         words: [word],
       });
 
-    expect(runtime.words[0]).toHaveProperty('ligaturePositions', [3]);
+    expect(runtime.words[0]).not.toHaveProperty('ligaturePositions');
     expect(parseDictionary(runtime).words[0]).toMatchObject({
-      word: 'ԲԱՐԵՎ',
-      ligaturePositions: [3],
-      letters: ['Բ', 'Ա', 'Ր', 'և'],
+      word: 'բարև',
+      letters: ['բ', 'ա', 'ր', 'և'],
       length: 4,
       units: expect.arrayContaining([expect.objectContaining({ source: 'և' })]),
     });
@@ -144,7 +136,7 @@ describe('Armenian ligature identity', () => {
     );
   });
 
-  it('loads old dictionaries without positions as separate Ե and Վ letters', () => {
+  it('derives decomposition from lowercase runtime words', () => {
     const legacyWord = { ...deriveWord('ԵՎՐՈՊԱ') } as Record<string, unknown>;
     for (const field of ['letters', 'uniqueLetters', 'length'])
       delete legacyWord[field];
@@ -156,9 +148,9 @@ describe('Armenian ligature identity', () => {
     }).words;
     if (!word) throw new Error('Missing legacy dictionary word');
 
-    expect(word?.letters).toEqual(['Ե', 'Վ', 'Ր', 'Ո', 'Պ', 'Ա']);
+    expect(word?.letters).toEqual(['ե', 'վ', 'ր', 'ո', 'պ', 'ա']);
     expect(word?.length).toBe(6);
-    expect(word?.ligaturePositions).toBeUndefined();
+    expect(word?.word).toBe('եվրոպա');
     expect(formatPrompt(word, 'lower')).toBe('եվրոպա');
   });
 

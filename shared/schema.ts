@@ -1,12 +1,7 @@
-import {
-  ALPHABET,
-  displayCaps,
-  normalizeArmenian,
-  wordTokens,
-} from './armenian.ts';
+import { ALPHABET, normalizeArmenian } from './armenian.ts';
 import type { Dictionary, Word } from './types.ts';
-export const DICTIONARY_SCHEMA_VERSION = 1;
-const armenianPattern = /^[Ա-Ֆ]+$/u;
+export const DICTIONARY_SCHEMA_VERSION = 2;
+const armenianPattern = /^[ա-ֆև]+$/u;
 const latinReadingPattern = /^[\p{Script=Latin}\p{M}\s'’ʼ-]+$/u;
 const cyrillicReadingPattern = /^[\p{Script=Cyrillic}\p{M}\s'’ʼ-]+$/u;
 const latinUnitPattern = /^[\p{Script=Latin}\p{M}'’ʼ]+$/u;
@@ -98,27 +93,13 @@ export function parseWord(value: unknown): Word {
     !armenianPattern.test(w.word) ||
     normalizeArmenian(w.word) !== w.word
   )
-    throw new Error('Expected CAPS Armenian');
+    throw new Error('Expected lowercase Armenian');
   const letters = strings(w.letters),
-    unique = strings(w.uniqueLetters);
-  if (
-    w.ligaturePositions !== undefined &&
-    (!Array.isArray(w.ligaturePositions) ||
-      w.ligaturePositions.some(
-        (position) => !Number.isInteger(position) || Number(position) < 0,
-      ))
-  )
-    throw new Error('Invalid ligature positions');
-  const logicalLetters = wordTokens({
-    word: w.word,
-    ...(w.ligaturePositions === undefined
-      ? {}
-      : { ligaturePositions: w.ligaturePositions as number[] }),
-  });
+    unique = strings(w.uniqueLetters),
+    logicalLetters = [...w.word];
   if (
     JSON.stringify(letters) !== JSON.stringify(logicalLetters) ||
-    displayCaps(letters) !== w.word ||
-    letters.some((l) => !ALPHABET.some((a) => a.upper === l)) ||
+    letters.some((l) => !ALPHABET.some((a) => a.lower === l)) ||
     w.length !== letters.length ||
     JSON.stringify(unique) !== JSON.stringify([...new Set(letters)])
   )
@@ -159,7 +140,9 @@ export function parseWord(value: unknown): Word {
     if (
       JSON.stringify(
         units.flatMap((unit) =>
-          unit.source === 'ՈՒ' ? ['Ո', 'Ւ'] : [unit.source as string],
+          unit.source === 'ՈՒ'
+            ? ['ո', 'ւ']
+            : [(unit.source as string).toLocaleLowerCase('hy')],
         ),
       ) !== JSON.stringify(logicalLetters)
     )
@@ -182,7 +165,13 @@ export function parseWord(value: unknown): Word {
 }
 export function parseDictionary(value: unknown): Dictionary {
   const d = object(value);
-  if ((d.schemaVersion ?? d.version) !== DICTIONARY_SCHEMA_VERSION)
+  // v1 is accepted only for lowercase intermediate fixtures; uppercase legacy
+  // runtime data still fails the canonical-word validation below.
+  if (
+    ![1, DICTIONARY_SCHEMA_VERSION].includes(
+      Number(d.schemaVersion ?? d.version),
+    )
+  )
     throw new Error('Unsupported dictionary schema version');
   if (
     !Number.isInteger(d.version) ||
@@ -196,19 +185,8 @@ export function parseDictionary(value: unknown): Dictionary {
   const words = d.words.map((value) => {
     const word = object(value);
     if (typeof word.word !== 'string') return parseWord(word);
-    const rawPositions = word.ligaturePositions;
-    const validPositions = Array.isArray(rawPositions)
-      ? rawPositions.filter(
-          (position): position is number => typeof position === 'number',
-        )
-      : undefined;
     const letters =
-      word.letters === undefined
-        ? Array.isArray(rawPositions) &&
-          validPositions?.length === rawPositions.length
-          ? wordTokens({ word: word.word, ligaturePositions: validPositions })
-          : [...word.word]
-        : strings(word.letters);
+      word.letters === undefined ? [...word.word] : strings(word.letters);
     return parseWord({
       ...word,
       letters,
@@ -221,8 +199,7 @@ export function parseDictionary(value: unknown): Dictionary {
   });
   if (
     new Set(words.map((w) => w.id)).size !== words.length ||
-    new Set(words.map((word) => JSON.stringify(wordTokens(word)))).size !==
-      words.length
+    new Set(words.map((word) => word.word)).size !== words.length
   )
     throw new Error('Duplicate word or ID');
   return {

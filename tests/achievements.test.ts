@@ -76,7 +76,7 @@ it('requires the verified և spelling for word-specific achievement coverage', (
   ];
 
   expect(() => validateAchievementDictionary(dictionary)).toThrow(
-    'missing words: ԲԱՐԵՎ',
+    'missing words: բարև',
   );
 });
 

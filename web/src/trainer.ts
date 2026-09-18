@@ -325,8 +325,17 @@ export async function createTrainer(
                   ).map((letter) => [
                     letter,
                     {
-                      before: state.letters[letter] ?? null,
-                      after: completed.state.letters[letter],
+                      before:
+                        state.letters[letter.toLocaleLowerCase('hy')] ??
+                        state.letters[letter] ??
+                        state.letters[letter.toLocaleUpperCase('hy')] ??
+                        null,
+                      after:
+                        completed.state.letters[
+                          letter.toLocaleLowerCase('hy')
+                        ] ??
+                        completed.state.letters[letter] ??
+                        completed.state.letters[letter.toLocaleUpperCase('hy')],
                     },
                   ]),
                 ),

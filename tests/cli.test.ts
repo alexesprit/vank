@@ -483,9 +483,9 @@ it('applies audience selection before enrichment and preserves the runtime file 
       await readFile(join(dir, 'candidates.json'), 'utf8'),
     );
     expect(
-      candidates.words.some((w: { word: string }) => w.word === 'ԿՈՄԲՈ'),
+      candidates.words.some((w: { word: string }) => w.word === 'կոմբո'),
     ).toBe(true);
-    expect(candidates.missing).toContain('ՌՈԲՈՏ');
+    expect(candidates.missing).toContain('ռոբոտ');
     // An explicit seed build remains available without pretending to pass the audience gate.
     await exec(process.execPath, [...args, '--curated-only']);
     expect(JSON.parse(await readFile(output, 'utf8')).words.length).toBe(79);

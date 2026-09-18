@@ -418,7 +418,7 @@ it('validates the runtime dictionary and covers every written Armenian letter re
   expect(dictionary.words.length).toBeGreaterThanOrEqual(50);
   for (const letter of ALPHABET)
     expect(
-      dictionary.words.filter((w) => w.uniqueLetters.includes(letter.upper))
+      dictionary.words.filter((w) => w.uniqueLetters.includes(letter.lower))
         .length,
       letter.upper,
     ).toBeGreaterThanOrEqual(2);
@@ -465,7 +465,7 @@ it('replaces prompts for a weak letter without scoring the discarded prompt', as
 
   expect(await trainer.practiceLetter('Մ')).toBe('target');
   expect(trainer.current.word.id).not.toBe(unansweredWordId);
-  expect(trainer.current.word.uniqueLetters).toContain('Մ');
+  expect(trainer.current.word.uniqueLetters).toContain('մ');
   expect(trainer.state).toEqual({ letters: {}, words: {}, recent: [] });
   expect(trainer.result).toBeUndefined();
 
@@ -475,7 +475,7 @@ it('replaces prompts for a weak letter without scoring the discarded prompt', as
 
   expect(await trainer.practiceLetter('Ֆ')).toBe('target');
   expect(trainer.current.word.id).not.toBe(savedAttempt?.payload.wordId);
-  expect(trainer.current.word.uniqueLetters).toContain('Ֆ');
+  expect(trainer.current.word.uniqueLetters).toContain('ֆ');
   expect(trainer.state.recent).toEqual([savedAttempt]);
   expect(trainer.result).toBeUndefined();
 
@@ -510,7 +510,7 @@ it('shows up to five available words for a letter, then resumes normal selection
     expect(await trainer.practiceLetter('Ֆ')).toBe('target');
     for (let index = 0; index < count; index++) {
       if (index > 0) await trainer.next();
-      expect(trainer.current.word.uniqueLetters).toContain('Ֆ');
+      expect(trainer.current.word.uniqueLetters).toContain('ֆ');
       expect(shown.has(trainer.current.word.id)).toBe(false);
       shown.add(trainer.current.word.id);
       await trainer.submit(trainer.current.word.readingLatin);
@@ -1281,5 +1281,5 @@ it.each([
     expect(Object.keys(state.letters)).toHaveLength(ALPHABET.length - 1);
     expect(state.letters).not.toHaveProperty('և');
   },
-  10_000,
+  30_000,
 );

@@ -48,6 +48,10 @@ export interface SelectionRequest {
   excludeWordId?: string;
   excludeWordIds?: readonly string[];
 }
+const letterState = (state: LearnerState, letter: string) =>
+  state.letters[letter.toLocaleLowerCase('hy')] ??
+  state.letters[letter] ??
+  state.letters[letter.toLocaleUpperCase('hy')];
 export type WordSelector = (
   state: LearnerState,
   now: number,
@@ -61,7 +65,7 @@ export const unknownLetters = (
   caseMode: CaseMode = 'caps',
 ): string[] =>
   promptLetters(word.uniqueLetters, caseMode).filter(
-    (letter) => !(state.letters[letter]?.score > 0),
+    (letter) => !(letterState(state, letter)?.score > 0),
   );
 export const matchesTargetLetter = (
   word: Word,
@@ -82,7 +86,7 @@ export function personalDifficulty(
   caseMode: CaseMode = 'caps',
 ): number {
   const unknown = promptLetters(word.uniqueLetters, caseMode).map(
-    (letter) => 1 - (state.letters[letter]?.score ?? 0),
+    (letter) => 1 - (letterState(state, letter)?.score ?? 0),
   );
   const w = config.difficulty;
   return Math.max(
@@ -264,7 +268,9 @@ export function selectAdaptiveWord(
     }
     const visibleLetters = promptLetters(word.uniqueLetters, caseMode);
     const weak = average(
-      visibleLetters.map((letter) => 1 - (state.letters[letter]?.score ?? 0)),
+      visibleLetters.map(
+        (letter) => 1 - (letterState(state, letter)?.score ?? 0),
+      ),
     );
     const stat = state.words[word.id];
     const spacing = stat
@@ -272,7 +278,7 @@ export function selectAdaptiveWord(
       : 0.5;
     const mistakes = average(
       visibleLetters.map((letter) => {
-        const lastMistakeAt = state.letters[letter]?.lastMistakeAt;
+        const lastMistakeAt = letterState(state, letter)?.lastMistakeAt;
         return lastMistakeAt === undefined
           ? 0
           : Math.max(0, 1 - (now - lastMistakeAt) / config.spacingMs);
@@ -287,8 +293,8 @@ export function selectAdaptiveWord(
       familiarity(word) <= config.verificationFamiliarityThreshold &&
       visibleLetters.some(
         (letter) =>
-          (state.letters[letter]?.correct ?? 0) > 0 &&
-          !state.letters[letter]?.verified,
+          (letterState(state, letter)?.correct ?? 0) > 0 &&
+          !letterState(state, letter)?.verified,
       );
     const w = config.weights;
     const components = {

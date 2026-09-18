@@ -12,8 +12,8 @@ import type {
 import { TRAINER_CONFIG } from './config.ts';
 import { familiarity, updateScores } from './scoring.ts';
 
-const barevWorldWord = 'ԲԱՐԵՎ';
-const yerevanWorldWord = 'ԵՐԵՎԱՆ';
+const barevWorldWord = 'բարև';
+const yerevanWorldWord = 'երևան';
 const barevWorld = deriveWord('բարև');
 const yerevanWorld = deriveWord('Երևան');
 const barevWorldIdentity = JSON.stringify(barevWorld.letters);
@@ -26,10 +26,10 @@ const requiredWordIdentities = {
 };
 // ponytail: prompt-text matching; keep these spellings synced with builder/data/curated-countries.json.
 const armeniaNeighborWords = new Set([
-  'ԻՐԱՆ',
-  'ԹՈՒՐՔԻԱ',
-  'ՎՐԱՍՏԱՆ',
-  'ԱԴՐԲԵՋԱՆ',
+  'իրան',
+  'թուրքիա',
+  'վրաստան',
+  'ադրբեջան',
 ]);
 
 export const ACHIEVEMENT_REQUIRED_WORDS = [
@@ -89,9 +89,9 @@ interface Match {
   evidence: Evidence;
 }
 
-const targetLetters = new Set(ALPHABET.map(({ upper }) => upper));
+const targetLetters = new Set(ALPHABET.map(({ lower }) => lower));
 const canonicalLetter = (letter: string) =>
-  letter === 'և' ? letter : letter.toLocaleUpperCase('hy');
+  letter === 'և' ? letter : letter.toLocaleLowerCase('hy');
 const visibleLetter = (letter: string) =>
   letter === 'և' ? letter : letter.toLocaleUpperCase('hy');
 const stateLetter = (letter: string, caseMode: 'caps' | 'normal' | 'lower') =>

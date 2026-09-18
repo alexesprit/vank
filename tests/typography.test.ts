@@ -22,7 +22,10 @@ it('formats supported Armenian case modes without changing the canonical word', 
   expect(formatPrompt(word, 'normal')).toBe('Երեվան');
   expect(formatPrompt(word, 'lower')).toBe('երեվան');
   expect(formatPrompt(word.word, 'lower')).toBe('երեվան');
-  expect(word.word).toBe('ԵՐԵՎԱՆ');
+  expect(word.word).toBe('երեվան');
+  expect(formatPrompt('Երևան', 'caps')).toBe('ԵՐԵՎԱՆ');
+  expect(formatPrompt('Երևան', 'normal')).toBe('Երևան');
+  expect(formatPrompt('Երևան', 'lower')).toBe('երևան');
   expect(formatPrompt('123', 'lower')).toBe('123');
 });
 

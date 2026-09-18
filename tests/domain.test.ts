@@ -9,10 +9,10 @@ import { parseDictionary } from '../shared/schema';
 
 describe('Modern Eastern Armenian domain', () => {
   it('normalizes reformed spelling and derives stable IDs, codepoints and digraphs', () => {
-    expect(normalizeArmenian('  բարև  ')).toBe('ԲԱՐԵՎ');
+    expect(normalizeArmenian('  բարև  ')).toBe('բարև');
     const word = deriveWord('խանութ');
     expect(word).toMatchObject({
-      word: 'ԽԱՆՈՒԹ',
+      word: 'խանութ',
       readingLatin: 'khanut',
       acceptedCyrillic: ['ханут'],
       length: 6,
@@ -26,7 +26,7 @@ describe('Modern Eastern Armenian domain', () => {
       'Թ',
     ]);
     expect(deriveWord('ԽԱՆՈՒԹ').id).toBe(word.id);
-    expect(word.uniqueLetters).toEqual(['Խ', 'Ա', 'Ն', 'Ո', 'Ւ', 'Թ']);
+    expect(word.uniqueLetters).toEqual(['խ', 'ա', 'ն', 'ո', 'ւ', 'թ']);
   });
   it('uses Eastern consonants and position-sensitive vowels', () => {
     for (const [word, latin, cyrillic] of [
@@ -84,13 +84,13 @@ describe('runtime dictionary boundary', () => {
     expect(
       parseDictionary({ ...dataset(), words: [word] }).words[0],
     ).toMatchObject({
-      letters: ['Տ', 'Ա', 'Ք', 'Ս', 'Ի'],
-      uniqueLetters: ['Տ', 'Ա', 'Ք', 'Ս', 'Ի'],
+      letters: ['տ', 'ա', 'ք', 'ս', 'ի'],
+      uniqueLetters: ['տ', 'ա', 'ք', 'ս', 'ի'],
       length: 5,
     });
   });
   it('rejects future schemas, duplicate IDs, invalid decomposition, scores and readings', () => {
-    expect(() => parseDictionary({ ...dataset(), schemaVersion: 2 })).toThrow(
+    expect(() => parseDictionary({ ...dataset(), schemaVersion: 99 })).toThrow(
       'schema',
     );
     expect(() =>

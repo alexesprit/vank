@@ -35,11 +35,11 @@ describe('source adapters and field-level merge', () => {
     };
     expect(wiktionaryRecord(entry)).toBeNull();
     expect(
-      wiktionaryRecord(entry, { allowedNames: new Set(['ԼՈՆԴՈՆ']) })
+      wiktionaryRecord(entry, { allowedNames: new Set(['լոնդոն']) })
         ?.rawDefinitions,
     ).toEqual(['London']);
     expect(
-      wiktionaryRecord(entry, { allowedNames: new Set(['ՄՈՍԿՎԱ']) }),
+      wiktionaryRecord(entry, { allowedNames: new Set(['մոսկվա']) }),
     ).toBeNull();
   });
   it('imports reliable Armenian lemmas and filters names, archaic, inflected, Western-only and other languages', () => {
@@ -61,7 +61,7 @@ describe('source adapters and field-level merge', () => {
       },
     ]);
     const result = deriveMetadata(mergeSources(raw).words)[0];
-    expect(result.word).toBe('ԱՆԴՐԵՅ');
+    expect(result.word).toBe('անդրեյ');
     expect(result.id).toBe(deriveWord('ԱՆԴՐԵՅ').id);
     expect(result.letters).toHaveLength(6);
     expect(() =>
@@ -86,7 +86,7 @@ describe('source adapters and field-level merge', () => {
     };
     const result = mergeSources([...curated, ...source]).words;
     expect(result).toHaveLength(2);
-    const taxi = result.find((w) => w.word === 'ՏԱՔՍԻ');
+    const taxi = result.find((w) => w.word === 'տաքսի');
     if (!taxi) throw new Error('Missing taxi fixture');
     expect(taxi.metadata).toMatchObject({
       meaning: { en: 'taxicab', ru: 'такси' },
@@ -122,7 +122,7 @@ it('runs an offline end-to-end fixture with deterministic enrichment, final over
     ]),
   ];
   const words = deriveMetadata(mergeSources(raw).words);
-  const taxi = words.find((w) => w.word === 'ՏԱՔՍԻ');
+  const taxi = words.find((w) => w.word === 'տաքսի');
   if (!taxi) throw new Error('Missing taxi fixture');
   expect(taxi).toMatchObject({
     readingLatin: 'taksi',
