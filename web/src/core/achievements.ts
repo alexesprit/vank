@@ -44,35 +44,6 @@ export const ACHIEVEMENT_DICTIONARY_REQUIREMENTS = {
   minDistinctLettersInWord: 6,
 } as const;
 
-export const ACHIEVEMENT_IDS = [
-  'training-wheels-off',
-  'alphabet-observed',
-  'first-strong-letter',
-  'ten-strong-letters',
-  'half-alphabet',
-  'backslide',
-  'phoenix-letter',
-  'read-dont-guess',
-  'flash-reader',
-  'first-flash-hit',
-  'flash-reflex',
-  'barev-world',
-  'yerevan',
-  'first-landmark',
-  'local-guide',
-  'passport-stamped',
-  'border-reader',
-  'armenia-neighbors',
-  'no-more-freebies',
-  'redemption-arc',
-  'no-repeats',
-  'cold-read',
-  'sixth-sense',
-  'ev-one-letter-or-two',
-] as const;
-
-export type AchievementId = (typeof ACHIEVEMENT_IDS)[number];
-
 export interface AchievementUnlock {
   id: AchievementId;
   definitionVersion: number;
@@ -305,9 +276,9 @@ const createDistinctModeTracker = (
   };
 };
 
-export interface AchievementDefinition {
+interface AchievementDefinitionBase {
   /** Stable persisted ID. Never rename or reuse after release. */
-  id: AchievementId;
+  id: string;
   /** Increment when this definition's condition or thresholds change. */
   version: number;
   thresholds: AchievementThresholds;
@@ -317,7 +288,7 @@ export interface AchievementDefinition {
   requiresScoreReplay?: true;
 }
 
-export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
+const achievementDefinitions = [
   {
     id: 'training-wheels-off',
     version: 1,
@@ -777,7 +748,14 @@ export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] = [
       };
     },
   },
-];
+] as const satisfies readonly AchievementDefinitionBase[];
+
+export type AchievementId = (typeof achievementDefinitions)[number]['id'];
+export type AchievementDefinition = AchievementDefinitionBase & {
+  id: AchievementId;
+};
+export const ACHIEVEMENT_DEFINITIONS: readonly AchievementDefinition[] =
+  achievementDefinitions;
 
 export function evaluateAchievements(
   attempts: readonly AttemptEvent[],
