@@ -1,9 +1,6 @@
 import { existsSync } from 'node:fs';
 import { parseArgs } from 'node:util';
-import {
-  type EnrichmentProvider,
-  enrichWords,
-} from '../src/enrichment.ts';
+import { type EnrichmentProvider, enrichWords } from '../src/enrichment.ts';
 import {
   evaluateEnrichment,
   parseEnrichmentReferences,

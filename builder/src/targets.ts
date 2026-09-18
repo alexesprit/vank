@@ -1,3 +1,4 @@
+import { object } from '../../shared/schema.ts';
 import { readJson } from './io.ts';
 
 export type EnrichmentMode = 'none' | 'openrouter' | 'ollama';
@@ -25,24 +26,25 @@ const nonEmptyString = (value: unknown, field: string): string => {
     throw new Error(`Invalid target ${field}`);
   return value;
 };
+const objectWithError = (value: unknown, message: string) => {
+  try {
+    return object(value);
+  } catch {
+    throw new Error(message);
+  }
+};
 
 export function parseTargetManifest(value: unknown): TargetManifest {
-  if (!value || typeof value !== 'object' || Array.isArray(value))
-    throw new Error('Expected target manifest object');
-  const rawTargets = (value as { targets?: unknown }).targets;
-  if (
-    !rawTargets ||
-    typeof rawTargets !== 'object' ||
-    Array.isArray(rawTargets)
-  )
-    throw new Error('Expected target manifest targets');
+  const manifest = objectWithError(value, 'Expected target manifest object');
+  const rawTargets = objectWithError(
+    manifest.targets,
+    'Expected target manifest targets',
+  );
   const targets: Record<string, DictionaryTarget> = {};
   const assets = new Set<string>();
   const outputs = new Set<string>();
   for (const [id, value] of Object.entries(rawTargets)) {
-    if (!value || typeof value !== 'object' || Array.isArray(value))
-      throw new Error(`Invalid target ${id}`);
-    const target = value as Record<string, unknown>;
+    const target = objectWithError(value, `Invalid target ${id}`);
     const checks = target.checks ?? [];
     if (
       !Array.isArray(checks) ||

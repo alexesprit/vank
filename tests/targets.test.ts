@@ -38,6 +38,18 @@ const manifest = parseTargetManifest({
 });
 
 describe('dictionary targets', () => {
+  it('keeps contextual errors for invalid manifest objects', () => {
+    expect(() => parseTargetManifest(null)).toThrow(
+      'Expected target manifest object',
+    );
+    expect(() => parseTargetManifest({})).toThrow(
+      'Expected target manifest targets',
+    );
+    expect(() => parseTargetManifest({ targets: { words: null } })).toThrow(
+      'Invalid target words',
+    );
+  });
+
   it('selects enabled targets and requires the primary dictionary', () => {
     expect(selectTargets(manifest).map(({ id }) => id)).toEqual([
       'words',
