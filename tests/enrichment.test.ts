@@ -77,6 +77,7 @@ describe('AI response boundary', () => {
     const w = words()[0];
     const key = cacheKey(w, 'model-a', ['ru']);
     expect(cacheKey(w, 'model-a', ['ru'])).toBe(key);
+    expect(cacheKey(w, 'model-a:batch', ['ru'])).toBe(key);
     expect(cacheKey(w, 'model-b', ['ru'])).not.toBe(key);
     expect(cacheKey(w, 'model-a', ['en'])).not.toBe(key);
     expect(
@@ -91,6 +92,105 @@ describe('AI response boundary', () => {
       cacheKey({ ...w, recognitionHints: { ru: 'такси' } }, 'model-a', ['ru']),
     ).not.toBe(key);
   });
+});
+it('uses the OpenRouter batch API while sharing cache entries with the base model', async () => {
+  const cacheDir = await directory();
+  const dataset = words().slice(0, 1);
+  const fetcher = vi.fn(
+    async (url: string | URL | Request, init?: RequestInit) => {
+      if (init?.method === 'POST') {
+        expect(String(url)).toContain('/api/beta/batches');
+        const body = JSON.parse(String(init.body));
+        expect(body.model).toBe('test/model');
+        expect(body.requests).toHaveLength(1);
+        expect(body.requests[0].body.model).toBe('test/model');
+        return Response.json({ id: 'batch-1', status: 'validating' });
+      }
+      expect(String(url)).toContain('/api/beta/batches/batch-1');
+      return Response.json({
+        id: 'batch-1',
+        status: 'completed',
+        results: [
+          {
+            custom_id: 'enrich-1',
+            response: {
+              status_code: 200,
+              body: {
+                choices: [
+                  {
+                    message: {
+                      content: JSON.stringify({
+                        items: [item(dataset[0].id)],
+                      }),
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      });
+    },
+  );
+  await enrichWords(dataset, {
+    apiKey: 'key',
+    model: 'test/model:batch',
+    cacheDir,
+    fetcher,
+    sleep: async () => {},
+  });
+  expect(fetcher).toHaveBeenCalledTimes(2);
+  await expect(
+    enrichWords(dataset, {
+      model: 'test/model',
+      cacheDir,
+      fetcher: async () => {
+        throw new Error('must use cache');
+      },
+    }),
+  ).resolves.toHaveLength(1);
+});
+it('does not resubmit an accepted batch after a polling failure', async () => {
+  const dataset = words().slice(0, 1);
+  let polls = 0;
+  const fetcher = vi.fn(
+    async (_url: string | URL | Request, init?: RequestInit) => {
+      if (init?.method === 'POST')
+        return Response.json({ id: 'batch-1', status: 'validating' });
+      if (++polls === 1) throw new Error('poll interrupted');
+      return Response.json({
+        status: 'completed',
+        results: [
+          {
+            response: {
+              status_code: 200,
+              body: {
+                choices: [
+                  {
+                    message: {
+                      content: JSON.stringify({
+                        items: [item(dataset[0].id)],
+                      }),
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      });
+    },
+  );
+  await enrichWords(dataset, {
+    apiKey: 'key',
+    model: 'test/model:batch',
+    fetcher,
+    maxRetries: 1,
+    sleep: async () => {},
+  });
+  expect(
+    fetcher.mock.calls.filter(([, init]) => init?.method === 'POST'),
+  ).toHaveLength(1);
 });
 it('validates enrichment concurrency', async () => {
   const cacheDir = await directory();
