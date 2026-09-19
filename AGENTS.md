@@ -11,11 +11,11 @@
 
 Use Node.js 24 or later and install exact dependencies with `npm ci`.
 
-- `npm run dev` downloads the runtime dictionary and starts Vite on localhost.
+- `npm run dev` starts Vite on localhost; run `npm run build:seed` first in a fresh checkout.
 - `npm run test:run` runs the complete Vitest suite once; `npm test` watches during development.
 - `npm run lint` checks formatting and lint rules with Biome; `npm run lint:fix` applies safe fixes.
 - `npm run typecheck` runs TypeScript without emitting files.
-- `npm run build` type-checks and creates the static site in `web/dist/`.
+- `npm run build` creates the static site in `web/dist/`; run `npm run typecheck` separately.
 - `npm run ci` runs the full local quality gate, including seed generation, Knip, tests, lint, type-checking, and build.
 
 ## Coding Style & Naming Conventions

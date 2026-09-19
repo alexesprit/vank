@@ -1,6 +1,5 @@
 node_modules/
 web/dist/
-web/data/
 builder/cache/
 builder/data/
 .env*

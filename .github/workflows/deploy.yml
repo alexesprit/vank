@@ -56,6 +56,11 @@ jobs:
             .targets |= with_entries(select(.value.asset as $asset | $assets[0] | index($asset)))
           ' builder/targets.json > "$RUNNER_TEMP/targets.json"
           node --input-type=module -e 'import { downloadDictionaries } from "./builder/scripts/download-dictionary.ts"; await downloadDictionaries(process.argv[1], process.env)' "$RUNNER_TEMP/targets.json"
+      - name: Download all assets for an existing release
+        if: github.event_name == 'workflow_dispatch' && inputs.dictionaries_published == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node --input-type=module -e 'import { downloadDictionaries } from "./builder/scripts/download-dictionary.ts"; await downloadDictionaries("builder/targets.json", process.env)'
       - name: Build configured packs only
         if: github.event_name != 'workflow_dispatch' || inputs.dictionaries_published != true
         run: npm run dict:build -- --pack --no-ai
